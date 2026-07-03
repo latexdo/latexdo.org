@@ -43,6 +43,8 @@ npx wrangler deploy
 
 The Wrangler config publishes static files from the repository root. `_redirects` defines host redirects, and `.assetsignore` keeps development-only files out of the asset upload. In non-interactive environments, set `CLOUDFLARE_API_TOKEN` before deploying.
 
+This repo also includes a GitHub Pages workflow at `.github/workflows/pages.yml`. In the repository's GitHub Pages settings, set Build and deployment > Source to GitHub Actions. If the source remains set to Deploy from a branch, GitHub will keep running its generated `pages build and deployment` workflow instead.
+
 ## Source Sync
 
 Most website files are generated from the main app repo. To refresh this repo from local source, run this in `/Users/omar/Desktop/Github/latexdo`:

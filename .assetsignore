@@ -1,4 +1,6 @@
 *
+!/about/
+!/about/index.html
 !/assets/
 !/assets/**
 !/bin/
@@ -11,6 +13,7 @@
 !/editor/index.html
 !/updates/
 !/updates/**
+!/_redirects
 !/index.html
 !/install.sh
 !/privacy.html
