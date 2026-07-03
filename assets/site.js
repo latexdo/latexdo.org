@@ -402,6 +402,25 @@ function initCopyCommands() {
         });
     });
 }
+function initTheme() {
+    const toggle = document.querySelector("[data-theme-toggle]");
+    const html = document.documentElement;
+    const saved = localStorage.getItem("theme");
+    if (saved === "bw") {
+        html.setAttribute("data-theme", "bw");
+    }
+    toggle?.addEventListener("click", () => {
+        const isBw = html.getAttribute("data-theme") === "bw";
+        if (isBw) {
+            html.removeAttribute("data-theme");
+            localStorage.setItem("theme", "");
+        }
+        else {
+            html.setAttribute("data-theme", "bw");
+            localStorage.setItem("theme", "bw");
+        }
+    });
+}
 function initFooter() {
     const year = new Date().getFullYear();
     const el = document.querySelector("#copyright") ?? document.querySelector("#copyright-year");
@@ -415,6 +434,7 @@ function init() {
     initEditorDemo();
     void initDownloads();
     initCopyCommands();
+    initTheme();
     initFooter();
 }
 if (document.readyState === "loading") {
