@@ -380,52 +380,9 @@ async function initDownloads() {
         renderDownloadFallback(container);
     }
 }
-function initCopyCommands() {
-    const buttons = queryAll(".copy-btn");
-    buttons.forEach((btn) => {
-        btn.addEventListener("click", async () => {
-            const command = btn.parentElement?.querySelector("code")?.textContent;
-            if (!command)
-                return;
-            try {
-                await navigator.clipboard.writeText(command);
-                btn.classList.add("copied");
-                btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-                setTimeout(() => {
-                    btn.classList.remove("copied");
-                    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
-                }, 2000);
-            }
-            catch {
-                // Clipboard not available
-            }
-        });
-    });
-}
-function initTheme() {
-    const toggle = document.querySelector("[data-theme-toggle]");
-    const html = document.documentElement;
-    const saved = localStorage.getItem("theme");
-    if (saved === "bw") {
-        html.setAttribute("data-theme", "bw");
-    }
-    toggle?.addEventListener("click", () => {
-        const isBw = html.getAttribute("data-theme") === "bw";
-        if (isBw) {
-            html.removeAttribute("data-theme");
-            localStorage.setItem("theme", "");
-        }
-        else {
-            html.setAttribute("data-theme", "bw");
-            localStorage.setItem("theme", "bw");
-        }
-    });
-}
 function initFooter() {
     const year = new Date().getFullYear();
-    const el = document.querySelector("#copyright") ?? document.querySelector("#copyright-year");
-    if (el)
-        el.textContent = String(year);
+    setText("#copyright", `Copyright ${year} LatexDo.`);
 }
 function init() {
     initNavigation();
@@ -433,8 +390,6 @@ function init() {
     initHeroCommands();
     initEditorDemo();
     void initDownloads();
-    initCopyCommands();
-    initTheme();
     initFooter();
 }
 if (document.readyState === "loading") {

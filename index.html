@@ -141,10 +141,6 @@
           <a href="#cli">CLI</a>
           <a href="downloads/">Downloads</a>
           <a href="#faq">FAQ</a>
-          <a href="donations/">Donate</a>
-          <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle black & white theme">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20V2z"/></svg>
-          </button>
           <a class="nav-editor-link" href="https://editor.latexdo.org">Open editor</a>
         </div>
       </nav>
@@ -233,24 +229,6 @@ and review work together.
           <span>Reviews, rebuttals, checks, and PDFs.</span>
         </div>
       </section>
-
-      <div class="product-table" aria-label="LatexDo products">
-        <a href="/">
-          <strong>LatexDo</strong>
-          <span>Full LaTeX workspace</span>
-          <small>Web &amp; desktop &rarr;</small>
-        </a>
-        <a href="https://editor.latexdo.org">
-          <strong>Editor</strong>
-          <span>Browser-based writing</span>
-          <small>Open editor &rarr;</small>
-        </a>
-        <a href="https://github.com/latexdo/latexdo-cli">
-          <strong>CLI</strong>
-          <span>Terminal-powered workflow</span>
-          <small>Install now &rarr;</small>
-        </a>
-      </div>
 
       <section
         id="editor"
@@ -487,9 +465,6 @@ and review work together.
           <div class="cli-install reveal">
             <div class="command-line" aria-label="LatexDo CLI install command">
               <code>curl -fsSL https://latexdo.org/install.sh | bash</code>
-              <button class="copy-btn" aria-label="Copy command">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              </button>
             </div>
             <div class="cli-links">
               <a class="button primary" href="install.sh">View install script</a>
@@ -562,59 +537,23 @@ and review work together.
     </main>
 
     <footer class="site-footer">
-      <div class="footer-about">
-        <a class="footer-brand" href="/" aria-label="LatexDo home">
-          <img src="assets/icon.svg" alt="" width="28" height="28" />
-          <span>LatexDo</span>
-        </a>
-        <h4>Modern LaTeX editing, open for everyone.</h4>
-        <p>
-          LatexDo is a focused LaTeX editor for writing papers, compiling PDFs,
-          managing citations, reviewing comments, preparing rebuttals, and
-          working across web and desktop. It is free, open source, and built
-          for researchers, students, and technical writers who need a reliable
-          workflow from draft to submission.
-        </p>
-        <a class="footer-donate-btn" href="donations/">
-          Support LatexDo
-        </a>
-      </div>
       <div>
-        <h5>Products</h5>
-        <nav class="footer-nav" aria-label="Products">
-          <a href="https://editor.latexdo.org">Editor</a>
-          <a href="https://github.com/latexdo/latexdo-cli">CLI</a>
-          <a href="downloads/">Desktop</a>
-        </nav>
+        <a class="brand" href="/" aria-label="LatexDo home"
+          ><img src="assets/icon.svg" alt="" width="30" height="30" /><span
+            >LatexDo</span
+          ></a
+        >
+        <p>Modern LaTeX editing across web and desktop.</p>
       </div>
-      <div>
-        <h5>Resources</h5>
-        <nav class="footer-nav" aria-label="Resources">
-          <a href="about/">About</a>
-          <a href="https://docs.latexdo.org">Docs</a>
-          <a href="downloads/">Downloads</a>
-          <a href="sitemap.xml">Sitemap</a>
-        </nav>
-      </div>
-      <div>
-        <h5>Community</h5>
-        <nav class="footer-nav" aria-label="Community">
-          <a href="https://github.com/latexdo/latexdo">Source</a>
-          <a href="donations/">Donate</a>
-          <a href="mailto:contact@latexdo.org">Contact</a>
-          <a href="https://linkedin.com/company/latexdo">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
-        </nav>
-      </div>
-      <div class="footer-bottom">
-        <span>&copy; <span id="copyright-year"></span> LatexDo. All rights reserved.</span>
-        <nav class="footer-nav" style="flex-direction: row; gap: 16px;">
-          <a href="privacy.html">Privacy</a>
-          <a href="terms.html">Terms</a>
-        </nav>
-      </div>
+      <nav aria-label="Footer navigation">
+        <a href="about/">About</a>
+        <a href="https://editor.latexdo.org">Editor</a>
+        <a href="https://github.com/latexdo/latexdo-cli">CLI</a>
+        <a href="downloads/">Downloads</a>
+        <a href="https://github.com/latexdo/latexdo">Source</a>
+        <a href="sitemap.xml">Sitemap</a>
+      </nav>
+      <span id="copyright"></span>
     </footer>
 
     <script type="module" src="assets/site.js"></script>
