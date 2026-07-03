@@ -1058,41 +1058,6 @@ h3 {
   color: var(--muted);
 }
 
-.site-footer {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) auto auto;
-  gap: 24px;
-  align-items: center;
-  padding: 34px max(16px, calc((100% - var(--max)) / 2));
-  background: var(--ink);
-  color: #d2d8e3;
-}
-
-.site-footer p {
-  margin: 10px 0 0;
-  color: #98a2b3;
-  font-size: 14px;
-}
-
-.site-footer .brand {
-  color: white;
-}
-
-.site-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.site-footer a {
-  color: #d2d8e3;
-  text-decoration: none;
-}
-
-.site-footer a:hover {
-  color: white;
-}
-
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -1530,10 +1495,6 @@ h3 {
     border-bottom: 1px solid var(--border);
   }
 
-  .site-footer {
-    grid-template-columns: 1fr;
-  }
-
   .downloads-grid .download-card {
     align-items: flex-start;
     flex-direction: column;
@@ -1572,6 +1533,267 @@ h3 {
   .pdf-page {
     width: calc(100% - 24px);
     padding: 22px;
+  }
+}
+
+/* Product table (enterprise-style showcase) */
+.product-table {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface);
+}
+
+.product-table a {
+  display: grid;
+  gap: 6px;
+  padding: 32px 28px;
+  border-right: 1px solid var(--hairline);
+  text-decoration: none;
+  transition: background 160ms ease;
+}
+
+.product-table a:last-child {
+  border-right: 0;
+}
+
+.product-table a:hover {
+  background: #f2f5fa;
+}
+
+.product-table strong {
+  font-size: 20px;
+  font-weight: 820;
+  color: var(--ink);
+}
+
+.product-table span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.product-table small {
+  color: var(--blue-strong);
+  font-size: 13px;
+  font-weight: 760;
+}
+
+/* Footer with About section */
+.site-footer {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding: 44px max(16px, calc((100% - var(--max)) / 2));
+  background: var(--ink);
+  color: #d2d8e3;
+}
+
+.site-footer .footer-about h4 {
+  margin: 0 0 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 820;
+}
+
+.site-footer .footer-about p {
+  margin: 0 0 16px;
+  color: #98a2b3;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.site-footer .footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: white;
+  font-size: 18px;
+  font-weight: 820;
+  text-decoration: none;
+}
+
+.site-footer h5 {
+  margin: 0 0 14px;
+  color: white;
+  font-size: 13px;
+  font-weight: 860;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.site-footer .footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.site-footer .footer-nav a {
+  color: #98a2b3;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.site-footer .footer-nav a:hover {
+  color: white;
+}
+
+.site-footer .footer-nav a svg {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.footer-donate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: 760;
+  text-decoration: none;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.footer-donate-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #667085;
+  font-size: 13px;
+}
+
+/* Donations page */
+.donations-page {
+  width: min(820px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 72px 0 86px;
+}
+
+.donations-hero {
+  text-align: center;
+  padding: 60px 0 40px;
+}
+
+.donations-hero h1 {
+  font-size: 64px;
+  margin: 8px 0 18px;
+}
+
+.donations-hero p {
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 640px;
+  margin: 0 auto 28px;
+}
+
+.donations-card {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 36px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  text-align: center;
+  box-shadow: var(--shadow-strong);
+}
+
+.donations-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.donations-card p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.donate-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: white;
+  font-size: 16px;
+  font-weight: 760;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.donate-button:hover {
+  transform: translateY(-2px);
+  background: #2a2f3a;
+}
+
+.donations-reasons {
+  display: grid;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.donations-reason {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.donations-reason h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.donations-reason p {
+  color: var(--muted);
+  font-size: 15px;
+  margin: 0;
+}
+
+@media (max-width: 820px) {
+  .site-footer {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .product-table {
+    grid-template-columns: 1fr;
+  }
+
+  .product-table a {
+    border-right: 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .product-table a:last-child {
+    border-bottom: 0;
+  }
+
+  .donations-hero h1 {
+    font-size: 42px;
   }
 }
 

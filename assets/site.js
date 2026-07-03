@@ -382,7 +382,9 @@ async function initDownloads() {
 }
 function initFooter() {
     const year = new Date().getFullYear();
-    setText("#copyright", `Copyright ${year} LatexDo.`);
+    const el = document.querySelector("#copyright") ?? document.querySelector("#copyright-year");
+    if (el)
+        el.textContent = String(year);
 }
 function init() {
     initNavigation();
