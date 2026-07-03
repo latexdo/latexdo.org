@@ -1754,3 +1754,36 @@ h3 {
     transform: none;
   }
 }
+
+/* FIX hero overlap */
+@media (min-width: 821px) {
+  .hero {
+    min-height: calc(100svh - 66px);
+  }
+
+  .hero-backdrop {
+    left: 520px;
+    right: 32px;
+    width: auto;
+    padding: 92px 0 48px;
+    pointer-events: none;
+  }
+
+  .product-stage {
+    width: 100%;
+    max-width: 1120px;
+    transform: none;
+  }
+
+  .hero-content {
+    width: min(480px, calc(100% - 32px));
+    margin-left: max(24px, calc((100vw - var(--max)) / 2));
+    margin-right: auto;
+    align-self: center;
+    padding: 90px 0;
+  }
+
+  .hero-lede {
+    max-width: 460px;
+  }
+}
