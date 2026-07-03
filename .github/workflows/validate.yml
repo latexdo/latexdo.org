@@ -1,0 +1,60 @@
+name: Validate Site
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate static site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site assets
+        run: npm run build
+
+      - name: Validate Cloudflare asset set
+        run: |
+          for asset_path in about assets bin docs downloads editor updates; do
+            test -e "$asset_path" || {
+              echo "Missing required path: $asset_path"
+              exit 1
+            }
+          done
+
+          for asset_path in .nojekyll _redirects index.html install.sh privacy.html robots.txt sitemap.xml site.webmanifest style.css terms.html; do
+            test -e "$asset_path" || {
+              echo "Missing required file: $asset_path"
+              exit 1
+            }
+          done
+
+          if find about assets bin docs downloads editor updates -type l -print -quit | grep -q .; then
+            echo "Cloudflare assets must not contain symbolic links."
+            exit 1
+          fi

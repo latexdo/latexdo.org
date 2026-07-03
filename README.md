@@ -34,16 +34,14 @@ npm run typecheck  # Check TypeScript without emitting files.
 
 ## Deploy
 
-Deploy the site to Cloudflare Workers assets:
+Cloudflare deploys this repository through its GitHub integration. The Workers static assets deployment is configured in `wrangler.jsonc`.
 
 ```sh
 npm run build
 npx wrangler deploy
 ```
 
-The Wrangler config publishes static files from the repository root. `_redirects` defines host redirects, and `.assetsignore` keeps development-only files out of the asset upload. In non-interactive environments, set `CLOUDFLARE_API_TOKEN` before deploying.
-
-This repo also includes a GitHub Pages workflow at `.github/workflows/pages.yml`. In the repository's GitHub Pages settings, set Build and deployment > Source to GitHub Actions. If the source remains set to Deploy from a branch, GitHub will keep running its generated `pages build and deployment` workflow instead.
+The Wrangler config publishes static files from the repository root. `_redirects` defines host redirects, and `.assetsignore` keeps development-only files out of the asset upload. The GitHub Actions workflow validates PRs and pushes, but it does not deploy GitHub Pages.
 
 ## Source Sync
 
