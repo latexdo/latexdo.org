@@ -1059,38 +1059,65 @@ h3 {
 }
 
 .site-footer {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) auto auto;
-  gap: 24px;
-  align-items: center;
-  padding: 34px max(16px, calc((100% - var(--max)) / 2));
   background: var(--ink);
   color: #d2d8e3;
+  padding: 48px 0 0;
 }
 
-.site-footer p {
-  margin: 10px 0 0;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(4, 1fr);
+  gap: 32px;
+  width: min(var(--max), calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-footer h5 {
+  margin: 0 0 16px;
+  color: white;
+  font-size: 12px;
+  font-weight: 860;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.site-footer .footer-brand p {
+  margin: 12px 0 0;
   color: #98a2b3;
   font-size: 14px;
 }
 
-.site-footer .brand {
-  color: white;
-}
-
 .site-footer nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .site-footer a {
   color: #d2d8e3;
   text-decoration: none;
+  font-size: 14px;
 }
 
 .site-footer a:hover {
   color: white;
+}
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  margin-top: 32px;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  font-size: 13px;
+  color: #98a2b3;
+}
+
+.footer-bottom nav {
+  flex-direction: row;
+  gap: 16px;
 }
 
 .reveal {
@@ -1743,8 +1770,18 @@ h3 {
     border-bottom: 1px solid var(--border);
   }
 
-  .site-footer {
-    grid-template-columns: 1fr;
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .site-footer .footer-brand {
+    grid-column: 1 / -1;
   }
 
   .downloads-grid .download-card {
@@ -1778,6 +1815,10 @@ h3 {
 }
 
 @media (max-width: 520px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero-actions,
   .button {
     width: 100%;
