@@ -1533,6 +1533,26 @@ h3 {
   font-weight: 820;
 }
 
+.preview-pill {
+  width: fit-content;
+  border: 1px solid rgb(202 138 4 / 25%);
+  border-radius: 999px;
+  background: rgb(202 138 4 / 10%);
+  color: #a16207;
+  font-size: 11px;
+  font-weight: 820;
+  line-height: 1;
+  padding: 3px 7px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.nav-editor-link .preview-pill {
+  background: rgb(255 255 255 / 15%);
+  border-color: rgb(255 255 255 / 25%);
+  color: rgb(255 255 255 / 85%);
+}
+
 .download-meta-actions {
   display: flex;
   flex-wrap: wrap;
