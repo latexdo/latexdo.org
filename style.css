@@ -27,6 +27,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -184,8 +185,9 @@ svg {
 
 .hero {
   position: relative;
-  display: grid;
-  min-height: calc(100svh - 66px);
+  display: flex;
+  align-items: center;
+  min-height: calc(80vh - 66px);
   overflow: hidden;
   border-bottom: 1px solid var(--hairline);
   background: #f8f9fb;
@@ -385,9 +387,69 @@ svg {
   position: relative;
   z-index: 2;
   width: min(var(--max), calc(100% - 32px));
-  align-self: end;
   margin: 0 auto;
-  padding: 110px 0 92px;
+  padding: 80px 0;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 960px;
+  margin-top: 32px;
+}
+
+.task-card {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  text-decoration: none;
+  box-shadow: 0 12px 34px rgb(17 19 24 / 7%);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.task-card strong {
+  display: block;
+  font-size: 18px;
+}
+
+.task-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.task-card code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  color: var(--ink-soft);
+}
+
+.task-card .button {
+  justify-self: start;
+  min-width: 0;
+  padding: 0 16px;
+  min-height: 36px;
+  font-size: 13px;
+}
+
+.feature-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.section-cta {
+  margin-top: 30px;
 }
 
 .eyebrow {
@@ -1627,6 +1689,7 @@ h3 {
   }
 
   .feature-grid,
+  .feature-grid-4,
   .download-grid,
   .about-grid,
   .about-audience {
@@ -1669,28 +1732,12 @@ h3 {
   }
 
   .hero {
-    min-height: 760px;
-  }
-
-  .hero-backdrop {
-    align-items: end;
-    padding: 250px 16px 34px;
-  }
-
-  .product-stage {
-    grid-template-columns: 1fr;
-    grid-template-rows: 300px;
-    transform: none;
-  }
-
-  .stage-sidebar,
-  .stage-inspector {
-    display: none;
+    min-height: 0;
+    padding: 40px 0;
   }
 
   .hero-content {
-    align-self: start;
-    padding: 70px 0 24px;
+    padding: 0;
   }
 
   h1 {
@@ -1707,9 +1754,11 @@ h3 {
     font-size: 18px;
   }
 
+  .task-grid,
   .trust-strip,
   .workflow-grid,
   .feature-grid,
+  .feature-grid-4,
   .download-grid,
   .download-platform-grid,
   .about-hero,
