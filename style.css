@@ -155,13 +155,20 @@ svg {
 
 .nav-editor-link {
   padding: 0 14px;
-  background: var(--ink);
-  color: white;
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(17 19 24 / 6%);
 }
 
 .nav-editor-link:hover,
 .button.primary:hover {
   transform: translateY(-1px);
+}
+
+.nav-editor-link:hover {
+  background: var(--surface-soft);
+  color: var(--ink);
 }
 
 .nav-toggle {
@@ -1458,6 +1465,97 @@ h3 {
   font-size: 18px;
 }
 
+.dev-mode-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.dev-mode-toggle {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  margin: -8px 0 18px auto;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 820;
+  padding: 5px 6px 5px 12px;
+  user-select: none;
+}
+
+.dev-mode-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: #dbe3ee;
+  transition: background 160ms ease;
+}
+
+.dev-mode-switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 2px 6px rgb(17 19 24 / 22%);
+  transition: transform 160ms ease;
+}
+
+.dev-mode-input:checked + .dev-mode-toggle {
+  color: var(--ink);
+}
+
+.dev-mode-input:checked + .dev-mode-toggle .dev-mode-switch {
+  background: var(--ink);
+}
+
+.dev-mode-input:checked + .dev-mode-toggle .dev-mode-switch::after {
+  transform: translateX(16px);
+}
+
+.dev-mode-input:focus-visible + .dev-mode-toggle {
+  outline: 2px solid rgb(15 111 255 / 55%);
+  outline-offset: 3px;
+}
+
+.downloads-dev,
+.downloads-dev-link {
+  display: none;
+}
+
+#dev-mode-toggle:checked ~ .downloads-dev {
+  display: block;
+}
+
+body:has(#dev-mode-toggle:checked) .downloads-dev {
+  display: block;
+}
+
+body:has(#dev-mode-toggle:checked) .downloads-dev-link {
+  display: inline;
+}
+
+body:has(#dev-mode-toggle:checked) .nav-links .downloads-dev-link,
+body:has(#dev-mode-toggle:checked) .site-footer .downloads-dev-link,
+body:has(#dev-mode-toggle:checked) .release-item nav .downloads-dev-link,
+body:has(#dev-mode-toggle:checked) .button.downloads-dev-link {
+  display: inline-flex;
+}
+
 .downloads-grid {
   display: grid;
   gap: 14px;
@@ -1507,26 +1605,23 @@ h3 {
   color: var(--blue-strong);
 }
 
-.platform-download-card.linux .platform-logo-shell {
-  color: var(--green);
-}
-
 .platform-logo {
   width: 32px;
   height: 32px;
 }
 
-.platform-logo path {
-  fill: currentColor;
+img.platform-logo {
+  display: block;
+  object-fit: contain;
 }
 
-.platform-download-card.linux .platform-logo path,
-.linux-logo path {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
+.platform-logo.linux-logo {
+  width: 36px;
+  height: 43px;
+}
+
+.platform-logo path {
+  fill: currentColor;
 }
 
 .platform-download-card h2 {
@@ -1550,18 +1645,143 @@ h3 {
   scroll-snap-type: x proximity;
 }
 
+.mac-machine-picker {
+  display: grid;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.mac-machine-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.mac-machine-tabs {
+  position: relative;
+  display: grid;
+  width: min(100%, 310px);
+  min-height: 40px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #eef2f7;
+  padding: 3px;
+}
+
+.mac-machine-tabs::before {
+  content: "";
+  position: absolute;
+  inset: 3px auto 3px 3px;
+  width: calc((100% - 6px) / 2);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: 0 6px 16px rgb(17 19 24 / 12%);
+  transition: transform 160ms ease;
+}
+
+#mac-machine-intel:checked ~ .mac-machine-tabs::before {
+  transform: translateX(100%);
+}
+
+.mac-machine-tabs label {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 820;
+  line-height: 1;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+#mac-machine-apple-silicon:checked ~ .mac-machine-tabs label[for="mac-machine-apple-silicon"],
+#mac-machine-intel:checked ~ .mac-machine-tabs label[for="mac-machine-intel"] {
+  color: var(--ink);
+}
+
+#mac-machine-apple-silicon:focus-visible ~ .mac-machine-tabs label[for="mac-machine-apple-silicon"],
+#mac-machine-intel:focus-visible ~ .mac-machine-tabs label[for="mac-machine-intel"] {
+  outline: 2px solid rgb(15 111 255 / 55%);
+  outline-offset: 2px;
+}
+
+.mac-machine-downloads {
+  display: grid;
+}
+
+.download-option.mac-machine-option {
+  display: none;
+  min-width: 0;
+}
+
+#mac-machine-apple-silicon:checked ~ .mac-machine-downloads .mac-machine-option.arm64,
+#mac-machine-intel:checked ~ .mac-machine-downloads .mac-machine-option.x64 {
+  display: grid;
+}
+
 .download-option {
   display: grid;
   min-width: 190px;
   flex: 1 0 190px;
+  grid-template-columns: minmax(0, 1fr) 42px;
   gap: 4px;
+  column-gap: 12px;
+  align-items: center;
   scroll-snap-align: start;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: #f8fbff;
-  padding: 14px;
+  padding: 14px 0 14px 14px;
   color: var(--ink);
   text-decoration: none;
+}
+
+.button.primary[download]::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3Cpath d='M12 15V3'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3Cpath d='M12 15V3'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.download-option::before {
+  content: "";
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: stretch;
+  border-left: 1px solid var(--border);
+  background: rgb(255 255 255 / 58%);
+}
+
+.download-option::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: center;
+  justify-self: center;
+  background: currentColor;
+  opacity: 0.72;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3Cpath d='M12 15V3'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpath d='M7 10l5 5 5-5'/%3E%3Cpath d='M12 15V3'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.button.primary[download] {
+  gap: 8px;
 }
 
 .download-option:hover {
@@ -1569,11 +1789,18 @@ h3 {
 }
 
 .download-option strong {
+  min-width: 0;
+  grid-column: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 15px;
 }
 
 .download-option span,
 .download-option em {
+  min-width: 0;
+  grid-column: 1;
   color: var(--muted);
   font-size: 13px;
   font-style: normal;
@@ -1611,9 +1838,9 @@ h3 {
 }
 
 .nav-editor-link .preview-pill {
-  background: rgb(255 255 255 / 15%);
-  border-color: rgb(255 255 255 / 25%);
-  color: rgb(255 255 255 / 85%);
+  background: rgb(202 138 4 / 10%);
+  border-color: rgb(202 138 4 / 25%);
+  color: #a16207;
 }
 
 .download-meta-actions {
@@ -1698,9 +1925,64 @@ h3 {
   margin: 4px 0 0;
 }
 
+.release-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 12px 34px rgb(17 19 24 / 7%);
+}
+
+.release-group summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 18px;
+}
+
+.release-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.release-group-arrow {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  color: var(--muted);
+  transform: rotate(45deg);
+  transition: transform 160ms ease;
+}
+
+.release-group[open] .release-group-arrow {
+  transform: rotate(135deg);
+}
+
+.release-group-title {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.release-group-title strong {
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.release-group-title small {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 760;
+}
+
 .release-list {
   display: grid;
   gap: 10px;
+  border-top: 1px solid var(--border);
+  padding: 12px;
 }
 
 .release-item {
@@ -1710,9 +1992,8 @@ h3 {
   align-items: center;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: #f8fbff;
   padding: 16px 18px;
-  box-shadow: 0 12px 34px rgb(17 19 24 / 7%);
 }
 
 .release-item h3 {

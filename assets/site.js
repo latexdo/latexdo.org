@@ -48,6 +48,13 @@ function initNavigation() {
         }
     });
 }
+function initEditorPreviewNotice() {
+    queryAll(".nav-editor-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            window.alert("LatexDo Editor is currently in preview.");
+        });
+    });
+}
 function initReveal() {
     const elements = queryAll(".reveal");
     if (!("IntersectionObserver" in window)) {
@@ -166,6 +173,7 @@ function initFooter() {
 }
 function init() {
     initNavigation();
+    initEditorPreviewNotice();
     initReveal();
     void initDownloads();
     initCopyCommands();

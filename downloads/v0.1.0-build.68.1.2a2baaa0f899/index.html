@@ -13,25 +13,35 @@
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
-    <header class="site-header">
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
       <nav class="nav-shell" aria-label="Primary navigation">
-        <a class="brand" href="../../">
-          <img src="../../assets/icon.svg" alt="" width="34" height="34" />
+        <a class="brand" href="../../" aria-label="LatexDo home">
+          <img src="../../assets/icon.svg" alt="" width="36" height="36" />
           <span>LatexDo</span>
         </a>
-        <div class="nav-links">
-          <a class="nav-editor-link" href="https://editor.latexdo.org">Open editor</a>
-          <a href="../../">Home</a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="../../downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="https://github.com/latexdo/latexdo-cli">CLI</a>
           <a href="../../about/">About</a>
-          <a href="manifest.json">Manifest</a>
-          <a href="SHA256SUMS.txt">Checksums</a>
         </div>
       </nav>
     </header>
 
-    <main class="downloads-page">
+    <main id="content" class="downloads-page">
       <section class="downloads-hero">
-        <p class="eyebrow">Direct downloads</p>
         <h1>LatexDo v0.1.0-build.68.1.2a2baaa0f899 Downloads</h1>
         <p>Download this exact LatexDo desktop release from the LatexDo website. Installer files are stored in GitHub Releases and indexed here for updates.</p>
         <p>
@@ -39,6 +49,12 @@
           <a href="../">latest downloads</a>.
         </p>
       </section>
+
+      <input class="dev-mode-input" type="checkbox" id="dev-mode-toggle" />
+      <label class="dev-mode-toggle" for="dev-mode-toggle">
+        <span>Dev mode</span>
+        <span class="dev-mode-switch" aria-hidden="true"></span>
+      </label>
 
       <section class="downloads-grid" aria-label="LatexDo installers">
 
@@ -70,7 +86,7 @@
           </article>
       </section>
 
-      <section class="downloads-meta">
+      <section class="downloads-meta downloads-dev">
         <h2>Build information</h2>
         <dl>
           <div>
@@ -87,18 +103,59 @@
           </div>
         </dl>
         <p>
-          For automated checks, use <a href="manifest.json">manifest.json</a>.
-          For file verification, use <a href="SHA256SUMS.txt">SHA256SUMS.txt</a>.
+          For automated checks, use <a class="downloads-dev-link" href="manifest.json">manifest.json</a>.
+          For file verification, use <a class="downloads-dev-link" href="SHA256SUMS.txt">SHA256SUMS.txt</a>.
         </p>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>LatexDo</span>
-      <a href="../../about/">About</a>
-      <a href="https://editor.latexdo.org">Editor</a>
-      <a href="../../">Website</a>
-      <a href="manifest.json">Manifest</a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../../" aria-label="LatexDo home">
+            <img src="../../assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Modern LaTeX editing across web and desktop.</p>
+        </div>
+        <div>
+          <h5>Product</h5>
+          <nav aria-label="Product">
+            <a href="https://editor.latexdo.org">Editor</a>
+            <a href="https://github.com/latexdo/latexdo-cli">CLI</a>
+            <a href="../../downloads/">Desktop</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Resources</h5>
+          <nav aria-label="Resources">
+            <a href="../../about/">About</a>
+            <a href="https://docs.latexdo.org">Docs</a>
+            <a href="../../downloads/">Downloads</a>
+            <a href="../../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <nav aria-label="Company">
+            <a href="../../privacy.html">Privacy</a>
+            <a href="../../terms.html">Terms</a>
+            <a href="mailto:contact@latexdo.org">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Community</h5>
+          <nav aria-label="Community">
+            <a href="https://github.com/latexdo/latexdo">Source</a>
+            <a href="../../donations/">Donate</a>
+            <a href="https://linkedin.com/company/latexdo">LinkedIn</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. All rights reserved.</span>
+        </div>
+      </div>
     </footer>
+    <script type="module" src="../../assets/site.js"></script>
   </body>
 </html>

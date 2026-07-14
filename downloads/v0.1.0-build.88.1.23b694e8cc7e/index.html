@@ -13,25 +13,35 @@
     <link rel="stylesheet" href="../../style.css" />
   </head>
   <body>
-    <header class="site-header">
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
       <nav class="nav-shell" aria-label="Primary navigation">
-        <a class="brand" href="../../">
-          <img src="../../assets/icon.svg" alt="" width="34" height="34" />
+        <a class="brand" href="../../" aria-label="LatexDo home">
+          <img src="../../assets/icon.svg" alt="" width="36" height="36" />
           <span>LatexDo</span>
         </a>
-        <div class="nav-links">
-          <a class="nav-editor-link" href="https://editor.latexdo.org">Open editor</a>
-          <a href="../../">Home</a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="../../downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="https://github.com/latexdo/latexdo-cli">CLI</a>
           <a href="../../about/">About</a>
-          <a href="manifest.json">Manifest</a>
-          <a href="SHA256SUMS.txt">Checksums</a>
         </div>
       </nav>
     </header>
 
-    <main class="downloads-page">
+    <main id="content" class="downloads-page">
       <section class="downloads-hero">
-        <p class="eyebrow">Direct downloads</p>
         <h1>LatexDo v0.1.0-build.88.1.23b694e8cc7e Downloads</h1>
         <p>Download this exact LatexDo desktop release from the LatexDo website. Installer files are stored in GitHub Releases and indexed here for updates.</p>
         <p>
@@ -39,6 +49,12 @@
           <a href="../">latest downloads</a>.
         </p>
       </section>
+
+      <input class="dev-mode-input" type="checkbox" id="dev-mode-toggle" />
+      <label class="dev-mode-toggle" for="dev-mode-toggle">
+        <span>Dev mode</span>
+        <span class="dev-mode-switch" aria-hidden="true"></span>
+      </label>
 
       <section class="download-platform-grid" aria-label="LatexDo installers">
 
@@ -52,18 +68,25 @@
                 <h2>Apple Mac</h2>
               </div>
             </div>
-            <p>Choose the DMG for your Mac. Apple Silicon covers M-series Macs; Intel covers older Intel-based Macs.</p>
-            <div class="download-variant-row" aria-label="macOS build choices">
-<a class="download-option" href="https://github.com/latexdo/latexdo/releases/download/v0.1.0-build.88.1.23b694e8cc7e/LatexDo-macos-arm64.dmg" download>
-              <strong>Apple Silicon</strong>
-              <span>DMG installer</span>
-              <em>146.6 MB - SHA-256</em>
-            </a>
-<a class="download-option" href="https://github.com/latexdo/latexdo/releases/download/v0.1.0-build.88.1.23b694e8cc7e/LatexDo-macos-x64.dmg" download>
-              <strong>Intel</strong>
-              <span>DMG installer</span>
-              <em>153.5 MB - SHA-256</em>
-            </a>
+            <div class="mac-machine-picker" aria-label="macOS build choices">
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-apple-silicon" checked />
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-intel" />
+              <div class="mac-machine-tabs" role="group" aria-label="Mac processor">
+                <label for="mac-machine-apple-silicon">Apple Silicon</label>
+                <label for="mac-machine-intel">Intel</label>
+              </div>
+              <div class="mac-machine-downloads">
+                <a class="download-option mac-machine-option arm64" href="https://github.com/latexdo/latexdo/releases/download/v0.1.0-build.88.1.23b694e8cc7e/LatexDo-macos-arm64.dmg" download>
+                  <strong>Apple Silicon</strong>
+                  <span>DMG installer</span>
+                  <em>146.6 MB - SHA-256</em>
+                </a>
+                <a class="download-option mac-machine-option x64" href="https://github.com/latexdo/latexdo/releases/download/v0.1.0-build.88.1.23b694e8cc7e/LatexDo-macos-x64.dmg" download>
+                  <strong>Intel</strong>
+                  <span>DMG installer</span>
+                  <em>153.5 MB - SHA-256</em>
+                </a>
+              </div>
             </div>
           </article>
           <article class="platform-download-card windows">
@@ -79,7 +102,6 @@
                 <h2>Windows PC</h2>
               </div>
             </div>
-            <p>Install LatexDo on a 64-bit Windows PC with the packaged desktop installer.</p>
             <div class="download-variant-row" aria-label="Windows build choices">
 <a class="download-option" href="https://github.com/latexdo/latexdo/releases/download/v0.1.0-build.88.1.23b694e8cc7e/LatexDo-windows-x64.exe" download>
               <strong>Windows x64</strong>
@@ -90,17 +112,12 @@
           </article>
           <article class="platform-download-card linux">
             <div class="platform-card-top">
-              <span class="platform-logo-shell"><svg class="platform-logo linux-logo" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M4 5.5h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" />
-    <path d="m7 10 3 2-3 2" />
-    <path d="M12.5 15h4.5" />
-  </svg></span>
+              <span class="platform-logo-shell"><img class="platform-logo linux-logo" src="../../assets/linux-tux.png" alt="" width="36" height="43" /></span>
               <div>
                 <p class="eyebrow">Linux</p>
                 <h2>Linux desktop</h2>
               </div>
             </div>
-            <p>Run LatexDo on 64-bit Linux distributions with the packaged AppImage.</p>
             <div class="download-variant-row" aria-label="Linux build choices">
 <a class="download-option" href="https://github.com/latexdo/latexdo/releases/download/v0.1.0-build.88.1.23b694e8cc7e/LatexDo-linux-x64.AppImage" download>
               <strong>Linux x64</strong>
@@ -111,7 +128,7 @@
           </article>
       </section>
 
-      <section class="downloads-meta">
+      <section class="downloads-meta downloads-dev">
         <h2>Build information</h2>
         <dl>
           <div>
@@ -128,18 +145,59 @@
           </div>
         </dl>
         <p>
-          For automated checks, use <a href="manifest.json">manifest.json</a>.
-          For file verification, use <a href="SHA256SUMS.txt">SHA256SUMS.txt</a>.
+          For automated checks, use <a class="downloads-dev-link" href="manifest.json">manifest.json</a>.
+          For file verification, use <a class="downloads-dev-link" href="SHA256SUMS.txt">SHA256SUMS.txt</a>.
         </p>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>LatexDo</span>
-      <a href="../../about/">About</a>
-      <a href="https://editor.latexdo.org">Editor</a>
-      <a href="../../">Website</a>
-      <a href="manifest.json">Manifest</a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../../" aria-label="LatexDo home">
+            <img src="../../assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Modern LaTeX editing across web and desktop.</p>
+        </div>
+        <div>
+          <h5>Product</h5>
+          <nav aria-label="Product">
+            <a href="https://editor.latexdo.org">Editor</a>
+            <a href="https://github.com/latexdo/latexdo-cli">CLI</a>
+            <a href="../../downloads/">Desktop</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Resources</h5>
+          <nav aria-label="Resources">
+            <a href="../../about/">About</a>
+            <a href="https://docs.latexdo.org">Docs</a>
+            <a href="../../downloads/">Downloads</a>
+            <a href="../../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <nav aria-label="Company">
+            <a href="../../privacy.html">Privacy</a>
+            <a href="../../terms.html">Terms</a>
+            <a href="mailto:contact@latexdo.org">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Community</h5>
+          <nav aria-label="Community">
+            <a href="https://github.com/latexdo/latexdo">Source</a>
+            <a href="../../donations/">Donate</a>
+            <a href="https://linkedin.com/company/latexdo">LinkedIn</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. All rights reserved.</span>
+        </div>
+      </div>
     </footer>
+    <script type="module" src="../../assets/site.js"></script>
   </body>
 </html>
