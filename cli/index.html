@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LatexDo CLI - Terminal Install</title>
+    <meta
+      name="description"
+      content="Install the LatexDo local editor from the terminal. The CLI caches the LatexDo source, installs npm dependencies, starts the local web editor, and opens localhost."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://latexdo.org/cli/" />
+    <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <link rel="stylesheet" href="../style.css" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:title" content="LatexDo CLI" />
+    <meta
+      property="og:description"
+      content="Install the local LatexDo editor from the terminal with one command."
+    />
+    <meta property="og:url" content="https://latexdo.org/cli/" />
+    <meta property="og:image" content="https://latexdo.org/assets/social-preview.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="../" aria-label="LatexDo home">
+          <img src="../assets/icon.svg" alt="" width="36" height="36" />
+          <span>LatexDo</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="../downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="../cli/">CLI</a>
+          <a href="../about/">About</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content">
+      <section class="section-band cli-band" aria-labelledby="cli-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Terminal install</p>
+            <h1 id="cli-title">Install the local editor with one command.</h1>
+            <p>
+              The CLI keeps a cached copy of the LatexDo source, installs npm
+              dependencies when they change, starts the local web editor, and opens
+              the localhost URL in your browser.
+            </p>
+          </div>
+
+          <div class="cli-install">
+            <div class="command-line" aria-label="LatexDo CLI install command">
+              <code>curl -fsSL https://latexdo.org/install.sh | bash</code>
+            </div>
+            <div class="cli-links">
+              <a class="button primary" href="../install.sh">View install script</a>
+              <a class="button secondary" href="https://github.com/latexdo/latexdo-cli">CLI source</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band" aria-labelledby="cli-details-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Local workflow</p>
+            <h2 id="cli-details-title">Run LatexDo from your terminal.</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h3>Cached source</h3>
+              <p>Keeps the LatexDo app in a local cache so repeated launches are fast.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Dependency checks</h3>
+              <p>Installs npm dependencies only when the project dependencies change.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Localhost editor</h3>
+              <p>Starts the web editor locally and opens the browser URL for you.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band" aria-labelledby="cli-requirements-title">
+        <div class="section-inner narrow">
+          <div class="section-heading">
+            <p class="eyebrow">Requirements</p>
+            <h2 id="cli-requirements-title">Git, Node.js 20+, and npm.</h2>
+            <p>
+              The CLI uses Git to cache the LatexDo source and npm to install and
+              run the local web editor.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="../" aria-label="LatexDo home">
+            <img src="../assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Modern LaTeX editing across web and desktop.</p>
+        </div>
+        <div>
+          <h5>Product</h5>
+          <nav aria-label="Product">
+            <a href="https://editor.latexdo.org">Editor</a>
+            <a href="../cli/">CLI</a>
+            <a href="../downloads/">Desktop</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Resources</h5>
+          <nav aria-label="Resources">
+            <a href="../about/">About</a>
+            <a href="https://docs.latexdo.org">Docs</a>
+            <a href="../downloads/">Downloads</a>
+            <a href="../sitemap.xml">Sitemap</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <nav aria-label="Company">
+            <a href="../privacy.html">Privacy</a>
+            <a href="../terms.html">Terms</a>
+            <a href="mailto:contact@latexdo.org">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Community</h5>
+          <nav aria-label="Community">
+            <a href="https://github.com/latexdo/latexdo">Source</a>
+            <a href="../donations/">Donate</a>
+            <a href="https://linkedin.com/company/latexdo">LinkedIn</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="../assets/site.js"></script>
+  </body>
+</html>
