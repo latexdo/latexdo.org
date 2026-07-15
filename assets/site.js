@@ -1,77 +1,9 @@
 "use strict";
-const sampleSource = String.raw `\documentclass{article}
-\title{Reliable Paper Writing}
-\author{LatexDo Team}
-
-\begin{document}
-\maketitle
-
-\begin{abstract}
-LatexDo keeps source, PDF preview, diagnostics, and review work in one focused workspace.
-\end{abstract}
-
-\section{Motivation}
-Writing papers should feel precise. The editor should show build feedback while keeping the source readable.
-
-\section{Method}
-The desktop app compiles with latexmk, renders the PDF, and connects source lines to preview positions.
-
-\begin{equation}
-L(\theta) = \sum_i \log p(y_i | x_i, \theta)
-\end{equation}
-
-\section{Result}
-Authors can fix LaTeX issues, inspect citations, and prepare submissions faster.
-
-\badcommand
-\end{document}
-`;
 function query(selector) {
     return document.querySelector(selector);
 }
 function queryAll(selector) {
     return Array.from(document.querySelectorAll(selector));
-}
-function setText(selector, text) {
-    const element = query(selector);
-    if (element)
-        element.textContent = text;
-}
-function titleFromSource(source) {
-    return source.match(/\\title\{([^}]+)\}/)?.[1] ?? "Untitled Paper";
-}
-function abstractFromSource(source) {
-    return (source
-        .match(/\\begin\{abstract\}([\s\S]*?)\\end\{abstract\}/)?.[1]
-        ?.replace(/\s+/g, " ")
-        .trim() ?? "No abstract found yet.");
-}
-function sectionsFromSource(source) {
-    return Array.from(source.matchAll(/\\section\{([^}]+)\}/g), (match) => ({
-        title: match[1] ?? "Section",
-        token: match[0],
-    }));
-}
-function wordsFromSource(source) {
-    return source
-        .replace(/\\[a-zA-Z]+\*?(?:\[[^\]]*\])?(?:\{[^}]*\})?/g, " ")
-        .replace(/[%$#_{}^]/g, " ")
-        .trim()
-        .split(/\s+/)
-        .filter(Boolean);
-}
-function previewText(title) {
-    const lower = title.toLowerCase();
-    if (lower.includes("motivation")) {
-        return "A focused writing surface reduces switching while preserving source precision.";
-    }
-    if (lower.includes("method")) {
-        return "The desktop app connects source, build output, and rendered PDF locations.";
-    }
-    if (lower.includes("result")) {
-        return "Authors keep review, diagnostics, and submission checks in the same workspace.";
-    }
-    return "LatexDo turns paper editing into a clear source-to-preview workflow.";
 }
 function formatBytes(bytes) {
     if (!bytes || !Number.isFinite(bytes))
@@ -99,48 +31,87 @@ function escapeHtml(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;");
 }
-function platformKey(file) {
-    const value = `${file.platform ?? ""} ${file.label ?? ""}`.toLowerCase();
-    if (value.includes("mac") || value.includes("apple"))
-        return "macos";
-    if (value.includes("win"))
-        return "windows";
-    if (value.includes("linux"))
-        return "linux";
-    return "desktop";
+function formatUsd(value) {
+    return new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0,
+    }).format(value);
 }
-function platformIcon(platform) {
-    if (platform === "macos") {
-        return `<svg class="platform-logo" viewBox="0 0 24 24" aria-hidden="true">
+const platformIcons = {
+    macos: `<svg class="platform-logo" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M16.64 12.08c-.03-2.32 1.9-3.45 1.99-3.5-1.09-1.6-2.79-1.82-3.37-1.84-1.42-.15-2.8.85-3.52.85-.74 0-1.86-.83-3.06-.8-1.56.02-3.02.93-3.82 2.35-1.65 2.86-.42 7.06 1.16 9.37.79 1.13 1.71 2.39 2.92 2.35 1.18-.05 1.62-.75 3.04-.75 1.41 0 1.82.75 3.06.72 1.27-.02 2.06-1.14 2.82-2.28.91-1.3 1.27-2.58 1.29-2.65-.03-.01-2.49-.96-2.52-3.82ZM14.34 5.24c.64-.79 1.07-1.86.95-2.94-.92.04-2.07.63-2.74 1.39-.59.67-1.12 1.78-.98 2.81 1.04.08 2.1-.52 2.77-1.26Z" />
-    </svg>`;
-    }
-    if (platform === "windows") {
-        return `<svg class="platform-logo" viewBox="0 0 24 24" aria-hidden="true">
+    </svg>`,
+    windows: `<svg class="platform-logo" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M3 5.15 10.8 4v7.38H3V5.15Z" />
       <path d="M12.15 3.82 21 2.5v8.88h-8.85V3.82Z" />
       <path d="M3 12.62h7.8V20L3 18.85v-6.23Z" />
       <path d="M12.15 12.62H21v8.88l-8.85-1.32v-7.56Z" />
-    </svg>`;
-    }
-    if (platform === "linux") {
-        return `<svg class="platform-logo linux-logo" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 5.5h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" />
-      <path d="m7 10 3 2-3 2" />
-      <path d="M12.5 15h4.5" />
-    </svg>`;
-    }
-    return `<svg class="platform-logo linux-logo" viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M4 5.5h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" />
-    <path d="m7 10 3 2-3 2" />
-    <path d="M12.5 15h4.5" />
-  </svg>`;
+    </svg>`,
+    linux: `<img class="platform-logo linux-logo" src="../assets/linux-tux.png" alt="" width="36" height="43" />`,
+};
+const platformMeta = {
+    macos: {
+        className: "macos",
+        eyebrow: "macOS",
+        title: "Apple Mac",
+        icon: platformIcons.macos,
+    },
+    windows: {
+        className: "windows",
+        eyebrow: "Windows",
+        title: "Windows PC",
+        icon: platformIcons.windows,
+    },
+    linux: {
+        className: "linux",
+        eyebrow: "Linux",
+        title: "Linux desktop",
+        icon: platformIcons.linux,
+    },
+};
+const platformOrder = ["macos", "windows", "linux"];
+let clientDeviceHintPromise = null;
+const siteIconPaths = {
+    Product: `<path d="M4 7h16" /><path d="M7 7v12h10V7" /><path d="M9 7V5h6v2" />`,
+    Resources: `<circle cx="12" cy="12" r="8" /><path d="m15 9-2 5-5 2 2-5 5-2Z" />`,
+    Company: `<path d="M4 20h16" /><path d="M6 20V5h9v15" /><path d="M15 10h3v10" /><path d="M9 9h3" /><path d="M9 13h3" /><path d="M9 17h3" />`,
+    Community: `<path d="M16 11a3 3 0 1 0-6 0" /><path d="M7 20a5 5 0 0 1 10 0" /><path d="M6 12a2 2 0 1 0 0-4" /><path d="M18 8a2 2 0 1 0 0 4" /><path d="M3 20a4 4 0 0 1 4-4" /><path d="M17 16a4 4 0 0 1 4 4" />`,
+    Download: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
+    Editor: `<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z" /><path d="m13 7 4 4" />`,
+    CLI: `<rect x="4" y="5" width="16" height="14" rx="2" /><path d="m8 10 3 3-3 3" /><path d="M13 16h3" />`,
+    Desktop: `<rect x="4" y="5" width="16" height="11" rx="2" /><path d="M8 20h8" /><path d="M12 16v4" />`,
+    About: `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
+    Docs: `<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z" /><path d="M8 7h8" /><path d="M8 11h8" />`,
+    Downloads: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
+    Store: `<path d="M5 10h14l-1 10H6L5 10Z" /><path d="M8 10a4 4 0 0 1 8 0" />`,
+    Sitemap: `<path d="M12 4v5" /><path d="M6 14v-3h12v3" /><rect x="9" y="2" width="6" height="4" rx="1" /><rect x="3" y="14" width="6" height="6" rx="1" /><rect x="15" y="14" width="6" height="6" rx="1" />`,
+    Privacy: `<rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" />`,
+    Terms: `<path d="M7 3h7l4 4v14H7V3Z" /><path d="M14 3v5h5" /><path d="M10 12h6" /><path d="M10 16h6" />`,
+    Contact: `<rect x="4" y="6" width="16" height="12" rx="2" /><path d="m4 8 8 6 8-6" />`,
+    Source: `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
+    Donate: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
+    LinkedIn: `<rect x="4" y="4" width="16" height="16" rx="2" /><path d="M8 11v5" /><path d="M8 8h.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 0 0-4 0" />`,
+};
+function createSiteIcon(className, icon) {
+    const iconEl = document.createElement("span");
+    iconEl.className = className;
+    iconEl.setAttribute("aria-hidden", "true");
+    iconEl.innerHTML = `<svg viewBox="0 0 24 24" focusable="false">${icon}</svg>`;
+    return iconEl;
 }
 function initNavigation() {
     const toggle = query("[data-nav-toggle]");
     const links = query("[data-nav-links]");
     if (!toggle || !links)
         return;
+    queryAll(".nav-links a").forEach((link) => {
+        const label = link.textContent?.trim() ?? "";
+        const icon = siteIconPaths[label];
+        if (!icon || link.querySelector(".header-link-icon"))
+            return;
+        link.prepend(createSiteIcon("header-link-icon", icon));
+    });
     toggle.addEventListener("click", () => {
         const open = !links.classList.contains("open");
         links.classList.toggle("open", open);
@@ -151,6 +122,13 @@ function initNavigation() {
             links.classList.remove("open");
             toggle.setAttribute("aria-expanded", "false");
         }
+    });
+}
+function initEditorPreviewNotice() {
+    queryAll(".nav-editor-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            window.alert("LatexDo Editor is currently in preview.");
+        });
     });
 }
 function initReveal() {
@@ -169,232 +147,22 @@ function initReveal() {
     }, { threshold: 0.18 });
     elements.forEach((element) => observer.observe(element));
 }
-function initHeroCommands() {
-    const state = query("[data-hero-build-state]");
-    const commands = queryAll("[data-hero-command]");
-    const labels = {
-        compile: "Compiled",
-        review: "Review ready",
-        export: "PDF exported",
-    };
-    commands.forEach((button) => {
-        button.addEventListener("click", () => {
-            commands.forEach((item) => item.classList.remove("active"));
-            button.classList.add("active");
-            const command = button.dataset.heroCommand ?? "compile";
-            if (state)
-                state.textContent = labels[command] ?? "Ready";
-        });
-    });
-}
-function initEditorDemo() {
-    const sourceEditor = query("#source-editor");
-    const editorLines = query("#editor-lines");
-    const compileButton = query("#compile-demo");
-    const insertCitationButton = query("#insert-citation");
-    const fixErrorButton = query("#fix-error");
-    const syncSourceButton = query("#sync-source");
-    const statusText = query("#status-text");
-    const statusDot = query("#status-dot");
-    const buildState = query("#build-state");
-    const diagnosticsList = query("#diagnostics");
-    const pdfSections = query("#pdf-sections");
-    const modeButtons = queryAll(".mode");
-    if (!sourceEditor ||
-        !editorLines ||
-        !compileButton ||
-        !statusText ||
-        !statusDot ||
-        !buildState ||
-        !diagnosticsList ||
-        !pdfSections) {
-        return;
-    }
-    sourceEditor.value = sampleSource;
-    const setStatus = (message, type = "ok") => {
-        statusText.textContent = message;
-        buildState.textContent = message;
-        statusDot.className = `status-dot ${type === "busy" ? "busy" : ""} ${type === "error" ? "error" : ""}`.trim();
-    };
-    const updateLines = (activeLine = 0) => {
-        const lineTotal = sourceEditor.value.split("\n").length;
-        editorLines.innerHTML = "";
-        for (let index = 1; index <= lineTotal; index += 1) {
-            const item = document.createElement("li");
-            item.textContent = String(index);
-            if (index === activeLine)
-                item.classList.add("active");
-            editorLines.append(item);
-        }
-    };
-    const selectToken = (token) => {
-        const index = sourceEditor.value.indexOf(token);
-        if (index < 0)
-            return;
-        sourceEditor.focus();
-        sourceEditor.setSelectionRange(index, index + token.length);
-        const activeLine = sourceEditor.value.slice(0, index).split("\n").length;
-        updateLines(activeLine);
-        setStatus(`Jumped to source line ${activeLine}.`);
-    };
-    const buildDiagnostics = (source) => {
-        const diagnostics = [];
-        if (source.includes("\\badcommand")) {
-            diagnostics.push({
-                type: "error",
-                title: "Undefined control sequence",
-                detail: "The demo found \\badcommand. Press Fix to replace it.",
-                token: "\\badcommand",
-            });
-        }
-        if (!/\\cite[t|p]?\{/.test(source)) {
-            diagnostics.push({
-                type: "warn",
-                title: "No citation in this sample",
-                detail: "Insert a citation to preview citation-aware checks.",
-                token: "\\section{Motivation}",
-            });
-        }
-        if (sectionsFromSource(source).length < 3) {
-            diagnostics.push({
-                type: "warn",
-                title: "Short structure",
-                detail: "Papers are easier to scan with clear sections.",
-                token: "\\section",
-            });
-        }
-        if (!diagnostics.length) {
-            diagnostics.push({
-                type: "ok",
-                title: "Preview checks passed",
-                detail: "The desktop app adds real compiler logs and PDF compliance checks.",
-                token: "\\begin{document}",
-            });
-        }
-        return diagnostics;
-    };
-    const renderDiagnostics = (diagnostics) => {
-        diagnosticsList.innerHTML = "";
-        diagnostics.forEach((diagnostic) => {
-            const item = document.createElement("li");
-            item.className = diagnostic.type;
-            item.innerHTML = `<strong>${escapeHtml(diagnostic.title)}</strong><span>${escapeHtml(diagnostic.detail)}</span>`;
-            item.addEventListener("click", () => selectToken(diagnostic.token));
-            diagnosticsList.append(item);
-        });
-        const issueTotal = diagnostics.filter((item) => item.type !== "ok").length;
-        setText("#check-count", issueTotal === 1 ? "1 issue" : `${issueTotal} issues`);
-    };
-    const renderPreview = (source) => {
-        const sections = sectionsFromSource(source);
-        setText("#pdf-title", titleFromSource(source));
-        setText("#pdf-abstract", abstractFromSource(source));
-        pdfSections.innerHTML = "";
-        sections.slice(0, 4).forEach((section) => {
-            const block = document.createElement("div");
-            block.className = "pdf-section";
-            block.dataset.token = section.token;
-            block.innerHTML = `<h4>${escapeHtml(section.title)}</h4><p>${escapeHtml(previewText(section.title))}</p>`;
-            block.addEventListener("click", () => {
-                queryAll(".pdf-section").forEach((item) => item.classList.remove("active"));
-                block.classList.add("active");
-                selectToken(section.token);
-            });
-            pdfSections.append(block);
-        });
-    };
-    const compileDemo = () => {
-        setStatus("Compiling preview...", "busy");
-        compileButton.disabled = true;
-        window.setTimeout(() => {
-            const source = sourceEditor.value;
-            const diagnostics = buildDiagnostics(source);
-            renderPreview(source);
-            renderDiagnostics(diagnostics);
-            setText("#word-count", String(wordsFromSource(source).length));
-            setText("#citation-count", String((source.match(/\\cite[t|p]?\{/g) ?? []).length));
-            setText("#section-count", String(sectionsFromSource(source).length));
-            compileButton.disabled = false;
-            const hasError = diagnostics.some((item) => item.type === "error");
-            setStatus(hasError
-                ? "Preview built with one fixable error."
-                : "Preview built. Desktop compilation is available in the app.", hasError ? "error" : "ok");
-        }, 280);
-    };
-    const insertAtCursor = (text) => {
-        const start = sourceEditor.selectionStart;
-        const end = sourceEditor.selectionEnd;
-        sourceEditor.value =
-            sourceEditor.value.slice(0, start) + text + sourceEditor.value.slice(end);
-        sourceEditor.focus();
-        sourceEditor.setSelectionRange(start + text.length, start + text.length);
-        updateLines();
-    };
-    insertCitationButton?.addEventListener("click", () => {
-        insertAtCursor(" \\cite{latexdo2026}");
-        compileDemo();
-    });
-    fixErrorButton?.addEventListener("click", () => {
-        if (sourceEditor.value.includes("\\badcommand")) {
-            sourceEditor.value = sourceEditor.value.replace("\\badcommand", "\\textbf{Ready for submission.}");
-            selectToken("\\textbf{Ready for submission.}");
-            compileDemo();
-        }
-        else {
-            setStatus("No demo error is present.");
-        }
-    });
-    syncSourceButton?.addEventListener("click", () => selectToken("\\begin{equation}"));
-    compileButton.addEventListener("click", compileDemo);
-    sourceEditor.addEventListener("input", () => {
-        updateLines();
-        setStatus("Source changed. Compile the preview.", "busy");
-    });
-    sourceEditor.addEventListener("scroll", () => {
-        editorLines.scrollTop = sourceEditor.scrollTop;
-    });
-    modeButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            modeButtons.forEach((item) => item.classList.remove("active"));
-            button.classList.add("active");
-            setStatus(`${button.dataset.mode ?? "author"} mode selected.`);
-        });
-    });
-    query(".pdf-equation")?.addEventListener("click", () => selectToken("\\begin{equation}"));
-    updateLines();
-    compileDemo();
-}
 function renderDownloadFallback(container) {
     container.innerHTML = `
     <article class="download-card">
-      <div class="download-card-header">
-        <span class="platform-logo-shell">${platformIcon("macos")}</span>
-        <div>
-          <h3>macOS downloads</h3>
-          <p>Apple Silicon and Intel DMG builds appear on the downloads page.</p>
-        </div>
-      </div>
+      <h3>Downloads page</h3>
+      <p>Open the direct downloads page for macOS and Windows installers.</p>
       <a class="button primary" href="downloads/">View downloads</a>
     </article>
     <article class="download-card">
-      <div class="download-card-header">
-        <span class="platform-logo-shell">${platformIcon("windows")}</span>
-        <div>
-          <h3>Windows installer</h3>
-          <p>The 64-bit Windows installer is published with each desktop release.</p>
-        </div>
-      </div>
-      <a class="button secondary" href="downloads/">View downloads</a>
+      <h3>Update manifest</h3>
+      <p>The desktop app checks the public manifest for update information.</p>
+      <a class="button secondary" href="downloads/manifest.json">View manifest</a>
     </article>
     <article class="download-card">
-      <div class="download-card-header">
-        <span class="platform-logo-shell">${platformIcon("linux")}</span>
-        <div>
-          <h3>Linux AppImage</h3>
-          <p>The Linux x64 AppImage is published with desktop releases that include Linux packaging.</p>
-        </div>
-      </div>
-      <a class="button secondary" href="downloads/">View downloads</a>
+      <h3>Checksums</h3>
+      <p>Verify installer integrity with SHA-256 checksums from the website.</p>
+      <a class="button secondary" href="downloads/SHA256SUMS.txt">View checksums</a>
     </article>`;
 }
 async function initDownloads() {
@@ -413,19 +181,15 @@ async function initDownloads() {
         }
         container.innerHTML = files
             .map((file) => {
-            const platform = platformKey(file);
             const label = escapeHtml(file.label || file.id);
             const note = escapeHtml(file.note || `${file.platform} ${file.arch}`);
             const meta = escapeHtml(`${file.sizeLabel ?? formatBytes(file.size)} · ${formatDate(manifest.publishedAt)}`);
             const url = escapeHtml(file.url || `downloads/files/${file.filename}`);
             return `<article class="download-card">
-          <div class="download-card-header">
-            <span class="platform-logo-shell">${platformIcon(platform)}</span>
-            <div>
-              <h3>${label}</h3>
-              <p>${note}</p>
-              <small>${meta}</small>
-            </div>
+          <div>
+            <h3>${label}</h3>
+            <p>${note}</p>
+            <small>${meta}</small>
           </div>
           <a class="button primary" href="${url}">Download</a>
         </article>`;
@@ -436,16 +200,617 @@ async function initDownloads() {
         renderDownloadFallback(container);
     }
 }
+function getPlatformMeta(platform) {
+    const normalized = platform.toLowerCase();
+    if (platformMeta[normalized])
+        return platformMeta[normalized];
+    const label = normalized ? normalized[0].toUpperCase() + normalized.slice(1) : "Other";
+    return {
+        className: normalized,
+        eyebrow: label,
+        title: `${label} build`,
+        icon: platformIcons.linux,
+    };
+}
+function normalizeClientPlatform(value) {
+    const normalized = value.toLowerCase();
+    if (/(mac|macos)/.test(normalized))
+        return "macos";
+    if (/(win|windows)/.test(normalized))
+        return "windows";
+    if (/(linux|x11)/.test(normalized) && !/android/.test(normalized))
+        return "linux";
+    return null;
+}
+function normalizeClientArch(value, bitness = "") {
+    const normalized = `${value} ${bitness}`.toLowerCase();
+    if (/(arm|aarch64)/.test(normalized))
+        return "arm64";
+    if (/(x86|x64|amd64|wow64|win64|64)/.test(normalized))
+        return "x64";
+    return null;
+}
+function getNavigatorUAData() {
+    return navigator.userAgentData ?? null;
+}
+function detectClientDeviceFromBrowser() {
+    const uaData = getNavigatorUAData();
+    const platformText = [
+        uaData?.platform,
+        navigator.platform,
+        navigator.userAgent,
+    ]
+        .filter(Boolean)
+        .join(" ");
+    const platform = normalizeClientPlatform(platformText);
+    return {
+        platform,
+        arch: platform === "macos" ? null : normalizeClientArch(platformText),
+    };
+}
+async function detectClientDevice() {
+    const basic = detectClientDeviceFromBrowser();
+    const uaData = getNavigatorUAData();
+    if (!uaData?.getHighEntropyValues)
+        return basic;
+    try {
+        const values = await uaData.getHighEntropyValues([
+            "architecture",
+            "bitness",
+            "platform",
+        ]);
+        return {
+            platform: normalizeClientPlatform(values.platform ?? "") ?? basic.platform,
+            arch: normalizeClientArch(values.architecture ?? "", values.bitness ?? "") ??
+                basic.arch,
+        };
+    }
+    catch {
+        return basic;
+    }
+}
+function getClientDeviceHint() {
+    clientDeviceHintPromise ??= detectClientDevice();
+    return clientDeviceHintPromise;
+}
+function getPlatformCardPlatform(card) {
+    if (card.dataset.platform)
+        return card.dataset.platform;
+    return (platformOrder.find((platform) => {
+        const className = getPlatformMeta(platform).className;
+        return card.classList.contains(className);
+    }) ?? null);
+}
+function setDownloadOptionDisabled(option, disabled) {
+    if (disabled) {
+        option.removeAttribute("href");
+        option.removeAttribute("download");
+        option.setAttribute("aria-disabled", "true");
+        option.setAttribute("tabindex", "-1");
+        option.classList.add("is-disabled");
+        return;
+    }
+    option.removeAttribute("aria-disabled");
+    option.removeAttribute("tabindex");
+    option.classList.remove("is-disabled");
+}
+function applyDevicePlatformLimit(container, deviceHint) {
+    const detectedPlatform = deviceHint?.platform ?? null;
+    const cards = Array.from(container.querySelectorAll(".platform-download-card"));
+    const shouldLimit = Boolean(detectedPlatform &&
+        cards.some((card) => getPlatformCardPlatform(card) === detectedPlatform));
+    container.classList.toggle("is-device-limited", shouldLimit);
+    cards.forEach((card) => {
+        const disabled = shouldLimit && getPlatformCardPlatform(card) !== detectedPlatform;
+        card.classList.toggle("is-device-disabled", disabled);
+        if (disabled) {
+            card.setAttribute("aria-disabled", "true");
+        }
+        else {
+            card.removeAttribute("aria-disabled");
+        }
+        card.querySelectorAll(".download-option").forEach((option) => {
+            setDownloadOptionDisabled(option, disabled);
+        });
+        card.querySelectorAll(".mac-machine-input").forEach((input) => {
+            input.disabled = disabled;
+        });
+    });
+}
+async function initDownloadPlatformLimits() {
+    const containers = queryAll(".download-platform-grid");
+    if (!containers.length)
+        return;
+    const deviceHint = await getClientDeviceHint();
+    containers.forEach((container) => applyDevicePlatformLimit(container, deviceHint));
+}
+function getDownloadOptionLabel(file) {
+    if (file.platform === "macos" && file.arch === "arm64")
+        return "Apple Silicon";
+    if (file.platform === "macos" && file.arch === "x64")
+        return "Intel";
+    if (file.arch)
+        return `${file.label || file.platform} ${file.arch.toUpperCase()}`;
+    return file.label || file.id;
+}
+function getInstallerType(file) {
+    const extension = file.filename.split(".").pop();
+    if (!extension)
+        return "Installer";
+    return `${extension.toUpperCase()} installer`;
+}
+function getReleasePath(release) {
+    return release.downloadsPage || `${release.tag}/`;
+}
+function getReleaseManifestPath(release) {
+    return release.manifestUrl || `${release.tag}/manifest.json`;
+}
+function getReleaseChecksumsPath(release) {
+    return release.checksumsUrl || `${release.tag}/SHA256SUMS.txt`;
+}
+function getReleaseGithubPath(release) {
+    return release.githubReleaseUrl || `https://github.com/latexdo/latexdo/releases/tag/${release.tag}`;
+}
+function getShortCommit(release) {
+    return (release.commit || "").slice(0, 12) || "Unknown";
+}
+function renderDownloadOption(file, extraClass = "", disabled = false) {
+    const label = escapeHtml(getDownloadOptionLabel(file));
+    const type = escapeHtml(getInstallerType(file));
+    const size = escapeHtml(file.sizeLabel ?? formatBytes(file.size));
+    const sha = file.sha256 ? `<span class="downloads-dev-link"> - SHA-256</span>` : "";
+    const url = escapeHtml(file.url || file.filename);
+    const className = ["download-option", extraClass, disabled ? "is-disabled" : ""]
+        .filter(Boolean)
+        .join(" ");
+    const attributes = disabled ? `aria-disabled="true" tabindex="-1"` : `href="${url}" download`;
+    return `<a class="${escapeHtml(className)}" ${attributes}>
+              <strong>${label}</strong>
+              <span>${type}</span>
+              <em>${size}${sha}</em>
+            </a>`;
+}
+function renderMacMachinePicker(files, deviceHint, disabled = false) {
+    const appleSilicon = files.find((file) => file.arch === "arm64");
+    const intel = files.find((file) => file.arch === "x64");
+    if (!appleSilicon || !intel) {
+        return `<div class="download-variant-row" aria-label="macOS build choices">
+${files.map((file) => renderDownloadOption(file, "", disabled)).join("\n")}
+            </div>`;
+    }
+    const preferIntel = deviceHint?.platform === "macos" && deviceHint.arch === "x64";
+    const disabledAttribute = disabled ? " disabled" : "";
+    return `<div class="mac-machine-picker" aria-label="macOS build choices">
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-apple-silicon"${preferIntel ? "" : " checked"}${disabledAttribute} />
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-intel"${preferIntel ? " checked" : ""}${disabledAttribute} />
+              <div class="mac-machine-tabs" aria-label="Mac chip">
+                <label for="mac-machine-apple-silicon">Apple Silicon</label>
+                <label for="mac-machine-intel">Intel</label>
+              </div>
+              <div class="mac-machine-downloads">
+${renderDownloadOption(appleSilicon, "mac-machine-option arm64", disabled)}
+${renderDownloadOption(intel, "mac-machine-option x64", disabled)}
+              </div>
+            </div>`;
+}
+function renderPlatformDownloadChoices(platform, options, deviceHint, disabled = false) {
+    if (platform === "macos")
+        return renderMacMachinePicker(options, deviceHint, disabled);
+    const meta = getPlatformMeta(platform);
+    return `<div class="download-variant-row" aria-label="${escapeHtml(meta.eyebrow)} build choices">
+${options.map((file) => renderDownloadOption(file, "", disabled)).join("\n")}
+            </div>`;
+}
+function renderReleaseDownloads(container, release, deviceHint = null) {
+    const files = Array.isArray(release.files) ? release.files : [];
+    if (!files.length) {
+        container.classList.remove("is-device-limited");
+        container.innerHTML = `<article class="downloads-empty">
+      <h2>No installers listed</h2>
+      <p>This release tag does not include downloadable desktop installers.</p>
+    </article>`;
+        return;
+    }
+    const grouped = new Map();
+    files.forEach((file) => {
+        const platform = file.platform || "other";
+        const group = grouped.get(platform) ?? [];
+        group.push(file);
+        grouped.set(platform, group);
+    });
+    const platforms = Array.from(grouped.keys()).sort((a, b) => {
+        const aIndex = platformOrder.indexOf(a);
+        const bIndex = platformOrder.indexOf(b);
+        if (aIndex === -1 && bIndex === -1)
+            return a.localeCompare(b);
+        if (aIndex === -1)
+            return 1;
+        if (bIndex === -1)
+            return -1;
+        return aIndex - bIndex;
+    });
+    const detectedPlatform = deviceHint?.platform ?? null;
+    const shouldLimit = Boolean(detectedPlatform && grouped.has(detectedPlatform));
+    container.classList.toggle("is-device-limited", shouldLimit);
+    container.innerHTML = platforms
+        .map((platform) => {
+        const meta = getPlatformMeta(platform);
+        const options = grouped.get(platform) ?? [];
+        const disabled = shouldLimit && detectedPlatform !== platform;
+        const disabledClass = disabled ? " is-device-disabled" : "";
+        const disabledAttribute = disabled ? ` aria-disabled="true"` : "";
+        return `<article class="platform-download-card ${escapeHtml(meta.className)}${disabledClass}" data-platform="${escapeHtml(platform)}"${disabledAttribute}>
+            <div class="platform-card-top">
+              <span class="platform-logo-shell">${meta.icon}</span>
+              <div>
+                <p class="eyebrow">${escapeHtml(meta.eyebrow)}</p>
+                <h2>${escapeHtml(meta.title)}</h2>
+              </div>
+            </div>
+            ${renderPlatformDownloadChoices(platform, options, deviceHint, disabled)}
+          </article>`;
+    })
+        .join("");
+}
+function renderReleaseMeta(container, release) {
+    const version = escapeHtml(release.version || release.tag);
+    const tag = escapeHtml(release.tag);
+    const publishedAt = escapeHtml(release.publishedAt || "Unknown");
+    const commit = escapeHtml(getShortCommit(release));
+    const releasePath = escapeHtml(getReleasePath(release));
+    const manifestPath = escapeHtml(getReleaseManifestPath(release));
+    const checksumsPath = escapeHtml(getReleaseChecksumsPath(release));
+    const githubPath = escapeHtml(getReleaseGithubPath(release));
+    container.innerHTML = `<h2>Selected build information</h2>
+        <dl>
+          <div>
+            <dt>Version</dt>
+            <dd>${version}</dd>
+          </div>
+          <div>
+            <dt>Published</dt>
+            <dd>${publishedAt}</dd>
+          </div>
+          <div>
+            <dt>Commit</dt>
+            <dd>${commit}</dd>
+          </div>
+        </dl>
+        <p>
+          Selected tag: <a href="${releasePath}">${tag}</a>.
+          For automated checks, use <a href="${manifestPath}">manifest.json</a>,
+          <a href="${checksumsPath}">SHA256SUMS.txt</a>, and
+          <a href="${githubPath}">GitHub release</a>.
+        </p>`;
+}
+function getReleaseGroupLabel(release) {
+    const version = release.version || release.tag.replace(/-build\..*$/, "");
+    return version.startsWith("v") ? version : `v${version}`;
+}
+function groupReleasesByVersion(releases) {
+    const groups = new Map();
+    releases.forEach((release, index) => {
+        const label = getReleaseGroupLabel(release);
+        const items = groups.get(label) ?? [];
+        items.push({ release, index });
+        groups.set(label, items);
+    });
+    return Array.from(groups.entries()).map(([label, items]) => ({ label, items }));
+}
+function renderReleaseBuildItem(release, index) {
+    const latest = index === 0 ? " - latest" : "";
+    const tag = escapeHtml(release.tag);
+    const publishedAt = escapeHtml(formatDate(release.publishedAt));
+    const commit = escapeHtml(getShortCommit(release));
+    const releasePath = escapeHtml(getReleasePath(release));
+    const manifestPath = escapeHtml(getReleaseManifestPath(release));
+    const checksumsPath = escapeHtml(getReleaseChecksumsPath(release));
+    const githubPath = escapeHtml(getReleaseGithubPath(release));
+    return `<article class="release-item">
+              <button class="release-build-button" type="button" data-release-index="${index}">
+                <strong>${tag}</strong>
+                <span>${publishedAt}${latest} - ${commit}</span>
+              </button>
+              <nav aria-label="${tag} release links">
+                <a href="${releasePath}">Downloads</a>
+                <a href="${manifestPath}">Manifest</a>
+                <a href="${checksumsPath}">Checksums</a>
+                <a href="${githubPath}">GitHub</a>
+              </nav>
+            </article>`;
+}
+function renderReleaseGroups(releases) {
+    return groupReleasesByVersion(releases)
+        .map((group, groupIndex) => {
+        const buildCount = group.items.length;
+        const latest = groupIndex === 0 ? " - latest series" : "";
+        return `<details class="release-group">
+              <summary>
+                <span class="release-group-arrow" aria-hidden="true"></span>
+                <span class="release-group-title">
+                  <strong>${escapeHtml(group.label)}</strong>
+                  <small>${buildCount} build${buildCount === 1 ? "" : "s"}${latest}</small>
+                </span>
+              </summary>
+              <div class="release-list">
+                ${group.items.map((item) => renderReleaseBuildItem(item.release, item.index)).join("")}
+              </div>
+            </details>`;
+    })
+        .join("");
+}
+function readReleaseHash() {
+    const hash = window.location.hash.slice(1);
+    if (!hash)
+        return null;
+    try {
+        return decodeURIComponent(hash);
+    }
+    catch {
+        return hash;
+    }
+}
+async function initReleaseSwitcher() {
+    const switcher = query("[data-release-switcher]");
+    const groups = query("[data-release-groups]");
+    const downloads = query("[data-release-downloads]");
+    const meta = query("[data-release-meta]");
+    if (!switcher || !groups || !downloads || !meta)
+        return;
+    const source = switcher.dataset.releasesSrc || "downloads/releases.json";
+    const downloadsContainer = downloads;
+    const metaContainer = meta;
+    const deviceHint = await getClientDeviceHint();
+    try {
+        const response = await fetch(source, { cache: "no-store" });
+        if (!response.ok)
+            throw new Error(`Releases returned ${response.status}`);
+        const index = (await response.json());
+        const releases = Array.isArray(index.releases) ? index.releases : [];
+        if (!releases.length)
+            throw new Error("No releases");
+        groups.innerHTML = renderReleaseGroups(releases);
+        const buttons = queryAll(".release-build-button");
+        function selectRelease(index, updateHash = true, openGroup = true) {
+            const release = releases[index];
+            const button = buttons.find((candidate) => Number(candidate.dataset.releaseIndex) === index);
+            if (!release || !button)
+                return;
+            buttons.forEach((buildButton) => {
+                const selected = Number(buildButton.dataset.releaseIndex) === index;
+                buildButton.setAttribute("aria-current", String(selected));
+                buildButton.closest(".release-item")?.classList.toggle("is-selected", selected);
+            });
+            renderReleaseDownloads(downloadsContainer, release, deviceHint);
+            renderReleaseMeta(metaContainer, release);
+            if (openGroup) {
+                button.closest("details")?.setAttribute("open", "");
+                button.scrollIntoView({ block: "nearest" });
+            }
+            if (updateHash) {
+                const url = new URL(window.location.href);
+                url.hash = encodeURIComponent(release.tag);
+                window.history.replaceState(null, "", url);
+            }
+        }
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const releaseIndex = Number(button.dataset.releaseIndex);
+                if (Number.isInteger(releaseIndex))
+                    selectRelease(releaseIndex);
+            });
+        });
+        groups.addEventListener("keydown", (event) => {
+            if (event.key !== "ArrowUp" && event.key !== "ArrowDown")
+                return;
+            const selectedIndex = buttons.findIndex((button) => button.getAttribute("aria-current") === "true");
+            const delta = event.key === "ArrowDown" ? 1 : -1;
+            const nextIndex = Math.min(Math.max(selectedIndex + delta, 0), releases.length - 1);
+            if (nextIndex !== selectedIndex) {
+                event.preventDefault();
+                selectRelease(nextIndex);
+                buttons
+                    .find((button) => Number(button.dataset.releaseIndex) === nextIndex)
+                    ?.focus();
+            }
+        });
+        const requestedTag = readReleaseHash();
+        const initialIndex = requestedTag
+            ? releases.findIndex((release) => release.tag === requestedTag)
+            : 0;
+        selectRelease(initialIndex >= 0 ? initialIndex : 0, false, requestedTag !== null);
+    }
+    catch {
+        groups.innerHTML = `<p class="release-loading">Release builds could not load. Use releases.json directly.</p>`;
+    }
+}
+function initDevMode() {
+    const toggle = query("#dev-mode-toggle");
+    if (!toggle)
+        return;
+    const sync = () => {
+        document.body.classList.toggle("dev-mode-on", toggle.checked);
+    };
+    sync();
+    toggle.addEventListener("change", sync);
+}
+function parseCsv(text) {
+    const rows = [];
+    let row = [];
+    let value = "";
+    let quoted = false;
+    for (let index = 0; index < text.length; index += 1) {
+        const char = text[index];
+        const next = text[index + 1];
+        if (char === '"' && quoted && next === '"') {
+            value += '"';
+            index += 1;
+            continue;
+        }
+        if (char === '"') {
+            quoted = !quoted;
+            continue;
+        }
+        if (char === "," && !quoted) {
+            row.push(value.trim());
+            value = "";
+            continue;
+        }
+        if ((char === "\n" || char === "\r") && !quoted) {
+            if (char === "\r" && next === "\n")
+                index += 1;
+            row.push(value.trim());
+            if (row.some(Boolean))
+                rows.push(row);
+            row = [];
+            value = "";
+            continue;
+        }
+        value += char;
+    }
+    row.push(value.trim());
+    if (row.some(Boolean))
+        rows.push(row);
+    return rows;
+}
+function parseExpenseRows(text) {
+    const rows = parseCsv(text);
+    const headers = rows.shift()?.map((header) => header.toLowerCase()) ?? [];
+    const categoryIndex = headers.indexOf("category");
+    const itemIndex = headers.indexOf("line item");
+    const monthlyIndex = headers.indexOf("monthly usd");
+    const whyIndex = headers.indexOf("why");
+    return rows
+        .map((row) => ({
+        category: row[categoryIndex] || "Other",
+        item: row[itemIndex] || "Expense",
+        monthlyUsd: Number(row[monthlyIndex] || 0),
+        why: row[whyIndex] || "",
+    }))
+        .filter((row) => Number.isFinite(row.monthlyUsd));
+}
+function renderExpensesTable(container, rows) {
+    const total = rows.reduce((sum, row) => sum + row.monthlyUsd, 0);
+    container.innerHTML = `<table class="expenses-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Line item</th>
+          <th>Monthly USD</th>
+          <th>Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows
+        .map((row) => `<tr>
+              <td>${escapeHtml(row.category)}</td>
+              <td>${escapeHtml(row.item)}</td>
+              <td>${escapeHtml(formatUsd(row.monthlyUsd))}</td>
+              <td>${escapeHtml(row.why)}</td>
+            </tr>`)
+        .join("")}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="2">Estimated monthly total</th>
+          <td>${escapeHtml(formatUsd(total))}</td>
+          <td aria-hidden="true"></td>
+        </tr>
+      </tfoot>
+    </table>`;
+}
+async function initExpensesTable() {
+    const container = query("[data-expenses-table]");
+    if (!container)
+        return;
+    const source = container.dataset.expensesSrc || "expenses.csv";
+    try {
+        const response = await fetch(source, { cache: "no-store" });
+        if (!response.ok)
+            throw new Error(`Expenses returned ${response.status}`);
+        const rows = parseExpenseRows(await response.text());
+        if (!rows.length)
+            throw new Error("No expenses");
+        renderExpensesTable(container, rows);
+    }
+    catch {
+        container.innerHTML = `<p class="expenses-loading">
+      Expenses could not load. Open <a href="${escapeHtml(source)}">expenses.csv</a> directly.
+    </p>`;
+    }
+}
+function initCopyCommands() {
+    const buttons = queryAll(".copy-btn");
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", async () => {
+            const command = btn.parentElement?.querySelector("code")?.textContent;
+            if (!command)
+                return;
+            try {
+                await navigator.clipboard.writeText(command);
+                btn.classList.add("copied");
+                btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+                setTimeout(() => {
+                    btn.classList.remove("copied");
+                    btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+                }, 2000);
+            }
+            catch {
+                // Clipboard not available
+            }
+        });
+    });
+}
+function initTheme() {
+    const toggle = document.querySelector("[data-theme-toggle]");
+    const html = document.documentElement;
+    const saved = localStorage.getItem("theme");
+    if (saved === "bw") {
+        html.setAttribute("data-theme", "bw");
+    }
+    toggle?.addEventListener("click", () => {
+        const isBw = html.getAttribute("data-theme") === "bw";
+        if (isBw) {
+            html.removeAttribute("data-theme");
+            localStorage.setItem("theme", "");
+        }
+        else {
+            html.setAttribute("data-theme", "bw");
+            localStorage.setItem("theme", "bw");
+        }
+    });
+}
 function initFooter() {
     const year = new Date().getFullYear();
-    setText("#copyright", `Copyright ${year} LatexDo.`);
+    const el = document.querySelector("#copyright") ?? document.querySelector("#copyright-year");
+    if (el)
+        el.textContent = String(year);
+    queryAll(".site-footer h5").forEach((heading) => {
+        const label = heading.textContent?.trim() ?? "";
+        const icon = siteIconPaths[label];
+        if (!icon || heading.querySelector(".footer-heading-icon"))
+            return;
+        heading.prepend(createSiteIcon("footer-heading-icon", icon));
+    });
+    queryAll(".site-footer nav a").forEach((link) => {
+        const label = link.textContent?.trim() ?? "";
+        const icon = siteIconPaths[label];
+        if (!icon || link.querySelector(".footer-link-icon"))
+            return;
+        link.prepend(createSiteIcon("footer-link-icon", icon));
+    });
 }
 function init() {
     initNavigation();
+    initEditorPreviewNotice();
     initReveal();
-    initHeroCommands();
-    initEditorDemo();
+    initDevMode();
     void initDownloads();
+    void initDownloadPlatformLimits();
+    void initReleaseSwitcher();
+    void initExpensesTable();
+    initCopyCommands();
+    initTheme();
     initFooter();
 }
 if (document.readyState === "loading") {
