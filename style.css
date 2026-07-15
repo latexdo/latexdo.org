@@ -131,6 +131,7 @@ svg {
   display: inline-flex;
   min-height: 36px;
   align-items: center;
+  gap: 7px;
   border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 8px 10px;
@@ -157,19 +158,9 @@ svg {
   outline-offset: 2px;
 }
 
-.nav-links a.nav-donate-link {
-  border-color: rgb(17 19 24 / 86%);
-  background: var(--ink);
-  box-shadow: 0 10px 24px rgb(17 19 24 / 14%);
-  color: white;
-  padding-inline: 13px;
-}
-
-.nav-links a.nav-donate-link:hover,
-.nav-links a.nav-donate-link:focus-visible {
-  border-color: var(--blue-strong);
-  background: var(--blue-strong);
-  color: white;
+.header-link-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .button {
@@ -1164,6 +1155,9 @@ h3 {
 }
 
 .site-footer h5 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 16px;
   color: white;
   font-size: 12px;
@@ -1184,6 +1178,12 @@ h3 {
   gap: 10px;
 }
 
+.site-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .site-footer a {
   color: #d2d8e3;
   text-decoration: none;
@@ -1192,6 +1192,37 @@ h3 {
 
 .site-footer a:hover {
   color: white;
+}
+
+.header-link-icon,
+.footer-heading-icon,
+.footer-link-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  line-height: 1;
+}
+
+.header-link-icon svg,
+.footer-heading-icon svg,
+.footer-link-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.footer-heading-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-link-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .footer-bottom {

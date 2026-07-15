@@ -140,10 +140,48 @@ const platformMeta: Record<string, PlatformMeta> = {
 const platformOrder = ["macos", "windows", "linux"];
 let clientDeviceHintPromise: Promise<ClientDeviceHint> | null = null;
 
+const siteIconPaths: Record<string, string> = {
+  Product: `<path d="M4 7h16" /><path d="M7 7v12h10V7" /><path d="M9 7V5h6v2" />`,
+  Resources: `<circle cx="12" cy="12" r="8" /><path d="m15 9-2 5-5 2 2-5 5-2Z" />`,
+  Company: `<path d="M4 20h16" /><path d="M6 20V5h9v15" /><path d="M15 10h3v10" /><path d="M9 9h3" /><path d="M9 13h3" /><path d="M9 17h3" />`,
+  Community: `<path d="M16 11a3 3 0 1 0-6 0" /><path d="M7 20a5 5 0 0 1 10 0" /><path d="M6 12a2 2 0 1 0 0-4" /><path d="M18 8a2 2 0 1 0 0 4" /><path d="M3 20a4 4 0 0 1 4-4" /><path d="M17 16a4 4 0 0 1 4 4" />`,
+  Download: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
+  Editor: `<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z" /><path d="m13 7 4 4" />`,
+  CLI: `<rect x="4" y="5" width="16" height="14" rx="2" /><path d="m8 10 3 3-3 3" /><path d="M13 16h3" />`,
+  Desktop: `<rect x="4" y="5" width="16" height="11" rx="2" /><path d="M8 20h8" /><path d="M12 16v4" />`,
+  About: `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
+  Docs: `<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z" /><path d="M8 7h8" /><path d="M8 11h8" />`,
+  Downloads: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
+  Store: `<path d="M5 10h14l-1 10H6L5 10Z" /><path d="M8 10a4 4 0 0 1 8 0" />`,
+  Sitemap: `<path d="M12 4v5" /><path d="M6 14v-3h12v3" /><rect x="9" y="2" width="6" height="4" rx="1" /><rect x="3" y="14" width="6" height="6" rx="1" /><rect x="15" y="14" width="6" height="6" rx="1" />`,
+  Privacy: `<rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" />`,
+  Terms: `<path d="M7 3h7l4 4v14H7V3Z" /><path d="M14 3v5h5" /><path d="M10 12h6" /><path d="M10 16h6" />`,
+  Contact: `<rect x="4" y="6" width="16" height="12" rx="2" /><path d="m4 8 8 6 8-6" />`,
+  Source: `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
+  Donate: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
+  LinkedIn: `<rect x="4" y="4" width="16" height="16" rx="2" /><path d="M8 11v5" /><path d="M8 8h.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 0 0-4 0" />`,
+};
+
+function createSiteIcon(className: string, icon: string): HTMLSpanElement {
+  const iconEl = document.createElement("span");
+  iconEl.className = className;
+  iconEl.setAttribute("aria-hidden", "true");
+  iconEl.innerHTML = `<svg viewBox="0 0 24 24" focusable="false">${icon}</svg>`;
+  return iconEl;
+}
+
 function initNavigation(): void {
   const toggle = query<HTMLButtonElement>("[data-nav-toggle]");
   const links = query<HTMLElement>("[data-nav-links]");
   if (!toggle || !links) return;
+
+  queryAll<HTMLAnchorElement>(".nav-links a").forEach((link) => {
+    const label = link.textContent?.trim() ?? "";
+    const icon = siteIconPaths[label];
+    if (!icon || link.querySelector(".header-link-icon")) return;
+
+    link.prepend(createSiteIcon("header-link-icon", icon));
+  });
 
   toggle.addEventListener("click", () => {
     const open = !links.classList.contains("open");
@@ -905,6 +943,22 @@ function initFooter(): void {
   const year = new Date().getFullYear();
   const el = document.querySelector("#copyright") ?? document.querySelector("#copyright-year");
   if (el) el.textContent = String(year);
+
+  queryAll<HTMLElement>(".site-footer h5").forEach((heading) => {
+    const label = heading.textContent?.trim() ?? "";
+    const icon = siteIconPaths[label];
+    if (!icon || heading.querySelector(".footer-heading-icon")) return;
+
+    heading.prepend(createSiteIcon("footer-heading-icon", icon));
+  });
+
+  queryAll<HTMLAnchorElement>(".site-footer nav a").forEach((link) => {
+    const label = link.textContent?.trim() ?? "";
+    const icon = siteIconPaths[label];
+    if (!icon || link.querySelector(".footer-link-icon")) return;
+
+    link.prepend(createSiteIcon("footer-link-icon", icon));
+  });
 }
 
 function init(): void {
