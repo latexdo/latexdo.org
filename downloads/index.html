@@ -158,27 +158,27 @@
         >
           <div class="release-heading">
             <div>
-              <p class="eyebrow">Release tags</p>
+              <p class="eyebrow">Release groups</p>
               <h2 id="release-history-title">All desktop releases</h2>
             </div>
             <div class="release-heading-actions">
-              <div class="release-slider-controls" aria-label="Scroll release tags">
-                <button type="button" aria-label="Previous release tags" data-release-slider-prev>&lt;</button>
-                <button type="button" aria-label="Next release tags" data-release-slider-next>&gt;</button>
-              </div>
               <a class="button secondary" href="releases.json">JSON index</a>
             </div>
           </div>
-          <div class="release-tag-viewport" data-release-tag-viewport>
-            <div class="release-tag-track" role="tablist" aria-label="Release tags" data-release-tag-track>
-              <span class="release-tag-loading">Loading release tags...</span>
-            </div>
-          </div>
-          <div class="release-list">
+          <div class="release-groups" data-release-groups>
+          <details class="release-group">
+            <summary>
+              <span class="release-group-arrow" aria-hidden="true"></span>
+              <span class="release-group-title">
+                <strong>v0.1.0</strong>
+                <small>40 builds - latest series</small>
+              </span>
+            </summary>
+            <div class="release-list">
             <article class="release-item">
               <div>
                 <h3><a href="v0.1.0-build.114.1.c1b64bc9fe5b/">v0.1.0-build.114.1.c1b64bc9fe5b</a></h3>
-                <p>Version 0.1.0 - Jul 15, 2026, 6:33 AM UTC - c1b64bc9fe5b</p>
+                <p>Version 0.1.0 - Jul 15, 2026, 6:33 AM UTC - latest - c1b64bc9fe5b</p>
               </div>
               <nav aria-label="v0.1.0-build.114.1.c1b64bc9fe5b release links">
                 <a href="v0.1.0-build.114.1.c1b64bc9fe5b/">Downloads</a>
@@ -655,6 +655,8 @@
                 <a href="https://github.com/latexdo/latexdo/releases/tag/v0.1.0">GitHub</a>
               </nav>
             </article>
+            </div>
+          </details>
           </div>
         </section>
     </main>

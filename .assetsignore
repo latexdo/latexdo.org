@@ -5,8 +5,12 @@
 !/assets/**
 !/bin/
 !/bin/latexdo
+!/cli/
+!/cli/index.html
 !/docs/
 !/docs/index.html
+!/donations/
+!/donations/**
 !/downloads/
 !/downloads/**
 !/editor/

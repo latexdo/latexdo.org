@@ -71,6 +71,7 @@ const platformMeta = {
     },
 };
 const platformOrder = ["macos", "windows", "linux"];
+let showAllDownloadPlatforms = false;
 function initNavigation() {
     const toggle = query("[data-nav-toggle]");
     const links = query("[data-nav-links]");
@@ -176,6 +177,71 @@ function getPlatformMeta(platform) {
         icon: platformIcons.linux,
     };
 }
+function normalizeClientPlatform(value) {
+    const normalized = value.toLowerCase();
+    if (/(mac|macos)/.test(normalized))
+        return "macos";
+    if (/(win|windows)/.test(normalized))
+        return "windows";
+    if (/(linux|x11)/.test(normalized) && !/android/.test(normalized))
+        return "linux";
+    return null;
+}
+function normalizeClientArch(value, bitness = "") {
+    const normalized = `${value} ${bitness}`.toLowerCase();
+    if (/(arm|aarch64)/.test(normalized))
+        return "arm64";
+    if (/(x86|x64|amd64|wow64|win64|64)/.test(normalized))
+        return "x64";
+    return null;
+}
+function getNavigatorUAData() {
+    return navigator.userAgentData ?? null;
+}
+function detectClientDeviceFromBrowser() {
+    const uaData = getNavigatorUAData();
+    const platformText = [
+        uaData?.platform,
+        navigator.platform,
+        navigator.userAgent,
+    ]
+        .filter(Boolean)
+        .join(" ");
+    const platform = normalizeClientPlatform(platformText);
+    return {
+        platform,
+        arch: platform === "macos" ? null : normalizeClientArch(platformText),
+    };
+}
+async function detectClientDevice() {
+    const basic = detectClientDeviceFromBrowser();
+    const uaData = getNavigatorUAData();
+    if (!uaData?.getHighEntropyValues)
+        return basic;
+    try {
+        const values = await uaData.getHighEntropyValues([
+            "architecture",
+            "bitness",
+            "platform",
+        ]);
+        return {
+            platform: normalizeClientPlatform(values.platform ?? "") ?? basic.platform,
+            arch: normalizeClientArch(values.architecture ?? "", values.bitness ?? "") ??
+                basic.arch,
+        };
+    }
+    catch {
+        return basic;
+    }
+}
+function getDeviceLabel(deviceHint) {
+    if (!deviceHint.platform)
+        return "";
+    const platform = getPlatformMeta(deviceHint.platform).eyebrow;
+    if (deviceHint.platform !== "macos" || !deviceHint.arch)
+        return platform;
+    return `${platform} ${deviceHint.arch === "arm64" ? "Apple Silicon" : "Intel"}`;
+}
 function getDownloadOptionLabel(file) {
     if (file.platform === "macos" && file.arch === "arm64")
         return "Apple Silicon";
@@ -219,7 +285,7 @@ function renderDownloadOption(file, extraClass = "") {
               <em>${size}${sha}</em>
             </a>`;
 }
-function renderMacMachinePicker(files) {
+function renderMacMachinePicker(files, deviceHint) {
     const appleSilicon = files.find((file) => file.arch === "arm64");
     const intel = files.find((file) => file.arch === "x64");
     if (!appleSilicon || !intel) {
@@ -227,9 +293,10 @@ function renderMacMachinePicker(files) {
 ${files.map((file) => renderDownloadOption(file)).join("\n")}
             </div>`;
     }
+    const preferIntel = deviceHint?.platform === "macos" && deviceHint.arch === "x64";
     return `<div class="mac-machine-picker" aria-label="macOS build choices">
-              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-apple-silicon" checked />
-              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-intel" />
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-apple-silicon"${preferIntel ? "" : " checked"} />
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-intel"${preferIntel ? " checked" : ""} />
               <div class="mac-machine-tabs" aria-label="Mac chip">
                 <label for="mac-machine-apple-silicon">Apple Silicon</label>
                 <label for="mac-machine-intel">Intel</label>
@@ -240,17 +307,33 @@ ${renderDownloadOption(intel, "mac-machine-option x64")}
               </div>
             </div>`;
 }
-function renderPlatformDownloadChoices(platform, options) {
+function renderPlatformDownloadChoices(platform, options, deviceHint) {
     if (platform === "macos")
-        return renderMacMachinePicker(options);
+        return renderMacMachinePicker(options, deviceHint);
     const meta = getPlatformMeta(platform);
     return `<div class="download-variant-row" aria-label="${escapeHtml(meta.eyebrow)} build choices">
 ${options.map((file) => renderDownloadOption(file)).join("\n")}
             </div>`;
 }
-function renderReleaseDownloads(container, release) {
+function renderDeviceDownloadFilter(deviceHint) {
+    if (!deviceHint?.platform || showAllDownloadPlatforms)
+        return "";
+    return `<div class="download-device-filter">
+            <span>Recommended for this device: <strong>${escapeHtml(getDeviceLabel(deviceHint))}</strong></span>
+            <button type="button" data-show-all-downloads>Show all downloads</button>
+          </div>`;
+}
+function bindDeviceDownloadFilter(container) {
+    query("[data-show-all-downloads]")?.addEventListener("click", () => {
+        showAllDownloadPlatforms = true;
+        container.classList.remove("is-device-filtered");
+        query(".download-device-filter")?.remove();
+    });
+}
+function renderReleaseDownloads(container, release, deviceHint = null) {
     const files = Array.isArray(release.files) ? release.files : [];
     if (!files.length) {
+        container.classList.remove("is-device-filtered");
         container.innerHTML = `<article class="downloads-empty">
       <h2>No installers listed</h2>
       <p>This release tag does not include downloadable desktop installers.</p>
@@ -275,11 +358,17 @@ function renderReleaseDownloads(container, release) {
             return -1;
         return aIndex - bIndex;
     });
-    container.innerHTML = platforms
-        .map((platform) => {
-        const meta = getPlatformMeta(platform);
-        const options = grouped.get(platform) ?? [];
-        return `<article class="platform-download-card ${escapeHtml(meta.className)}">
+    const detectedPlatform = deviceHint?.platform ?? null;
+    const shouldFilter = Boolean(detectedPlatform && grouped.has(detectedPlatform) && !showAllDownloadPlatforms);
+    container.classList.toggle("is-device-filtered", shouldFilter);
+    container.innerHTML =
+        renderDeviceDownloadFilter(deviceHint) +
+            platforms
+                .map((platform) => {
+                const meta = getPlatformMeta(platform);
+                const options = grouped.get(platform) ?? [];
+                const hiddenClass = shouldFilter && detectedPlatform !== platform ? " is-device-hidden" : "";
+                return `<article class="platform-download-card ${escapeHtml(meta.className)}${hiddenClass}" data-platform="${escapeHtml(platform)}">
             <div class="platform-card-top">
               <span class="platform-logo-shell">${meta.icon}</span>
               <div>
@@ -287,10 +376,11 @@ function renderReleaseDownloads(container, release) {
                 <h2>${escapeHtml(meta.title)}</h2>
               </div>
             </div>
-            ${renderPlatformDownloadChoices(platform, options)}
+            ${renderPlatformDownloadChoices(platform, options, deviceHint)}
           </article>`;
-    })
-        .join("");
+            })
+                .join("");
+    bindDeviceDownloadFilter(container);
 }
 function renderReleaseMeta(container, release) {
     const version = escapeHtml(release.version || release.tag);
@@ -323,18 +413,61 @@ function renderReleaseMeta(container, release) {
           <a href="${githubPath}">GitHub release</a>.
         </p>`;
 }
-function renderReleaseTagButton(release, index) {
+function getReleaseGroupLabel(release) {
+    const version = release.version || release.tag.replace(/-build\..*$/, "");
+    return version.startsWith("v") ? version : `v${version}`;
+}
+function groupReleasesByVersion(releases) {
+    const groups = new Map();
+    releases.forEach((release, index) => {
+        const label = getReleaseGroupLabel(release);
+        const items = groups.get(label) ?? [];
+        items.push({ release, index });
+        groups.set(label, items);
+    });
+    return Array.from(groups.entries()).map(([label, items]) => ({ label, items }));
+}
+function renderReleaseBuildItem(release, index) {
     const latest = index === 0 ? " - latest" : "";
-    return `<button
-      class="release-tag-button"
-      type="button"
-      role="tab"
-      aria-selected="false"
-      data-release-index="${index}"
-    >
-      <strong>${escapeHtml(release.tag)}</strong>
-      <small>${escapeHtml(formatDate(release.publishedAt))}${latest}</small>
-    </button>`;
+    const tag = escapeHtml(release.tag);
+    const publishedAt = escapeHtml(formatDate(release.publishedAt));
+    const commit = escapeHtml(getShortCommit(release));
+    const releasePath = escapeHtml(getReleasePath(release));
+    const manifestPath = escapeHtml(getReleaseManifestPath(release));
+    const checksumsPath = escapeHtml(getReleaseChecksumsPath(release));
+    const githubPath = escapeHtml(getReleaseGithubPath(release));
+    return `<article class="release-item">
+              <button class="release-build-button" type="button" data-release-index="${index}">
+                <strong>${tag}</strong>
+                <span>${publishedAt}${latest} - ${commit}</span>
+              </button>
+              <nav aria-label="${tag} release links">
+                <a href="${releasePath}">Downloads</a>
+                <a href="${manifestPath}">Manifest</a>
+                <a href="${checksumsPath}">Checksums</a>
+                <a href="${githubPath}">GitHub</a>
+              </nav>
+            </article>`;
+}
+function renderReleaseGroups(releases) {
+    return groupReleasesByVersion(releases)
+        .map((group, groupIndex) => {
+        const buildCount = group.items.length;
+        const latest = groupIndex === 0 ? " - latest series" : "";
+        return `<details class="release-group">
+              <summary>
+                <span class="release-group-arrow" aria-hidden="true"></span>
+                <span class="release-group-title">
+                  <strong>${escapeHtml(group.label)}</strong>
+                  <small>${buildCount} build${buildCount === 1 ? "" : "s"}${latest}</small>
+                </span>
+              </summary>
+              <div class="release-list">
+                ${group.items.map((item) => renderReleaseBuildItem(item.release, item.index)).join("")}
+              </div>
+            </details>`;
+    })
+        .join("");
 }
 function readReleaseHash() {
     const hash = window.location.hash.slice(1);
@@ -349,15 +482,15 @@ function readReleaseHash() {
 }
 async function initReleaseSwitcher() {
     const switcher = query("[data-release-switcher]");
-    const track = query("[data-release-tag-track]");
-    const viewport = query("[data-release-tag-viewport]");
+    const groups = query("[data-release-groups]");
     const downloads = query("[data-release-downloads]");
     const meta = query("[data-release-meta]");
-    if (!switcher || !track || !downloads || !meta)
+    if (!switcher || !groups || !downloads || !meta)
         return;
     const source = switcher.dataset.releasesSrc || "downloads/releases.json";
     const downloadsContainer = downloads;
     const metaContainer = meta;
+    const deviceHint = await detectClientDevice();
     try {
         const response = await fetch(source, { cache: "no-store" });
         if (!response.ok)
@@ -366,20 +499,24 @@ async function initReleaseSwitcher() {
         const releases = Array.isArray(index.releases) ? index.releases : [];
         if (!releases.length)
             throw new Error("No releases");
-        track.innerHTML = releases.map(renderReleaseTagButton).join("");
-        const buttons = queryAll(".release-tag-button");
-        function selectRelease(index, updateHash = true) {
+        groups.innerHTML = renderReleaseGroups(releases);
+        const buttons = queryAll(".release-build-button");
+        function selectRelease(index, updateHash = true, openGroup = true) {
             const release = releases[index];
-            const button = buttons[index];
+            const button = buttons.find((candidate) => Number(candidate.dataset.releaseIndex) === index);
             if (!release || !button)
                 return;
-            buttons.forEach((tagButton, buttonIndex) => {
-                const selected = buttonIndex === index;
-                tagButton.setAttribute("aria-selected", String(selected));
+            buttons.forEach((buildButton) => {
+                const selected = Number(buildButton.dataset.releaseIndex) === index;
+                buildButton.setAttribute("aria-current", String(selected));
+                buildButton.closest(".release-item")?.classList.toggle("is-selected", selected);
             });
-            renderReleaseDownloads(downloadsContainer, release);
+            renderReleaseDownloads(downloadsContainer, release, deviceHint);
             renderReleaseMeta(metaContainer, release);
-            button.scrollIntoView({ block: "nearest", inline: "center" });
+            if (openGroup) {
+                button.closest("details")?.setAttribute("open", "");
+                button.scrollIntoView({ block: "nearest" });
+            }
             if (updateHash) {
                 const url = new URL(window.location.href);
                 url.hash = encodeURIComponent(release.tag);
@@ -393,32 +530,28 @@ async function initReleaseSwitcher() {
                     selectRelease(releaseIndex);
             });
         });
-        track.addEventListener("keydown", (event) => {
-            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight")
+        groups.addEventListener("keydown", (event) => {
+            if (event.key !== "ArrowUp" && event.key !== "ArrowDown")
                 return;
-            const selectedIndex = buttons.findIndex((button) => button.getAttribute("aria-selected") === "true");
-            const delta = event.key === "ArrowRight" ? 1 : -1;
+            const selectedIndex = buttons.findIndex((button) => button.getAttribute("aria-current") === "true");
+            const delta = event.key === "ArrowDown" ? 1 : -1;
             const nextIndex = Math.min(Math.max(selectedIndex + delta, 0), releases.length - 1);
             if (nextIndex !== selectedIndex) {
                 event.preventDefault();
-                buttons[nextIndex]?.focus();
                 selectRelease(nextIndex);
+                buttons
+                    .find((button) => Number(button.dataset.releaseIndex) === nextIndex)
+                    ?.focus();
             }
-        });
-        query("[data-release-slider-prev]")?.addEventListener("click", () => {
-            viewport?.scrollBy({ left: -(viewport.clientWidth * 0.82), behavior: "smooth" });
-        });
-        query("[data-release-slider-next]")?.addEventListener("click", () => {
-            viewport?.scrollBy({ left: viewport.clientWidth * 0.82, behavior: "smooth" });
         });
         const requestedTag = readReleaseHash();
         const initialIndex = requestedTag
             ? releases.findIndex((release) => release.tag === requestedTag)
             : 0;
-        selectRelease(initialIndex >= 0 ? initialIndex : 0, false);
+        selectRelease(initialIndex >= 0 ? initialIndex : 0, false, requestedTag !== null);
     }
     catch {
-        track.innerHTML = `<span class="release-tag-loading">Release tags could not load. Use the release history below.</span>`;
+        groups.innerHTML = `<p class="release-loading">Release builds could not load. Use releases.json directly.</p>`;
     }
 }
 function initDevMode() {
