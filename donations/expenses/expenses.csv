@@ -1,0 +1,6 @@
+Category,Line item,Monthly USD,Why
+Hosting,Static website and downloads,8,Serve latexdo.org pages, installers, update metadata, and documentation.
+Compute,Build and release checks,12,Run packaging checks and smoke tests for desktop releases.
+Backend,Hosted editor experiments,20,Keep small backend services available while the editor is tested.
+Communication,Domain email and contact inbox,5,Maintain latexdo.org, DNS, and contact@latexdo.org.
+Maintenance,Operations buffer,15,Cover small tools, monitoring, storage, and unexpected project costs.
