@@ -13,18 +13,27 @@
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
-    <header class="site-header">
+    <header class="site-header" data-header>
       <nav class="nav-shell" aria-label="Primary navigation">
-        <a class="brand" href="../">
-          <img src="../assets/icon.svg" alt="" width="34" height="34" />
+        <a class="brand" href="../" aria-label="LatexDo home">
+          <img src="../assets/icon.svg" alt="" width="36" height="36" />
           <span>LatexDo</span>
         </a>
-        <div class="nav-links">
-          <a class="nav-editor-link" href="https://editor.latexdo.org">Open editor</a>
-          <a href="../">Home</a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="../downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="../cli/">CLI</a>
           <a href="../about/">About</a>
-          <a href="manifest.json">Manifest</a>
-          <a href="releases.json">Releases JSON</a>
         </div>
       </nav>
     </header>
@@ -631,5 +640,6 @@
       <a href="../">Website</a>
       <a href="manifest.json">Manifest</a>
     </footer>
+    <script type="module" src="../assets/site.js"></script>
   </body>
 </html>
