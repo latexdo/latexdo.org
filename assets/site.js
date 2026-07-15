@@ -71,7 +71,7 @@ const platformMeta = {
     },
 };
 const platformOrder = ["macos", "windows", "linux"];
-let showAllDownloadPlatforms = false;
+let clientDeviceHintPromise = null;
 function initNavigation() {
     const toggle = query("[data-nav-toggle]");
     const links = query("[data-nav-links]");
@@ -234,13 +234,60 @@ async function detectClientDevice() {
         return basic;
     }
 }
-function getDeviceLabel(deviceHint) {
-    if (!deviceHint.platform)
-        return "";
-    const platform = getPlatformMeta(deviceHint.platform).eyebrow;
-    if (deviceHint.platform !== "macos" || !deviceHint.arch)
-        return platform;
-    return `${platform} ${deviceHint.arch === "arm64" ? "Apple Silicon" : "Intel"}`;
+function getClientDeviceHint() {
+    clientDeviceHintPromise ??= detectClientDevice();
+    return clientDeviceHintPromise;
+}
+function getPlatformCardPlatform(card) {
+    if (card.dataset.platform)
+        return card.dataset.platform;
+    return (platformOrder.find((platform) => {
+        const className = getPlatformMeta(platform).className;
+        return card.classList.contains(className);
+    }) ?? null);
+}
+function setDownloadOptionDisabled(option, disabled) {
+    if (disabled) {
+        option.removeAttribute("href");
+        option.removeAttribute("download");
+        option.setAttribute("aria-disabled", "true");
+        option.setAttribute("tabindex", "-1");
+        option.classList.add("is-disabled");
+        return;
+    }
+    option.removeAttribute("aria-disabled");
+    option.removeAttribute("tabindex");
+    option.classList.remove("is-disabled");
+}
+function applyDevicePlatformLimit(container, deviceHint) {
+    const detectedPlatform = deviceHint?.platform ?? null;
+    const cards = Array.from(container.querySelectorAll(".platform-download-card"));
+    const shouldLimit = Boolean(detectedPlatform &&
+        cards.some((card) => getPlatformCardPlatform(card) === detectedPlatform));
+    container.classList.toggle("is-device-limited", shouldLimit);
+    cards.forEach((card) => {
+        const disabled = shouldLimit && getPlatformCardPlatform(card) !== detectedPlatform;
+        card.classList.toggle("is-device-disabled", disabled);
+        if (disabled) {
+            card.setAttribute("aria-disabled", "true");
+        }
+        else {
+            card.removeAttribute("aria-disabled");
+        }
+        card.querySelectorAll(".download-option").forEach((option) => {
+            setDownloadOptionDisabled(option, disabled);
+        });
+        card.querySelectorAll(".mac-machine-input").forEach((input) => {
+            input.disabled = disabled;
+        });
+    });
+}
+async function initDownloadPlatformLimits() {
+    const containers = queryAll(".download-platform-grid");
+    if (!containers.length)
+        return;
+    const deviceHint = await getClientDeviceHint();
+    containers.forEach((container) => applyDevicePlatformLimit(container, deviceHint));
 }
 function getDownloadOptionLabel(file) {
     if (file.platform === "macos" && file.arch === "arm64")
@@ -272,68 +319,57 @@ function getReleaseGithubPath(release) {
 function getShortCommit(release) {
     return (release.commit || "").slice(0, 12) || "Unknown";
 }
-function renderDownloadOption(file, extraClass = "") {
+function renderDownloadOption(file, extraClass = "", disabled = false) {
     const label = escapeHtml(getDownloadOptionLabel(file));
     const type = escapeHtml(getInstallerType(file));
     const size = escapeHtml(file.sizeLabel ?? formatBytes(file.size));
     const sha = file.sha256 ? `<span class="downloads-dev-link"> - SHA-256</span>` : "";
     const url = escapeHtml(file.url || file.filename);
-    const className = extraClass ? `download-option ${extraClass}` : "download-option";
-    return `<a class="${escapeHtml(className)}" href="${url}" download>
+    const className = ["download-option", extraClass, disabled ? "is-disabled" : ""]
+        .filter(Boolean)
+        .join(" ");
+    const attributes = disabled ? `aria-disabled="true" tabindex="-1"` : `href="${url}" download`;
+    return `<a class="${escapeHtml(className)}" ${attributes}>
               <strong>${label}</strong>
               <span>${type}</span>
               <em>${size}${sha}</em>
             </a>`;
 }
-function renderMacMachinePicker(files, deviceHint) {
+function renderMacMachinePicker(files, deviceHint, disabled = false) {
     const appleSilicon = files.find((file) => file.arch === "arm64");
     const intel = files.find((file) => file.arch === "x64");
     if (!appleSilicon || !intel) {
         return `<div class="download-variant-row" aria-label="macOS build choices">
-${files.map((file) => renderDownloadOption(file)).join("\n")}
+${files.map((file) => renderDownloadOption(file, "", disabled)).join("\n")}
             </div>`;
     }
     const preferIntel = deviceHint?.platform === "macos" && deviceHint.arch === "x64";
+    const disabledAttribute = disabled ? " disabled" : "";
     return `<div class="mac-machine-picker" aria-label="macOS build choices">
-              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-apple-silicon"${preferIntel ? "" : " checked"} />
-              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-intel"${preferIntel ? " checked" : ""} />
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-apple-silicon"${preferIntel ? "" : " checked"}${disabledAttribute} />
+              <input class="mac-machine-input" type="radio" name="mac-machine" id="mac-machine-intel"${preferIntel ? " checked" : ""}${disabledAttribute} />
               <div class="mac-machine-tabs" aria-label="Mac chip">
                 <label for="mac-machine-apple-silicon">Apple Silicon</label>
                 <label for="mac-machine-intel">Intel</label>
               </div>
               <div class="mac-machine-downloads">
-${renderDownloadOption(appleSilicon, "mac-machine-option arm64")}
-${renderDownloadOption(intel, "mac-machine-option x64")}
+${renderDownloadOption(appleSilicon, "mac-machine-option arm64", disabled)}
+${renderDownloadOption(intel, "mac-machine-option x64", disabled)}
               </div>
             </div>`;
 }
-function renderPlatformDownloadChoices(platform, options, deviceHint) {
+function renderPlatformDownloadChoices(platform, options, deviceHint, disabled = false) {
     if (platform === "macos")
-        return renderMacMachinePicker(options, deviceHint);
+        return renderMacMachinePicker(options, deviceHint, disabled);
     const meta = getPlatformMeta(platform);
     return `<div class="download-variant-row" aria-label="${escapeHtml(meta.eyebrow)} build choices">
-${options.map((file) => renderDownloadOption(file)).join("\n")}
+${options.map((file) => renderDownloadOption(file, "", disabled)).join("\n")}
             </div>`;
-}
-function renderDeviceDownloadFilter(deviceHint) {
-    if (!deviceHint?.platform || showAllDownloadPlatforms)
-        return "";
-    return `<div class="download-device-filter">
-            <span>Recommended for this device: <strong>${escapeHtml(getDeviceLabel(deviceHint))}</strong></span>
-            <button type="button" data-show-all-downloads>Show all downloads</button>
-          </div>`;
-}
-function bindDeviceDownloadFilter(container) {
-    query("[data-show-all-downloads]")?.addEventListener("click", () => {
-        showAllDownloadPlatforms = true;
-        container.classList.remove("is-device-filtered");
-        query(".download-device-filter")?.remove();
-    });
 }
 function renderReleaseDownloads(container, release, deviceHint = null) {
     const files = Array.isArray(release.files) ? release.files : [];
     if (!files.length) {
-        container.classList.remove("is-device-filtered");
+        container.classList.remove("is-device-limited");
         container.innerHTML = `<article class="downloads-empty">
       <h2>No installers listed</h2>
       <p>This release tag does not include downloadable desktop installers.</p>
@@ -359,16 +395,16 @@ function renderReleaseDownloads(container, release, deviceHint = null) {
         return aIndex - bIndex;
     });
     const detectedPlatform = deviceHint?.platform ?? null;
-    const shouldFilter = Boolean(detectedPlatform && grouped.has(detectedPlatform) && !showAllDownloadPlatforms);
-    container.classList.toggle("is-device-filtered", shouldFilter);
-    container.innerHTML =
-        renderDeviceDownloadFilter(deviceHint) +
-            platforms
-                .map((platform) => {
-                const meta = getPlatformMeta(platform);
-                const options = grouped.get(platform) ?? [];
-                const hiddenClass = shouldFilter && detectedPlatform !== platform ? " is-device-hidden" : "";
-                return `<article class="platform-download-card ${escapeHtml(meta.className)}${hiddenClass}" data-platform="${escapeHtml(platform)}">
+    const shouldLimit = Boolean(detectedPlatform && grouped.has(detectedPlatform));
+    container.classList.toggle("is-device-limited", shouldLimit);
+    container.innerHTML = platforms
+        .map((platform) => {
+        const meta = getPlatformMeta(platform);
+        const options = grouped.get(platform) ?? [];
+        const disabled = shouldLimit && detectedPlatform !== platform;
+        const disabledClass = disabled ? " is-device-disabled" : "";
+        const disabledAttribute = disabled ? ` aria-disabled="true"` : "";
+        return `<article class="platform-download-card ${escapeHtml(meta.className)}${disabledClass}" data-platform="${escapeHtml(platform)}"${disabledAttribute}>
             <div class="platform-card-top">
               <span class="platform-logo-shell">${meta.icon}</span>
               <div>
@@ -376,11 +412,10 @@ function renderReleaseDownloads(container, release, deviceHint = null) {
                 <h2>${escapeHtml(meta.title)}</h2>
               </div>
             </div>
-            ${renderPlatformDownloadChoices(platform, options, deviceHint)}
+            ${renderPlatformDownloadChoices(platform, options, deviceHint, disabled)}
           </article>`;
-            })
-                .join("");
-    bindDeviceDownloadFilter(container);
+    })
+        .join("");
 }
 function renderReleaseMeta(container, release) {
     const version = escapeHtml(release.version || release.tag);
@@ -490,7 +525,7 @@ async function initReleaseSwitcher() {
     const source = switcher.dataset.releasesSrc || "downloads/releases.json";
     const downloadsContainer = downloads;
     const metaContainer = meta;
-    const deviceHint = await detectClientDevice();
+    const deviceHint = await getClientDeviceHint();
     try {
         const response = await fetch(source, { cache: "no-store" });
         if (!response.ok)
@@ -722,6 +757,7 @@ function init() {
     initReveal();
     initDevMode();
     void initDownloads();
+    void initDownloadPlatformLimits();
     void initReleaseSwitcher();
     void initExpensesTable();
     initCopyCommands();
