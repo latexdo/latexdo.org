@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-CLI_URL="${LATEXDO_CLI_URL:-https://latexdo.org/bin/latexdo}"
+CLI_URL="${LATEXDO_CLI_URL:-https://cli.latexdo.org/bin/latexdo}"
 INSTALL_DIR="${LATEXDO_BIN_DIR:-$HOME/.local/bin}"
 TARGET="$INSTALL_DIR/latexdo"
 
