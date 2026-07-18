@@ -413,9 +413,9 @@ svg {
 
 .task-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-  max-width: 960px;
+  max-width: var(--max);
   margin-top: 32px;
 }
 
@@ -2402,6 +2402,7 @@ img.platform-logo {
 
   .feature-grid,
   .feature-grid-4,
+  .task-grid,
   .download-grid,
   .about-grid,
   .about-audience {

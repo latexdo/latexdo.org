@@ -7,3 +7,6 @@
 /cli https://cli.latexdo.org/ 301
 /cli/ https://cli.latexdo.org/ 301
 /cli/* https://cli.latexdo.org/:splat 301
+/store https://store.latexdo.org/ 301
+/store/ https://store.latexdo.org/ 301
+/store/* https://store.latexdo.org/:splat 301
