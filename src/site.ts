@@ -143,7 +143,7 @@ let clientDeviceHintPromise: Promise<ClientDeviceHint> | null = null;
 const siteIconPaths: Record<string, string> = {
   Product: `<path d="M4 7h16" /><path d="M7 7v12h10V7" /><path d="M9 7V5h6v2" />`,
   Resources: `<circle cx="12" cy="12" r="8" /><path d="m15 9-2 5-5 2 2-5 5-2Z" />`,
-  Company: `<path d="M4 20h16" /><path d="M6 20V5h9v15" /><path d="M15 10h3v10" /><path d="M9 9h3" /><path d="M9 13h3" /><path d="M9 17h3" />`,
+  Organization: `<path d="M4 20h16" /><path d="M6 20V5h9v15" /><path d="M15 10h3v10" /><path d="M9 9h3" /><path d="M9 13h3" /><path d="M9 17h3" />`,
   Community: `<path d="M16 11a3 3 0 1 0-6 0" /><path d="M7 20a5 5 0 0 1 10 0" /><path d="M6 12a2 2 0 1 0 0-4" /><path d="M18 8a2 2 0 1 0 0 4" /><path d="M3 20a4 4 0 0 1 4-4" /><path d="M17 16a4 4 0 0 1 4 4" />`,
   Download: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
   Editor: `<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z" /><path d="m13 7 4 4" />`,
