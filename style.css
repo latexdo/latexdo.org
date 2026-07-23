@@ -1148,7 +1148,7 @@ h3 {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(5, minmax(116px, 1fr));
+  grid-template-columns: 1.5fr repeat(6, minmax(116px, 1fr));
   gap: 24px;
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;
@@ -1178,13 +1178,15 @@ h3 {
   gap: 10px;
 }
 
-.site-footer nav a {
+.site-footer nav a,
+.footer-static-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
 
-.site-footer a {
+.site-footer a,
+.footer-static-link {
   color: #d2d8e3;
   text-decoration: none;
   font-size: 14px;
