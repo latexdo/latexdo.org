@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LatexDo</title>
+    <meta
+      name="description"
+      content="LatexDo explains the compiler, knowledge graph, and AI tooling behind reliable technical writing workflows."
+    />
+    <meta name="author" content="LatexDo" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6f7f9" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:title" content="LatexDo" />
+    <meta
+      property="og:description"
+      content="Compiler systems, document knowledge graphs, and grounded AI tools for LaTeX projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://latexdo.org/research/" />
+    <link rel="canonical" href="https://latexdo.org/research/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="style.css" as="style" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://latexdo.org/#organization",
+            "name": "LatexDo",
+            "url": "https://latexdo.org/",
+            "logo": "https://latexdo.org/assets/icon.svg",
+            "sameAs": ["https://github.com/latexdo/latexdo"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://latexdo.org/research/#website",
+            "name": "LatexDo",
+            "url": "https://latexdo.org/research/",
+            "description": "Research notes for the compiler, knowledge graph, and AI systems behind LatexDo.",
+            "publisher": { "@id": "https://latexdo.org/#organization" }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="LatexDo home">
+          <img src="/assets/icon.svg" alt="" width="36" height="36" />
+          <span>LatexDo</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="/downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="https://cli.latexdo.org">CLI</a>
+          <a href="/research/ai/">AI</a>
+          <a href="https://docs.latexdo.org">Docs</a>
+          <a href="https://store.latexdo.org">Store</a>
+          <a href="https://blogpost.latexdo.org">Blogpost</a>
+          <a class="nav-donate-link" href="/donations/">Donate</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content">
+      <section class="research-hero" aria-labelledby="hero-title">
+        <div class="research-hero-inner">
+          <div class="research-copy">
+            <p class="eyebrow">Research</p>
+            <h1 id="hero-title">Compiler, graph, and AI systems for reliable papers.</h1>
+            <p class="hero-lede">
+              LatexDo research turns a LaTeX project into checked evidence:
+              compiler output becomes diagnostics, bibliography structure
+              becomes a graph, and AI tools act only with that context.
+            </p>
+            <div class="hero-actions" aria-label="Research areas">
+              <a href="/research/ai/">AI tools</a>
+              <a href="/research/compiler/">Compiler</a>
+              <a href="/research/knowledge-graph/">Knowledge Graph</a>
+            </div>
+          </div>
+          <div class="research-flow" aria-label="LatexDo research workflow">
+            <div class="flow-card source-card">
+              <span>01</span>
+              <strong>Project source</strong>
+              <p><code>.tex</code>, <code>.bib</code>, comments, and active selection.</p>
+            </div>
+            <div class="flow-card compiler-card">
+              <span>02</span>
+              <strong>Compiler evidence</strong>
+              <p>Local <code>latexmk</code> output, SyncTeX, log parsing, ranked diagnostics.</p>
+            </div>
+            <div class="flow-card graph-card">
+              <span>03</span>
+              <strong>Citation graph</strong>
+              <p>Used, unused, missing, duplicate, stale, and related references.</p>
+            </div>
+            <div class="flow-card ai-card">
+              <span>04</span>
+              <strong>Grounded AI</strong>
+              <p>Assistant tools inspect, edit, cite, compile, and verify inside the project.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="research-stack" aria-labelledby="tracks-title">
+        <div class="stack-heading">
+          <div>
+            <p class="eyebrow">Research tracks</p>
+            <h2 id="tracks-title">The work is organized around the writing loop.</h2>
+          </div>
+          <p>
+            Each track connects to the same project state, so research features
+            are not isolated demos. They feed the editor, the PDF preview, and
+            the actions available to the assistant.
+          </p>
+        </div>
+        <article id="compiler" class="research-panel compiler-panel">
+          <div class="panel-heading">
+            <span class="track-index">01</span>
+            <p class="eyebrow">Compiler</p>
+            <h2>Local TeX output becomes editor-grade diagnostics.</h2>
+            <p>
+              LatexDo runs the user's own TeX toolchain, isolates every build,
+              and converts noisy logs into actionable errors, warnings, and
+              source highlights.
+            </p>
+            <p class="implementation-link">
+              Connected code: <code>electron/compiler.ts</code>,
+              <code>electron/latexDiagnostics.ts</code>,
+              <code>src/features/compile/useCompile.ts</code>
+            </p>
+            <a class="track-link" href="/research/compiler/">Read compiler brief</a>
+          </div>
+          <div class="panel-grid">
+            <section>
+              <h3>Pipeline</h3>
+              <ul>
+                <li>Find <code>latexmk</code> from standard TeX locations, including <code>/Library/TeX/texbin</code> on macOS.</li>
+                <li>Support <code>pdflatex</code>, <code>xelatex</code>, and <code>lualatex</code> through engine-specific <code>latexmk</code> flags.</li>
+                <li>Run with <code>-synctex=1</code>, <code>-file-line-error</code>, <code>-interaction=nonstopmode</code>, and <code>-halt-on-error</code>.</li>
+                <li>Return one compile result with PDF path, duration, raw output, diagnostics, and failure reason.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Diagnostics</h3>
+              <ul>
+                <li>Parse file-line errors, LaTeX warnings, package warnings, class warnings, and overfull or underfull boxes.</li>
+                <li>Detect low-information failures like emergency stops and surface the real earlier compiler problem.</li>
+                <li>Enrich diagnostics with source context, confidence, highlight text, suggested fixes, and cascade ranking.</li>
+                <li>Sanitize stale <code>latexmk</code> failure output so old failed runs do not confuse the user.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Runtime controls</h3>
+              <p>
+                Compile jobs are cancellable and have a timeout. On cancellation
+                or timeout the app terminates the process group, waits briefly,
+                then force-kills if needed. Shared cloud projects are
+                materialized into a bounded scratch folder before local compile,
+                with file count and size limits.
+              </p>
+            </section>
+          </div>
+        </article>
+
+        <article id="knowledge-graph" class="research-panel graph-panel">
+          <div class="panel-heading">
+            <span class="track-index">02</span>
+            <p class="eyebrow">Knowledge Graph</p>
+            <h2>A deterministic map of the bibliography.</h2>
+            <p>
+              The graph connects BibTeX entries to citation usage, then links
+              papers by authors, venues, years, and title similarity so the
+              editor can explain what is central, missing, or isolated.
+            </p>
+            <p class="implementation-link">
+              Connected code: <code>src/latex/citationAnalysis.ts</code>,
+              <code>src/features/graph/knowledgeGraph.ts</code>,
+              <code>src/components/KnowledgeGraphView.tsx</code>
+            </p>
+            <a class="track-link" href="/research/knowledge-graph/">Read graph brief</a>
+          </div>
+          <div class="panel-grid">
+            <section>
+              <h3>Model</h3>
+              <ul>
+                <li>Each graph node is one bibliography entry with key, title, authors, venue, year, type, cited status, and degree.</li>
+                <li>Edges are typed as shared author, same venue, same year, or similar topic from title-token Jaccard overlap.</li>
+                <li>Weights are configurable, then pruned to the strongest edges per node so large libraries stay readable.</li>
+                <li>Stats include node count, edge count, cited count, and connected component count.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Tools</h3>
+              <ul>
+                <li><code>parseBibFile</code> reads BibTeX through <code>bibtex-parse</code> with size and entry limits.</li>
+                <li><code>extractCitationUsages</code> scans <code>\cite</code>-style commands in project TeX files.</li>
+                <li><code>analyzeCitationLibrary</code> reports used, unused, missing, duplicate, stale, and low-quality references.</li>
+                <li>The graph view adds search, cited-only filtering, relation toggles, weight sliders, pan, zoom, drag, and citation insertion.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Result</h3>
+              <p>
+                The author can see which references are central, which cited
+                papers are isolated, which uncited papers are related, and where
+                the bibliography has quality problems. The same graph data feeds
+                citation recommendations for selected prose.
+              </p>
+            </section>
+          </div>
+        </article>
+
+        <article id="ai" class="research-panel ai-panel">
+          <div class="panel-heading">
+            <span class="track-index">03</span>
+            <p class="eyebrow">AI</p>
+            <h2>AI that uses project tools before it edits.</h2>
+            <p>
+              The assistant can inspect files, read the active document,
+              propose edits, insert citations, run checks, compile, and use the
+              graph before recommending changes.
+            </p>
+            <p class="implementation-link">
+              Connected code: <code>src/features/ai/aiTools.ts</code>,
+              <code>src/features/ai/aiAgent.ts</code>,
+              <code>src/features/ai/useAiAgent.ts</code>,
+              <code>src/features/ai/aiClient.ts</code>
+            </p>
+            <a class="track-link" href="/research/ai/">Read AI brief</a>
+          </div>
+          <div class="panel-grid">
+            <section>
+              <h3>Tool Layer</h3>
+              <ul>
+                <li><code>list_files</code>, <code>read_file</code>, and <code>get_active_document</code> inspect project context.</li>
+                <li><code>edit_selection</code>, <code>insert_at_cursor</code>, and <code>write_file</code> make controlled editor changes.</li>
+                <li><code>compile</code> verifies edits and returns compiler diagnostics plus the log tail.</li>
+                <li><code>run_checks</code>, <code>insert_citation</code>, and <code>recommend_citations</code> connect AI to LatexDo's checkers and citation graph.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Models</h3>
+              <ul>
+                <li>Cloud mode supports Anthropic Messages and OpenAI-compatible chat completions with native tool calls.</li>
+                <li>Ollama runs through Electron main-process IPC and uses Ollama's native tool-calling endpoint.</li>
+                <li>Local GGUF models run through <code>node-llama-cpp</code> with a JSON fallback tool protocol.</li>
+                <li>The setup catalog includes Qwen2.5 Coder, Qwen3, Llama, Phi, SmolLM, and an inline-completion tier.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Guardrails</h3>
+              <p>
+                AI access is controlled by settings for chat history, current
+                editor, project files, bibliography, and researcher profile.
+                Mutating actions can require approval, the agent has a max-step
+                budget, requests can be aborted, and the prompt tells the model
+                to inspect files before editing and compile after risky changes.
+              </p>
+            </section>
+          </div>
+        </article>
+      </section>
+
+      <section id="organization" class="organization">
+        <div>
+          <p class="eyebrow">Product direction</p>
+          <h2>Research only ships when it makes paper work clearer.</h2>
+        </div>
+        <div class="loop-list">
+          <div class="loop-step">
+            <span>01</span>
+            <p><strong>Evidence first.</strong> LatexDo reads project files, logs, citations, and selections before making claims.</p>
+          </div>
+          <div class="loop-step">
+            <span>02</span>
+            <p><strong>Editor connected.</strong> Research outputs become interface controls, diagnostics, graph views, and assistant tools.</p>
+          </div>
+          <div class="loop-step">
+            <span>03</span>
+            <p><strong>Verification loop.</strong> Risky changes can be checked with compile output and citation analysis before the author trusts them.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="LatexDo home">
+            <img src="/assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Modern LaTeX editing across web and desktop.</p>
+        </div>
+        <div>
+          <h5>Individuals</h5>
+          <nav aria-label="Individuals">
+            <a href="/downloads/">Desktop</a>
+            <a href="https://editor.latexdo.org">Editor</a>
+            <a href="https://docs.latexdo.org">Docs</a>
+            <a href="https://store.latexdo.org">Store</a>
+            <a href="https://cli.latexdo.org">Server</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Business</h5>
+          <nav aria-label="Business">
+            <span class="footer-static-link">Desktop Pro</span>
+            <span class="footer-static-link">Editor Pro</span>
+            <span class="footer-static-link">Docs Pro</span>
+            <span class="footer-static-link">Store Pro</span>
+            <span class="footer-static-link">Server Pro</span>
+            <span class="footer-static-link">AI Pro</span>
+          </nav>
+        </div>
+        <div>
+          <h5>Research</h5>
+          <nav aria-label="Research">
+            <a href="/research/compiler/">Compiler</a>
+            <a href="/research/knowledge-graph/">Knowledge Graph</a>
+            <a href="https://benchmarks.latexdo.org">Benchmarks</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Organization</h5>
+          <nav aria-label="Organization">
+            <a href="/about/">About</a>
+            <a href="/privacy.html">Privacy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="mailto:contact@latexdo.org">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Community</h5>
+          <nav aria-label="Community">
+            <a href="https://github.com/latexdo/latexdo">Source</a>
+            <a href="/donations/">Donate</a>
+            <a href="https://linkedin.com/company/latexdo">LinkedIn</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/assets/site.js"></script>
+  </body>
+</html>

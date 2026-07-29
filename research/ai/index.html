@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LatexDo</title>
+    <meta name="description" content="How LatexDo connects AI assistance to project files, compilation, checks, citations, and local or cloud model providers." />
+    <meta name="author" content="LatexDo" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6f7f9" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:title" content="LatexDo" />
+    <meta property="og:description" content="How LatexDo connects AI assistance to project files, compilation, checks, citations, and local or cloud model providers." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://latexdo.org/research/ai/" />
+    <link rel="canonical" href="https://latexdo.org/research/ai/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="../style.css" as="style" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="LatexDo home">
+          <img src="/assets/icon.svg" alt="" width="36" height="36" />
+          <span>LatexDo</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="/downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="https://cli.latexdo.org">CLI</a>
+          <a href="/research/ai/">AI</a>
+          <a href="https://docs.latexdo.org">Docs</a>
+          <a href="https://store.latexdo.org">Store</a>
+          <a href="https://blogpost.latexdo.org">Blogpost</a>
+          <a class="nav-donate-link" href="/donations/">Donate</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content" class="detail-page">
+      <section class="detail-hero" aria-labelledby="detail-title">
+        <a class="detail-back" href="/research/">Research overview</a>
+        <p class="eyebrow">Grounded AI</p>
+        <h1 id="detail-title">AI that works from project evidence.</h1>
+        <p>LatexDo connects AI assistance to files, compilation, checks, citations, and local or cloud model providers.</p>
+        <dl class="detail-facts" aria-label="AI system facts">
+          <div>
+            <dt>Context</dt>
+            <dd>files, active editor, bibliography</dd>
+          </div>
+          <div>
+            <dt>Actions</dt>
+            <dd>edit, cite, compile, check</dd>
+          </div>
+          <div>
+            <dt>Controls</dt>
+            <dd>approval, abort, max-step budget</dd>
+          </div>
+        </dl>
+        <div class="hero-actions" aria-label="Research areas">
+          <a href="/research/compiler/">Compiler</a>
+          <a href="/research/knowledge-graph/">Knowledge Graph</a>
+          <a href="/research/ai/">AI</a>
+        </div>
+      </section>
+
+      <section class="research-stack detail-stack" aria-label="AI details">
+        <article class="research-panel ai-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Grounded AI</p>
+            <h2>An assistant wired into the same project tools.</h2>
+            <p>The AI assistant is not a detached chatbot. The renderer runs an agent loop that can call LatexDo tools for files, the active editor, compilation, checks, citation lookup, and graph-backed recommendations.</p>
+            <p class="implementation-link">Connected code: <code>src/features/ai/aiTools.ts</code>, <code>src/features/ai/aiAgent.ts</code>, <code>src/features/ai/useAiAgent.ts</code>, <code>src/features/ai/aiClient.ts</code></p>
+          </div>
+          <div class="panel-grid">
+            <section>
+              <h3>Tool Layer</h3>
+              <ul>
+                <li><code>list_files</code>, <code>read_file</code>, and <code>get_active_document</code> inspect project context.</li>
+                <li><code>edit_selection</code>, <code>insert_at_cursor</code>, and <code>write_file</code> make controlled editor changes.</li>
+                <li><code>compile</code> verifies edits and returns compiler diagnostics plus the log tail.</li>
+                <li><code>run_checks</code>, <code>insert_citation</code>, and <code>recommend_citations</code> connect AI to checkers and the citation graph.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Models</h3>
+              <ul>
+                <li>Cloud mode supports Anthropic Messages and OpenAI-compatible chat completions with native tool calls.</li>
+                <li>Ollama runs through Electron main-process IPC and uses Ollama's native tool-calling endpoint.</li>
+                <li>Local GGUF models run through <code>node-llama-cpp</code> with a JSON fallback tool protocol.</li>
+                <li>The setup catalog includes Qwen2.5 Coder, Qwen3, Llama, Phi, SmolLM, and an inline-completion tier.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Guardrails</h3>
+              <p>
+                AI access is controlled by settings for chat history, current
+                editor, project files, bibliography, and researcher profile.
+                Mutating actions can require approval, the agent has a max-step
+                budget, requests can be aborted, and the prompt tells the model
+                to inspect files before editing and compile after risky changes.
+              </p>
+            </section>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="LatexDo home">
+            <img src="/assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Modern LaTeX editing across web and desktop.</p>
+        </div>
+        <div>
+          <h5>Individuals</h5>
+          <nav aria-label="Individuals">
+            <a href="/downloads/">Desktop</a>
+            <a href="https://editor.latexdo.org">Editor</a>
+            <a href="https://docs.latexdo.org">Docs</a>
+            <a href="https://store.latexdo.org">Store</a>
+            <a href="https://cli.latexdo.org">Server</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Business</h5>
+          <nav aria-label="Business">
+            <span class="footer-static-link">Desktop Pro</span>
+            <span class="footer-static-link">Editor Pro</span>
+            <span class="footer-static-link">Docs Pro</span>
+            <span class="footer-static-link">Store Pro</span>
+            <span class="footer-static-link">Server Pro</span>
+            <span class="footer-static-link">AI Pro</span>
+          </nav>
+        </div>
+        <div>
+          <h5>Research</h5>
+          <nav aria-label="Research">
+            <a href="/research/compiler/">Compiler</a>
+            <a href="/research/knowledge-graph/">Knowledge Graph</a>
+            <a href="https://benchmarks.latexdo.org">Benchmarks</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Organization</h5>
+          <nav aria-label="Organization">
+            <a href="/about/">About</a>
+            <a href="/privacy.html">Privacy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="mailto:contact@latexdo.org">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Community</h5>
+          <nav aria-label="Community">
+            <a href="https://github.com/latexdo/latexdo">Source</a>
+            <a href="/donations/">Donate</a>
+            <a href="https://linkedin.com/company/latexdo">LinkedIn</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/assets/site.js"></script>
+  </body>
+</html>

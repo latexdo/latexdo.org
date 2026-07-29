@@ -7,9 +7,9 @@
 /cli https://cli.latexdo.org/ 301
 /cli/ https://cli.latexdo.org/ 301
 /cli/* https://cli.latexdo.org/:splat 301
-/ai https://research.latexdo.org/ai/ 301
-/ai/ https://research.latexdo.org/ai/ 301
-/ai/* https://research.latexdo.org/ai/:splat 301
+/ai /research/ai/ 301
+/ai/ /research/ai/ 301
+/ai/* /research/ai/:splat 301
 /store https://store.latexdo.org/ 301
 /store/ https://store.latexdo.org/ 301
 /store/* https://store.latexdo.org/:splat 301
