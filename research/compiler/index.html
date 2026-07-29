@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LatexDo</title>
+    <meta name="description" content="How LatexDo runs local TeX compilation, captures build output, and turns LaTeX errors into structured editor diagnostics." />
+    <meta name="author" content="LatexDo" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6f7f9" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:title" content="LatexDo" />
+    <meta property="og:description" content="How LatexDo runs local TeX compilation, captures build output, and turns LaTeX errors into structured editor diagnostics." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://latexdo.org/research/compiler/" />
+    <link rel="canonical" href="https://latexdo.org/research/compiler/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="../style.css" as="style" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="LatexDo home">
+          <img src="/assets/icon.svg" alt="" width="36" height="36" />
+          <span>LatexDo</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="/downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="https://cli.latexdo.org">CLI</a>
+          <a href="/research/ai/">AI</a>
+          <a href="https://docs.latexdo.org">Docs</a>
+          <a href="https://store.latexdo.org">Store</a>
+          <a href="https://blogpost.latexdo.org">Blogpost</a>
+          <a class="nav-donate-link" href="/donations/">Donate</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content" class="detail-page">
+      <section class="detail-hero" aria-labelledby="detail-title">
+        <a class="detail-back" href="/research/">Research overview</a>
+        <p class="eyebrow">Compiler systems</p>
+        <h1 id="detail-title">Compiler diagnostics that authors can act on.</h1>
+        <p>LatexDo runs local TeX compilation, captures build output, and turns LaTeX errors into structured editor diagnostics.</p>
+        <dl class="detail-facts" aria-label="Compiler system facts">
+          <div>
+            <dt>Engine</dt>
+            <dd>latexmk with pdfLaTeX, XeLaTeX, LuaLaTeX</dd>
+          </div>
+          <div>
+            <dt>Output</dt>
+            <dd>PDF, SyncTeX, log, diagnostics</dd>
+          </div>
+          <div>
+            <dt>Safety</dt>
+            <dd>isolated jobs, cancellation, timeout</dd>
+          </div>
+        </dl>
+        <div class="hero-actions" aria-label="Research areas">
+          <a href="/research/compiler/">Compiler</a>
+          <a href="/research/knowledge-graph/">Knowledge Graph</a>
+          <a href="/research/ai/">AI</a>
+        </div>
+      </section>
+
+      <section class="research-stack detail-stack" aria-label="Compiler details">
+        <article class="research-panel compiler-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Compiler systems</p>
+            <h2>Local compilation that returns useful diagnostics.</h2>
+            <p>LatexDo wraps the user's local TeX installation with an Electron-side compile service. It runs latexmk in isolated job folders, captures the log, and returns one structured result to the editor.</p>
+            <p class="implementation-link">Connected code: <code>electron/compiler.ts</code>, <code>electron/latexDiagnostics.ts</code>, <code>src/features/compile/useCompile.ts</code></p>
+          </div>
+          <div class="panel-grid">
+            <section>
+              <h3>Pipeline</h3>
+              <ul>
+                <li>Find <code>latexmk</code> from standard TeX locations, including <code>/Library/TeX/texbin</code> on macOS.</li>
+                <li>Support <code>pdflatex</code>, <code>xelatex</code>, and <code>lualatex</code> through engine-specific <code>latexmk</code> flags.</li>
+                <li>Run with <code>-synctex=1</code>, <code>-file-line-error</code>, <code>-interaction=nonstopmode</code>, and <code>-halt-on-error</code>.</li>
+                <li>Return PDF path, duration, raw output, diagnostics, and failure reason in one result.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Diagnostics</h3>
+              <ul>
+                <li>Parse file-line errors, LaTeX warnings, package warnings, class warnings, and overfull or underfull boxes.</li>
+                <li>Detect low-information failures like emergency stops and surface the real earlier compiler problem.</li>
+                <li>Enrich diagnostics with source context, confidence, highlight text, suggested fixes, and cascade ranking.</li>
+                <li>Sanitize stale <code>latexmk</code> failure output so old failed runs do not confuse the user.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Runtime Controls</h3>
+              <p>
+                Compile jobs are cancellable and have a timeout. On cancellation
+                or timeout the app terminates the process group, waits briefly,
+                then force-kills if needed. Shared cloud projects are
+                materialized into a bounded scratch folder before local compile,
+                with file count and size limits.
+              </p>
+            </section>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="LatexDo home">
+            <img src="/assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Modern LaTeX editing across web and desktop.</p>
+        </div>
+        <div>
+          <h5>Individuals</h5>
+          <nav aria-label="Individuals">
+            <a href="/downloads/">Desktop</a>
+            <a href="https://editor.latexdo.org">Editor</a>
+            <a href="https://docs.latexdo.org">Docs</a>
+            <a href="https://store.latexdo.org">Store</a>
+            <a href="https://cli.latexdo.org">Server</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Business</h5>
+          <nav aria-label="Business">
+            <span class="footer-static-link">Desktop Pro</span>
+            <span class="footer-static-link">Editor Pro</span>
+            <span class="footer-static-link">Docs Pro</span>
+            <span class="footer-static-link">Store Pro</span>
+            <span class="footer-static-link">Server Pro</span>
+            <span class="footer-static-link">AI Pro</span>
+          </nav>
+        </div>
+        <div>
+          <h5>Research</h5>
+          <nav aria-label="Research">
+            <a href="/research/compiler/">Compiler</a>
+            <a href="/research/knowledge-graph/">Knowledge Graph</a>
+            <a href="https://benchmarks.latexdo.org">Benchmarks</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Organization</h5>
+          <nav aria-label="Organization">
+            <a href="/about/">About</a>
+            <a href="/privacy.html">Privacy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="mailto:contact@latexdo.org">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Community</h5>
+          <nav aria-label="Community">
+            <a href="https://github.com/latexdo/latexdo">Source</a>
+            <a href="/donations/">Donate</a>
+            <a href="https://linkedin.com/company/latexdo">LinkedIn</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/assets/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LatexDo</title>
+    <meta name="description" content="How LatexDo builds a deterministic bibliography graph from BibTeX entries, citation usage, and paper metadata." />
+    <meta name="author" content="LatexDo" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6f7f9" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:title" content="LatexDo" />
+    <meta property="og:description" content="How LatexDo builds a deterministic bibliography graph from BibTeX entries, citation usage, and paper metadata." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://latexdo.org/research/knowledge-graph/" />
+    <link rel="canonical" href="https://latexdo.org/research/knowledge-graph/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="../style.css" as="style" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="LatexDo home">
+          <img src="/assets/icon.svg" alt="" width="36" height="36" />
+          <span>LatexDo</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="/downloads/">Download</a>
+          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
+          <a href="https://cli.latexdo.org">CLI</a>
+          <a href="/research/ai/">AI</a>
+          <a href="https://docs.latexdo.org">Docs</a>
+          <a href="https://store.latexdo.org">Store</a>
+          <a href="https://blogpost.latexdo.org">Blogpost</a>
+          <a class="nav-donate-link" href="/donations/">Donate</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content" class="detail-page">
+      <section class="detail-hero" aria-labelledby="detail-title">
+        <a class="detail-back" href="/research/">Research overview</a>
+        <p class="eyebrow">Citation graph</p>
+        <h1 id="detail-title">A citation graph the editor can explain.</h1>
+        <p>LatexDo builds a deterministic bibliography graph from BibTeX entries, citation usage, and paper metadata.</p>
+        <dl class="detail-facts" aria-label="Knowledge graph facts">
+          <div>
+            <dt>Nodes</dt>
+            <dd>BibTeX entries and citation usage</dd>
+          </div>
+          <div>
+            <dt>Edges</dt>
+            <dd>author, venue, year, title similarity</dd>
+          </div>
+          <div>
+            <dt>Checks</dt>
+            <dd>missing, duplicate, stale, unused</dd>
+          </div>
+        </dl>
+        <div class="hero-actions" aria-label="Research areas">
+          <a href="/research/compiler/">Compiler</a>
+          <a href="/research/knowledge-graph/">Knowledge Graph</a>
+          <a href="/research/ai/">AI</a>
+        </div>
+      </section>
+
+      <section class="research-stack detail-stack" aria-label="Knowledge Graph details">
+        <article class="research-panel graph-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Citation graph</p>
+            <h2>A bibliography graph connected to the editor.</h2>
+            <p>The current graph reads project .bib entries and citation keys used in .tex files, then connects papers by shared authors, venues, years, and title similarity.</p>
+            <p class="implementation-link">Connected code: <code>src/latex/citationAnalysis.ts</code>, <code>src/features/graph/knowledgeGraph.ts</code>, <code>src/components/KnowledgeGraphView.tsx</code></p>
+          </div>
+          <div class="panel-grid">
+            <section>
+              <h3>Model</h3>
+              <ul>
+                <li>Each node is one bibliography entry with key, title, authors, venue, year, type, cited status, and degree.</li>
+                <li>Edges are typed as shared author, same venue, same year, or similar topic from title-token Jaccard overlap.</li>
+                <li>Weights are configurable, then pruned to the strongest edges per node so large libraries stay readable.</li>
+                <li>Stats include node count, edge count, cited count, and connected component count.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Tools</h3>
+              <ul>
+                <li><code>parseBibFile</code> reads BibTeX through <code>bibtex-parse</code> with size and entry limits.</li>
+                <li><code>extractCitationUsages</code> scans <code>\cite</code>-style commands in project TeX files.</li>
+                <li><code>analyzeCitationLibrary</code> reports used, unused, missing, duplicate, stale, and low-quality references.</li>
+                <li>The graph view adds search, cited-only filtering, relation toggles, weight sliders, pan, zoom, drag, and citation insertion.</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Result</h3>
+              <p>
+                Authors can see which references are central, which cited
+                papers are isolated, which uncited papers are related, and where
+                the bibliography has quality problems. The same graph data feeds
+                citation recommendations for selected prose.
+              </p>
+            </section>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="LatexDo home">
+            <img src="/assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Modern LaTeX editing across web and desktop.</p>
+        </div>
+        <div>
+          <h5>Individuals</h5>
+          <nav aria-label="Individuals">
+            <a href="/downloads/">Desktop</a>
+            <a href="https://editor.latexdo.org">Editor</a>
+            <a href="https://docs.latexdo.org">Docs</a>
+            <a href="https://store.latexdo.org">Store</a>
+            <a href="https://cli.latexdo.org">Server</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Business</h5>
+          <nav aria-label="Business">
+            <span class="footer-static-link">Desktop Pro</span>
+            <span class="footer-static-link">Editor Pro</span>
+            <span class="footer-static-link">Docs Pro</span>
+            <span class="footer-static-link">Store Pro</span>
+            <span class="footer-static-link">Server Pro</span>
+            <span class="footer-static-link">AI Pro</span>
+          </nav>
+        </div>
+        <div>
+          <h5>Research</h5>
+          <nav aria-label="Research">
+            <a href="/research/compiler/">Compiler</a>
+            <a href="/research/knowledge-graph/">Knowledge Graph</a>
+            <a href="https://benchmarks.latexdo.org">Benchmarks</a>
+            <a href="/research/ai/">AI</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Organization</h5>
+          <nav aria-label="Organization">
+            <a href="/about/">About</a>
+            <a href="/privacy.html">Privacy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="mailto:contact@latexdo.org">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Community</h5>
+          <nav aria-label="Community">
+            <a href="https://github.com/latexdo/latexdo">Source</a>
+            <a href="/donations/">Donate</a>
+            <a href="https://linkedin.com/company/latexdo">LinkedIn</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/assets/site.js"></script>
+  </body>
+</html>
