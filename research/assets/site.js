@@ -14,7 +14,7 @@ const siteIconPaths = {
   Community: `<path d="M16 11a3 3 0 1 0-6 0" /><path d="M7 20a5 5 0 0 1 10 0" /><path d="M6 12a2 2 0 1 0 0-4" /><path d="M18 8a2 2 0 1 0 0 4" /><path d="M3 20a4 4 0 0 1 4-4" /><path d="M17 16a4 4 0 0 1 4 4" />`,
   Download: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
   Editor: `<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z" /><path d="m13 7 4 4" />`,
-  CLI: `<rect x="4" y="5" width="16" height="14" rx="2" /><path d="m8 10 3 3-3 3" /><path d="M13 16h3" />`,
+  Server: `<rect x="6" y="4" width="12" height="6" rx="2" /><rect x="6" y="14" width="12" height="6" rx="2" /><path d="M9 7h.01" /><path d="M9 17h.01" /><path d="M14 7h1" /><path d="M14 17h1" />`,
   Desktop: `<rect x="4" y="5" width="16" height="11" rx="2" /><path d="M8 20h8" /><path d="M12 16v4" />`,
   About: `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
   Docs: `<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z" /><path d="M8 7h8" /><path d="M8 11h8" />`,

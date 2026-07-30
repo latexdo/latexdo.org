@@ -1,11 +1,11 @@
 # latexdo.org
 
-This repository hosts the public LatexDo website at `https://latexdo.org`. It includes the marketing pages, downloads metadata, update metadata, legal pages, and the CLI installer served from `https://cli.latexdo.org`.
+This repository hosts the public LatexDo website at `https://latexdo.org`. It includes the marketing pages, downloads metadata, update metadata, legal pages, and the Server installer served from `https://server.latexdo.org`.
 
 ## Repository Role
 
 - Serves the public website and download pages.
-- Publishes `install.sh` and `bin/latexdo` for CLI installation at `https://cli.latexdo.org`.
+- Publishes `install.sh` and `bin/latexdo` for Server installation at `https://server.latexdo.org`.
 - Hosts update metadata under `updates/` and release metadata under `downloads/`.
 - Receives most source updates from `/Users/omar/Desktop/Github/latexdo/website`.
 

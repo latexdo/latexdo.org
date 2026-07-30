@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-CLI_URL="${LATEXDO_CLI_URL:-https://cli.latexdo.org/bin/latexdo}"
+SERVER_URL="${LATEXDO_SERVER_URL:-https://server.latexdo.org/bin/latexdo}"
 INSTALL_DIR="${LATEXDO_BIN_DIR:-$HOME/.local/bin}"
 TARGET="$INSTALL_DIR/latexdo"
 
@@ -68,7 +68,7 @@ download() {
     return
   fi
 
-  die "curl or wget is required to download LatexDo CLI."
+  die "curl or wget is required to download LatexDo Server."
 }
 
 make_temp_file() {
@@ -85,8 +85,8 @@ mkdir -p "$INSTALL_DIR"
 tmp_file="$(make_temp_file)"
 trap 'rm -f "$tmp_file"' EXIT INT TERM
 
-log "Downloading LatexDo CLI"
-download "$CLI_URL" "$tmp_file"
+log "Downloading LatexDo Server"
+download "$SERVER_URL" "$tmp_file"
 
 chmod 0755 "$tmp_file"
 mv "$tmp_file" "$TARGET"

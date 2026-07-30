@@ -106,13 +106,20 @@
         <div id="nav-links" class="nav-links" data-nav-links>
           <a href="downloads/">Download</a>
           <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
-          <a href="https://cli.latexdo.org">CLI</a>
+          <a href="https://server.latexdo.org">Server</a>
           <a href="/research/ai/">AI</a>
           <a href="https://docs.latexdo.org">Docs</a>
           <a href="https://store.latexdo.org">Store</a>
           <a href="https://blogpost.latexdo.org">Blogpost</a>
           <a class="nav-donate-link" href="donations/">Donate</a>
         </div>
+        <nav class="language-switcher header-language-switcher" aria-label="Languages" data-language-switcher="header">
+          <button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Languages, current language: English"><span class="language-globe" aria-hidden="true">🌐</span><span class="language-current">EN</span></button>
+          <ul class="language-list">
+            <li class="language-item"><a class="language-option" href="/" hreflang="en-US" lang="en-US" aria-current="true" aria-label="Switch to English"><span class="language-flag" aria-hidden="true">🇺🇸</span><span class="language-code">EN</span><span class="language-name">English</span></a></li>
+            <li class="language-item"><a class="language-option" href="/fr/" hreflang="fr-FR" lang="fr-FR" aria-label="Switch to Français"><span class="language-flag" aria-hidden="true">🇫🇷</span><span class="language-code">FR</span><span class="language-name">Français</span></a></li>
+          </ul>
+        </nav>
       </nav>
     </header>
 
@@ -136,10 +143,10 @@
               <p>Use your local TeX installation. Native apps for macOS, Windows, and Linux with PDF preview and SyncTeX.</p>
               <span class="button primary">Download desktop</span>
             </a>
-            <a class="task-card" href="https://cli.latexdo.org">
-              <strong>Run from the CLI</strong>
+            <a class="task-card" href="https://server.latexdo.org">
+              <strong>Run the Server</strong>
               <p>Install the <code>latexdo</code> command with one line. Launch the browser editor on localhost from your terminal.</p>
-              <span class="button primary">Install CLI</span>
+              <span class="button primary">Install Server</span>
             </a>
             <a class="task-card" href="https://store.latexdo.org">
               <strong>Browse the LatexDo Store</strong>
@@ -181,20 +188,20 @@
         </div>
       </section>
 
-      <section id="cli" class="section-band cli-band" aria-labelledby="cli-title">
+      <section id="server" class="section-band server-band" aria-labelledby="server-title">
         <div class="section-inner">
           <div class="section-heading reveal">
             <p class="eyebrow">Terminal install</p>
-            <h2 id="cli-title">Install the local editor with one command.</h2>
-            <p>The CLI keeps a cached copy of the LatexDo source, installs npm dependencies when they change, starts the local web editor, and opens the localhost URL in your browser.</p>
+            <h2 id="server-title">Install the local editor with one command.</h2>
+            <p>The Server keeps a cached copy of the LatexDo source, installs npm dependencies when they change, starts the local web editor, and opens the localhost URL in your browser.</p>
           </div>
-          <div class="cli-install reveal">
-            <div class="command-line" aria-label="LatexDo CLI install command">
-              <code>curl -fsSL https://cli.latexdo.org/install.sh | bash</code>
+          <div class="server-install reveal">
+            <div class="command-line" aria-label="LatexDo Server install command">
+              <code>curl -fsSL https://server.latexdo.org/install.sh | bash</code>
             </div>
-            <div class="cli-links">
-              <a class="button primary" href="https://cli.latexdo.org/install.sh">View install script</a>
-              <a class="button secondary" href="https://github.com/latexdo/latexdo-cli">CLI source</a>
+            <div class="server-links">
+              <a class="button primary" href="https://server.latexdo.org/install.sh">View install script</a>
+              <a class="button secondary" href="https://github.com/latexdo/latexdo-server">Server source</a>
             </div>
           </div>
         </div>
@@ -324,7 +331,7 @@
                   <td>⚠️</td>
                 </tr>
                 <tr class="compare-ours">
-                  <td>Built-in CLI</td>
+                  <td>Built-in Server</td>
                   <td>✅</td>
                   <td>❌</td>
                   <td>❌</td>
@@ -406,7 +413,7 @@
             <a href="https://editor.latexdo.org">Editor</a>
             <a href="https://docs.latexdo.org">Docs</a>
             <a href="https://store.latexdo.org">Store</a>
-            <a href="https://cli.latexdo.org">Server</a>
+            <a href="https://server.latexdo.org">Server</a>
             <a href="/research/ai/">AI</a>
           </nav>
         </div>
@@ -449,6 +456,13 @@
         </div>
         <div class="footer-bottom">
           <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
+          <nav class="language-switcher footer-language-switcher" aria-label="Languages" data-language-switcher="footer">
+            <button class="language-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Languages, current language: English"><span class="language-globe" aria-hidden="true">🌐</span><span class="language-current">EN</span></button>
+            <ul class="language-list">
+              <li class="language-item"><a class="language-option" href="/" hreflang="en-US" lang="en-US" aria-current="true" aria-label="Switch to English"><span class="language-flag" aria-hidden="true">🇺🇸</span><span class="language-code">EN</span><span class="language-name">English</span></a></li>
+              <li class="language-item"><a class="language-option" href="/fr/" hreflang="fr-FR" lang="fr-FR" aria-label="Switch to Français"><span class="language-flag" aria-hidden="true">🇫🇷</span><span class="language-code">FR</span><span class="language-name">Français</span></a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>
