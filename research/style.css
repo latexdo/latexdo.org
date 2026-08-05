@@ -1069,10 +1069,14 @@ svg {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(5, minmax(116px, 1fr));
+  grid-template-columns: 1.5fr repeat(4, minmax(116px, 1fr));
   gap: 24px;
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;
+}
+
+.site-footer .footer-grid > div:nth-child(3) {
+  display: none;
 }
 
 .site-footer h5 {

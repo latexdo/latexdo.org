@@ -1,0 +1,16 @@
+{
+  "name": "@latexdo/ai",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Public default AI source, agent loop, UI, and provider catalog for LatexDo builds.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "npm run check:catalog && npm run check:sync",
+    "check:catalog": "node scripts/validate-catalog.mjs catalog/latexdo-ai-catalog.v1.json",
+    "check:sync": "node scripts/validate-sync.mjs latexdo-sync.json",
+    "ci": "npm run check"
+  }
+}
