@@ -4,12 +4,9 @@
 /editor https://editor.latexdo.org/ 301
 /editor/ https://editor.latexdo.org/ 301
 /editor/* https://editor.latexdo.org/:splat 301
-/cli https://server.latexdo.org/ 301
-/cli/ https://server.latexdo.org/ 301
-/cli/* https://server.latexdo.org/:splat 301
-/server https://server.latexdo.org/ 301
-/server/ https://server.latexdo.org/ 301
-/server/* https://server.latexdo.org/:splat 301
+/cli / 301
+/cli/ / 301
+/cli/* / 301
 /ai /research/ai/ 301
 /ai/ /research/ai/ 301
 /ai/* /research/ai/:splat 301

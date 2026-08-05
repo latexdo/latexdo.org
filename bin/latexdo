@@ -34,7 +34,7 @@ die() {
 
 usage() {
   cat <<'EOF'
-LatexDo Server
+LatexDo CLI
 
 Usage:
   latexdo [open] [--host HOST] [--port PORT] [--no-update]
@@ -276,7 +276,7 @@ serve_app() {
 }
 
 doctor() {
-  log "LatexDo Server doctor"
+  log "LatexDo CLI doctor"
   log "home: $LATEXDO_HOME"
   log "app:  $APP_DIR"
   log "repo: $APP_REPO#$APP_BRANCH"
