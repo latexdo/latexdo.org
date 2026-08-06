@@ -1104,6 +1104,98 @@ h3 {
   color: var(--muted);
 }
 
+.roadmap-section {
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f6f7f9 100%);
+}
+
+.roadmap-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.roadmap-track::before {
+  content: "";
+  position: absolute;
+  top: 70px;
+  right: 10%;
+  left: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue-strong), var(--green), var(--amber));
+  opacity: 0.34;
+}
+
+.roadmap-card {
+  position: relative;
+  display: grid;
+  min-height: 282px;
+  align-content: start;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 14px 40px rgb(17 19 24 / 7%);
+  padding: 22px;
+}
+
+.roadmap-card.is-current {
+  border-color: rgb(15 111 255 / 45%);
+  box-shadow:
+    inset 0 0 0 1px rgb(15 111 255 / 16%),
+    0 18px 48px rgb(15 111 255 / 12%);
+}
+
+.roadmap-status {
+  width: fit-content;
+  border: 1px solid rgb(15 111 255 / 18%);
+  border-radius: 999px;
+  background: #eef4ff;
+  color: var(--blue-strong);
+  padding: 5px 9px;
+  font-size: 11px;
+  font-weight: 860;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.roadmap-card:nth-child(3) .roadmap-status {
+  border-color: rgb(20 128 94 / 18%);
+  background: rgb(20 128 94 / 9%);
+  color: var(--green);
+}
+
+.roadmap-card:nth-child(4) .roadmap-status {
+  border-color: rgb(156 101 20 / 20%);
+  background: rgb(156 101 20 / 10%);
+  color: var(--amber);
+}
+
+.roadmap-step {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgb(17 19 24 / 10%);
+  border-radius: 50%;
+  background: var(--ink);
+  color: white;
+  font-size: 14px;
+  font-weight: 860;
+  line-height: 1;
+}
+
+.roadmap-card h3 {
+  margin: 2px 0 0;
+}
+
+.roadmap-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
 .download-card {
   display: grid;
   align-content: space-between;
@@ -1154,10 +1246,14 @@ h3 {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(5, minmax(116px, 1fr));
+  grid-template-columns: 1.5fr repeat(4, minmax(116px, 1fr));
   gap: 24px;
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;
+}
+
+.site-footer .footer-grid > div:nth-child(3) {
+  display: none;
 }
 
 .site-footer h5 {
@@ -2666,10 +2762,15 @@ img.platform-logo {
   .feature-grid,
   .feature-grid-4,
   .task-grid,
+  .roadmap-track,
   .download-grid,
   .about-grid,
   .about-audience {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .roadmap-track::before {
+    display: none;
   }
 
   .footer-grid {
@@ -2755,6 +2856,7 @@ img.platform-logo {
   .workflow-grid,
   .feature-grid,
   .feature-grid-4,
+  .roadmap-track,
   .download-grid,
   .download-platform-grid,
   .about-hero,

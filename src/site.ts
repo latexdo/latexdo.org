@@ -188,6 +188,7 @@ const siteIconPaths: Record<string, string> = {
   Docs: `<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z" /><path d="M8 7h8" /><path d="M8 11h8" />`,
   Downloads: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
   Store: `<path d="M5 10h14l-1 10H6L5 10Z" /><path d="M8 10a4 4 0 0 1 8 0" />`,
+  Roadmap: `<path d="M4 6h7" /><path d="M4 12h10" /><path d="M4 18h16" /><circle cx="16" cy="6" r="2" /><circle cx="19" cy="12" r="2" /><circle cx="21" cy="18" r="2" />`,
   Benchmarks: `<path d="M4 19V5" /><path d="M4 19h16" /><rect x="7" y="11" width="3" height="5" rx="1" /><rect x="12" y="8" width="3" height="8" rx="1" /><rect x="17" y="6" width="3" height="10" rx="1" />`,
   Compiler: `<path d="m10 8-4 4 4 4" /><path d="m14 8 4 4-4 4" /><path d="M12 5l-2 14" />`,
   "Knowledge Graph": `<circle cx="6" cy="7" r="2" /><circle cx="18" cy="7" r="2" /><circle cx="12" cy="17" r="2" /><path d="M8 8l3 7" /><path d="M16 8l-3 7" /><path d="M8 7h8" />`,

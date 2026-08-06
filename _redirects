@@ -10,6 +10,10 @@
 /ai /research/ai/ 301
 /ai/ /research/ai/ 301
 /ai/* /research/ai/:splat 301
+/latexdo-sync.json https://latexdo.org/research/ai/latexdo-sync.json 301
+/catalog/* https://latexdo.org/research/ai/catalog/:splat 301
+/latexdo/* https://latexdo.org/research/ai/latexdo/:splat 301
+/scripts/* https://latexdo.org/research/ai/scripts/:splat 301
 /store https://store.latexdo.org/ 301
 /store/ https://store.latexdo.org/ 301
 /store/* https://store.latexdo.org/:splat 301

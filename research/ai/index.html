@@ -81,6 +81,8 @@
           <a href="/research/compiler/">Compiler</a>
           <a href="/research/knowledge-graph/">Knowledge Graph</a>
           <a href="/research/ai/">AI</a>
+          <a href="/research/ai/latexdo-sync.json">Sync manifest</a>
+          <a href="/research/ai/catalog/latexdo-ai-catalog.v1.json">Model catalog</a>
         </div>
       </section>
 
@@ -120,6 +122,31 @@
                 budget, requests can be aborted, and the prompt tells the model
                 to inspect files before editing and compile after risky changes.
               </p>
+            </section>
+          </div>
+        </article>
+        <article class="research-panel ai-panel ai-source-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Public source</p>
+            <h2>The retired AI subdomain now lives here.</h2>
+            <p>The retired AI source package is now served inside this route, so desktop builds can read the manifest, catalog, source files, scripts, and package metadata from <code>latexdo.org/research/ai/</code>.</p>
+            <p class="implementation-link">Source root: <code>/research/ai/</code></p>
+          </div>
+          <div class="panel-grid">
+            <section>
+              <h3>Sync manifest</h3>
+              <p>Maps the public AI files into the desktop app before builds.</p>
+              <a class="track-link" href="/research/ai/latexdo-sync.json">Open manifest</a>
+            </section>
+            <section>
+              <h3>Model catalog</h3>
+              <p>Defines local GGUF models, cloud providers, and default AI choices.</p>
+              <a class="track-link" href="/research/ai/catalog/latexdo-ai-catalog.v1.json">Open catalog</a>
+            </section>
+            <section>
+              <h3>Package files</h3>
+              <p>Includes the copied README, validation scripts, tests, and implementation files.</p>
+              <a class="track-link" href="/research/ai/README.md">Open README</a>
             </section>
           </div>
         </article>
