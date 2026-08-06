@@ -11,12 +11,8 @@
 !/docs/index.html
 !/donations/
 !/donations/**
-!/downloads/
-!/downloads/**
 !/editor/
 !/editor/index.html
-!/updates/
-!/updates/**
 !/_redirects
 !/index.html
 !/install.sh

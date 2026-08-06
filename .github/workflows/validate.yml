@@ -40,7 +40,7 @@ jobs:
 
       - name: Validate Cloudflare asset set
         run: |
-          for asset_path in about assets bin docs downloads editor updates; do
+          for asset_path in about assets bin docs editor; do
             test -e "$asset_path" || {
               echo "Missing required path: $asset_path"
               exit 1
@@ -54,7 +54,7 @@ jobs:
             }
           done
 
-          if find about assets bin docs downloads editor updates -type l -print -quit | grep -q .; then
+          if find about assets bin docs editor -type l -print -quit | grep -q .; then
             echo "Cloudflare assets must not contain symbolic links."
             exit 1
           fi
