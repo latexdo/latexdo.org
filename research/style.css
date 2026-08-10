@@ -1147,24 +1147,83 @@ svg {
 
 .footer-social-links {
   justify-content: flex-end;
-  gap: 12px;
+  gap: 8px;
   margin-left: auto;
 }
 
-.footer-social-links a,
-.footer-social-links span {
-  color: #98a2b3;
-  font-size: 13px;
-  line-height: 1.4;
+.footer-social-link {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--social-border, rgb(255 255 255 / 14%));
+  border-radius: 50%;
+  background: var(--social-bg, rgb(255 255 255 / 6%));
+  color: var(--social-fg, #d2d8e3);
+  line-height: 1;
   text-decoration: none;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
 }
 
-.footer-social-links a:hover,
-.footer-social-links a:focus-visible {
+.footer-social-link::before {
+  content: var(--social-mark);
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 1px 1px rgb(0 0 0 / 18%);
+  transform: translateY(-0.5px);
+}
+
+.footer-social-link.is-linkedin {
+  --social-mark: "in";
+  --social-color: #0a66c2;
+  --social-bg: #0a66c2;
+  --social-border: rgb(10 102 194 / 44%);
+  --social-fg: white;
+}
+
+.footer-social-link.is-linkedin::before {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-shadow: none;
+  transform: translateY(-1px);
+}
+
+.footer-social-link.is-mastodon {
+  --social-mark: "🐘";
+  --social-color: #6364ff;
+  --social-bg: linear-gradient(180deg, #7778ff 0%, #5658e8 100%);
+  --social-border: rgb(99 100 255 / 52%);
+}
+
+.footer-social-link.is-bluesky {
+  --social-mark: "🦋";
+  --social-color: #1185fe;
+  --social-bg: linear-gradient(180deg, #45b8ff 0%, #1185fe 100%);
+  --social-border: rgb(17 133 254 / 52%);
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  border-color: var(--social-color);
+  background: var(--social-bg);
   color: white;
+  transform: translateY(-1px);
 }
 
-.footer-social-links span {
+span.footer-social-link {
   cursor: default;
 }
 
