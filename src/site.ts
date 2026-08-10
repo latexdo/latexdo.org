@@ -62,15 +62,6 @@ interface ExpenseRow {
   why: string;
 }
 
-interface SiteLanguage {
-  code: string;
-  hreflang: string;
-  shortLabel: string;
-  label: string;
-  flag: string;
-  pathPrefix: string;
-}
-
 function query<T extends Element>(selector: string): T | null {
   return document.querySelector<T>(selector);
 }
@@ -149,29 +140,6 @@ const platformMeta: Record<string, PlatformMeta> = {
 const platformOrder = ["macos", "windows", "linux"];
 let clientDeviceHintPromise: Promise<ClientDeviceHint> | null = null;
 
-// Add languages here; the header switcher, footer switcher, and alternate links
-// are generated from this list.
-const siteLanguages: SiteLanguage[] = [
-  {
-    code: "en",
-    hreflang: "en-US",
-    shortLabel: "EN",
-    label: "English",
-    flag: "🇺🇸",
-    pathPrefix: "",
-  },
-  {
-    code: "fr",
-    hreflang: "fr-FR",
-    shortLabel: "FR",
-    label: "Français",
-    flag: "🇫🇷",
-    pathPrefix: "/fr",
-  },
-];
-
-const defaultSiteLanguage = siteLanguages[0];
-
 const siteIconPaths: Record<string, string> = {
   Product: `<path d="M4 7h16" /><path d="M7 7v12h10V7" /><path d="M9 7V5h6v2" />`,
   Individuals: `<circle cx="12" cy="7" r="3" /><path d="M6 21a6 6 0 0 1 12 0" />`,
@@ -185,6 +153,10 @@ const siteIconPaths: Record<string, string> = {
   Blogpost: `<path d="M5 4h14v16H5z" /><path d="M8 8h8" /><path d="M8 12h8" /><path d="M8 16h5" />`,
   Desktop: `<rect x="4" y="5" width="16" height="11" rx="2" /><path d="M8 20h8" /><path d="M12 16v4" />`,
   About: `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
+  "Legal Notice": `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
+  "Code of Conduct": `<path d="M12 3 5 6v5c0 4.5 2.9 8.4 7 10 4.1-1.6 7-5.5 7-10V6l-7-3Z" /><path d="m9 12 2 2 4-5" />`,
+  Vision: `<circle cx="12" cy="12" r="3" /><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />`,
+  Board: `<circle cx="9" cy="8" r="3" /><circle cx="17" cy="10" r="2.5" /><path d="M3.5 20a5.5 5.5 0 0 1 11 0" /><path d="M14 20a4.5 4.5 0 0 1 7 0" />`,
   Docs: `<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z" /><path d="M8 7h8" /><path d="M8 11h8" />`,
   Downloads: `<path d="M12 4v10" /><path d="m8 10 4 4 4-4" /><path d="M5 20h14" />`,
   Store: `<path d="M5 10h14l-1 10H6L5 10Z" /><path d="M8 10a4 4 0 0 1 8 0" />`,
@@ -195,7 +167,9 @@ const siteIconPaths: Record<string, string> = {
   AI: `<path d="M12 3v3" /><path d="M12 18v3" /><path d="M3 12h3" /><path d="M18 12h3" /><rect x="7" y="7" width="10" height="10" rx="2" /><path d="M10 14l2-5 2 5" /><path d="M10.8 12.5h2.4" />`,
   Sitemap: `<path d="M12 4v5" /><path d="M6 14v-3h12v3" /><rect x="9" y="2" width="6" height="4" rx="1" /><rect x="3" y="14" width="6" height="6" rx="1" /><rect x="15" y="14" width="6" height="6" rx="1" />`,
   Privacy: `<rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" />`,
+  "Privacy Policy": `<rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" />`,
   Terms: `<path d="M7 3h7l4 4v14H7V3Z" /><path d="M14 3v5h5" /><path d="M10 12h6" /><path d="M10 16h6" />`,
+  "Terms of Service": `<path d="M7 3h7l4 4v14H7V3Z" /><path d="M14 3v5h5" /><path d="M10 12h6" /><path d="M10 16h6" />`,
   Contact: `<rect x="4" y="6" width="16" height="12" rx="2" /><path d="m4 8 8 6 8-6" />`,
   Source: `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
   Donate: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
@@ -214,270 +188,6 @@ function createSiteIcon(className: string, icon: string): HTMLSpanElement {
   iconEl.setAttribute("aria-hidden", "true");
   iconEl.innerHTML = `<svg viewBox="0 0 24 24" focusable="false">${icon}</svg>`;
   return iconEl;
-}
-
-function normalizePathPrefix(prefix: string): string {
-  if (!prefix || prefix === "/") return "";
-  return `/${prefix.replace(/^\/+|\/+$/g, "")}`;
-}
-
-function getCurrentSiteLanguage(): SiteLanguage {
-  const pathname = window.location.pathname;
-  return (
-    siteLanguages.find((language) => {
-      const prefix = normalizePathPrefix(language.pathPrefix);
-      return Boolean(prefix && (pathname === prefix || pathname.startsWith(`${prefix}/`)));
-    }) ?? defaultSiteLanguage
-  );
-}
-
-function getLanguageNeutralPath(pathname: string, language: SiteLanguage): string {
-  const prefix = normalizePathPrefix(language.pathPrefix);
-  if (!prefix) return pathname || "/";
-  if (pathname === prefix) return "/";
-  if (pathname.startsWith(`${prefix}/`)) return pathname.slice(prefix.length) || "/";
-  return pathname || "/";
-}
-
-function getLocalizedPath(language: SiteLanguage, includeState = true): string {
-  const currentLanguage = getCurrentSiteLanguage();
-  const neutralPath = getLanguageNeutralPath(window.location.pathname, currentLanguage);
-  const prefix = normalizePathPrefix(language.pathPrefix);
-  const path = prefix
-    ? `${prefix}${neutralPath === "/" ? "/" : neutralPath}`
-    : neutralPath;
-
-  if (!includeState) return path;
-  return `${path}${window.location.search}${window.location.hash}`;
-}
-
-function getCanonicalOrigin(): string {
-  const canonical = query<HTMLLinkElement>('link[rel="canonical"]');
-  if (canonical?.href) {
-    try {
-      return new URL(canonical.href).origin;
-    } catch {
-      return window.location.origin;
-    }
-  }
-
-  return window.location.origin;
-}
-
-function createLanguageOption(
-  language: SiteLanguage,
-  currentLanguage: SiteLanguage,
-  showName = false,
-): HTMLAnchorElement {
-  const link = document.createElement("a");
-  link.className = "language-option";
-  link.href = getLocalizedPath(language);
-  link.hreflang = language.hreflang;
-  link.lang = language.hreflang;
-  link.setAttribute("aria-label", `Switch to ${language.label}`);
-  if (language.code === currentLanguage.code) {
-    link.setAttribute("aria-current", "true");
-  }
-
-  const flag = document.createElement("span");
-  flag.className = "language-flag";
-  flag.setAttribute("aria-hidden", "true");
-  flag.textContent = language.flag;
-  link.append(flag);
-
-  const code = document.createElement("span");
-  code.className = "language-code";
-  code.textContent = language.shortLabel;
-  link.append(code);
-
-  if (showName) {
-    const name = document.createElement("span");
-    name.className = "language-name";
-    name.textContent = language.label;
-    link.append(name);
-  }
-
-  link.addEventListener("click", () => {
-    localStorage.setItem("latexdo-language", language.code);
-  });
-
-  return link;
-}
-
-function createGlobeIcon(): HTMLSpanElement {
-  const icon = document.createElement("span");
-  icon.className = "language-globe";
-  icon.setAttribute("aria-hidden", "true");
-  icon.textContent = "🌐";
-  return icon;
-}
-
-function createLanguageSwitcher(location: "header" | "footer"): HTMLElement {
-  const switcher = document.createElement("nav");
-  switcher.className = `language-switcher ${location}-language-switcher`;
-  switcher.setAttribute("aria-label", "Languages");
-  switcher.dataset.languageSwitcher = location;
-
-  const trigger = document.createElement("button");
-  trigger.className = "language-trigger";
-  trigger.type = "button";
-  trigger.setAttribute("aria-haspopup", "true");
-  trigger.setAttribute("aria-expanded", "false");
-  trigger.append(createGlobeIcon());
-  switcher.append(trigger);
-
-  renderLanguageSwitcher(switcher, location);
-  return switcher;
-}
-
-function renderLanguageSwitcher(
-  switcher: HTMLElement,
-  location: "header" | "footer",
-): void {
-  const currentLanguage = getCurrentSiteLanguage();
-
-  let trigger = switcher.querySelector<HTMLButtonElement>(".language-trigger");
-  if (!trigger) {
-    trigger = document.createElement("button");
-    trigger.className = "language-trigger";
-    trigger.type = "button";
-    trigger.setAttribute("aria-haspopup", "true");
-    trigger.prepend(createGlobeIcon());
-    switcher.prepend(trigger);
-  }
-
-  trigger.setAttribute("aria-label", `Languages, current language: ${currentLanguage.label}`);
-  trigger.setAttribute("aria-expanded", "false");
-  trigger.querySelector(".language-current")?.remove();
-  const current = document.createElement("span");
-  current.className = "language-current";
-  current.textContent = currentLanguage.shortLabel;
-  trigger.append(current);
-
-  const list = document.createElement("ul");
-  list.className = "language-list";
-
-  siteLanguages.forEach((language) => {
-    const item = document.createElement("li");
-    item.className = "language-item";
-    item.append(createLanguageOption(language, currentLanguage, location === "footer"));
-    list.append(item);
-  });
-
-  switcher.querySelector(".language-list")?.remove();
-  switcher.append(list);
-}
-
-function syncLanguageTriggerState(switcher: HTMLElement): void {
-  const trigger = switcher.querySelector<HTMLButtonElement>(".language-trigger");
-  if (!trigger) return;
-
-  const open =
-    switcher.matches(":hover") ||
-    switcher.matches(":focus-within") ||
-    switcher.classList.contains("is-open");
-  trigger.setAttribute("aria-expanded", String(open));
-}
-
-function bindLanguageSwitcher(switcher: HTMLElement): void {
-  if (switcher.dataset.languageSwitcherBound === "true") return;
-  switcher.dataset.languageSwitcherBound = "true";
-
-  const trigger = switcher.querySelector<HTMLButtonElement>(".language-trigger");
-  trigger?.addEventListener("click", (event) => {
-    event.preventDefault();
-    const open = !switcher.classList.contains("is-open");
-    queryAll<HTMLElement>(".language-switcher.is-open").forEach((openSwitcher) => {
-      if (openSwitcher !== switcher) {
-        openSwitcher.classList.remove("is-open");
-        syncLanguageTriggerState(openSwitcher);
-      }
-    });
-    switcher.classList.toggle("is-open", open);
-    syncLanguageTriggerState(switcher);
-  });
-
-  switcher.querySelectorAll<HTMLAnchorElement>(".language-option").forEach((option) => {
-    option.addEventListener("click", () => {
-      switcher.classList.remove("is-open");
-      syncLanguageTriggerState(switcher);
-    });
-  });
-
-  ["mouseenter", "mouseleave", "focusin", "focusout"].forEach((eventName) => {
-    switcher.addEventListener(eventName, () => {
-      window.setTimeout(() => syncLanguageTriggerState(switcher), 0);
-    });
-  });
-}
-
-function initLanguageAlternates(): void {
-  const origin = getCanonicalOrigin();
-  queryAll<HTMLLinkElement>('link[data-language-alternate="true"]').forEach((link) => {
-    link.remove();
-  });
-
-  siteLanguages.forEach((language) => {
-    const alternate = document.createElement("link");
-    alternate.rel = "alternate";
-    alternate.hreflang = language.hreflang;
-    alternate.href = new URL(getLocalizedPath(language, false), origin).href;
-    alternate.dataset.languageAlternate = "true";
-    document.head.append(alternate);
-  });
-
-  const fallback = document.createElement("link");
-  fallback.rel = "alternate";
-  fallback.hreflang = "x-default";
-  fallback.href = new URL(getLocalizedPath(defaultSiteLanguage, false), origin).href;
-  fallback.dataset.languageAlternate = "true";
-  document.head.append(fallback);
-}
-
-function initLanguageSwitcher(): void {
-  const currentLanguage = getCurrentSiteLanguage();
-  document.documentElement.lang = currentLanguage.hreflang;
-
-  queryAll<HTMLElement>("[data-language-switcher]").forEach((switcher) => {
-    const navShell = query<HTMLElement>(".nav-shell");
-    if (
-      switcher.dataset.languageSwitcher === "header" &&
-      switcher.closest("[data-nav-links]") &&
-      navShell
-    ) {
-      navShell.append(switcher);
-    }
-
-    renderLanguageSwitcher(
-      switcher,
-      switcher.dataset.languageSwitcher === "footer" ? "footer" : "header",
-    );
-    bindLanguageSwitcher(switcher);
-  });
-
-  const navShell = query<HTMLElement>(".nav-shell");
-  if (navShell && !navShell.querySelector(".header-language-switcher")) {
-    const switcher = createLanguageSwitcher("header");
-    navShell.append(switcher);
-    bindLanguageSwitcher(switcher);
-  }
-
-  const footerBottom = query<HTMLElement>(".footer-bottom");
-  if (footerBottom && !footerBottom.querySelector(".footer-language-switcher")) {
-    const switcher = createLanguageSwitcher("footer");
-    footerBottom.append(switcher);
-    bindLanguageSwitcher(switcher);
-  }
-
-  document.addEventListener("click", (event) => {
-    if ((event.target as HTMLElement).closest(".language-switcher")) return;
-    queryAll<HTMLElement>(".language-switcher.is-open").forEach((switcher) => {
-      switcher.classList.remove("is-open");
-      syncLanguageTriggerState(switcher);
-    });
-  });
-
-  initLanguageAlternates();
 }
 
 function initNavigation(): void {
@@ -1276,7 +986,6 @@ function initFooter(): void {
 
 function init(): void {
   initNavigation();
-  initLanguageSwitcher();
   initEditorPreviewNotice();
   initReveal();
   initDevMode();

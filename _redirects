@@ -1,6 +1,8 @@
 /docs https://docs.latexdo.org/ 301
 /docs/ https://docs.latexdo.org/ 301
 /docs/* https://docs.latexdo.org/:splat 301
+/legal-notice /about/ 301
+/legal-notice/ /about/ 301
 /downloads https://app.latexdo.org/downloads/ 301
 /downloads/ https://app.latexdo.org/downloads/ 301
 /downloads/* https://app.latexdo.org/downloads/:splat 301

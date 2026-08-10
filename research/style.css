@@ -1126,6 +1126,8 @@ svg {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
   padding: 24px 0;
   margin-top: 32px;
   border-top: 1px solid rgb(255 255 255 / 10%);
@@ -1141,6 +1143,29 @@ svg {
 .footer-bottom nav {
   flex-direction: row;
   gap: 16px;
+}
+
+.footer-social-links {
+  justify-content: flex-end;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.footer-social-links a,
+.footer-social-links span {
+  color: #98a2b3;
+  font-size: 13px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.footer-social-links a:hover,
+.footer-social-links a:focus-visible {
+  color: white;
+}
+
+.footer-social-links span {
+  cursor: default;
 }
 
 @media (max-width: 1080px) {
@@ -1346,6 +1371,11 @@ svg {
     flex-direction: column;
     gap: 12px;
     text-align: center;
+  }
+
+  .footer-social-links {
+    justify-content: center;
+    margin-left: 0;
   }
 
   .site-footer .footer-brand {
