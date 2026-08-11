@@ -7,8 +7,98 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta http-equiv="refresh" content="0; url=/" />
     <link rel="canonical" href="https://latexdo.org/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <p><a href="/">LatexDo</a></p>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="LatexDo home">
+          <img src="/assets/icon.svg" alt="" width="36" height="36" />
+          <span>LatexDo</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          data-nav-toggle
+        >
+          <span></span>
+          <span></span>
+        </button>
+        <div id="nav-links" class="nav-links" data-nav-links>
+          <a href="/programs/">Programs</a>
+          <a href="/research/">Research</a>
+          <a href="/about/">About</a>
+          <a href="/board/">Board</a>
+          <a href="/contact/">Contact</a>
+          <a class="nav-donate-link" href="/donations/">Donate</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="content" class="not-found-section">
+      <div class="not-found-content">
+        <p class="eyebrow">Redirect</p>
+        <h1>LatexDo</h1>
+        <p class="not-found-copy">
+          This legacy page redirects to the LatexDo homepage.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="/">Go to homepage</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="LatexDo home">
+            <img src="/assets/icon.svg" alt="" width="28" height="28" />
+            <span>LatexDo</span>
+          </a>
+          <p>Making professional LaTeX writing accessible to students, researchers, educators, and technical writers.</p>
+        </div>
+        <div>
+          <h5>Mission</h5>
+          <nav aria-label="Mission">
+            <a href="/programs/">Programs</a>
+            <a href="/research/">Research</a>
+            <a href="https://docs.latexdo.org">Documentation</a>
+            <a href="/vision/">Vision</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Organization</h5>
+          <nav aria-label="Organization">
+            <a href="/about/">About</a>
+            <a href="/board/">Board</a>
+            <a href="/contact/">Contact</a>
+            <a href="/code-of-conduct/">Code of Conduct</a>
+          </nav>
+        </div>
+        <div>
+          <h5>Transparency</h5>
+          <nav aria-label="Transparency">
+            <a href="/donations/">Donations</a>
+            <a href="/donations/expenses/">Expenses</a>
+            <a href="https://github.com/latexdo/latexdo">Source code</a>
+            <a href="/privacy.html">Privacy Policies</a>
+            <a href="/terms.html">Terms of Use</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
+          <nav class="footer-social-links" aria-label="Social links">
+            <a class="footer-social-link is-linkedin" href="https://linkedin.com/company/latexdo" aria-label="LatexDo on LinkedIn"></a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/assets/site.js"></script>
   </body>
 </html>

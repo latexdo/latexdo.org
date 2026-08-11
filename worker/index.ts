@@ -4,7 +4,7 @@ interface WorkerEnv {
   };
 }
 
-const htmlAssetVersion = "2026-08-11-legal-labels-icons";
+const htmlAssetVersion = "2026-08-11-footer-consistency";
 
 export default {
   fetch(request: Request, env: WorkerEnv): Promise<Response> | Response {
@@ -19,6 +19,15 @@ export default {
     ) {
       url.protocol = "https:";
       return Response.redirect(url.toString(), 301);
+    }
+
+    if (
+      url.pathname === "/cli" ||
+      url.pathname.startsWith("/cli/") ||
+      url.pathname === "/server" ||
+      url.pathname.startsWith("/server/")
+    ) {
+      return Response.redirect(new URL("/", url.origin).toString(), 301);
     }
 
     if (

@@ -13,6 +13,9 @@
 /cli / 301
 /cli/ / 301
 /cli/* / 301
+/server / 301
+/server/ / 301
+/server/* / 301
 /ai /research/ai/ 301
 /ai/ /research/ai/ 301
 /ai/* /research/ai/:splat 301
