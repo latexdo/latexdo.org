@@ -1246,14 +1246,10 @@ h3 {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(4, minmax(116px, 1fr));
+  grid-template-columns: 1.5fr repeat(3, minmax(136px, 1fr));
   gap: 24px;
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;
-}
-
-.site-footer .footer-grid > div:nth-child(3) {
-  display: none;
 }
 
 .site-footer h5 {
@@ -1536,6 +1532,26 @@ span.footer-social-link {
 .donations-faq .faq-list {
   display: grid;
   gap: 12px;
+}
+
+.status-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.status-list li {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 16px;
+}
+
+.status-list strong {
+  display: block;
+  margin-bottom: 4px;
 }
 
 .expenses-panel {

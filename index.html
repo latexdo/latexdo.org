@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LatexDo</title>
+    <title>LatexDo - Free LaTeX Tools for Education and Research</title>
     <meta
       name="description"
-      content="LatexDo is a modern LaTeX editor for researchers, students, and technical writers. Write papers in the web editor, download the desktop app, compile PDFs locally, manage citations, review comments, rebuttals, and submission checks."
+      content="LatexDo is a French nonprofit association making professional LaTeX writing accessible through a free desktop app, open-source code, documentation, and research workflows."
     />
     <meta
       name="keywords"
-      content="LaTeX editor, online LaTeX editor, LaTeX PDF editor, research paper editor, academic writing software, SyncTeX editor, BibTeX editor, Overleaf alternative, local LaTeX editor, LatexDo"
+      content="free LaTeX editor, open-source LaTeX tools, nonprofit education software, research writing tools, academic documentation, LatexDo"
     />
     <meta name="author" content="LatexDo" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -28,7 +28,7 @@
     <meta property="og:title" content="LatexDo" />
     <meta
       property="og:description"
-      content="A polished LaTeX writing environment for papers, PDFs, citations, review comments, rebuttals, and local desktop compilation."
+      content="Free desktop LaTeX tools, documentation, and research workflows for students, researchers, educators, and technical writers."
     />
     <meta property="og:url" content="https://latexdo.org/" />
     <meta property="og:image" content="https://latexdo.org/assets/social-preview.svg" />
@@ -36,7 +36,7 @@
     <meta name="twitter:title" content="LatexDo" />
     <meta
       name="twitter:description"
-      content="Write, review, compile, and ship LaTeX papers in a focused web and desktop editor."
+      content="Free, open-source LaTeX tools, documentation, and research workflows for students, researchers, educators, and technical writers."
     />
     <meta
       name="twitter:image"
@@ -48,11 +48,14 @@
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "Organization",
+            "@type": ["Organization", "NGO"],
             "@id": "https://latexdo.org/#organization",
             "name": "LatexDo",
+            "legalName": "LatexDo",
             "url": "https://latexdo.org/",
             "logo": "https://latexdo.org/assets/icon.svg",
+            "email": "contact@latexdo.org",
+            "description": "LatexDo is a French nonprofit association making professional LaTeX writing accessible through a free desktop app, open-source code, documentation, and research workflows.",
             "sameAs": ["https://github.com/latexdo/latexdo"]
           },
           {
@@ -60,7 +63,7 @@
             "@id": "https://latexdo.org/#website",
             "url": "https://latexdo.org/",
             "name": "LatexDo",
-            "description": "Modern LaTeX editor for papers, PDFs, citations, reviews, and rebuttals.",
+            "description": "Free desktop LaTeX tools, documentation, and research workflows for students, researchers, educators, and technical writers.",
             "publisher": { "@id": "https://latexdo.org/#organization" }
           },
           {
@@ -68,11 +71,11 @@
             "@id": "https://latexdo.org/#software",
             "name": "LatexDo",
             "applicationCategory": "ProductivityApplication",
-            "operatingSystem": "Web, macOS, Windows, Linux",
+            "operatingSystem": "macOS, Windows, Linux",
             "url": "https://latexdo.org/",
             "downloadUrl": "https://app.latexdo.org/downloads/",
             "softwareVersion": "0.1.0",
-            "description": "A focused LaTeX editor with source editing, browser editor, desktop local compilation, PDF preview, diagnostics, citation checks, review workflows, and rebuttal tools.",
+            "description": "A free, open-source desktop LaTeX editor with source editing, local compilation, PDF preview, diagnostics, citation checks, review workflows, and rebuttal tools.",
             "offers": {
               "@type": "Offer",
               "price": "0",
@@ -104,13 +107,12 @@
           <span></span>
         </button>
         <div id="nav-links" class="nav-links" data-nav-links>
-          <a href="https://app.latexdo.org/downloads/">Download</a>
-          <a class="nav-editor-link" href="https://editor.latexdo.org">Editor</a>
-          <a href="/research/ai/">AI</a>
-          <a href="https://docs.latexdo.org">Docs</a>
-          <a href="https://store.latexdo.org">Store</a>
-          <a href="https://blogpost.latexdo.org">Blogpost</a>
-          <a class="nav-donate-link" href="donations/">Donate</a>
+          <a href="/programs/">Programs</a>
+          <a href="/research/">Research</a>
+          <a href="/about/">About</a>
+          <a href="/board/">Board</a>
+          <a href="/contact/">Contact</a>
+          <a class="nav-donate-link" href="/donations/">Donate</a>
         </div>
       </nav>
     </header>
@@ -118,60 +120,124 @@
     <main id="content">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-content">
-          <p class="eyebrow">LaTeX, rebuilt for focused paper work</p>
+          <p class="eyebrow">Nonprofit tools for serious LaTeX work</p>
           <h1 id="hero-title">LatexDo</h1>
+          <p class="hero-lede">
+            LatexDo makes professional LaTeX writing accessible through a free
+            desktop app, open-source code, practical documentation, and research
+            workflows built for students, researchers, educators, and technical
+            writers.
+          </p>
           <div class="task-grid">
-            <a class="task-card" href="https://editor.latexdo.org">
-              <strong>Write in the web editor</strong>
-              <p>Start instantly in the browser. Open editor.latexdo.org and begin writing without installing anything.</p>
-              <span class="button primary">Open editor</span>
+            <a class="task-card" href="https://app.latexdo.org/downloads/">
+              <strong>Download the desktop app</strong>
+              <p>Install LatexDo for macOS, Windows, or Linux and work with local LaTeX projects on your machine.</p>
+              <span class="button primary">Download desktop app</span>
             </a>
-            <a class="task-card" href="#desktop">
-              <strong>Compile with the desktop app</strong>
-              <p>Use your local TeX installation. Native apps for macOS, Windows, and Linux with PDF preview and SyncTeX.</p>
-              <span class="button primary">Download desktop</span>
+            <a class="task-card" href="programs/">
+              <strong>Explore programs</strong>
+              <p>See how LatexDo supports writing tools, documentation, research workflows, and open-source participation.</p>
+              <span class="button primary">View programs</span>
             </a>
-            <a class="task-card" href="https://store.latexdo.org">
-              <strong>Browse the LatexDo Store</strong>
-              <p>Find LatexDo products, add-ons, and supporting materials in the dedicated store.</p>
-              <span class="button primary">Visit store</span>
+            <a class="task-card" href="about/">
+              <strong>Understand the mission</strong>
+              <p>Read about the French association, public-benefit purpose, governance, and transparency commitments.</p>
+              <span class="button primary">About LatexDo</span>
             </a>
-            <a class="task-card" href="vision/#roadmap">
-              <strong>See the vision</strong>
-              <p>Follow the roadmap from desktop app to editor, LatexDo Ecosystem, and mobile apps.</p>
-              <span class="button primary">View vision</span>
+            <a class="task-card" href="contact/">
+              <strong>Contact the association</strong>
+              <p>Reach the board for nonprofit records, donations, accessibility, privacy, security, or contribution questions.</p>
+              <span class="button primary">Contact us</span>
             </a>
           </div>
         </div>
       </section>
 
-      <section id="editor" class="section-band" aria-labelledby="editor-title">
+      <section class="trust-strip" aria-label="LatexDo nonprofit summary">
+        <div>
+          <strong>Nonprofit mission</strong>
+          <span>French association dedicated to public-interest LaTeX tooling.</span>
+        </div>
+        <div>
+          <strong>Free access</strong>
+          <span>Desktop app, documentation, research pages, and source code.</span>
+        </div>
+        <div>
+          <strong>Transparent costs</strong>
+          <span>Operating expenses are published for donors and contributors.</span>
+        </div>
+        <div>
+          <strong>Open governance</strong>
+          <span>Board contact and contribution channels are visible on the site.</span>
+        </div>
+      </section>
+
+      <section id="mission" class="section-band" aria-labelledby="mission-title">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Mission</p>
+            <h2 id="mission-title">Help more people produce high-quality technical documents.</h2>
+            <p>
+              LaTeX is central to science, engineering, mathematics, and
+              technical publishing, but the tooling can be difficult for new
+              users and costly for teams that need reliable workflows. LatexDo
+              exists to keep a modern, open, inspectable option available to the
+              public.
+            </p>
+          </div>
+          <div class="feature-grid-4 reveal">
+            <article class="feature-card">
+              <h3>Students</h3>
+              <p>Lower the learning curve for reports, theses, lab notes, and early research papers.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Researchers</h3>
+              <p>Improve draft, review, rebuttal, citation, and submission workflows for academic work.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Educators</h3>
+              <p>Provide free material that can be used in classes, workshops, and writing support.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Maintainers</h3>
+              <p>Keep source code, roadmap decisions, and infrastructure costs visible to contributors.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="download" class="section-band" aria-labelledby="download-title">
         <div class="section-inner wide">
           <div class="section-heading reveal">
-            <p class="eyebrow">Online editor</p>
-            <h2 id="editor-title">Write papers instantly in your browser.</h2>
-            <p>No installation required. Open editor.latexdo.org and start writing LaTeX with live preview, citation intelligence, and review workflows built in.</p>
+            <p class="eyebrow">Desktop download</p>
+            <h2 id="download-title">Start with the LatexDo desktop app.</h2>
+            <p>
+              The current public LatexDo app is the desktop app. Download it for
+              macOS, Windows, or Linux to edit local projects, compile with your
+              own TeX installation, preview PDFs, and keep your source files
+              under your control.
+            </p>
           </div>
           <div class="feature-grid-4 reveal">
             <article class="feature-card">
               <h3>Source editing</h3>
-              <p>Write LaTeX with syntax highlighting, line numbers, and auto-completion in a focused editor.</p>
+              <p>Edit .tex files in a focused desktop workspace designed for long technical documents.</p>
             </article>
             <article class="feature-card">
               <h3>PDF preview</h3>
-              <p>See your rendered paper update as you type, with SyncTeX linking between source and output.</p>
+              <p>Compile locally and review the generated PDF beside the source when your TeX toolchain is installed.</p>
             </article>
             <article class="feature-card">
-              <h3>Citation tools</h3>
-              <p>Manage BibTeX entries, detect missing citations and duplicate keys, and format references.</p>
+              <h3>BibTeX projects</h3>
+              <p>Keep bibliography files, figures, source files, and generated outputs together in your project folder.</p>
             </article>
             <article class="feature-card">
-              <h3>Review workflows</h3>
-              <p>Switch between Author, Review, and Rebuttal modes to track comments and responses beside the manuscript.</p>
+              <h3>Local-first workflow</h3>
+              <p>Work from local files first, with source code and documentation open for inspection.</p>
             </article>
           </div>
           <div class="section-cta reveal">
-            <a class="button primary" href="https://editor.latexdo.org">Open web editor</a>
+            <a class="button primary" href="https://app.latexdo.org/downloads/">Download desktop app</a>
           </div>
         </div>
       </section>
@@ -256,13 +322,6 @@
                   <td>❌</td>
                   <td>❌</td>
                   <td>❌</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Browser editor</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                  <td>❌</td>
-                  <td>⚠️</td>
                 </tr>
                 <tr class="compare-ours">
                   <td>Local-first workflow</td>
@@ -363,64 +422,43 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="/" aria-label="LatexDo home">
-            <img src="assets/icon.svg" alt="" width="28" height="28" />
+            <img src="/assets/icon.svg" alt="" width="28" height="28" />
             <span>LatexDo</span>
           </a>
-          <p>Modern LaTeX editing across web and desktop.</p>
+          <p>Making professional LaTeX writing accessible to students, researchers, educators, and technical writers.</p>
         </div>
         <div>
-          <h5>Individuals</h5>
-          <nav aria-label="Individuals">
-            <a href="https://app.latexdo.org/downloads/">Desktop</a>
-            <a href="https://editor.latexdo.org">Editor</a>
-            <a href="https://docs.latexdo.org">Docs</a>
-            <a href="https://store.latexdo.org">Store</a>
-          </nav>
-        </div>
-        <div>
-          <h5>Business</h5>
-          <nav aria-label="Business">
-            <span class="footer-static-link">Desktop Pro</span>
-            <span class="footer-static-link">Editor Pro</span>
-            <span class="footer-static-link">Docs Pro</span>
-            <span class="footer-static-link">Store Pro</span>
-            <span class="footer-static-link">AI Pro</span>
-          </nav>
-        </div>
-        <div>
-          <h5>Research</h5>
-          <nav aria-label="Research">
-            <a href="/research/compiler/">Compiler</a>
-            <a href="/research/knowledge-graph/">Knowledge Graph</a>
-            <a href="https://benchmarks.latexdo.org">Benchmarks</a>
-            <a href="/research/ai/">AI</a>
+          <h5>Mission</h5>
+          <nav aria-label="Mission">
+            <a href="/programs/">Programs</a>
+            <a href="/research/">Research</a>
+            <a href="https://docs.latexdo.org">Documentation</a>
+            <a href="/vision/">Vision</a>
           </nav>
         </div>
         <div>
           <h5>Organization</h5>
           <nav aria-label="Organization">
-            <a href="about/">Legal Notice</a>
-            <a href="code-of-conduct/">Code of Conduct</a>
-            <a href="vision/">Vision</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
+            <a href="/about/">About</a>
+            <a href="/board/">Board</a>
+            <a href="/contact/">Contact</a>
+            <a href="/code-of-conduct/">Code of Conduct</a>
           </nav>
         </div>
         <div>
-          <h5>Community</h5>
-          <nav aria-label="Community">
-            <a href="https://github.com/latexdo/latexdo">Source</a>
-            <a href="board/">Board</a>
-            <a href="donations/">Donate</a>
-            <a href="https://blogpost.latexdo.org">Blogpost</a>
+          <h5>Transparency</h5>
+          <nav aria-label="Transparency">
+            <a href="/donations/">Donations</a>
+            <a href="/donations/expenses/">Expenses</a>
+            <a href="https://github.com/latexdo/latexdo">Source code</a>
+            <a href="/privacy.html">Privacy Policies</a>
+            <a href="/terms.html">Terms of Use</a>
           </nav>
         </div>
         <div class="footer-bottom">
           <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
           <nav class="footer-social-links" aria-label="Social links">
             <a class="footer-social-link is-linkedin" href="https://linkedin.com/company/latexdo" aria-label="LatexDo on LinkedIn"></a>
-            <span class="footer-social-link is-mastodon" aria-label="Mastodon profile coming soon"></span>
-            <span class="footer-social-link is-bluesky" aria-label="Bluesky profile coming soon"></span>
           </nav>
         </div>
       </div>
