@@ -1246,7 +1246,7 @@ h3 {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, minmax(136px, 1fr));
+  grid-template-columns: minmax(260px, 1.45fr) repeat(4, minmax(128px, 0.85fr));
   gap: 24px;
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;
