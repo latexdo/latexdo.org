@@ -808,15 +808,23 @@ async function loadFooterIncludes() {
         return;
     await Promise.all(placeholders.map(async (placeholder) => {
         const source = placeholder.dataset.footerSrc || "/partials/footer.html";
-        try {
-            const response = await fetch(source);
-            if (!response.ok)
-                throw new Error(`Footer include returned ${response.status}`);
-            const footerHtml = (await response.text()).trim();
-            placeholder.outerHTML = footerHtml;
-        }
-        catch {
-            placeholder.hidden = true;
+        const fallbackSource = source.endsWith(".html")
+            ? source.slice(0, -".html".length)
+            : `${source}.html`;
+        for (const candidate of [source, fallbackSource]) {
+            try {
+                const response = await fetch(candidate);
+                if (!response.ok)
+                    continue;
+                const footerHtml = (await response.text()).trim();
+                if (footerHtml.includes('class="site-footer"')) {
+                    placeholder.outerHTML = footerHtml;
+                    return;
+                }
+            }
+            catch {
+                // Keep the placeholder in the page; a later candidate may still work.
+            }
         }
     }));
 }
