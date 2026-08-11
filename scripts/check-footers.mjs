@@ -27,37 +27,37 @@ function findHtmlFiles(directory) {
   return files;
 }
 
-function normalizeFooter(footer) {
-  return footer.replace(/\s+/g, " ").trim();
-}
-
 const root = process.cwd();
 const footerPattern = /<footer class="site-footer">[\s\S]*?<\/footer>/g;
-const htmlFiles = findHtmlFiles(root).sort();
+const footerIncludePattern = /<div data-footer-src="\/partials\/footer\.html"><\/div>/g;
+const footerPartial = join(root, "partials", "footer.html");
+const htmlFiles = findHtmlFiles(root)
+  .filter((file) => file !== footerPartial)
+  .sort();
 const errors = [];
-let canonicalFooter = null;
-let canonicalPath = null;
+const footerPartialHtml = readFileSync(footerPartial, "utf8");
+const footerPartialMatches = [...footerPartialHtml.matchAll(footerPattern)];
+
+if (footerPartialMatches.length !== 1) {
+  errors.push(
+    `partials/footer.html: expected 1 site footer, found ${footerPartialMatches.length}`,
+  );
+}
 
 for (const file of htmlFiles) {
   const relativePath = relative(root, file);
   const html = readFileSync(file, "utf8");
-  const footers = [...html.matchAll(footerPattern)].map((match) =>
-    normalizeFooter(match[0]),
-  );
+  const footers = [...html.matchAll(footerPattern)];
+  const footerIncludes = [...html.matchAll(footerIncludePattern)];
 
-  if (footers.length !== 1) {
-    errors.push(`${relativePath}: expected 1 site footer, found ${footers.length}`);
-    continue;
+  if (footers.length !== 0) {
+    errors.push(`${relativePath}: expected 0 copied site footers, found ${footers.length}`);
   }
 
-  if (!canonicalFooter) {
-    canonicalFooter = footers[0];
-    canonicalPath = relativePath;
-    continue;
-  }
-
-  if (footers[0] !== canonicalFooter) {
-    errors.push(`${relativePath}: footer differs from ${canonicalPath}`);
+  if (footerIncludes.length !== 1) {
+    errors.push(
+      `${relativePath}: expected 1 footer include pointing to /partials/footer.html, found ${footerIncludes.length}`,
+    );
   }
 }
 
@@ -66,4 +66,6 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`Checked ${htmlFiles.length} HTML pages: footer is consistent.`);
+console.log(
+  `Checked ${htmlFiles.length} HTML pages: each points to partials/footer.html.`,
+);

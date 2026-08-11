@@ -103,6 +103,7 @@ const siteIconPaths = {
     "Terms of Use": `<path d="M7 3h7l4 4v14H7V3Z" /><path d="M14 3v5h5" /><path d="M10 12h6" /><path d="M10 16h6" />`,
     Contact: `<rect x="4" y="6" width="16" height="12" rx="2" /><path d="m4 8 8 6 8-6" />`,
     Source: `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
+    "Source code": `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
     Donate: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
     Donations: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
     Expenses: `<path d="M4 19V5" /><path d="M4 19h16" /><path d="M8 16v-4" /><path d="M12 16V8" /><path d="M16 16v-6" />`,
@@ -800,7 +801,26 @@ function initTheme() {
         }
     });
 }
-function initFooter() {
+async function loadFooterIncludes() {
+    const placeholders = queryAll("[data-footer-src]");
+    if (!placeholders.length)
+        return;
+    await Promise.all(placeholders.map(async (placeholder) => {
+        const source = placeholder.dataset.footerSrc || "/partials/footer.html";
+        try {
+            const response = await fetch(source);
+            if (!response.ok)
+                throw new Error(`Footer include returned ${response.status}`);
+            const footerHtml = (await response.text()).trim();
+            placeholder.outerHTML = footerHtml;
+        }
+        catch {
+            placeholder.hidden = true;
+        }
+    }));
+}
+async function initFooter() {
+    await loadFooterIncludes();
     const year = new Date().getFullYear();
     const el = document.querySelector("#copyright") ?? document.querySelector("#copyright-year");
     if (el)
@@ -831,7 +851,7 @@ function init() {
     void initExpensesTable();
     initCopyCommands();
     initTheme();
-    initFooter();
+    void initFooter();
 }
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init, { once: true });

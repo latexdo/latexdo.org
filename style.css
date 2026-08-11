@@ -1366,10 +1366,10 @@ h3 {
   place-items: center;
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--social-border, rgb(255 255 255 / 14%));
+  border: 1px solid transparent;
   border-radius: 50%;
-  background: var(--social-bg, rgb(255 255 255 / 6%));
-  color: var(--social-fg, #d2d8e3);
+  background: transparent;
+  color: #f7f9fc;
   line-height: 1;
   text-decoration: none;
   transition:
@@ -1378,57 +1378,61 @@ h3 {
     transform 160ms ease;
 }
 
+.footer-bottom .footer-social-link,
+.footer-bottom .footer-social-link:hover,
+.footer-bottom .footer-social-link:focus-visible {
+  text-decoration: none;
+}
+
 .footer-social-link::before {
-  content: var(--social-mark);
-  display: grid;
-  width: 100%;
-  height: 100%;
-  place-items: center;
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1;
-  text-align: center;
-  text-shadow: 0 1px 1px rgb(0 0 0 / 18%);
-  transform: translateY(-0.5px);
+  content: "";
+  display: block;
+  width: var(--social-icon-width, 20px);
+  height: var(--social-icon-height, 20px);
+  background: currentColor;
+  mask: var(--social-icon) center / contain no-repeat;
+  -webkit-mask: var(--social-icon) center / contain no-repeat;
 }
 
 .footer-social-link.is-linkedin {
-  --social-mark: "in";
+  --social-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/%3E%3C/svg%3E");
   --social-color: #0a66c2;
-  --social-bg: #0a66c2;
-  --social-border: rgb(10 102 194 / 44%);
-  --social-fg: white;
-}
-
-.footer-social-link.is-linkedin::before {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  text-shadow: none;
-  transform: translateY(-1px);
+  --social-icon-width: 18px;
+  --social-icon-height: 18px;
 }
 
 .footer-social-link.is-mastodon {
-  --social-mark: "🐘";
+  --social-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 17.5V8.7C4.5 6.9 6 5.5 7.8 5.5c1.4 0 2.35.68 3.02 1.88L12 9.5l1.18-2.12c.67-1.2 1.62-1.88 3.02-1.88 1.8 0 3.3 1.4 3.3 3.2v8.8h-3.1V9.25c0-.55-.28-.9-.78-.9-.42 0-.72.22-.97.7L12 13.85 9.35 9.05c-.25-.48-.55-.7-.97-.7-.5 0-.78.35-.78.9v8.25H4.5Z'/%3E%3C/svg%3E");
   --social-color: #6364ff;
-  --social-bg: linear-gradient(180deg, #7778ff 0%, #5658e8 100%);
-  --social-border: rgb(99 100 255 / 52%);
+  --social-icon-width: 21px;
+  --social-icon-height: 21px;
 }
 
 .footer-social-link.is-bluesky {
-  --social-mark: "🦋";
+  --social-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 10.8C10.913 8.686 7.954 4.748 5.202 2.805 2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.081 0 3.768c0 .69.379 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364-3.267.327-6.134 1.422-2.352 5.65 4.159 4.264 5.69-.92 6.152-3.54.084-.478.123-.696.123-.507 0-.189.039.029.123.507.462 2.62 1.993 7.804 6.152 3.54 3.782-4.228.915-5.323-2.352-5.65 2.67.297 5.568-.628 6.383-3.364.245-.828.624-5.789.624-6.478 0-.688-.139-1.861-.902-2.205-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.686 12 10.8Z'/%3E%3C/svg%3E");
   --social-color: #1185fe;
-  --social-bg: linear-gradient(180deg, #45b8ff 0%, #1185fe 100%);
-  --social-border: rgb(17 133 254 / 52%);
+  --social-icon-width: 22px;
+  --social-icon-height: 22px;
+}
+
+.footer-social-link.is-youtube {
+  --social-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'/%3E%3C/svg%3E");
+  --social-color: #ff0033;
+  --social-icon-width: 22px;
+  --social-icon-height: 22px;
 }
 
 .footer-social-link:hover,
 .footer-social-link:focus-visible {
-  border-color: var(--social-color);
-  background: var(--social-bg);
+  border-color: transparent;
+  background: transparent;
   color: white;
   transform: translateY(-1px);
+}
+
+.footer-social-link:focus-visible {
+  outline: 2px solid rgb(255 255 255 / 44%);
+  outline-offset: 2px;
 }
 
 span.footer-social-link {
@@ -1940,6 +1944,18 @@ span.footer-social-link {
 
 .legal-document a:hover {
   text-decoration: underline;
+}
+
+.legal-document .button {
+  margin-top: 4px;
+}
+
+.legal-document .button.primary {
+  color: white;
+}
+
+.legal-document .button:hover {
+  text-decoration: none;
 }
 
 .vision-roadmap {
