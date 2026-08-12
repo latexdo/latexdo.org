@@ -62,6 +62,8 @@ interface ExpenseRow {
   why: string;
 }
 
+document.documentElement.classList.add("js-enabled");
+
 function query<T extends Element>(selector: string): T | null {
   return document.querySelector<T>(selector);
 }
