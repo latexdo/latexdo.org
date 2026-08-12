@@ -472,6 +472,9 @@ svg {
 }
 
 .section-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 30px;
 }
 
@@ -533,6 +536,34 @@ h3 {
 
 .hero-actions {
   margin-bottom: 18px;
+}
+
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-facts li,
+.review-note {
+  width: fit-content;
+  border: 1px solid rgb(20 128 94 / 24%);
+  border-radius: 999px;
+  background: rgb(20 128 94 / 9%);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.hero-facts li {
+  padding: 7px 10px;
+}
+
+.review-note {
+  padding: 8px 12px;
 }
 
 .button {
@@ -642,6 +673,11 @@ h3 {
 .section-heading p:not(.eyebrow) {
   color: var(--muted);
   font-size: 18px;
+}
+
+.section-heading .review-note {
+  color: var(--green);
+  font-size: 13px;
 }
 
 .section-heading a {

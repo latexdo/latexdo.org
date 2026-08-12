@@ -4,7 +4,7 @@ interface WorkerEnv {
   };
 }
 
-const htmlAssetVersion = "2026-08-12-ad-grants-compliance";
+const htmlAssetVersion = "2026-08-12-ad-grants-content-refresh";
 
 export default {
   fetch(request: Request, env: WorkerEnv): Promise<Response> | Response {
