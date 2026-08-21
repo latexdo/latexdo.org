@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LatexDo - Free LaTeX Tools for Education and Research</title>
+    <title>LatexDo - Your Local-First LaTeX Workspace</title>
     <meta
       name="description"
-      content="LatexDo is a French nonprofit association making professional LaTeX writing accessible through a free desktop app, open-source code, documentation, and research workflows."
+      content="LatexDo is a focused local-first LaTeX workspace for writing papers, compiling locally, previewing PDFs, managing citations, and handling review workflows."
     />
     <meta
       name="keywords"
-      content="free LaTeX editor, open-source LaTeX tools, nonprofit education software, research writing tools, academic documentation, LatexDo"
+      content="free LaTeX editor, local-first LaTeX workspace, open-source LaTeX tools, PDF preview, citation workflow, academic writing, LatexDo"
     />
     <meta name="author" content="LatexDo" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -28,7 +28,7 @@
     <meta property="og:title" content="LatexDo" />
     <meta
       property="og:description"
-      content="Free desktop LaTeX tools, documentation, and research workflows for students, researchers, educators, and technical writers."
+      content="A focused local-first LaTeX workspace for source, project files, PDF preview, citations, reviews, and rebuttals."
     />
     <meta property="og:url" content="https://latexdo.org/" />
     <meta property="og:image" content="https://latexdo.org/assets/social-preview.svg" />
@@ -36,7 +36,7 @@
     <meta name="twitter:title" content="LatexDo" />
     <meta
       name="twitter:description"
-      content="Free, open-source LaTeX tools, documentation, and research workflows for students, researchers, educators, and technical writers."
+      content="Write papers without fighting your editor. LatexDo brings source, PDF, citations, reviews, and local LaTeX workflow into one focused workspace."
     />
     <meta
       name="twitter:image"
@@ -55,7 +55,7 @@
             "url": "https://latexdo.org/",
             "logo": "https://latexdo.org/assets/icon.svg",
             "email": "contact@latexdo.org",
-            "description": "LatexDo is a French nonprofit association making professional LaTeX writing accessible through a free desktop app, open-source code, documentation, and research workflows.",
+            "description": "LatexDo is a French nonprofit association building a focused local-first LaTeX workspace for source editing, PDF preview, citations, review workflows, and local compilation.",
             "sameAs": ["https://github.com/latexdo/latexdo"]
           },
           {
@@ -63,7 +63,7 @@
             "@id": "https://latexdo.org/#website",
             "url": "https://latexdo.org/",
             "name": "LatexDo",
-            "description": "Free desktop LaTeX tools, documentation, and research workflows for students, researchers, educators, and technical writers.",
+            "description": "A focused local-first LaTeX workspace for writing papers, compiling locally, previewing PDFs, managing citations, and handling review workflows.",
             "publisher": { "@id": "https://latexdo.org/#organization" }
           },
           {
@@ -93,153 +93,285 @@
     <div data-header-src="/partials/header.html"></div>
 
     <main id="content">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-content">
-          <p class="eyebrow">Nonprofit tools for serious LaTeX work</p>
-          <h1 id="hero-title">LatexDo</h1>
-          <p class="hero-lede">
-            LatexDo makes professional LaTeX writing accessible through a free
-            desktop app, open-source code, practical documentation, and research
-            workflows built for students, researchers, educators, and technical
-            writers.
-          </p>
-          <div class="task-grid">
-            <a class="task-card" href="https://app.latexdo.org/downloads/">
-              <strong>Download the desktop app</strong>
-              <p>Install LatexDo for macOS, Windows, or Linux and work with local LaTeX projects on your machine.</p>
-              <span class="button primary">Download desktop app</span>
-            </a>
-            <a class="task-card" href="programs/">
-              <strong>Explore programs</strong>
-              <p>See how LatexDo supports writing tools, documentation, research workflows, and open-source participation.</p>
-              <span class="button primary">View programs</span>
-            </a>
-            <a class="task-card" href="about/">
-              <strong>Understand the mission</strong>
-              <p>Read about the French association, public-benefit purpose, governance, and transparency commitments.</p>
-              <span class="button primary">About LatexDo</span>
-            </a>
-            <a class="task-card" href="contact/">
-              <strong>Contact the association</strong>
-              <p>Reach the board for nonprofit records, donations, accessibility, privacy, security, or contribution questions.</p>
-              <span class="button primary">Contact us</span>
-            </a>
+      <section id="product" class="product-hero" aria-labelledby="hero-title">
+        <div class="product-hero-inner">
+          <div class="product-hero-copy reveal">
+            <p class="eyebrow">Your LaTeX workspace, without the clutter</p>
+            <h1 id="hero-title">Write papers without fighting your editor.</h1>
+            <p class="hero-lede">
+              LatexDo brings your source, project files, PDF, citations,
+              reviews, and local LaTeX workflow into one focused workspace.
+            </p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button primary" href="https://app.latexdo.org/downloads/">Download LatexDo</a>
+              <a class="button secondary" href="https://editor.latexdo.org/">Try the editor</a>
+            </div>
+            <p class="hero-proof">Free / Open source / No account required / macOS, Windows, and Linux</p>
+          </div>
+
+          <div class="product-preview-shell reveal">
+            <div class="latexdo-window" data-product-teaser>
+              <div class="latexdo-titlebar">
+                <div class="traffic" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="project-meta">
+                  <strong>LatexDo Preview</strong>
+                  <span data-teaser-location>~/Papers/latexdo-preview/main.tex</span>
+                </div>
+                <div class="mode-switch" aria-label="Workspace mode">
+                  <button class="mode active" type="button" data-teaser-mode="author">Author</button>
+                  <button class="mode" type="button" data-teaser-mode="reviewer">Reviewer</button>
+                  <button class="mode" type="button" data-teaser-mode="rebuttal">Rebuttal</button>
+                </div>
+                <button class="button compact primary" type="button" data-teaser-compile>Compile</button>
+              </div>
+
+              <div class="latexdo-grid">
+                <aside class="latexdo-rail" aria-label="Project files">
+                  <span class="rail-mark active" aria-hidden="true"></span>
+                  <span class="rail-mark" aria-hidden="true"></span>
+                  <span class="rail-mark" aria-hidden="true"></span>
+                </aside>
+
+                <aside class="project-tree" aria-label="Project tree">
+                  <div class="panel-title">Project</div>
+                  <button class="tree-file active" type="button" data-teaser-file="main">
+                    <span>.tex</span>
+                    main.tex
+                  </button>
+                  <button class="tree-file" type="button" data-teaser-file="references">
+                    <span>.bib</span>
+                    references.bib
+                  </button>
+                  <button class="tree-file" type="button" data-teaser-file="notes">
+                    <span>.tex</span>
+                    sections/notes.tex
+                  </button>
+                  <div class="tree-group">
+                    <strong>assets</strong>
+                    <small>figures, PDFs, submission files</small>
+                  </div>
+                </aside>
+
+                <section class="teaser-source" aria-labelledby="teaser-source-title">
+                  <div class="panel-title" id="teaser-source-title">
+                    <span data-teaser-tab>main.tex</span>
+                    <span class="teaser-chip">Monaco editor</span>
+                  </div>
+                  <div class="teaser-editor">
+                    <ol class="line-numbers" aria-hidden="true">
+                      <li>1</li>
+                      <li>2</li>
+                      <li>3</li>
+                      <li>4</li>
+                      <li>5</li>
+                      <li>6</li>
+                      <li>7</li>
+                      <li>8</li>
+                      <li>9</li>
+                      <li>10</li>
+                      <li>11</li>
+                      <li>12</li>
+                    </ol>
+                    <pre><code data-teaser-code>\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\title{LatexDo Preview}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Welcome}
+LatexDo keeps source and PDF together.
+\end{document}</code></pre>
+                  </div>
+                </section>
+
+                <section class="teaser-pdf" aria-labelledby="teaser-pdf-title">
+                  <div class="panel-title" id="teaser-pdf-title">
+                    <span>PDF preview</span>
+                    <span class="compile-status" data-teaser-status>Ready</span>
+                  </div>
+                  <article class="paper-preview" data-teaser-paper>
+                    <p class="paper-kicker">Rendered PDF</p>
+                    <h2>LatexDo Preview</h2>
+                    <p class="paper-authors">Local-first writing workspace</p>
+                    <div class="paper-rule"></div>
+                    <h3 data-teaser-paper-title>Welcome</h3>
+                    <p data-teaser-paper-copy>
+                      Source, project files, bibliography, diagnostics, and PDF
+                      preview stay in one focused desktop workspace.
+                    </p>
+                    <div class="paper-equation">E = mc<sup>2</sup></div>
+                    <div class="paper-lines" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <div class="compile-flash" data-teaser-flash>Compiled with local LaTeX</div>
+                  </article>
+                </section>
+
+                <aside class="teaser-inspector" aria-label="Workflow details">
+                  <div class="score-strip">
+                    <div><strong>0</strong><span>errors</span></div>
+                    <div><strong>2</strong><span>citations</span></div>
+                    <div><strong>local</strong><span>compile</span></div>
+                  </div>
+                  <div class="teaser-notes" data-teaser-notes>
+                    <article class="active">
+                      <strong>Author workflow</strong>
+                      <span>Write source, preview the PDF, and keep project files visible.</span>
+                    </article>
+                    <article>
+                      <strong>Reviewer workflow</strong>
+                      <span>Track comments beside the document without losing source context.</span>
+                    </article>
+                    <article>
+                      <strong>Rebuttal workflow</strong>
+                      <span>Move from reviewer comment to final response in the same workspace.</span>
+                    </article>
+                  </div>
+                </aside>
+              </div>
+            </div>
+
+            <div class="product-annotations" aria-label="Product highlights">
+              <article class="active" data-teaser-annotation="main">
+                <span>01</span>
+                <strong>Your whole project</strong>
+                <p>.tex, .bib, sections, figures, and submission files together.</p>
+              </article>
+              <article data-teaser-annotation="source">
+                <span>02</span>
+                <strong>Source plus PDF</strong>
+                <p>Write on one side. See the paper take shape on the other.</p>
+              </article>
+              <article data-teaser-annotation="review">
+                <span>03</span>
+                <strong>Academic workflows</strong>
+                <p>Author, reviewer, and rebuttal modes built for serious papers.</p>
+              </article>
+              <article data-teaser-annotation="local">
+                <span>04</span>
+                <strong>Your machine, your LaTeX</strong>
+                <p>Download LatexDo and compile with the setup you already trust.</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="trust-strip" aria-label="LatexDo nonprofit summary">
+      <section class="trust-strip product-trust" aria-label="LatexDo product facts">
         <div>
-          <strong>Nonprofit mission</strong>
-          <span>French association dedicated to public-interest LaTeX tooling.</span>
+          <strong>Local-first</strong>
+          <span>Your papers stay real files on your computer.</span>
         </div>
         <div>
-          <strong>Free access</strong>
-          <span>Desktop app, documentation, research pages, and source code.</span>
+          <strong>Paper-first</strong>
+          <span>Source, PDF, citations, and review work in one place.</span>
         </div>
         <div>
-          <strong>Transparent costs</strong>
-          <span>Operating expenses are published for donors and contributors.</span>
+          <strong>Open source</strong>
+          <span>MIT-licensed code, public roadmap, and inspectable releases.</span>
         </div>
         <div>
-          <strong>Open governance</strong>
-          <span>Board contact and contribution channels are visible on the site.</span>
+          <strong>No account required</strong>
+          <span>Install the desktop app and start with your own project folder.</span>
         </div>
       </section>
 
-      <section id="mission" class="section-band" aria-labelledby="mission-title">
+      <section class="section-band outcome-section" aria-labelledby="outcome-title">
         <div class="section-inner">
           <div class="section-heading reveal">
-            <p class="eyebrow">Mission</p>
-            <h2 id="mission-title">Help more people produce high-quality technical documents.</h2>
+            <p class="eyebrow">Why it feels different</p>
+            <h2 id="outcome-title">A serious local workspace for serious LaTeX work.</h2>
             <p>
-              LaTeX is central to science, engineering, mathematics, and
-              technical publishing, but the tooling can be difficult for new
-              users and costly for teams that need reliable workflows. LatexDo
-              exists to keep a modern, open, inspectable option available to the
-              public.
+              LatexDo is not trying to be a document website. It is a focused
+              desktop workspace for writing, compiling, reviewing, and shipping
+              papers from files you control.
             </p>
           </div>
-          <div class="feature-grid-4 reveal">
-            <article class="feature-card">
-              <h3>Students</h3>
-              <p>Lower the learning curve for reports, theses, lab notes, and early research papers.</p>
+          <div class="outcome-grid reveal">
+            <article class="outcome-card">
+              <span>01</span>
+              <h3>See your paper while you write it.</h3>
+              <p>Keep source and PDF beside each other instead of jumping between disconnected windows.</p>
             </article>
-            <article class="feature-card">
-              <h3>Researchers</h3>
-              <p>Improve draft, review, rebuttal, citation, and submission workflows for academic work.</p>
+            <article class="outcome-card">
+              <span>02</span>
+              <h3>Use the LaTeX setup you already trust.</h3>
+              <p>Compile locally with your TeX installation and keep package control on your machine.</p>
             </article>
-            <article class="feature-card">
-              <h3>Educators</h3>
-              <p>Provide free material that can be used in classes, workshops, and writing support.</p>
-            </article>
-            <article class="feature-card">
-              <h3>Maintainers</h3>
-              <p>Keep source code, roadmap decisions, and infrastructure costs visible to contributors.</p>
+            <article class="outcome-card">
+              <span>03</span>
+              <h3>Catch problems before submission.</h3>
+              <p>Surface citation, compiler, warning, and review context where the work is happening.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="download" class="section-band" aria-labelledby="download-title">
+      <section class="section-band workflow-story" aria-labelledby="workflow-title">
         <div class="section-inner wide">
           <div class="section-heading reveal">
-            <p class="eyebrow">Desktop download</p>
-            <h2 id="download-title">Start with the LatexDo desktop app.</h2>
-            <p>
-              The current public LatexDo app is the desktop app. Download it for
-              macOS, Windows, or Linux to edit local projects, compile with your
-              own TeX installation, preview PDFs, and keep your source files
-              under your control.
-            </p>
+            <p class="eyebrow">20-second workflow</p>
+            <h2 id="workflow-title">Open project. Write. Compile. Review. Submit.</h2>
           </div>
-          <div class="feature-grid-4 reveal">
-            <article class="feature-card">
-              <h3>Source editing</h3>
-              <p>Edit .tex files in a focused desktop workspace designed for long technical documents.</p>
+          <div class="workflow-timeline reveal">
+            <article>
+              <span>Open</span>
+              <strong>Choose a local folder</strong>
+              <p>Start from your existing paper, thesis, or class project.</p>
             </article>
-            <article class="feature-card">
-              <h3>PDF preview</h3>
-              <p>Compile locally and review the generated PDF beside the source when your TeX toolchain is installed.</p>
+            <article>
+              <span>Write</span>
+              <strong>Edit .tex and .bib files</strong>
+              <p>Keep sections, bibliography, notes, and figures visible.</p>
             </article>
-            <article class="feature-card">
-              <h3>BibTeX projects</h3>
-              <p>Keep bibliography files, figures, source files, and generated outputs together in your project folder.</p>
+            <article>
+              <span>Compile</span>
+              <strong>Render with latexmk</strong>
+              <p>Use your local TeX toolchain and inspect real output.</p>
             </article>
-            <article class="feature-card">
-              <h3>Local-first workflow</h3>
-              <p>Work from local files first, with source code and documentation open for inspection.</p>
+            <article>
+              <span>Review</span>
+              <strong>Handle comments and rebuttals</strong>
+              <p>Move from reviewer feedback to response without losing context.</p>
             </article>
-          </div>
-          <div class="section-cta reveal">
-            <a class="button primary" href="https://app.latexdo.org/downloads/">Download desktop app</a>
           </div>
         </div>
       </section>
 
-      <section id="desktop" class="section-band" aria-labelledby="desktop-title">
-        <div class="section-inner">
+      <section class="section-band local-section" aria-labelledby="local-title">
+        <div class="section-inner local-grid">
           <div class="section-heading reveal">
-            <p class="eyebrow">Desktop app</p>
-            <h2 id="desktop-title">Compile with your local TeX toolchain.</h2>
-            <p>Native desktop application for macOS, Windows, and Linux with local LaTeX compilation, PDF preview, SyncTeX navigation, and project folder management.</p>
+            <p class="eyebrow">Local-first by design</p>
+            <h2 id="local-title">Your projects. Your TeX installation. Your files.</h2>
+            <p>
+              LatexDo keeps the core writing workflow on your desktop. The
+              project folder remains portable, Git-friendly, and readable by
+              the tools you already use.
+            </p>
           </div>
-          <div class="feature-grid-4 reveal">
-            <article class="feature-card">
-              <h3>Local compilation</h3>
-              <p>Compile with your own latexmk installation. Full control over your TeX toolchain and packages.</p>
+          <div class="local-facts reveal">
+            <article>
+              <strong>Real project folders</strong>
+              <span>No lock-in format for your source.</span>
             </article>
-            <article class="feature-card">
-              <h3>PDF preview</h3>
-              <p>View rendered PDF output with SyncTeX linking. Click to jump between source and preview positions.</p>
+            <article>
+              <strong>Local compilation</strong>
+              <span>Use the LaTeX setup installed on your machine.</span>
             </article>
-            <article class="feature-card">
-              <h3>Project management</h3>
-              <p>Open local project folders, edit .tex and .bib files, and keep your paper structure organized.</p>
-            </article>
-            <article class="feature-card">
-              <h3>Real diagnostics</h3>
-              <p>Surface compiler errors, warnings, and badboxes connected to their source lines for quick fixes.</p>
+            <article>
+              <strong>Open source trust</strong>
+              <span>MIT-licensed and built in public.</span>
             </article>
           </div>
         </div>
@@ -249,7 +381,12 @@
         <div class="section-inner">
           <div class="section-heading reveal">
             <p class="eyebrow">Feature comparison</p>
-            <h2 id="comparison-title">How LatexDo compares.</h2>
+            <h2 id="comparison-title">How LatexDo fits beside other LaTeX tools.</h2>
+            <p>
+              LatexDo is built around the serious local workspace: desktop app,
+              real project files, local compilation, PDF preview, and academic
+              review workflows.
+            </p>
           </div>
           <div class="compare-table-wrap reveal">
             <table class="compare-table">
@@ -283,20 +420,6 @@
                   <td>❌</td>
                   <td>✅</td>
                   <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Android app</td>
-                  <td>🔨 In progress</td>
-                  <td>❌</td>
-                  <td>❌</td>
-                  <td>❌</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>iOS app</td>
-                  <td>🔨 In progress</td>
-                  <td>❌</td>
-                  <td>❌</td>
-                  <td>❌</td>
                 </tr>
                 <tr class="compare-ours">
                   <td>Local-first workflow</td>
@@ -389,6 +512,28 @@
             ✅ Available &ensp; 🔨 Planned / in progress &ensp; ⚠️ Limited &ensp; ❌ Not available<br>
             <a href="https://github.com/latexdo/latexdo">See the full breakdown on GitHub →</a>
           </p>
+        </div>
+      </section>
+
+      <section id="download" class="download-hero section-band" aria-labelledby="download-title">
+        <div class="section-inner download-hero-inner reveal">
+          <p class="eyebrow">Bring it to your desktop</p>
+          <h2 id="download-title">Like what you see? This is the actual workflow.</h2>
+          <p>
+            Install LatexDo for macOS, Windows, or Linux and work with your own
+            projects, your own TeX installation, and your own files.
+          </p>
+          <div class="hero-actions" aria-label="Download actions">
+            <a class="button primary" href="https://app.latexdo.org/downloads/">Download LatexDo</a>
+            <a class="button secondary" href="https://github.com/latexdo/latexdo">View source</a>
+          </div>
+          <div class="platform-row" aria-label="Supported platforms">
+            <span>macOS</span>
+            <span>Windows</span>
+            <span>Linux</span>
+            <span>Free</span>
+            <span>Open source</span>
+          </div>
         </div>
       </section>
     </main>

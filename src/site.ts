@@ -173,6 +173,8 @@ const siteIconPaths: Record<string, string> = {
   Contact: `<rect x="4" y="6" width="16" height="12" rx="2" /><path d="m4 8 8 6 8-6" />`,
   Source: `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
   "Source code": `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
+  GitHub: `<circle cx="6" cy="6" r="2" /><circle cx="18" cy="18" r="2" /><circle cx="6" cy="18" r="2" /><path d="M6 8v8" /><path d="M8 18h6a4 4 0 0 0 4-4V8" />`,
+  "Try online": `<path d="M5 5h14v14H5z" /><path d="M9 9h6" /><path d="M9 13h4" /><path d="m14 16 3-3-3-3" />`,
   Donate: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
   Donations: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
   Expenses: `<path d="M4 19V5" /><path d="M4 19h16" /><path d="M8 16v-4" /><path d="M12 16V8" /><path d="M16 16v-6" />`,
@@ -248,6 +250,136 @@ function initReveal(): void {
   );
 
   elements.forEach((element) => observer.observe(element));
+}
+
+function initProductTeaser(): void {
+  const teaser = query<HTMLElement>("[data-product-teaser]");
+  if (!teaser) return;
+
+  const shell = teaser.closest<HTMLElement>(".product-preview-shell") ?? document.body;
+  const fileButtons = queryAll<HTMLButtonElement>("[data-teaser-file]");
+  const modeButtons = queryAll<HTMLButtonElement>("[data-teaser-mode]");
+  const annotationCards = Array.from(
+    shell.querySelectorAll<HTMLElement>("[data-teaser-annotation]"),
+  );
+  const notes = Array.from(shell.querySelectorAll<HTMLElement>("[data-teaser-notes] article"));
+  const code = shell.querySelector<HTMLElement>("[data-teaser-code]");
+  const tab = shell.querySelector<HTMLElement>("[data-teaser-tab]");
+  const location = shell.querySelector<HTMLElement>("[data-teaser-location]");
+  const paperTitle = shell.querySelector<HTMLElement>("[data-teaser-paper-title]");
+  const paperCopy = shell.querySelector<HTMLElement>("[data-teaser-paper-copy]");
+  const status = shell.querySelector<HTMLElement>("[data-teaser-status]");
+  const compile = shell.querySelector<HTMLButtonElement>("[data-teaser-compile]");
+
+  const files: Record<
+    string,
+    { tab: string; location: string; code: string; title: string; copy: string; annotation: string }
+  > = {
+    main: {
+      tab: "main.tex",
+      location: "~/Papers/latexdo-preview/main.tex",
+      code: String.raw`\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\title{LatexDo Preview}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Welcome}
+LatexDo keeps source and PDF together.
+\end{document}`,
+      title: "Welcome",
+      copy: "Source, project files, bibliography, diagnostics, and PDF preview stay in one focused desktop workspace.",
+      annotation: "main",
+    },
+    references: {
+      tab: "references.bib",
+      location: "~/Papers/latexdo-preview/references.bib",
+      code: String.raw`@misc{latexdo-preview,
+  title = {LatexDo Preview},
+  author = {LatexDo},
+  year = {2026},
+  url = {https://latexdo.org}
+}
+
+@article{local-first-writing,
+  title = {Local-first academic writing},
+  author = {Research Team},
+  year = {2026}
+}`,
+      title: "References",
+      copy: "Bibliography entries stay beside the paper so citation problems can be caught before submission.",
+      annotation: "main",
+    },
+    notes: {
+      tab: "sections/notes.tex",
+      location: "~/Papers/latexdo-preview/sections/notes.tex",
+      code: String.raw`% Reviewer notes
+% - Clarify contribution in introduction.
+% - Check BibTeX capitalization.
+% - Move limitation paragraph to discussion.
+
+\paragraph{Rebuttal plan}
+Respond to each reviewer comment with the exact
+source section and the compiled PDF visible.`,
+      title: "Review notes",
+      copy: "Reviewer comments, rebuttal notes, and source edits can stay connected to the paper context.",
+      annotation: "review",
+    },
+  };
+
+  function setAnnotation(name: string): void {
+    annotationCards.forEach((card) => {
+      card.classList.toggle("active", card.dataset.teaserAnnotation === name);
+    });
+  }
+
+  function setFile(name: string): void {
+    const file = files[name] ?? files.main;
+    fileButtons.forEach((button) => {
+      button.classList.toggle("active", button.dataset.teaserFile === name);
+    });
+    if (code) code.textContent = file.code;
+    if (tab) tab.textContent = file.tab;
+    if (location) location.textContent = file.location;
+    if (paperTitle) paperTitle.textContent = file.title;
+    if (paperCopy) paperCopy.textContent = file.copy;
+    setAnnotation(file.annotation);
+  }
+
+  function setMode(name: string): void {
+    const modeIndex = name === "reviewer" ? 1 : name === "rebuttal" ? 2 : 0;
+    modeButtons.forEach((button) => {
+      button.classList.toggle("active", button.dataset.teaserMode === name);
+    });
+    notes.forEach((note, index) => note.classList.toggle("active", index === modeIndex));
+    setAnnotation(name === "author" ? "source" : "review");
+  }
+
+  fileButtons.forEach((button) => {
+    button.addEventListener("click", () => setFile(button.dataset.teaserFile ?? "main"));
+  });
+
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => setMode(button.dataset.teaserMode ?? "author"));
+  });
+
+  compile?.addEventListener("click", () => {
+    teaser.classList.remove("is-compiled");
+    status?.classList.add("is-busy");
+    if (status) status.textContent = "Compiling...";
+    setAnnotation("local");
+
+    window.setTimeout(() => {
+      teaser.classList.add("is-compiled");
+      status?.classList.remove("is-busy");
+      if (status) status.textContent = "PDF ready";
+    }, 620);
+  });
 }
 
 function renderDownloadFallback(container: HTMLElement): void {
@@ -1033,6 +1165,7 @@ function init(): void {
   void initNavigation();
   initEditorPreviewNotice();
   initReveal();
+  initProductTeaser();
   initDevMode();
   void initDownloads();
   void initDownloadPlatformLimits();
