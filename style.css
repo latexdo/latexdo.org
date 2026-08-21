@@ -1439,7 +1439,7 @@ span.footer-social-link {
   cursor: default;
 }
 
-.js-enabled .reveal {
+.reveal {
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -1447,7 +1447,7 @@ span.footer-social-link {
     transform 520ms ease;
 }
 
-.js-enabled .reveal.visible {
+.reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -3093,7 +3093,7 @@ img.platform-logo {
     animation-iteration-count: 1 !important;
   }
 
-  .js-enabled .reveal {
+  .reveal {
     opacity: 1;
     transform: none;
   }

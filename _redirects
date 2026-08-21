@@ -3,10 +3,13 @@
 /docs/* https://docs.latexdo.org/:splat 301
 /legal-notice /about/ 301
 /legal-notice/ /about/ 301
+/downloads https://app.latexdo.org/downloads/ 301
+/downloads/ https://app.latexdo.org/downloads/ 301
+/downloads/* https://app.latexdo.org/downloads/:splat 301
 /updates/* https://app.latexdo.org/updates/:splat 301
-/editor /downloads/ 301
-/editor/ /downloads/ 301
-/editor/* /downloads/ 301
+/editor https://app.latexdo.org/downloads/ 301
+/editor/ https://app.latexdo.org/downloads/ 301
+/editor/* https://app.latexdo.org/downloads/ 301
 /cli / 301
 /cli/ / 301
 /cli/* / 301
@@ -20,6 +23,6 @@
 /catalog/* https://latexdo.org/research/ai/catalog/:splat 301
 /latexdo/* https://latexdo.org/research/ai/latexdo/:splat 301
 /scripts/* https://latexdo.org/research/ai/scripts/:splat 301
-/store /donations/ 301
-/store/ /donations/ 301
-/store/* /donations/ 301
+/store https://store.latexdo.org/ 301
+/store/ https://store.latexdo.org/ 301
+/store/* https://store.latexdo.org/:splat 301

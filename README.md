@@ -6,8 +6,7 @@ This repository hosts the public LatexDo website at `https://latexdo.org`. It in
 
 - Serves the public website.
 - Publishes `install.sh` and `bin/latexdo` for CLI installation at `https://cli.latexdo.org`.
-- Serves an on-domain downloads landing page and redirects update traffic to
-  `https://app.latexdo.org`.
+- Redirects download and update traffic to `https://app.latexdo.org`.
 - Receives most source updates from `/Users/omar/Desktop/Github/latexdo/website`.
 
 ## Requirements
@@ -42,7 +41,7 @@ npm run build
 npx wrangler deploy
 ```
 
-The Wrangler config publishes static files from the repository root. `_redirects` defines legacy product redirects, and `.assetsignore` keeps development-only files out of the asset upload. The GitHub Actions workflow validates PRs and pushes, but it does not deploy GitHub Pages.
+The Wrangler config publishes static files from the repository root. `_redirects` defines product subdomain redirects, including download/update redirects to `app.latexdo.org`, and `.assetsignore` keeps development-only files out of the asset upload. The GitHub Actions workflow validates PRs and pushes, but it does not deploy GitHub Pages.
 
 ## Source Sync
 

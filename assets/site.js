@@ -1,5 +1,4 @@
 "use strict";
-document.documentElement.classList.add("js-enabled");
 function query(selector) {
     return document.querySelector(selector);
 }

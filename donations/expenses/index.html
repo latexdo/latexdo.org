@@ -43,7 +43,6 @@
         </button>
         <div id="nav-links" class="nav-links" data-nav-links>
           <a href="/programs/">Programs</a>
-          <a href="/downloads/">Downloads</a>
           <a href="/research/">Research</a>
           <a href="/about/">About</a>
           <a href="/board/">Board</a>
@@ -69,66 +68,15 @@
         <div class="section-heading">
           <p class="eyebrow">Expense table</p>
           <h2 id="expenses-title">Monthly cost estimate</h2>
-          <p>
-            Last reviewed: August 12, 2026. These estimates are published so
-            donors can understand the operating costs behind the public website,
-            downloads, documentation, and release checks.
-          </p>
         </div>
-        <div class="expenses-table-wrap">
-          <table class="expenses-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Line item</th>
-                <th>Monthly USD</th>
-                <th>Why</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Hosting</td>
-                <td>Static website and downloads</td>
-                <td>$8</td>
-                <td>Serve latexdo.org pages, installers, update metadata, and documentation.</td>
-              </tr>
-              <tr>
-                <td>Compute</td>
-                <td>Build and release checks</td>
-                <td>$12</td>
-                <td>Run packaging checks and smoke tests for desktop releases.</td>
-              </tr>
-              <tr>
-                <td>Backend</td>
-                <td>Hosted editor experiments</td>
-                <td>$20</td>
-                <td>Keep small backend services available while the editor is tested.</td>
-              </tr>
-              <tr>
-                <td>Communication</td>
-                <td>Domain email and contact inbox</td>
-                <td>$5</td>
-                <td>Maintain latexdo.org, DNS, and contact@latexdo.org.</td>
-              </tr>
-              <tr>
-                <td>Maintenance</td>
-                <td>Operations buffer</td>
-                <td>$15</td>
-                <td>Cover small tools, monitoring, storage, and unexpected project costs.</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th colspan="2">Estimated monthly total</th>
-                <td>$60</td>
-                <td aria-hidden="true"></td>
-              </tr>
-            </tfoot>
-          </table>
+        <div
+          class="expenses-table-wrap"
+          data-expenses-table
+          data-expenses-src="expenses.csv"
+          aria-live="polite"
+        >
+          <p class="expenses-loading">Loading expenses...</p>
         </div>
-        <p class="expenses-note">
-          A machine-readable copy is available at <a href="expenses.csv">expenses.csv</a>.
-        </p>
       </section>
 
     </main>
