@@ -23,6 +23,9 @@
 !/editor/index.html
 !/programs/
 !/programs/index.html
+!/partials/
+!/partials/header.html
+!/partials/footer.html
 !/research/
 !/research/index.html
 !/research/style.css

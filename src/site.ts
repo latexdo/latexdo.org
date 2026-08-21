@@ -191,7 +191,9 @@ function createSiteIcon(className: string, icon: string): HTMLSpanElement {
   return iconEl;
 }
 
-function initNavigation(): void {
+async function initNavigation(): Promise<void> {
+  await loadHeaderIncludes();
+
   const toggle = query<HTMLButtonElement>("[data-nav-toggle]");
   const links = query<HTMLElement>("[data-nav-links]");
   if (!toggle || !links) return;
@@ -963,13 +965,17 @@ function initTheme(): void {
   });
 }
 
-async function loadFooterIncludes(): Promise<void> {
-  const placeholders = queryAll<HTMLElement>("[data-footer-src]");
+async function loadHtmlIncludes(
+  sourceAttribute: string,
+  defaultSource: string,
+  requiredHtml: string,
+): Promise<void> {
+  const placeholders = queryAll<HTMLElement>(`[${sourceAttribute}]`);
   if (!placeholders.length) return;
 
   await Promise.all(
     placeholders.map(async (placeholder) => {
-      const source = placeholder.dataset.footerSrc || "/partials/footer.html";
+      const source = placeholder.getAttribute(sourceAttribute) || defaultSource;
       const fallbackSource = source.endsWith(".html")
         ? source.slice(0, -".html".length)
         : `${source}.html`;
@@ -978,9 +984,9 @@ async function loadFooterIncludes(): Promise<void> {
         try {
           const response = await fetch(candidate);
           if (!response.ok) continue;
-          const footerHtml = (await response.text()).trim();
-          if (footerHtml.includes('class="site-footer"')) {
-            placeholder.outerHTML = footerHtml;
+          const includeHtml = (await response.text()).trim();
+          if (includeHtml.includes(requiredHtml)) {
+            placeholder.outerHTML = includeHtml;
             return;
           }
         } catch {
@@ -989,6 +995,14 @@ async function loadFooterIncludes(): Promise<void> {
       }
     }),
   );
+}
+
+function loadHeaderIncludes(): Promise<void> {
+  return loadHtmlIncludes("data-header-src", "/partials/header.html", 'class="site-header"');
+}
+
+function loadFooterIncludes(): Promise<void> {
+  return loadHtmlIncludes("data-footer-src", "/partials/footer.html", 'class="site-footer"');
 }
 
 async function initFooter(): Promise<void> {
@@ -1016,7 +1030,7 @@ async function initFooter(): Promise<void> {
 }
 
 function init(): void {
-  initNavigation();
+  void initNavigation();
   initEditorPreviewNotice();
   initReveal();
   initDevMode();

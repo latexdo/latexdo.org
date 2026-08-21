@@ -120,7 +120,8 @@ function createSiteIcon(className, icon) {
     iconEl.innerHTML = `<svg viewBox="0 0 24 24" focusable="false">${icon}</svg>`;
     return iconEl;
 }
-function initNavigation() {
+async function initNavigation() {
+    await loadHeaderIncludes();
     const toggle = query("[data-nav-toggle]");
     const links = query("[data-nav-links]");
     if (!toggle || !links)
@@ -802,12 +803,12 @@ function initTheme() {
         }
     });
 }
-async function loadFooterIncludes() {
-    const placeholders = queryAll("[data-footer-src]");
+async function loadHtmlIncludes(sourceAttribute, defaultSource, requiredHtml) {
+    const placeholders = queryAll(`[${sourceAttribute}]`);
     if (!placeholders.length)
         return;
     await Promise.all(placeholders.map(async (placeholder) => {
-        const source = placeholder.dataset.footerSrc || "/partials/footer.html";
+        const source = placeholder.getAttribute(sourceAttribute) || defaultSource;
         const fallbackSource = source.endsWith(".html")
             ? source.slice(0, -".html".length)
             : `${source}.html`;
@@ -816,9 +817,9 @@ async function loadFooterIncludes() {
                 const response = await fetch(candidate);
                 if (!response.ok)
                     continue;
-                const footerHtml = (await response.text()).trim();
-                if (footerHtml.includes('class="site-footer"')) {
-                    placeholder.outerHTML = footerHtml;
+                const includeHtml = (await response.text()).trim();
+                if (includeHtml.includes(requiredHtml)) {
+                    placeholder.outerHTML = includeHtml;
                     return;
                 }
             }
@@ -827,6 +828,12 @@ async function loadFooterIncludes() {
             }
         }
     }));
+}
+function loadHeaderIncludes() {
+    return loadHtmlIncludes("data-header-src", "/partials/header.html", 'class="site-header"');
+}
+function loadFooterIncludes() {
+    return loadHtmlIncludes("data-footer-src", "/partials/footer.html", 'class="site-footer"');
 }
 async function initFooter() {
     await loadFooterIncludes();
@@ -850,7 +857,7 @@ async function initFooter() {
     });
 }
 function init() {
-    initNavigation();
+    void initNavigation();
     initEditorPreviewNotice();
     initReveal();
     initDevMode();

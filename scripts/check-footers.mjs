@@ -28,15 +28,27 @@ function findHtmlFiles(directory) {
 }
 
 const root = process.cwd();
+const headerPattern = /<header class="site-header" data-header>[\s\S]*?<\/header>/g;
+const headerIncludePattern = /<div data-header-src="\/partials\/header\.html"><\/div>/g;
 const footerPattern = /<footer class="site-footer">[\s\S]*?<\/footer>/g;
 const footerIncludePattern = /<div data-footer-src="\/partials\/footer\.html"><\/div>/g;
+const headerPartial = join(root, "partials", "header.html");
 const footerPartial = join(root, "partials", "footer.html");
+const partials = new Set([headerPartial, footerPartial]);
 const htmlFiles = findHtmlFiles(root)
-  .filter((file) => file !== footerPartial)
+  .filter((file) => !partials.has(file))
   .sort();
 const errors = [];
+const headerPartialHtml = readFileSync(headerPartial, "utf8");
 const footerPartialHtml = readFileSync(footerPartial, "utf8");
+const headerPartialMatches = [...headerPartialHtml.matchAll(headerPattern)];
 const footerPartialMatches = [...footerPartialHtml.matchAll(footerPattern)];
+
+if (headerPartialMatches.length !== 1) {
+  errors.push(
+    `partials/header.html: expected 1 site header, found ${headerPartialMatches.length}`,
+  );
+}
 
 if (footerPartialMatches.length !== 1) {
   errors.push(
@@ -47,8 +59,20 @@ if (footerPartialMatches.length !== 1) {
 for (const file of htmlFiles) {
   const relativePath = relative(root, file);
   const html = readFileSync(file, "utf8");
+  const headers = [...html.matchAll(headerPattern)];
+  const headerIncludes = [...html.matchAll(headerIncludePattern)];
   const footers = [...html.matchAll(footerPattern)];
   const footerIncludes = [...html.matchAll(footerIncludePattern)];
+
+  if (headers.length !== 0) {
+    errors.push(`${relativePath}: expected 0 copied site headers, found ${headers.length}`);
+  }
+
+  if (headerIncludes.length !== 1) {
+    errors.push(
+      `${relativePath}: expected 1 header include pointing to /partials/header.html, found ${headerIncludes.length}`,
+    );
+  }
 
   if (footers.length !== 0) {
     errors.push(`${relativePath}: expected 0 copied site footers, found ${footers.length}`);
@@ -67,5 +91,5 @@ if (errors.length > 0) {
 }
 
 console.log(
-  `Checked ${htmlFiles.length} HTML pages: each points to partials/footer.html.`,
+  `Checked ${htmlFiles.length} HTML pages: each points to header and footer partials.`,
 );
