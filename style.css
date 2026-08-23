@@ -1387,6 +1387,7 @@ h3 {
 .download-hero {
   background: var(--ink);
   color: white;
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
 }
 
 .download-hero h2 {
@@ -1412,23 +1413,6 @@ h3 {
   border-color: rgb(255 255 255 / 20%);
   background: rgb(255 255 255 / 8%);
   color: white;
-}
-
-.platform-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
-}
-
-.platform-row span {
-  border: 1px solid rgb(255 255 255 / 18%);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 7%);
-  color: #d8dee8;
-  padding: 7px 10px;
-  font-size: 13px;
-  font-weight: 780;
 }
 
 .not-found-main {
