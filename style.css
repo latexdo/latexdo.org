@@ -165,40 +165,22 @@ svg {
   height: 16px;
 }
 
-.nav-links .nav-try-link {
-  border-color: rgb(17 19 24 / 12%);
-  background: rgb(255 255 255 / 72%);
-  color: var(--ink);
-}
-
-.nav-links .nav-download-link {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: white;
-}
-
-.nav-links .nav-download-link:hover,
-.nav-links .nav-download-link:focus-visible {
-  background: #2a303a;
-  color: white;
-}
-
 .nav-donate-link {
   display: inline-flex;
   min-height: 36px;
   align-items: center;
   gap: 7px;
-  border: 1px solid rgb(180 35 59 / 32%);
-  border-radius: var(--radius);
-  padding: 8px 12px;
-  background: linear-gradient(180deg, #d24257 0%, var(--rose) 100%);
-  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  background: var(--blue);
+  color: #fff;
   font: inherit;
-  font-weight: 760;
+  font-weight: 690;
+  letter-spacing: 0.01em;
   cursor: pointer;
   transition:
     background 160ms ease,
-    box-shadow 160ms ease,
     transform 160ms ease;
 }
 
@@ -212,8 +194,7 @@ svg {
 
 .nav-donate-link:hover,
 .nav-donate-link:focus-visible {
-  background: linear-gradient(180deg, #c23549 0%, #9c1e33 100%);
-  box-shadow: 0 8px 20px rgb(180 35 59 / 28%);
+  background: var(--blue-strong);
   transform: translateY(-1px);
 }
 

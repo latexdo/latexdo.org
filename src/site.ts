@@ -142,6 +142,8 @@ let clientDeviceHintPromise: Promise<ClientDeviceHint> | null = null;
 
 const siteIconPaths: Record<string, string> = {
   Product: `<path d="M4 7h16" /><path d="M7 7v12h10V7" /><path d="M9 7V5h6v2" />`,
+  Program: `<path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /><path d="M8 5v14" /><path d="M16 5v14" />`,
+  Mission: `<circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.2" />`,
   Programs: `<path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /><path d="M8 5v14" /><path d="M16 5v14" />`,
   Individuals: `<circle cx="12" cy="7" r="3" /><path d="M6 21a6 6 0 0 1 12 0" />`,
   Resources: `<circle cx="12" cy="12" r="8" /><path d="m15 9-2 5-5 2 2-5 5-2Z" />`,
