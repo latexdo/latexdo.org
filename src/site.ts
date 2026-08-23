@@ -195,6 +195,7 @@ function createSiteIcon(className: string, icon: string): HTMLSpanElement {
 
 async function initNavigation(): Promise<void> {
   await loadHeaderIncludes();
+  initDonationModal();
 
   const toggle = query<HTMLButtonElement>("[data-nav-toggle]");
   const links = query<HTMLElement>("[data-nav-links]");
@@ -219,6 +220,45 @@ async function initNavigation(): Promise<void> {
       links.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
     }
+  });
+}
+
+function initDonationModal(): void {
+  const modal = query<HTMLElement>("[data-donate-modal]");
+  if (!modal) return;
+
+  const iframe = modal.querySelector<HTMLIFrameElement>("#haWidgetLight");
+  const openers = queryAll<HTMLButtonElement>("[data-donate-open]");
+  let lastFocused: HTMLElement | null = null;
+
+  const isOpen = (): boolean => !modal.hasAttribute("hidden");
+
+  const openModal = (): void => {
+    lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    modal.removeAttribute("hidden");
+    document.body.classList.add("donate-modal-open");
+
+    if (iframe && !iframe.getAttribute("src")) {
+      const src = iframe.dataset.haSrc;
+      if (src) iframe.src = src;
+    }
+
+    modal.querySelector<HTMLElement>(".donate-modal-close")?.focus();
+  };
+
+  const closeModal = (): void => {
+    modal.setAttribute("hidden", "");
+    document.body.classList.remove("donate-modal-open");
+    lastFocused?.focus();
+  };
+
+  openers.forEach((button) => button.addEventListener("click", openModal));
+  Array.from(modal.querySelectorAll<HTMLButtonElement>("[data-donate-close]")).forEach((closer) =>
+    closer.addEventListener("click", closeModal),
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen()) closeModal();
   });
 }
 

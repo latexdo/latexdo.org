@@ -210,6 +210,123 @@ svg {
   background: var(--ink);
 }
 
+.nav-donate-link {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgb(180 35 59 / 32%);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  background: linear-gradient(180deg, #d24257 0%, var(--rose) 100%);
+  color: white;
+  font: inherit;
+  font-weight: 760;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-donate-link svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.nav-donate-link:hover,
+.nav-donate-link:focus-visible {
+  background: linear-gradient(180deg, #c23549 0%, #9c1e33 100%);
+  box-shadow: 0 8px 20px rgb(180 35 59 / 28%);
+  transform: translateY(-1px);
+}
+
+.nav-donate-link:focus-visible {
+  outline: 2px solid rgb(15 111 255 / 42%);
+  outline-offset: 2px;
+}
+
+.donate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.donate-modal[hidden] {
+  display: none;
+}
+
+.donate-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(12 14 19 / 58%);
+  backdrop-filter: blur(6px);
+}
+
+.donate-modal-dialog {
+  position: relative;
+  width: min(100%, 30rem);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 22px 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+}
+
+.donate-modal-dialog h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.donate-modal-dialog p {
+  margin: 0 auto 16px;
+  max-width: 26rem;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.donate-modal-dialog iframe {
+  display: block;
+  height: 540px;
+}
+
+.donate-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.donate-modal-close:hover,
+.donate-modal-close:focus-visible {
+  background: var(--surface-soft);
+}
+
+body.donate-modal-open {
+  overflow: hidden;
+}
+
 .research-hero {
   position: relative;
   overflow: hidden;
@@ -1303,6 +1420,11 @@ span.footer-social-link {
   }
 
   .nav-links a {
+    padding: 12px;
+  }
+
+  .nav-donate-link {
+    justify-content: center;
     padding: 12px;
   }
 

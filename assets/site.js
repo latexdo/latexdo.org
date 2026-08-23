@@ -124,6 +124,7 @@ function createSiteIcon(className, icon) {
 }
 async function initNavigation() {
     await loadHeaderIncludes();
+    initDonationModal();
     const toggle = query("[data-nav-toggle]");
     const links = query("[data-nav-links]");
     if (!toggle || !links)
@@ -145,6 +146,37 @@ async function initNavigation() {
             links.classList.remove("open");
             toggle.setAttribute("aria-expanded", "false");
         }
+    });
+}
+function initDonationModal() {
+    const modal = query("[data-donate-modal]");
+    if (!modal)
+        return;
+    const iframe = modal.querySelector("#haWidgetLight");
+    const openers = queryAll("[data-donate-open]");
+    let lastFocused = null;
+    const isOpen = () => !modal.hasAttribute("hidden");
+    const openModal = () => {
+        lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        modal.removeAttribute("hidden");
+        document.body.classList.add("donate-modal-open");
+        if (iframe && !iframe.getAttribute("src")) {
+            const src = iframe.dataset.haSrc;
+            if (src)
+                iframe.src = src;
+        }
+        modal.querySelector(".donate-modal-close")?.focus();
+    };
+    const closeModal = () => {
+        modal.setAttribute("hidden", "");
+        document.body.classList.remove("donate-modal-open");
+        lastFocused?.focus();
+    };
+    openers.forEach((button) => button.addEventListener("click", openModal));
+    Array.from(modal.querySelectorAll("[data-donate-close]")).forEach((closer) => closer.addEventListener("click", closeModal));
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && isOpen())
+            closeModal();
     });
 }
 function initEditorPreviewNotice() {
