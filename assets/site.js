@@ -31,10 +31,10 @@ function escapeHtml(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;");
 }
-function formatUsd(value) {
+function formatEur(value) {
     return new Intl.NumberFormat(undefined, {
         style: "currency",
-        currency: "USD",
+        currency: "EUR",
         maximumFractionDigits: 0,
     }).format(value);
 }
@@ -158,15 +158,20 @@ function initDonationModal() {
     const openers = queryAll("[data-donate-open]");
     let lastFocused = null;
     const isOpen = () => !modal.hasAttribute("hidden");
-    const openModal = () => {
+    const setWidgetSource = (opener) => {
+        if (!iframe)
+            return;
+        const requested = opener.dataset.haSrc ?? iframe.dataset.haSrc;
+        if (requested && iframe.getAttribute("src") !== requested) {
+            iframe.removeAttribute("height");
+            iframe.src = requested;
+        }
+    };
+    const openModal = (opener) => {
         lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         modal.removeAttribute("hidden");
         document.body.classList.add("donate-modal-open");
-        if (iframe && !iframe.getAttribute("src")) {
-            const src = iframe.dataset.haSrc;
-            if (src)
-                iframe.src = src;
-        }
+        setWidgetSource(opener);
         modal.querySelector(".donate-modal-close")?.focus();
     };
     const closeModal = () => {
@@ -174,7 +179,7 @@ function initDonationModal() {
         document.body.classList.remove("donate-modal-open");
         lastFocused?.focus();
     };
-    openers.forEach((button) => button.addEventListener("click", openModal));
+    openers.forEach((button) => button.addEventListener("click", () => openModal(button)));
     Array.from(modal.querySelectorAll("[data-donate-close]")).forEach((closer) => closer.addEventListener("click", closeModal));
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && isOpen())
@@ -860,25 +865,25 @@ function parseExpenseRows(text) {
     const headers = rows.shift()?.map((header) => header.toLowerCase()) ?? [];
     const categoryIndex = headers.indexOf("category");
     const itemIndex = headers.indexOf("line item");
-    const monthlyIndex = headers.indexOf("monthly usd");
+    const monthlyIndex = headers.indexOf("monthly eur");
     const whyIndex = headers.indexOf("why");
     return rows
         .map((row) => ({
         category: row[categoryIndex] || "Other",
         item: row[itemIndex] || "Expense",
-        monthlyUsd: Number(row[monthlyIndex] || 0),
+        monthlyEur: Number(row[monthlyIndex] || 0),
         why: row[whyIndex] || "",
     }))
-        .filter((row) => Number.isFinite(row.monthlyUsd));
+        .filter((row) => Number.isFinite(row.monthlyEur));
 }
 function renderExpensesTable(container, rows) {
-    const total = rows.reduce((sum, row) => sum + row.monthlyUsd, 0);
+    const total = rows.reduce((sum, row) => sum + row.monthlyEur, 0);
     container.innerHTML = `<table class="expenses-table">
       <thead>
         <tr>
           <th>Category</th>
           <th>Line item</th>
-          <th>Monthly USD</th>
+          <th>Monthly EUR</th>
           <th>Why</th>
         </tr>
       </thead>
@@ -887,7 +892,7 @@ function renderExpensesTable(container, rows) {
         .map((row) => `<tr>
               <td>${escapeHtml(row.category)}</td>
               <td>${escapeHtml(row.item)}</td>
-              <td>${escapeHtml(formatUsd(row.monthlyUsd))}</td>
+              <td>${escapeHtml(formatEur(row.monthlyEur))}</td>
               <td>${escapeHtml(row.why)}</td>
             </tr>`)
         .join("")}
@@ -895,7 +900,7 @@ function renderExpensesTable(container, rows) {
       <tfoot>
         <tr>
           <th colspan="2">Estimated monthly total</th>
-          <td>${escapeHtml(formatUsd(total))}</td>
+          <td>${escapeHtml(formatEur(total))}</td>
           <td aria-hidden="true"></td>
         </tr>
       </tfoot>

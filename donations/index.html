@@ -37,46 +37,73 @@
           public infrastructure, release maintenance, documentation, and support
           for students, researchers, educators, and contributors.
         </p>
-        <a
-          class="button primary donate-button"
-          href="mailto:contact@latexdo.org?subject=LatexDo%20donation&body=Hi%20LatexDo%2C%0A%0AI%20want%20to%20support%20the%20project.%20Please%20send%20me%20the%20available%20donation%20options.%0A"
-        >
-          Request secure donation instructions
-        </a>
-        <a class="button secondary donate-button" href="expenses/">
-          View operating expenses
-        </a>
       </section>
 
-      <section id="secure-donation" class="donations-community">
+      <section class="donations-compare">
         <div class="section-heading">
-          <p class="eyebrow">Secure process</p>
-          <h2>Donation details are handled by the association.</h2>
+          <p class="eyebrow">Ways to support</p>
+          <h2>Donation or sponsoring?</h2>
           <p>
-            LatexDo does not collect card details on this website and does not
-            ask donors to send payment information by email. Contact the
-            association to receive the currently available secure donation or
-            bank transfer instructions.
+            Both keep LatexDo free and open source — they simply work in two
+            different ways.
           </p>
         </div>
-        <div class="donations-impact-grid">
-          <article class="impact-card">
-            <h3>Official contact</h3>
-            <p>
-              Donation questions can be sent to
-              <a href="mailto:contact@latexdo.org">contact@latexdo.org</a>.
-              Governance and records questions can be sent to
-              <a href="mailto:board@latexdo.org">board@latexdo.org</a>.
-            </p>
-          </article>
-          <article class="impact-card">
-            <h3>Financial transparency</h3>
-            <p>
-              The association publishes estimated operating costs on the
-              <a href="expenses/">expenses page</a> so donors can see what their
-              support helps fund.
-            </p>
-          </article>
+        <div class="donate-compare-wrap">
+          <table class="donate-compare">
+            <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden">Criteria</span></th>
+                <th scope="col">Donation</th>
+                <th scope="col">Sponsoring</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Who it suits</th>
+                <td>Individuals who want to support the mission</td>
+                <td>Companies and organizations</td>
+              </tr>
+              <tr>
+                <th scope="row">Amount</th>
+                <td>Free amount, one-time or recurring</td>
+                <td>Agreed together as part of a partnership</td>
+              </tr>
+              <tr>
+                <th scope="row">Recognition</th>
+                <td>Optional — you can stay anonymous</td>
+                <td>Public visibility: logo and mention on our channels</td>
+              </tr>
+              <tr>
+                <th scope="row">Expectations</th>
+                <td>None — fully unrestricted support</td>
+                <td>Defined with the association in advance</td>
+              </tr>
+              <tr>
+                <th scope="row">Get started</th>
+                <td>
+                  <button
+                    class="nav-donate-link"
+                    type="button"
+                    data-donate-open
+                    aria-haspopup="dialog"
+                  >
+                    Donate now
+                  </button>
+                </td>
+                <td>
+                  <button
+                    class="nav-donate-link"
+                    type="button"
+                    data-donate-open
+                    data-ha-src="https://www.helloasso.com/associations/latexdo/formulaires/1/widget?view=form"
+                    aria-haspopup="dialog"
+                  >
+                    Become a sponsor
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -148,10 +175,11 @@
           <details>
             <summary>Do you accept one-time donations?</summary>
             <p>
-              Yes. Contact <a href="mailto:contact@latexdo.org">contact@latexdo.org</a>
-              and the association will send the currently available secure
-              donation or bank transfer options. Every amount helps, whether a
-              single gift or ongoing support.
+              Yes. Every amount helps, whether a single gift or ongoing
+              support. Give securely through our HelloAsso form:
+              <button class="donate-text-link" type="button" data-donate-open aria-haspopup="dialog">
+                Donate now
+              </button>
             </p>
           </details>
           <details>
@@ -162,6 +190,29 @@
               documentation, research workflows, and community support.
             </p>
           </details>
+        </div>
+      </section>
+
+      <section class="donations-final-cta">
+        <div class="section-heading">
+          <p class="eyebrow">Support LatexDo</p>
+          <h2>Keep great LaTeX tools free for everyone.</h2>
+          <p>Choose the way that fits you — every contribution counts.</p>
+        </div>
+        <div class="final-cta-actions">
+          <button class="nav-donate-link" type="button" data-donate-open aria-haspopup="dialog">
+            Donate now
+          </button>
+          <button
+            class="nav-donate-link is-secondary"
+            type="button"
+            data-donate-open
+            data-ha-src="https://www.helloasso.com/associations/latexdo/formulaires/1/widget?view=form"
+            aria-haspopup="dialog"
+          >
+            Become a sponsor
+          </button>
+          <a class="final-cta-link" href="/sponsors/">See our sponsors</a>
         </div>
       </section>
     </main>
