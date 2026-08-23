@@ -58,7 +58,7 @@ interface NavigatorUADataLike {
 interface ExpenseRow {
   category: string;
   item: string;
-  monthlyUsd: number;
+  monthlyEur: number;
   why: string;
 }
 
@@ -95,10 +95,10 @@ function escapeHtml(value: string): string {
     .replaceAll('"', "&quot;");
 }
 
-function formatUsd(value: number): string {
+function formatEur(value: number): string {
   return new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: "USD",
+    currency: "EUR",
     maximumFractionDigits: 0,
   }).format(value);
 }
@@ -142,6 +142,8 @@ let clientDeviceHintPromise: Promise<ClientDeviceHint> | null = null;
 
 const siteIconPaths: Record<string, string> = {
   Product: `<path d="M4 7h16" /><path d="M7 7v12h10V7" /><path d="M9 7V5h6v2" />`,
+  Program: `<path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /><path d="M8 5v14" /><path d="M16 5v14" />`,
+  Mission: `<circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.2" />`,
   Programs: `<path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /><path d="M8 5v14" /><path d="M16 5v14" />`,
   Individuals: `<circle cx="12" cy="7" r="3" /><path d="M6 21a6 6 0 0 1 12 0" />`,
   Resources: `<circle cx="12" cy="12" r="8" /><path d="m15 9-2 5-5 2 2-5 5-2Z" />`,
@@ -195,6 +197,7 @@ function createSiteIcon(className: string, icon: string): HTMLSpanElement {
 
 async function initNavigation(): Promise<void> {
   await loadHeaderIncludes();
+  initDonationModal();
 
   const toggle = query<HTMLButtonElement>("[data-nav-toggle]");
   const links = query<HTMLElement>("[data-nav-links]");
@@ -219,6 +222,51 @@ async function initNavigation(): Promise<void> {
       links.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
     }
+  });
+}
+
+function initDonationModal(): void {
+  const modal = query<HTMLElement>("[data-donate-modal]");
+  if (!modal) return;
+
+  const iframe = modal.querySelector<HTMLIFrameElement>("#haWidgetLight");
+  const openers = queryAll<HTMLButtonElement>("[data-donate-open]");
+  let lastFocused: HTMLElement | null = null;
+
+  const isOpen = (): boolean => !modal.hasAttribute("hidden");
+
+  const setWidgetSource = (opener: HTMLButtonElement): void => {
+    if (!iframe) return;
+    const requested = opener.dataset.haSrc ?? iframe.dataset.haSrc;
+    if (requested && iframe.getAttribute("src") !== requested) {
+      iframe.removeAttribute("height");
+      iframe.src = requested;
+    }
+  };
+
+  const openModal = (opener: HTMLButtonElement): void => {
+    lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    modal.removeAttribute("hidden");
+    document.body.classList.add("donate-modal-open");
+    setWidgetSource(opener);
+    modal.querySelector<HTMLElement>(".donate-modal-close")?.focus();
+  };
+
+  const closeModal = (): void => {
+    modal.setAttribute("hidden", "");
+    document.body.classList.remove("donate-modal-open");
+    lastFocused?.focus();
+  };
+
+  openers.forEach((button) =>
+    button.addEventListener("click", () => openModal(button)),
+  );
+  Array.from(modal.querySelectorAll<HTMLButtonElement>("[data-donate-close]")).forEach((closer) =>
+    closer.addEventListener("click", closeModal),
+  );
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen()) closeModal();
   });
 }
 
@@ -990,27 +1038,27 @@ function parseExpenseRows(text: string): ExpenseRow[] {
 
   const categoryIndex = headers.indexOf("category");
   const itemIndex = headers.indexOf("line item");
-  const monthlyIndex = headers.indexOf("monthly usd");
+  const monthlyIndex = headers.indexOf("monthly eur");
   const whyIndex = headers.indexOf("why");
 
   return rows
     .map((row) => ({
       category: row[categoryIndex] || "Other",
       item: row[itemIndex] || "Expense",
-      monthlyUsd: Number(row[monthlyIndex] || 0),
+      monthlyEur: Number(row[monthlyIndex] || 0),
       why: row[whyIndex] || "",
     }))
-    .filter((row) => Number.isFinite(row.monthlyUsd));
+    .filter((row) => Number.isFinite(row.monthlyEur));
 }
 
 function renderExpensesTable(container: HTMLElement, rows: ExpenseRow[]): void {
-  const total = rows.reduce((sum, row) => sum + row.monthlyUsd, 0);
+  const total = rows.reduce((sum, row) => sum + row.monthlyEur, 0);
   container.innerHTML = `<table class="expenses-table">
       <thead>
         <tr>
           <th>Category</th>
           <th>Line item</th>
-          <th>Monthly USD</th>
+          <th>Monthly EUR</th>
           <th>Why</th>
         </tr>
       </thead>
@@ -1020,7 +1068,7 @@ function renderExpensesTable(container: HTMLElement, rows: ExpenseRow[]): void {
             (row) => `<tr>
               <td>${escapeHtml(row.category)}</td>
               <td>${escapeHtml(row.item)}</td>
-              <td>${escapeHtml(formatUsd(row.monthlyUsd))}</td>
+              <td>${escapeHtml(formatEur(row.monthlyEur))}</td>
               <td>${escapeHtml(row.why)}</td>
             </tr>`,
           )
@@ -1029,7 +1077,7 @@ function renderExpensesTable(container: HTMLElement, rows: ExpenseRow[]): void {
       <tfoot>
         <tr>
           <th colspan="2">Estimated monthly total</th>
-          <td>${escapeHtml(formatUsd(total))}</td>
+          <td>${escapeHtml(formatEur(total))}</td>
           <td aria-hidden="true"></td>
         </tr>
       </tfoot>
