@@ -4,7 +4,7 @@ interface WorkerEnv {
   };
 }
 
-const htmlAssetVersion = "2026-08-11-footer-consistency";
+const htmlAssetVersion = "2026-08-26-google-tag-manager";
 
 export default {
   fetch(request: Request, env: WorkerEnv): Promise<Response> | Response {
