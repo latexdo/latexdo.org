@@ -295,6 +295,21 @@ svg {
   text-decoration: underline;
 }
 
+.sponsor-tier {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #dc3545;
+  border-radius: 100px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
 .donate-modal {
   position: fixed;
   inset: 0;
