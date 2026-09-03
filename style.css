@@ -2797,6 +2797,11 @@ span.footer-social-link {
   margin-top: 12px;
 }
 
+.legal-document .official-domain-statement {
+  margin-top: 16px;
+  color: var(--ink);
+}
+
 .legal-document a {
   color: var(--blue-strong);
   font-weight: 800;
