@@ -272,14 +272,6 @@ function initDonationModal(): void {
   });
 }
 
-function initEditorPreviewNotice(): void {
-  queryAll<HTMLAnchorElement>(".nav-editor-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      window.alert("LatexDo Editor is currently in preview.");
-    });
-  });
-}
-
 function initReveal(): void {
   const elements = queryAll<HTMLElement>(".reveal");
   if (!("IntersectionObserver" in window)) {
@@ -1213,7 +1205,6 @@ async function initFooter(): Promise<void> {
 
 function init(): void {
   void initNavigation();
-  initEditorPreviewNotice();
   initReveal();
   initProductTeaser();
   initDevMode();

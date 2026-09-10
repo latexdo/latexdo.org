@@ -1,5 +1,5 @@
 {
-  "name": "latexdo.github.io",
+  "name": "latexdo-org",
   "version": "0.1.0",
   "private": true,
   "description": "Static TypeScript website for LatexDo.",
@@ -7,13 +7,16 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check:footers": "node scripts/check-footers.mjs",
-    "dev": "serve .",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "dev": "wrangler dev --persist-to /tmp/latexdo-dev-state",
+    "preview": "wrangler dev --persist-to /tmp/latexdo-dev-state",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "serve": "^14.2.6"
+    "serve": "^14.2.6",
+    "wrangler": "^4.130.0"
   }
 }
