@@ -939,11 +939,11 @@ body.donate-modal-open {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: rgb(255 255 255 / 72%);
-  padding: 18px;
+  padding: 22px;
 }
 
 .panel-grid h3 {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   color: var(--ink);
   font-size: 15px;
   font-weight: 840;
@@ -951,7 +951,7 @@ body.donate-modal-open {
 
 .panel-grid ul {
   display: grid;
-  gap: 10px;
+  gap: 12px;
   margin: 0;
   padding-left: 18px;
   color: var(--muted);
@@ -961,7 +961,8 @@ body.donate-modal-open {
 .panel-grid p {
   margin: 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .organization {
@@ -1030,47 +1031,17 @@ body.donate-modal-open {
 }
 
 .detail-page {
-  background:
-    linear-gradient(rgb(17 19 24 / 4%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(17 19 24 / 4%) 1px, transparent 1px),
-    var(--page);
-  background-size: 48px 48px;
+  background: var(--page);
 }
 
 .detail-hero {
   position: relative;
   overflow: hidden;
   padding: 84px max(16px, calc((100% - var(--max)) / 2)) 124px;
-  background: var(--ink);
-  color: white;
-}
-
-.detail-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+  border-bottom: 1px solid var(--hairline);
   background:
-    linear-gradient(rgb(255 255 255 / 6%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 6%) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: linear-gradient(90deg, black, transparent 82%);
-}
-
-.detail-hero::after {
-  content: "";
-  position: absolute;
-  top: 82px;
-  right: max(16px, calc((100% - var(--max)) / 2));
-  width: min(430px, 36vw);
-  height: 230px;
-  border: 1px solid rgb(255 255 255 / 14%);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(90deg, rgb(52 211 153 / 28%) 0 2px, transparent 2px),
-    linear-gradient(rgb(96 165 250 / 22%) 0 2px, transparent 2px),
-    linear-gradient(135deg, rgb(255 255 255 / 10%), rgb(255 255 255 / 3%));
-  background-size: 48px 48px, 48px 48px, auto;
-  box-shadow: 0 28px 70px rgb(0 0 0 / 22%);
+    linear-gradient(180deg, #fbfcfe 0%, #edf1f6 100%);
+  color: var(--ink);
 }
 
 .detail-hero > * {
@@ -1084,25 +1055,37 @@ body.donate-modal-open {
   width: fit-content;
   min-height: 34px;
   align-items: center;
-  border: 1px solid rgb(255 255 255 / 14%);
+  gap: 6px;
+  border: 1px solid rgb(17 19 24 / 14%);
   border-radius: var(--radius);
-  background: rgb(255 255 255 / 7%);
-  color: #d2d8e3;
+  background: rgb(255 255 255 / 82%);
+  color: var(--ink-soft);
   padding: 7px 10px;
   font-size: 13px;
   font-weight: 820;
   text-decoration: none;
 }
 
+.detail-back::before {
+  content: "";
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  border-top: 4px solid transparent;
+  border-right: 5px solid currentColor;
+  border-bottom: 4px solid transparent;
+}
+
 .detail-back:hover,
 .detail-back:focus-visible {
-  color: white;
-  background: rgb(255 255 255 / 11%);
+  border-color: rgb(17 19 24 / 24%);
+  background: white;
+  color: var(--ink);
 }
 
 .detail-hero .eyebrow {
   margin-top: 28px;
-  color: #93c5fd;
+  color: var(--blue);
 }
 
 .detail-hero h1 {
@@ -1114,20 +1097,8 @@ body.donate-modal-open {
 
 .detail-hero > p:not(.eyebrow) {
   margin: 20px 0 0;
-  color: #cbd5e1;
+  color: var(--ink-soft);
   font-size: 20px;
-}
-
-.detail-hero .hero-actions a {
-  border-color: rgb(255 255 255 / 16%);
-  background: rgb(255 255 255 / 8%);
-  color: #e2e8f0;
-}
-
-.detail-hero .hero-actions a:hover,
-.detail-hero .hero-actions a:focus-visible {
-  background: rgb(255 255 255 / 14%);
-  color: white;
 }
 
 .detail-facts {
@@ -1136,14 +1107,14 @@ body.donate-modal-open {
   gap: 0;
   max-width: 780px;
   margin: 28px 0 0;
-  border-top: 1px solid rgb(255 255 255 / 14%);
-  border-bottom: 1px solid rgb(255 255 255 / 14%);
+  border-top: 1px solid rgb(17 19 24 / 12%);
+  border-bottom: 1px solid rgb(17 19 24 / 12%);
 }
 
 .detail-facts div {
   min-width: 0;
   padding: 16px 18px 16px 0;
-  border-right: 1px solid rgb(255 255 255 / 12%);
+  border-right: 1px solid rgb(17 19 24 / 10%);
 }
 
 .detail-facts div:not(:first-child) {
@@ -1155,7 +1126,7 @@ body.donate-modal-open {
 }
 
 .detail-facts dt {
-  color: white;
+  color: var(--ink);
   font-size: 12px;
   font-weight: 860;
   letter-spacing: 0.08em;
@@ -1164,17 +1135,17 @@ body.donate-modal-open {
 
 .detail-facts dd {
   margin: 7px 0 0;
-  color: #cbd5e1;
+  color: var(--muted);
   font-size: 14px;
 }
 
 .detail-stack {
-  margin-top: -62px;
+  margin-top: 56px;
   margin-bottom: 90px;
 }
 
 .detail-stack .research-panel {
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--shadow-soft);
 }
 
 .site-footer {
@@ -1552,7 +1523,7 @@ span.footer-social-link {
   .detail-facts div,
   .detail-facts div:not(:first-child) {
     border-right: 0;
-    border-bottom: 1px solid rgb(255 255 255 / 12%);
+    border-bottom: 1px solid rgb(17 19 24 / 10%);
     padding: 14px 0;
   }
 
