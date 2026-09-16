@@ -1,3 +1,5 @@
+import { initProductDemo } from "./product-demo/index.js";
+
 interface DownloadFile {
   id: string;
   label: string;
@@ -1206,6 +1208,7 @@ async function initFooter(): Promise<void> {
 function init(): void {
   void initNavigation();
   initReveal();
+  initProductDemo();
   initProductTeaser();
   initDevMode();
   void initDownloads();

@@ -122,146 +122,76 @@
       <section id="product" class="product-hero" aria-labelledby="hero-title">
         <div class="product-hero-inner">
           <div class="product-hero-copy reveal">
-            <h1 id="hero-title">Write papers without fighting your editor.</h1>
+            <p class="eyebrow">LatexDo</p>
+            <h1 id="hero-title">The workspace around the paper.</h1>
+            <p class="hero-lede">
+              Write, compile, review, respond, and prepare your LaTeX work for submission
+              without breaking your workflow.
+            </p>
             <div class="hero-actions" aria-label="Primary actions">
-              <a class="button primary" href="/downloads/">Download LatexDo</a>
-            </div>
-            
-          </div>
-
-          <div class="product-preview-shell reveal">
-            <div class="latexdo-window" data-product-teaser>
-              <div class="latexdo-titlebar">
-                <div class="traffic" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div class="project-meta">
-                  <strong>LatexDo Preview</strong>
-                  <span data-teaser-location>~/Papers/latexdo-preview/main.tex</span>
-                </div>
-                <div class="mode-switch" aria-label="Workspace mode">
-                  <button class="mode active" type="button" data-teaser-mode="author">Author</button>
-                  <button class="mode" type="button" data-teaser-mode="reviewer">Reviewer</button>
-                  <button class="mode" type="button" data-teaser-mode="rebuttal">Rebuttal</button>
-                </div>
-                <button class="button compact primary" type="button" data-teaser-compile>Compile</button>
-              </div>
-
-              <div class="latexdo-grid">
-                <aside class="latexdo-rail" aria-label="Project files">
-                  <span class="rail-mark active" aria-hidden="true"></span>
-                  <span class="rail-mark" aria-hidden="true"></span>
-                  <span class="rail-mark" aria-hidden="true"></span>
-                </aside>
-
-                <aside class="project-tree" aria-label="Project tree">
-                  <div class="panel-title">Project</div>
-                  <button class="tree-file active" type="button" data-teaser-file="main">
-                    <span>.tex</span>
-                    main.tex
-                  </button>
-                  <button class="tree-file" type="button" data-teaser-file="references">
-                    <span>.bib</span>
-                    references.bib
-                  </button>
-                  <button class="tree-file" type="button" data-teaser-file="notes">
-                    <span>.tex</span>
-                    sections/notes.tex
-                  </button>
-                  <div class="tree-group">
-                    <strong>assets</strong>
-                    <small>figures, PDFs, submission files</small>
-                  </div>
-                </aside>
-
-                <section class="teaser-source" aria-labelledby="teaser-source-title">
-                  <div class="panel-title" id="teaser-source-title">
-                    <span data-teaser-tab>main.tex</span>
-                    <span class="teaser-chip">Monaco editor</span>
-                  </div>
-                  <div class="teaser-editor">
-                    <ol class="line-numbers" aria-hidden="true">
-                      <li>1</li>
-                      <li>2</li>
-                      <li>3</li>
-                      <li>4</li>
-                      <li>5</li>
-                      <li>6</li>
-                      <li>7</li>
-                      <li>8</li>
-                      <li>9</li>
-                      <li>10</li>
-                      <li>11</li>
-                      <li>12</li>
-                    </ol>
-                    <pre><code data-teaser-code>\documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
-\usepackage{microtype}
-\usepackage{hyperref}
-
-\title{LatexDo Preview}
-\author{}
-\date{\today}
-
-\begin{document}
-\maketitle
-\section{Welcome}
-LatexDo keeps source and PDF together.
-\end{document}</code></pre>
-                  </div>
-                </section>
-
-                <section class="teaser-pdf" aria-labelledby="teaser-pdf-title">
-                  <div class="panel-title" id="teaser-pdf-title">
-                    <span>PDF preview</span>
-                    <span class="compile-status" data-teaser-status>Ready</span>
-                  </div>
-                  <article class="paper-preview" data-teaser-paper>
-                    <p class="paper-kicker">Rendered PDF</p>
-                    <h2>LatexDo Preview</h2>
-                    <p class="paper-authors">Local-first writing workspace</p>
-                    <div class="paper-rule"></div>
-                    <h3 data-teaser-paper-title>Welcome</h3>
-                    <p data-teaser-paper-copy>
-                      Source, project files, bibliography, diagnostics, and PDF
-                      preview stay in one focused desktop workspace.
-                    </p>
-                    <div class="paper-equation">E = mc<sup>2</sup></div>
-                    <div class="paper-lines" aria-hidden="true">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div class="compile-flash" data-teaser-flash>Compiled with local LaTeX</div>
-                  </article>
-                </section>
-
-                <aside class="teaser-inspector" aria-label="Workflow details">
-                  <div class="score-strip">
-                    <div><strong>0</strong><span>errors</span></div>
-                    <div><strong>2</strong><span>citations</span></div>
-                    <div><strong>local</strong><span>compile</span></div>
-                  </div>
-                  <div class="teaser-notes" data-teaser-notes>
-                    <article class="active">
-                      <strong>Author workflow</strong>
-                      <span>Write source, preview the PDF, and keep project files visible.</span>
-                    </article>
-                    <article>
-                      <strong>Reviewer workflow</strong>
-                      <span>Track comments beside the document without losing source context.</span>
-                    </article>
-                    <article>
-                      <strong>Rebuttal workflow</strong>
-                      <span>Move from reviewer comment to final response in the same workspace.</span>
-                    </article>
-                  </div>
-                </aside>
-              </div>
+              <a class="button primary" href="/downloads/" data-demo-download data-origin="hero">Download LatexDo</a>
+              <a class="button secondary" href="#product-demo">Explore the editor</a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="product-demo" class="product-story" aria-labelledby="product-demo-title">
+        <div class="section-inner wide product-story-grid">
+          <div class="story-copy">
+            <div class="section-heading reveal">
+              <p class="eyebrow">30-second product demo</p>
+              <h2 id="product-demo-title">Watch the paper get better.</h2>
+              <p>
+                The website demo is a deterministic simulation of LatexDo concepts:
+                source anchors, PDF links, diagnostics, review proposals, rebuttals,
+                paper review, and submission checks.
+              </p>
+            </div>
+            <article class="story-chapter reveal" data-demo-chapter="compiled">
+              <span>01</span>
+              <h3>Write with the document in view.</h3>
+              <p>Source and PDF stay connected while the manuscript changes.</p>
+            </article>
+            <article class="story-chapter reveal" data-demo-chapter="compiler-error">
+              <span>02</span>
+              <h3>Errors should explain themselves.</h3>
+              <p>Compiler output becomes an actionable finding with a proposed fix.</p>
+            </article>
+            <article class="story-chapter reveal" data-demo-chapter="review-open">
+              <span>03</span>
+              <h3>Review belongs next to the manuscript.</h3>
+              <p>Reviewer comments point back to the exact source text.</p>
+            </article>
+            <article class="story-chapter reveal" data-demo-chapter="rebuttal">
+              <span>04</span>
+              <h3>Respond without rebuilding the story by hand.</h3>
+              <p>The rebuttal response links to the reviewer comment and the manuscript revision.</p>
+            </article>
+            <article class="story-chapter reveal" data-demo-chapter="submission-check">
+              <span>05</span>
+              <h3>Know before you submit.</h3>
+              <p>Readiness checks separate deterministic validation from AI-derived review.</p>
+            </article>
+          </div>
+
+          <div class="story-product reveal">
+            <div class="product-demo-mount" data-product-demo>
+              <div class="demo-loading">Loading LatexDo demo...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band ai-tier-section" aria-labelledby="ai-tier-title">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">AI inside the workflow</p>
+            <h2 id="ai-tier-title">AI works inside the paper, not beside it.</h2>
+            <p>LatexDo presents assistance as completions, findings, proposals, and review results instead of a detached chat stream.</p>
+          </div>
+          <div class="ai-tier-grid reveal" data-ai-tier-cards></div>
+          <nav class="product-route-links reveal" aria-label="Product routes" data-product-route-links></nav>
         </div>
       </section>
 

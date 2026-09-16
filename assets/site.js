@@ -1,4 +1,4 @@
-"use strict";
+import { initProductDemo } from "./product-demo/index.js";
 function query(selector) {
     return document.querySelector(selector);
 }
@@ -1018,6 +1018,7 @@ async function initFooter() {
 function init() {
     void initNavigation();
     initReveal();
+    initProductDemo();
     initProductTeaser();
     initDevMode();
     void initDownloads();

@@ -8,9 +8,10 @@
     "build": "tsc -p tsconfig.json",
     "check:downloads": "node scripts/check-downloads.mjs",
     "check:footers": "node scripts/check-footers.mjs",
+    "check:product-demo": "node scripts/check-product-demo.mjs",
     "dev": "serve -l 8787 .",
     "preview": "serve -l 8787 .",
-    "test": "npm run typecheck && npm run check:footers && npm run check:downloads",
+    "test": "npm run typecheck && npm run build && npm run check:product-demo && npm run check:footers && npm run check:downloads",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "deploy": "npm run build && wrangler deploy"
   },
