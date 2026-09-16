@@ -17,6 +17,8 @@
 !/contact/index.html
 !/docs/
 !/docs/index.html
+!/downloads/
+!/downloads/**
 !/donations/
 !/donations/**
 !/sponsors/
@@ -46,6 +48,7 @@
 !/vision/
 !/vision/index.html
 !/_redirects
+!/_headers
 !/404.html
 !/index.html
 !/install.sh
@@ -55,3 +58,6 @@
 !/site.webmanifest
 !/style.css
 !/terms.html
+!/updates/
+!/updates/**
+!/update-public-key.pem

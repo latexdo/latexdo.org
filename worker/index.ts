@@ -4,7 +4,30 @@ interface WorkerEnv {
   };
 }
 
-const htmlAssetVersion = "2026-08-26-google-tag-manager";
+const htmlAssetVersion = "2026-09-16-downloads-migration";
+const feedJsonPattern = /^\/(?:downloads|updates)\/.+\.json$/;
+const feedHeaderValues = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+  "Access-Control-Allow-Headers": "Accept, Content-Type, User-Agent",
+  "Cache-Control": "public, max-age=60",
+} as const;
+
+function feedHeaders(): Headers {
+  return new Headers(feedHeaderValues);
+}
+
+function withFeedHeaders(response: Response): Response {
+  const headers = new Headers(response.headers);
+  for (const [key, value] of Object.entries(feedHeaderValues)) {
+    headers.set(key, value);
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 
 export default {
   async fetch(request: Request, env: WorkerEnv): Promise<Response> {
@@ -32,6 +55,16 @@ export default {
       url.pathname.startsWith("/server/")
     ) {
       return Response.redirect(new URL("/", url.origin).toString(), 301);
+    }
+
+    if (feedJsonPattern.test(url.pathname)) {
+      if (request.method === "OPTIONS") {
+        return new Response(null, { status: 204, headers: feedHeaders() });
+      }
+
+      if (request.method === "GET" || request.method === "HEAD") {
+        return withFeedHeaders(await env.ASSETS.fetch(request));
+      }
     }
 
     if (

@@ -429,17 +429,17 @@ function renderDownloadFallback(container: HTMLElement): void {
     <article class="download-card">
       <h3>Downloads page</h3>
       <p>Open the direct downloads page for macOS and Windows installers.</p>
-      <a class="button primary" href="https://app.latexdo.org/downloads/">View downloads</a>
+      <a class="button primary" href="/downloads/">View downloads</a>
     </article>
     <article class="download-card">
       <h3>Update manifest</h3>
       <p>The desktop app checks the public manifest for update information.</p>
-      <a class="button secondary" href="https://app.latexdo.org/downloads/manifest.json">View manifest</a>
+      <a class="button secondary" href="/downloads/manifest.json">View manifest</a>
     </article>
     <article class="download-card">
       <h3>Checksums</h3>
       <p>Verify installer integrity with SHA-256 checksums from the website.</p>
-      <a class="button secondary" href="https://app.latexdo.org/downloads/SHA256SUMS.txt">View checksums</a>
+      <a class="button secondary" href="/downloads/SHA256SUMS.txt">View checksums</a>
     </article>`;
 }
 
@@ -448,7 +448,7 @@ async function initDownloads(): Promise<void> {
   if (!container) return;
 
   try {
-    const response = await fetch("https://app.latexdo.org/downloads/manifest.json", {
+    const response = await fetch("/downloads/manifest.json", {
       cache: "no-store",
     });
     if (!response.ok) throw new Error(`Manifest returned ${response.status}`);
@@ -466,7 +466,7 @@ async function initDownloads(): Promise<void> {
         const meta = escapeHtml(
           `${file.sizeLabel ?? formatBytes(file.size)} · ${formatDate(manifest.publishedAt)}`,
         );
-        const url = escapeHtml(file.url || `https://app.latexdo.org/downloads/files/${file.filename}`);
+        const url = escapeHtml(file.url || `/downloads/files/${file.filename}`);
         return `<article class="download-card">
           <div>
             <h3>${label}</h3>
@@ -893,7 +893,7 @@ async function initReleaseSwitcher(): Promise<void> {
   if (!switcher || !groups || !downloads || !meta) return;
 
   const source =
-    switcher.dataset.releasesSrc || "https://app.latexdo.org/downloads/releases.json";
+    switcher.dataset.releasesSrc || "/downloads/releases.json";
   const downloadsContainer = downloads;
   const metaContainer = meta;
   const deviceHint = await getClientDeviceHint();

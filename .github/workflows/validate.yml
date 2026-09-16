@@ -40,21 +40,27 @@ jobs:
 
       - name: Validate Cloudflare asset set
         run: |
-          for asset_path in about assets bin docs editor; do
+          for asset_path in about assets bin docs downloads updates; do
             test -e "$asset_path" || {
               echo "Missing required path: $asset_path"
               exit 1
             }
           done
 
-          for asset_path in .nojekyll _redirects index.html install.sh privacy.html robots.txt sitemap.xml site.webmanifest style.css terms.html; do
+          for asset_path in .nojekyll _headers _redirects index.html install.sh privacy.html robots.txt sitemap.xml site.webmanifest style.css terms.html update-public-key.pem; do
             test -e "$asset_path" || {
               echo "Missing required file: $asset_path"
               exit 1
             }
           done
 
-          if find about assets bin docs editor -type l -print -quit | grep -q .; then
+          if find about assets bin docs downloads updates -type l -print -quit | grep -q .; then
             echo "Cloudflare assets must not contain symbolic links."
             exit 1
           fi
+
+      - name: Validate shared page shells
+        run: npm run check:footers
+
+      - name: Validate downloads and update feeds
+        run: npm run check:downloads

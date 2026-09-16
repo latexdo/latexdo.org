@@ -5,13 +5,9 @@
 /legal-notice/ /about/ 301
 /association /about/ 301
 /association/ /about/ 301
-/downloads https://app.latexdo.org/downloads/ 301
-/downloads/ https://app.latexdo.org/downloads/ 301
-/downloads/* https://app.latexdo.org/downloads/:splat 301
-/updates/* https://app.latexdo.org/updates/:splat 301
-/editor https://app.latexdo.org/downloads/ 301
-/editor/ https://app.latexdo.org/downloads/ 301
-/editor/* https://app.latexdo.org/downloads/ 301
+/editor /downloads/ 301
+/editor/ /downloads/ 301
+/editor/* /downloads/ 301
 /cli / 301
 /cli/ / 301
 /cli/* / 301
