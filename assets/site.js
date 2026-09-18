@@ -634,37 +634,6 @@ function renderReleaseDownloads(container, release, deviceHint = null) {
     })
         .join("");
 }
-function renderReleaseMeta(container, release) {
-    const version = escapeHtml(release.version || release.tag);
-    const tag = escapeHtml(release.tag);
-    const publishedAt = escapeHtml(release.publishedAt || "Unknown");
-    const commit = escapeHtml(getShortCommit(release));
-    const releasePath = escapeHtml(getReleasePath(release));
-    const manifestPath = escapeHtml(getReleaseManifestPath(release));
-    const checksumsPath = escapeHtml(getReleaseChecksumsPath(release));
-    const githubPath = escapeHtml(getReleaseGithubPath(release));
-    container.innerHTML = `<h2>Selected build information</h2>
-        <dl>
-          <div>
-            <dt>Version</dt>
-            <dd>${version}</dd>
-          </div>
-          <div>
-            <dt>Published</dt>
-            <dd>${publishedAt}</dd>
-          </div>
-          <div>
-            <dt>Commit</dt>
-            <dd>${commit}</dd>
-          </div>
-        </dl>
-        <p>
-          Selected tag: <a href="${releasePath}">${tag}</a>.
-          For automated checks, use <a href="${manifestPath}">manifest.json</a>,
-          <a href="${checksumsPath}">SHA256SUMS.txt</a>, and
-          <a href="${githubPath}">GitHub release</a>.
-        </p>`;
-}
 function getReleaseGroupLabel(release) {
     const version = release.version || release.tag.replace(/-build\..*$/, "");
     return version.startsWith("v") ? version : `v${version}`;
@@ -736,12 +705,10 @@ async function initReleaseSwitcher() {
     const switcher = query("[data-release-switcher]");
     const groups = query("[data-release-groups]");
     const downloads = query("[data-release-downloads]");
-    const meta = query("[data-release-meta]");
-    if (!switcher || !groups || !downloads || !meta)
+    if (!switcher || !groups || !downloads)
         return;
     const source = switcher.dataset.releasesSrc || "/downloads/releases.json";
     const downloadsContainer = downloads;
-    const metaContainer = meta;
     const deviceHint = await getClientDeviceHint();
     try {
         const response = await fetch(source, { cache: "no-store" });
@@ -764,7 +731,6 @@ async function initReleaseSwitcher() {
                 buildButton.closest(".release-item")?.classList.toggle("is-selected", selected);
             });
             renderReleaseDownloads(downloadsContainer, release, deviceHint);
-            renderReleaseMeta(metaContainer, release);
             if (openGroup) {
                 button.closest("details")?.setAttribute("open", "");
                 button.scrollIntoView({ block: "nearest" });
