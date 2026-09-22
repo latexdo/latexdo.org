@@ -3393,9 +3393,8 @@ span.footer-social-link {
   grid-template-columns: minmax(0, 820px);
   gap: 40px;
   align-items: center;
-  min-height: 500px;
   border-bottom: 1px solid var(--hairline);
-  padding-bottom: 58px;
+  padding: 8px 0 28px;
 }
 
 .board-hero h1 {
@@ -3420,61 +3419,139 @@ span.footer-social-link {
 }
 
 .board-section {
-  padding: 68px 0 0;
+  padding: 36px 0 0;
 }
 
-.board-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+.board-member-slider {
+  max-width: 100%;
 }
 
-.board-member-card {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 22px;
-  align-items: start;
+.board-member-viewport {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 4px;
+  scroll-behavior: smooth;
+}
+
+.board-member-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.board-member-slide {
+  flex: 0 0 176px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: 0 14px 40px rgb(17 19 24 / 7%);
-  padding: 24px;
+  padding: 22px 18px;
 }
 
-.board-member-photo {
-  width: 120px;
-  height: 120px;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  object-fit: cover;
-  background: #f8fbff;
+.board-member-slide .board-member-photo {
+  width: 88px;
+  height: 88px;
 }
 
-.board-member-card h3 {
-  margin: 6px 0 8px;
-  font-size: 26px;
-}
-
-.board-member-card p {
+.board-member-slide h3 {
   margin: 0;
+  font-size: 18px;
+  text-align: center;
+}
+
+.board-member-slide .board-role {
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.35;
 }
 
 .board-member-links {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
+  margin-top: 12px;
+}
+
+.board-link-button {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition:
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.board-link-button:hover,
+.board-link-button:focus-visible {
+  border-color: var(--blue-strong);
+  color: var(--blue-strong);
+}
+
+.org-slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   margin-top: 16px;
 }
 
-.board-member-links a {
-  color: var(--blue-strong);
-  font-weight: 820;
-  text-decoration: none;
+.org-slider-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition:
+    border-color 140ms ease,
+    color 140ms ease;
 }
 
-.board-member-links a:hover,
-.board-member-links a:focus-visible {
-  text-decoration: underline;
+.org-slider-arrow:hover,
+.org-slider-arrow:focus-visible {
+  border-color: var(--blue-strong);
+  color: var(--blue-strong);
+}
+
+.org-slider-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+  border-color: var(--border);
+  color: var(--ink-soft);
+}
+
+.org-slider-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.org-slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition:
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.org-slide-dot.is-active {
+  background: var(--blue-strong);
+  transform: scale(1.2);
 }
 
 .legal-facts {
@@ -3554,11 +3631,6 @@ span.footer-social-link {
 
 .legal-document p + p {
   margin-top: 12px;
-}
-
-.legal-document .official-domain-statement {
-  margin-top: 16px;
-  color: var(--ink);
 }
 
 .legal-document a {
@@ -4501,7 +4573,6 @@ img.platform-logo {
   .task-grid,
   .roadmap-track,
   .download-grid,
-  .board-grid,
   .about-grid,
   .about-audience {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4611,7 +4682,6 @@ img.platform-logo {
   .about-split,
   .about-audience,
   .board-hero,
-  .board-grid,
   .downloads-meta dl,
   .donations-impact-grid {
     grid-template-columns: 1fr;
@@ -4707,11 +4777,7 @@ img.platform-logo {
   .board-hero {
     min-height: 0;
     gap: 24px;
-    padding-bottom: 42px;
-  }
-
-  .board-member-card {
-    grid-template-columns: 1fr;
+    padding-bottom: 24px;
   }
 
   .about-section {
@@ -4719,7 +4785,7 @@ img.platform-logo {
   }
 
   .board-section {
-    padding-top: 48px;
+    padding-top: 32px;
   }
 
   .legal-facts div {
