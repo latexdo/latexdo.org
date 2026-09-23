@@ -4,8 +4,10 @@ interface WorkerEnv {
   };
 }
 
-const htmlAssetVersion = "2026-09-16-downloads-migration";
 const feedJsonPattern = /^\/(?:downloads|updates)\/.+\.json$/;
+const htmlHeaderValues = {
+  "Cache-Control": "no-store",
+} as const;
 const feedHeaderValues = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
@@ -15,6 +17,18 @@ const feedHeaderValues = {
 
 function feedHeaders(): Headers {
   return new Headers(feedHeaderValues);
+}
+
+function withHtmlHeaders(response: Response): Response {
+  const headers = new Headers(response.headers);
+  for (const [key, value] of Object.entries(htmlHeaderValues)) {
+    headers.set(key, value);
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
 }
 
 function withFeedHeaders(response: Response): Response {
@@ -73,7 +87,7 @@ export default {
         url.pathname.endsWith("/") ||
         url.pathname.endsWith(".html"))
     ) {
-      url.searchParams.set("__latexdo_asset_version", htmlAssetVersion);
+      url.searchParams.set("__latexdo_asset_version", Date.now().toString());
       const response = await env.ASSETS.fetch(new Request(url, request));
 
       const status = response.status;
@@ -92,7 +106,7 @@ export default {
         return new Response(null, { status, headers });
       }
 
-      return response;
+      return withHtmlHeaders(response);
     }
 
     return env.ASSETS.fetch(request);

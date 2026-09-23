@@ -252,13 +252,17 @@ assert(
 );
 
 const latestUpdateFeed = await readJson(path.join(updatesRoot, "latest.json"));
-assertUpdateFeed(latestUpdateFeed, "updates/latest.json", {
-  expectedRelease: latestRelease,
-});
+assertUpdateFeed(latestUpdateFeed, "updates/latest.json");
 assert(
-  await pathExists(path.join("updates", `${latestRelease.tag}.json`)),
-  `Missing latest release feed: updates/${latestRelease.tag}.json`,
+  seenReleases.has(latestUpdateFeed.release),
+  "updates/latest.json does not have a matching downloads release.",
 );
+if (latestUpdateFeed.release !== latestRelease.tag) {
+  console.warn(
+    `updates/latest.json points at ${latestUpdateFeed.release}; downloads/latest is ${latestRelease.tag}. ` +
+      "This is allowed when a downloads-only release is published without a new signed update feed.",
+  );
+}
 
 for (const entry of await readdir(updatesRoot, { withFileTypes: true })) {
   if (!entry.isFile() || !entry.name.endsWith(".json")) continue;

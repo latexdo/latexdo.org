@@ -909,49 +909,6 @@ function initCopyCommands() {
         });
     });
 }
-function initSlideCarousel(slider, name) {
-    const viewport = slider.querySelector(`[data-${name}-viewport]`);
-    const slides = Array.from(slider.querySelectorAll(`[data-${name}-slide]`));
-    const dots = Array.from(slider.querySelectorAll(`[data-${name}-dot]`));
-    const prev = slider.querySelector(`[data-${name}-prev]`);
-    const next = slider.querySelector(`[data-${name}-next]`);
-    if (!viewport || !slides.length)
-        return;
-    function slideWidth() {
-        return slides[0].getBoundingClientRect().width + 14;
-    }
-    function showSlide(index) {
-        const target = Math.max(0, Math.min(index, slides.length - 1));
-        viewport.scrollTo({ left: target * slideWidth(), behavior: "smooth" });
-    }
-    function updateState() {
-        const width = slideWidth();
-        const index = width > 0 ? Math.round(viewport.scrollLeft / width) : 0;
-        slides.forEach((slide, slideIndex) => {
-            const active = slideIndex === index;
-            slide.setAttribute("aria-current", String(active));
-            slide.classList.toggle("is-active", active);
-        });
-        dots.forEach((dot, dotIndex) => {
-            dot.classList.toggle("is-active", dotIndex === index);
-        });
-        if (prev)
-            prev.disabled = index <= 0;
-        if (next)
-            next.disabled = index >= slides.length - 1;
-    }
-    prev?.addEventListener("click", () => showSlide(Math.round(viewport.scrollLeft / slideWidth()) - 1));
-    next?.addEventListener("click", () => showSlide(Math.round(viewport.scrollLeft / slideWidth()) + 1));
-    dots.forEach((dot, dotIndex) => dot.addEventListener("click", () => showSlide(dotIndex)));
-    viewport.addEventListener("scroll", updateState, { passive: true });
-    window.addEventListener("resize", updateState);
-    updateState();
-}
-function initBoardSlider() {
-    const slider = query("[data-board-slider]");
-    if (slider)
-        initSlideCarousel(slider, "board");
-}
 function initTheme() {
     const toggle = document.querySelector("[data-theme-toggle]");
     const html = document.documentElement;
@@ -1036,7 +993,6 @@ function init() {
     void initExpensesTable();
     initCopyCommands();
     initTheme();
-    initBoardSlider();
     void initFooter();
 }
 if (document.readyState === "loading") {
