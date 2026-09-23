@@ -4248,14 +4248,6 @@ img.platform-logo {
   margin: 4px 0 0;
 }
 
-.release-heading-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
 .release-groups {
   display: grid;
   gap: 12px;
