@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "full-stack-developer",
+    "title": "Full Stack Developer",
+    "languages": [
+      "TypeScript",
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "summary": "Contribute to LatexDo as a volunteer by building services and interfaces that make writing, reviewing, and publishing LaTeX documents easier.",
+    "description": "We're looking for a volunteer Full Stack Developer to help build and improve LatexDo's open-source research tools. You'll contribute across backend services and the frontend, helping take features from an initial idea through implementation, testing, and release.",
+    "responsibilities": [
+      "Design and implement backend services, APIs, and integrations for document workflows.",
+      "Connect frontend interfaces to backend features and handle loading, errors, and edge cases clearly.",
+      "Improve reliability, performance, and maintainability across the application.",
+      "Write tests, review changes, and document the features you ship.",
+      "Work with the team to turn user feedback into practical improvements."
+    ],
+    "requirements": [
+      "Experience building applications with TypeScript or JavaScript.",
+      "Confidence designing APIs, handling data, and debugging backend behavior.",
+      "Working knowledge of HTML, CSS, and accessible frontend interfaces.",
+      "Comfort with Git, code reviews, and automated testing.",
+      "An interest in open-source software and tools for research and writing."
+    ],
+    "applicationUrl": "",
+    "published": true
+  }
+]

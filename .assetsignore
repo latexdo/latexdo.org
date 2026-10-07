@@ -9,6 +9,10 @@
 !/bin/latexdo
 !/board/
 !/board/index.html
+!/volunteering/
+!/volunteering/**/
+!/volunteering/**/index.html
+!/volunteering/index.html
 !/cli/
 !/cli/index.html
 !/code-of-conduct/

@@ -33,6 +33,33 @@ npm run test       # Type-check and validate shared shells plus download/update 
 npm run typecheck  # Check TypeScript without emitting files.
 ```
 
+## Volunteering
+
+The shared footer links to `/volunteering/`. Positions are managed in
+`volunteering/positions.json`; HTML pages and sitemap entries are generated during
+`npm run build` (or `npm run build:volunteering`). No page code needs to be copied.
+
+To add a position:
+
+1. Copy the object from `volunteering/position.example.json` into the array in
+   `volunteering/positions.json`.
+2. Set a unique `slug`, title, languages, summary,
+   description, responsibilities, and requirements. Text is escaped automatically.
+3. Paste that position's Google Form share URL into `applicationUrl` (an HTTPS
+   `forms.gle` link or a `docs.google.com/forms/.../viewform` link). Leave it empty
+   to show that the application form is coming soon, without a broken button.
+4. Set `published` to `true` and run `npm run build:volunteering`. Commit the data,
+   generated `volunteering/` HTML files, and `sitemap.xml` together.
+
+Each published position appears on the volunteering index and has its own page at
+`/volunteering/<slug>/`, including an application button. Set `published` to `false`
+or remove an entry to withdraw it; rebuild to remove its generated page and
+sitemap entry. Drafts and the example file are not published. Until real roles
+are added, the volunteering page shows an empty state.
+
+The shared page layout is `scripts/volunteer-page.template.html`. Keep these changes
+in the main app's website source too if using the source sync described below.
+
 ## Deploy
 
 GitHub Actions validates this repository and deploys `main` to Cloudflare Workers with Wrangler. The Workers static assets deployment is configured in `wrangler.jsonc`.

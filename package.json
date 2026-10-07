@@ -5,13 +5,15 @@
   "description": "Static TypeScript website for LatexDo.",
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "npm run build:volunteering && tsc -p tsconfig.json",
+    "build:volunteering": "node scripts/build-volunteering.mjs",
+    "check:volunteering": "node scripts/check-volunteering.mjs",
     "check:downloads": "node scripts/check-downloads.mjs",
     "check:footers": "node scripts/check-footers.mjs",
     "check:product-demo": "node scripts/check-product-demo.mjs",
     "dev": "serve -l 8787 .",
     "preview": "serve -l 8787 .",
-    "test": "npm run typecheck && npm run build && npm run check:product-demo && npm run check:footers && npm run check:downloads",
+    "test": "npm run typecheck && npm run build && npm run check:product-demo && npm run check:volunteering && npm run check:footers && npm run check:downloads",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "deploy": "npm run build && wrangler deploy"
   },

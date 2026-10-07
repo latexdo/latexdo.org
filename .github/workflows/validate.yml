@@ -58,5 +58,8 @@ jobs:
       - name: Validate shared page shells
         run: npm run check:footers
 
+      - name: Validate volunteering pages
+        run: npm run check:volunteering
+
       - name: Validate downloads and update feeds
         run: npm run check:downloads

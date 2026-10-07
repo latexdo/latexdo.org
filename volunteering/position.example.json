@@ -1,0 +1,19 @@
+{
+  "slug": "your-position-title",
+  "title": "Your position title",
+  "languages": [
+    "TypeScript",
+    "JavaScript"
+  ],
+  "summary": "Explain the position in one or two sentences.",
+  "description": "Explain why this position matters and who the person will work with.",
+  "responsibilities": [
+    "Describe a concrete responsibility.",
+    "Describe another responsibility and its expected impact."
+  ],
+  "requirements": [
+    "Describe a skill or experience that will help in this position."
+  ],
+  "applicationUrl": "",
+  "published": false
+}

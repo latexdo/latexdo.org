@@ -5,6 +5,9 @@
 /legal-notice/ /about/ 301
 /association /about/ 301
 /association/ /about/ 301
+/careers /volunteering/ 301
+/careers/ /volunteering/ 301
+/careers/* /volunteering/:splat 301
 /editor /downloads/ 301
 /editor/ /downloads/ 301
 /editor/* /downloads/ 301
