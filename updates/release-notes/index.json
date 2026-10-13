@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "product": "LatexDo",
+  "releases": [
+    {
+      "version": "0.3.1",
+      "publishedAt": "2026-10-13T12:00:00.000Z",
+      "releaseNotesUrl": "https://latexdo.org/updates/release-notes/0.3.1.json",
+      "sha256": "e288822efb9090c4e80cf9829579054286b35f67a419e1856dc0fdaa78028c7c"
+    },
+    {
+      "version": "0.3.0",
+      "publishedAt": "2026-03-01T12:00:00.000Z",
+      "releaseNotesUrl": "https://latexdo.org/updates/release-notes/0.3.0.json",
+      "sha256": "ccebff5234ca70cdd242f5e448861e663ffaf36bce907d44556ea4b8b2dd3039"
+    }
+  ],
+  "signature": {
+    "algorithm": "ed25519",
+    "keyId": "5f6d08034174008d",
+    "value": "98sDa8hw9l+FpFXuAECHrNTYUxgixO7ZU+DD0gyIgzV640DfX3Ol9+A8SiexHHo205fdf+/51ei4tz4VhQ0UCg=="
+  }
+}

@@ -1,15 +1,17 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "product": "LatexDo",
   "channel": "stable",
-  "version": "0.3.0",
-  "publishedAt": "2026-08-06T14:26:31.263Z",
-  "commit": "38c0f1f5e28dcff8a190581fc392f6155dcc0864",
+  "version": "0.3.1",
+  "publishedAt": "2026-10-13T15:41:06.657Z",
+  "expiresAt": "2026-11-12T15:41:06.657Z",
+  "commit": "4059a3dfbb96d614a30b4af2ea351fa77bd3e9b0",
   "repository": "latexdo/latexdo",
-  "release": "v0.3.0-build.180.1.38c0f1f5e28d",
-  "releaseUrl": "https://latexdo.org/downloads/v0.3.0-build.180.1.38c0f1f5e28d/",
-  "downloadsPage": "https://latexdo.org/downloads/v0.3.0-build.180.1.38c0f1f5e28d/",
-  "manifestUrl": "https://latexdo.org/downloads/v0.3.0-build.180.1.38c0f1f5e28d/manifest.json",
+  "release": "v0.3.1-build.314.1.4059a3dfbb96",
+  "releaseUrl": "https://latexdo.org/downloads/v0.3.1-build.314.1.4059a3dfbb96/",
+  "downloadsPage": "https://latexdo.org/downloads/v0.3.1-build.314.1.4059a3dfbb96/",
+  "manifestUrl": "https://latexdo.org/downloads/v0.3.1-build.314.1.4059a3dfbb96/manifest.json",
+  "releaseNotesUrl": "https://latexdo.org/updates/release-notes/0.3.1.json",
   "files": [
     {
       "id": "macos-arm64",
@@ -18,10 +20,10 @@
       "arch": "arm64",
       "filename": "LatexDo-macos-arm64.dmg",
       "note": "For Macs with Apple Silicon chips.",
-      "size": 224568746,
-      "sizeLabel": "214.2 MB",
-      "sha256": "3bb1190ba05b1137af5eb216b8780169cbaccf73c1e69ce08f459d4f7da693d7",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.0-build.180.1.38c0f1f5e28d/LatexDo-macos-arm64.dmg"
+      "size": 226104095,
+      "sizeLabel": "215.6 MB",
+      "sha256": "1e760b379bd28e89bb428a7baf2ee1a31bc8ed7ad9417d97a8ebbb37a2939c94",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.314.1.4059a3dfbb96/LatexDo-macos-arm64.dmg"
     },
     {
       "id": "macos-x64",
@@ -30,10 +32,10 @@
       "arch": "x64",
       "filename": "LatexDo-macos-x64.dmg",
       "note": "For Intel-based Macs.",
-      "size": 239709728,
-      "sizeLabel": "228.6 MB",
-      "sha256": "65c092931000d93351a675a869e6d9939524f9114d96747d35839dc2e61b8d8b",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.0-build.180.1.38c0f1f5e28d/LatexDo-macos-x64.dmg"
+      "size": 243403006,
+      "sizeLabel": "232.1 MB",
+      "sha256": "e4948994c7a29c48868c203dd8ef3f6124c910c121186ea56ab9b42de27f2d92",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.314.1.4059a3dfbb96/LatexDo-macos-x64.dmg"
     },
     {
       "id": "windows-x64",
@@ -42,10 +44,10 @@
       "arch": "x64",
       "filename": "LatexDo-windows-x64.exe",
       "note": "For 64-bit Windows PCs.",
-      "size": 451374490,
-      "sizeLabel": "430.5 MB",
-      "sha256": "9c00a42e11d59147528b84a80db11063afd125ad4852a129dcec397430bf7a9c",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.0-build.180.1.38c0f1f5e28d/LatexDo-windows-x64.exe"
+      "size": 455890757,
+      "sizeLabel": "434.8 MB",
+      "sha256": "550b2395d9cce0251d817ac071dda3689116a2e46a3820fa8a611ad192957f9d",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.314.1.4059a3dfbb96/LatexDo-windows-x64.exe"
     },
     {
       "id": "linux-x64",
@@ -54,10 +56,15 @@
       "arch": "x64",
       "filename": "LatexDo-linux-x64.AppImage",
       "note": "For 64-bit Linux distributions that support AppImage.",
-      "size": 568408786,
-      "sizeLabel": "542.1 MB",
-      "sha256": "6848d9a1543b00572f31feccdcd13c4e6e8c19a23c5f02f1bed2d5d899e6b0d0",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.0-build.180.1.38c0f1f5e28d/LatexDo-linux-x64.AppImage"
+      "size": 570265559,
+      "sizeLabel": "543.8 MB",
+      "sha256": "7c95ac0d1e3cf630ac22c009fd041a1b15ff847e23770185d16aff39c056f6e3",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.314.1.4059a3dfbb96/LatexDo-linux-x64.AppImage"
     }
-  ]
+  ],
+  "signature": {
+    "algorithm": "ed25519",
+    "keyId": "5f6d08034174008d",
+    "value": "6d56Vafm+f4BPjDetzkF7kpsgXqihLXqEorXYSBxGE4VXffQIu3KJKuWVkI2TAoSOiYPXUPcPjlHjw/R99/oCw=="
+  }
 }
