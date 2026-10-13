@@ -44,6 +44,7 @@
     <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
     <link rel="preload" href="../style.css" as="style" />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="/assets/research.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -98,75 +99,209 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="detail-page">
-      <section class="detail-hero" aria-labelledby="detail-title">
-        <a class="detail-back" href="/research/">Research overview</a>
-        <p class="eyebrow">Citation graph</p>
-        <h1 id="detail-title">A citation graph the editor can explain.</h1>
-        <p>LatexDo builds a deterministic bibliography graph from BibTeX entries, citation usage, and paper metadata.</p>
-        <dl class="detail-facts" aria-label="Knowledge graph facts">
-          <div>
-            <dt>Nodes</dt>
-            <dd>BibTeX entries and citation usage</dd>
-          </div>
-          <div>
-            <dt>Edges</dt>
-            <dd>author, venue, year, title similarity</dd>
-          </div>
-          <div>
-            <dt>Checks</dt>
-            <dd>missing, duplicate, stale, unused</dd>
-          </div>
-        </dl>
-        <div class="hero-actions" aria-label="Research areas">
-          <a href="/research/compiler/">Compiler</a>
-          <a href="/research/knowledge-graph/">Knowledge Graph</a>
-          <a href="/research/ai/">AI</a>
-        </div>
+    <main id="content" class="r-page r-detail">
+      <section class="r-hero" aria-labelledby="detail-title">
+        <a class="r-text-link r-back" href="/research/">← All research</a>
+        <p class="eyebrow">Research / Knowledge graph</p>
+        <h1 id="detail-title">A map your bibliography can explain.</h1>
+        <p class="r-lede">
+          Trace a connection back to authors, titles, venues, or years—and see which references your manuscript
+          actually cites.
+        </p>
       </section>
-
-      <section class="research-stack detail-stack" aria-label="Knowledge Graph details">
-        <article class="research-panel graph-panel">
-          <div class="panel-heading">
-            <p class="eyebrow">Citation graph</p>
-            <h2>A bibliography graph connected to the editor.</h2>
-            <p>The current graph reads project .bib entries and citation keys used in .tex files, then connects papers by shared authors, venues, years, and title similarity.</p>
-            <p class="implementation-link">Connected code: <code>src/latex/citationAnalysis.ts</code>, <code>src/features/graph/knowledgeGraph.ts</code>, <code>src/components/KnowledgeGraphView.tsx</code></p>
+      <section class="r-detail-visual" aria-label="Knowledge graph animated explanation">
+        <figure
+          class="r-lab r-film r-film-graph"
+          data-film="graph"
+          data-phase="3"
+          aria-labelledby="graph-caption"
+        >
+          <div class="r-film-top">
+            <span>
+              <i class="r-dot"></i>
+              A living map of references
+            </span>
+            <span>Deterministic relationships</span>
           </div>
-          <div class="panel-grid">
-            <section>
-              <h3>Model</h3>
-              <ul>
-                <li>Each node is one bibliography entry with key, title, authors, venue, year, type, cited status, and degree.</li>
-                <li>Edges are typed as shared author, same venue, same year, or similar topic from title-token Jaccard overlap.</li>
-                <li>Weights are configurable, then pruned to the strongest edges per node so large libraries stay readable.</li>
-                <li>Stats include node count, edge count, cited count, and connected component count.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Tools</h3>
-              <ul>
-                <li><code>parseBibFile</code> reads BibTeX through <code>bibtex-parse</code> with size and entry limits.</li>
-                <li><code>extractCitationUsages</code> scans <code>\cite</code>-style commands in project TeX files.</li>
-                <li><code>analyzeCitationLibrary</code> reports used, unused, missing, duplicate, stale, and low-quality references.</li>
-                <li>The graph view adds search, cited-only filtering, relation toggles, weight sliders, pan, zoom, drag, and citation insertion.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Result</h3>
-              <p>
-                Authors can see which references are central, which cited
-                papers are isolated, which uncited papers are related, and where
-                the bibliography has quality problems. The same graph data feeds
-                citation recommendations for selected prose.
-              </p>
-            </section>
+          <div class="r-cinema" aria-hidden="true">
+            <div class="r-constellation">
+              <div class="r-graph-origin">
+                <span class="r-bib-icon">.bib</span>
+                <div>
+                  <strong>Your bibliography</strong>
+                  <small>Entries → relationships → context</small>
+                </div>
+              </div>
+              <svg class="r-graph-svg" viewBox="0 0 800 370" role="presentation">
+                <defs>
+                  <linearGradient id="graph-stroke" x1="0" y1="0" x2="1" y2="1">
+                    <stop stop-color="#659eff" />
+                    <stop offset="1" stop-color="#235ee1" />
+                  </linearGradient>
+                </defs>
+                <g class="r-graph-edges">
+                  <path pathLength="1" data-edge="0,1" data-relation="author" d="M160 110L420 80" />
+                  <path pathLength="1" data-edge="0,2" data-relation="topic" d="M160 110L200 285" />
+                  <path pathLength="1" data-edge="1,3" data-relation="both" d="M420 80L520 270" />
+                </g>
+                <g class="r-graph-packets">
+                  <circle data-packet="0,1" r="4" />
+                  <circle data-packet="0,2" r="4" />
+                  <circle data-packet="1,3" r="4" />
+                </g>
+                <g class="r-orbit-node r-cited-node" data-graph-node="0" transform="translate(160 110)">
+                  <circle class="r-node-halo" r="40" />
+                  <circle class="r-node-disc" r="25" />
+                  <text y="6">A</text>
+                  <text class="r-orbit-label" y="57">Neural retrieval</text>
+                  <text class="r-node-cited" y="76">CITED IN YOUR PAPER</text>
+                </g>
+                <g class="r-orbit-node r-cited-node" data-graph-node="1" transform="translate(420 80)">
+                  <circle class="r-node-halo" r="40" />
+                  <circle class="r-node-disc" r="25" />
+                  <text y="6">B</text>
+                  <text class="r-orbit-label" y="57">Document ranking</text>
+                  <text class="r-node-cited" y="76">CITED IN YOUR PAPER</text>
+                </g>
+                <g class="r-orbit-node" data-graph-node="2" transform="translate(200 285)">
+                  <circle class="r-node-halo" r="37" />
+                  <circle class="r-node-disc" r="23" />
+                  <text y="6">C</text>
+                  <text class="r-orbit-label" y="53">Neural retrieval methods</text>
+                </g>
+                <g class="r-orbit-node" data-graph-node="3" transform="translate(520 270)">
+                  <circle class="r-node-halo" r="37" />
+                  <circle class="r-node-disc" r="23" />
+                  <text y="6">D</text>
+                  <text class="r-orbit-label" y="53">Document ranking methods</text>
+                </g>
+                <g class="r-orbit-node r-unlinked-node" data-graph-node="4" transform="translate(690 160)">
+                  <circle class="r-node-halo" r="32" />
+                  <circle class="r-node-disc" r="20" />
+                  <text y="6">E</text>
+                  <text class="r-orbit-label" y="50">Unlinked entry</text>
+                </g>
+              </svg>
+              <div class="r-relation-badge">
+                <span class="r-relation-light"></span>
+                <span class="r-relation-0">5 entries. A library taking shape.</span>
+                <span class="r-relation-1">Shared authors connect A–B and B–D.</span>
+                <span class="r-relation-2">Similar titles connect A–C and B–D.</span>
+                <span class="r-relation-3">Citation usage adds the manuscript’s context.</span>
+              </div>
+            </div>
+            <div class="r-graph-summary">
+              <div>
+                <strong>5</strong>
+                <span>Bibliography entries</span>
+              </div>
+              <div>
+                <strong>3</strong>
+                <span>Explainable connections</span>
+              </div>
+              <div>
+                <strong>2</strong>
+                <span>Cited in the manuscript</span>
+              </div>
+            </div>
           </div>
+          <div class="r-film-bottom">
+            <div class="r-film-story">
+              <span class="r-scene-number" data-scene-number>04 / 04</span>
+              <p data-scene-caption>Your citations add context.</p>
+            </div>
+            <button
+              class="r-motion-toggle"
+              type="button"
+              data-motion-toggle
+              hidden
+              aria-label="Pause a living map of references animation"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path class="r-pause-icon" d="M7 5v10M13 5v10" />
+                <path class="r-play-icon" d="m7 5 7 5-7 5Z" />
+              </svg>
+            </button>
+          </div>
+          <ol class="r-film-progress" aria-label="A living map of references stages">
+            <li>
+              <span>A library becomes a map.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Shared authors draw connections.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Title overlap reveals another link.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Your citations add context.</span>
+              <i></i>
+            </li>
+          </ol>
+          <figcaption id="graph-caption">
+            Five illustrative BibTeX entries. Lines represent shared authors or title words; filled nodes are
+            cited in the example manuscript. The application also supports venue and year relationships. Motion
+            illustrates the graph; metadata similarity does not establish scientific support.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="r-notes" aria-label="How it works">
+        <article>
+          <p class="eyebrow">01 / Inputs</p>
+          <h2>Entries become nodes.</h2>
+          <p>
+            The application parses BibTeX entries and scans citation commands in the project’s TeX files. Each
+            graph node carries the entry’s key, metadata, cited status, and number of connections.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">02 / Relationships</p>
+          <h2>Every edge has a reason.</h2>
+          <p>
+            Shared author, venue, year, and title-token overlap contribute configurable weights. Title similarity
+            uses Jaccard overlap. Minimum weight and strongest-edge limits keep the graph readable.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">03 / Interpretation</p>
+          <h2>Related is a starting point.</h2>
+          <p>
+            Search, filters, and citation recommendations help navigate the library. Separate citation checks flag
+            issues such as missing keys and duplicate entries. Graph connections describe metadata relationships;
+            they do not establish scientific support.
+          </p>
         </article>
       </section>
+      <details class="r-source">
+        <summary>Inside the implementation</summary>
+        <p>
+          Based on the desktop source reviewed at revision
+          <code>4059a3d</code>
+          . File paths are relative to the application repository.
+        </p>
+        <ul>
+          <li>
+            <code>src/latex/citationAnalysis.ts</code>
+            <span>Checks citation usage and library quality</span>
+          </li>
+          <li>
+            <code>src/features/graph/knowledgeGraph.ts</code>
+            <span>Builds deterministic weighted relationships</span>
+          </li>
+        </ul>
+      </details>
+      <nav class="r-related" aria-label="Continue exploring">
+        <span>Continue exploring</span>
+        <a class="r-text-link" href="/research/compiler/">Compiler →</a>
+        <a class="r-text-link" href="/research/ai/">AI harness →</a>
+      </nav>
     </main>
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/research.js"></script>
   </body>
 </html>

@@ -1801,3 +1801,25 @@
   font-size: 17px;
   line-height: 1.6;
 }
+
+/* Small Research entry point, using the existing homepage chapter layout. */
+.home .h-research .h-link { display: inline-flex; margin-top: 22px; }
+.home .h-research-map { display: grid; justify-items: center; padding: 38px 22px; border: 1px solid var(--h-line); border-radius: 24px; background: #f0f3f8; color: var(--h-ink); text-decoration: none; }
+.home .h-research-file { display: grid; gap: 7px; min-width: 170px; padding: 18px 26px; border: 1px solid #d6deec; border-radius: 10px; background: white; color: var(--h-blue); font: 14px var(--h-mono); text-align: center; }
+.home .h-research-file small { font-size: 10px; color: var(--h-soft); }
+.home .h-research-connector { padding: 10px 0; font-size: 24px; color: #8397b8; }
+.home .h-research-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.home .h-research-tools > span { padding: 12px; border: 1px solid #d6deec; background: white; border-radius: 8px; font-size: 12px; }
+.home .h-research-tools > span:nth-child(2) { background: var(--h-blue); border-color: var(--h-blue); color: white; }
+.home .h-research-result { font-size: 13px; color: var(--h-soft); }
+.home .h-research-map:hover { border-color: #91ade3; }
+.home .h-research-map:focus-visible { outline: 3px solid var(--h-blue); outline-offset: 5px; }
+
+/* Research teaser plays when it is in view. */
+.home .h-research-map.is-running .h-research-connector { animation: h-research-signal 3s ease-in-out infinite; }
+.home .h-research-map.is-running .h-research-tools > span { animation: h-research-tool 6s ease-in-out infinite; }
+.home .h-research-map.is-running .h-research-tools > span:nth-child(2) { animation-delay: 2s; }
+.home .h-research-map.is-running .h-research-tools > span:nth-child(3) { animation-delay: 4s; }
+@keyframes h-research-signal { 0%,100% { opacity: .4; transform: translateY(-3px); } 50% { opacity: 1; transform: translateY(3px); } }
+@keyframes h-research-tool { 0%,45%,100% { transform: translateY(0); box-shadow: none; } 20% { transform: translateY(-4px); box-shadow: 0 7px 20px #1f5fe016; } }
+@media (prefers-reduced-motion: reduce) { .home .h-research-map * { animation: none !important; } }

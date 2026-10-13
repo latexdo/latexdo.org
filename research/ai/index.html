@@ -19,13 +19,13 @@
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LatexDo</title>
+    <title>AI Harness: Context, Tools and Feedback | LatexDo</title>
     <meta name="description" content="How LatexDo connects AI assistance to project files, compilation, checks, citations, and local or cloud model providers." />
     <meta name="author" content="LatexDo" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#f6f7f9" />
     <meta property="og:site_name" content="LatexDo" />
-    <meta property="og:title" content="LatexDo" />
+    <meta property="og:title" content="AI Harness: Context, Tools and Feedback | LatexDo" />
     <meta property="og:description" content="How LatexDo connects AI assistance to project files, compilation, checks, citations, and local or cloud model providers." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://latexdo.org/research/ai/" />
@@ -34,6 +34,7 @@
     <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
     <link rel="preload" href="../style.css" as="style" />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="/assets/research.css" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -44,80 +45,244 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="detail-page">
-      <section class="detail-hero" aria-labelledby="detail-title">
-        <a class="detail-back" href="/research/">Research overview</a>
-        <p class="eyebrow">Grounded AI</p>
-        <h1 id="detail-title">AI that works from project evidence.</h1>
-        <p>LatexDo connects AI assistance to files, compilation, checks, citations, and local or cloud model providers.</p>
-        <dl class="detail-facts" aria-label="AI system facts">
-          <div>
-            <dt>Context</dt>
-            <dd>files, active editor, bibliography</dd>
-          </div>
-          <div>
-            <dt>Actions</dt>
-            <dd>edit, cite, compile, check</dd>
-          </div>
-          <div>
-            <dt>Controls</dt>
-            <dd>approval, abort, max-step budget</dd>
-          </div>
-        </dl>
-        <div class="hero-actions" aria-label="Research areas">
-          <a href="/research/compiler/">Compiler</a>
-          <a href="/research/knowledge-graph/">Knowledge Graph</a>
-          <a href="/research/ai/">AI</a>
-          <a href="/research/ai/latexdo-sync.json">Sync manifest</a>
-          <a href="/research/ai/catalog/latexdo-ai-catalog.v1.json">Model catalog</a>
-        </div>
+    <main id="content" class="r-page r-detail">
+      <section class="r-hero" aria-labelledby="detail-title">
+        <a class="r-text-link r-back" href="/research/">← All research</a>
+        <p class="eyebrow">Research / AI harness</p>
+        <h1 id="detail-title">The code around the intelligence.</h1>
+        <p class="r-lede">
+          Context, tools, approval, and feedback: the machinery that lets an AI assistant work inside a LaTeX
+          project.
+        </p>
       </section>
-
-      <section class="research-stack detail-stack" aria-label="AI details">
-        <article class="research-panel ai-panel">
-          <div class="panel-heading">
-            <p class="eyebrow">Grounded AI</p>
-            <h2>An assistant wired into the same project tools.</h2>
-            <p>The AI assistant is not a detached chatbot. The renderer runs an agent loop that can call LatexDo tools for files, the active editor, compilation, checks, citation lookup, and graph-backed recommendations.</p>
-            <p class="implementation-link">Connected code: <code>src/features/ai/aiTools.ts</code>, <code>src/features/ai/aiAgent.ts</code>, <code>src/features/ai/useAiAgent.ts</code>, <code>src/features/ai/aiClient.ts</code></p>
+      <section class="r-detail-visual" aria-label="AI harness animated explanation">
+        <figure class="r-lab r-film r-film-ai" data-film="ai" data-phase="4" aria-labelledby="ai-caption">
+          <div class="r-film-top">
+            <span>
+              <i class="r-dot"></i>
+              Inside the AI harness
+            </span>
+            <span>One illustrative request</span>
           </div>
-          <div class="panel-grid">
-            <section>
-              <h3>Tool Layer</h3>
-              <ul>
-                <li><code>list_files</code>, <code>read_file</code>, and <code>get_active_document</code> inspect project context.</li>
-                <li><code>edit_selection</code>, <code>insert_at_cursor</code>, and <code>write_file</code> make controlled editor changes.</li>
-                <li><code>compile</code> verifies edits and returns compiler diagnostics plus the log tail.</li>
-                <li><code>run_checks</code>, <code>insert_citation</code>, and <code>recommend_citations</code> connect AI to checkers and the citation graph.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Models</h3>
-              <ul>
-                <li>Cloud mode supports Anthropic Messages and OpenAI-compatible chat completions with native tool calls.</li>
-                <li>Ollama runs through Electron main-process IPC and uses Ollama's native tool-calling endpoint.</li>
-                <li>Local GGUF models run through <code>node-llama-cpp</code> with a JSON fallback tool protocol.</li>
-                <li>The setup catalog includes Qwen2.5 Coder, Qwen3, Llama, Phi, SmolLM, and an inline-completion tier.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Guardrails</h3>
-              <p>
-                AI access is controlled by settings for chat history, current
-                editor, project files, bibliography, and researcher profile.
-                Mutating actions can require approval, the agent has a max-step
-                budget, requests can be aborted, and the prompt tells the model
-                to inspect files before editing and compile after risky changes.
-              </p>
-            </section>
+          <div class="r-cinema" aria-hidden="true">
+            <div class="r-ai-scene">
+              <div class="r-ai-input">
+                <span class="r-scene-label">YOUR WORKSPACE</span>
+                <div class="r-message">
+                  <span class="r-person">Y</span>
+                  <p>Fix the error in this paragraph.</p>
+                </div>
+                <div class="r-context-stack">
+                  <div>
+                    <span class="r-context-icon">.tex</span>
+                    <div>
+                      <strong>Active document</strong>
+                      <small>main.tex · selected paragraph</small>
+                    </div>
+                    <span class="r-context-check">✓</span>
+                  </div>
+                  <div>
+                    <span class="r-context-icon">≡</span>
+                    <div>
+                      <strong>Allowed context</strong>
+                      <small>Editor + project file access</small>
+                    </div>
+                    <span class="r-context-check">✓</span>
+                  </div>
+                </div>
+              </div>
+              <div class="r-ai-center">
+                <div class="r-ai-wire r-ai-wire-left"><i></i></div>
+                <div class="r-model-core">
+                  <div class="r-model-orbit"></div>
+                  <div class="r-model-orbit r-orbit-two"></div>
+                  <span>✳</span>
+                </div>
+                <strong>AI harness</strong>
+                <small>Context · controls · feedback</small>
+                <div class="r-ai-wire r-ai-wire-right"><i></i></div>
+                <div class="r-runtime">
+                  <span>Local</span>
+                  <span>Ollama</span>
+                  <span>Cloud</span>
+                </div>
+              </div>
+              <div class="r-ai-tools">
+                <span class="r-scene-label">PROJECT TOOLS</span>
+                <div class="r-tool" data-tool="0">
+                  <span class="r-tool-mark">01</span>
+                  <div>
+                    <code>get_active_document</code>
+                    <small>Read the source</small>
+                  </div>
+                  <b>✓</b>
+                </div>
+                <div class="r-tool" data-tool="1">
+                  <span class="r-tool-mark">02</span>
+                  <div>
+                    <code>edit_selection</code>
+                    <small>Apply an approved edit</small>
+                  </div>
+                  <b>✓</b>
+                </div>
+                <div class="r-tool" data-tool="2">
+                  <span class="r-tool-mark">03</span>
+                  <div>
+                    <code>compile</code>
+                    <small>Return build diagnostics</small>
+                  </div>
+                  <b>✓</b>
+                </div>
+                <div class="r-approval">
+                  <i></i>
+                  <span>Ask mode · approval before editing</span>
+                </div>
+              </div>
+              <div class="r-ai-return">
+                <svg viewBox="0 0 700 65" preserveAspectRatio="none">
+                  <path d="M650 0v22q0 18-18 18H365q-15 0-15-15V8" />
+                  <path class="r-return-trace" d="M650 0v22q0 18-18 18H365q-15 0-15-15V8" />
+                </svg>
+                <span>Tool results return to the model</span>
+              </div>
+            </div>
+            <div class="r-ai-evidence">
+              <span class="r-evidence-icon">↳</span>
+              <div class="r-evidence-messages">
+                <p class="r-evidence-0">Available tools follow your access settings.</p>
+                <p class="r-evidence-1">Source read. The model can inspect the error.</p>
+                <p class="r-evidence-2">
+                  Proposed change:
+                  <del>\sectoin</del>
+                  <ins>\section</ins>
+                </p>
+                <p class="r-evidence-3">
+                  Example edit accepted. Compile result:
+                  <b>success</b>
+                  .
+                </p>
+                <p class="r-evidence-4">“The command is corrected and the document compiles.”</p>
+              </div>
+            </div>
           </div>
+          <div class="r-film-bottom">
+            <div class="r-film-story">
+              <span class="r-scene-number" data-scene-number>05 / 05</span>
+              <p data-scene-caption>The model can answer—or continue.</p>
+            </div>
+            <button
+              class="r-motion-toggle"
+              type="button"
+              data-motion-toggle
+              hidden
+              aria-label="Pause inside the ai harness animation"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path class="r-pause-icon" d="M7 5v10M13 5v10" />
+                <path class="r-play-icon" d="m7 5 7 5-7 5Z" />
+              </svg>
+            </button>
+          </div>
+          <ol class="r-film-progress" aria-label="Inside the AI harness stages">
+            <li>
+              <span>Your request brings the context.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>The model asks to read.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>An edit goes through approval.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Tools act and return evidence.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>The model can answer—or continue.</span>
+              <i></i>
+            </li>
+          </ol>
+          <figcaption id="ai-caption">
+            The harness supplies allowed context, checks tool availability, and returns tool results to the model.
+            This example shows an accepted edit in Ask mode. Actual tool sequences vary; a final answer, error,
+            cancellation, or step limit ends the loop.
+          </figcaption>
+        </figure>
+      </section>
+      <section class="r-notes" aria-label="How it works">
+        <article>
+          <p class="eyebrow">01 / Context and capabilities</p>
+          <h2>Start with the access you allow.</h2>
+          <p>
+            Settings control access to chat history, the current editor, project files, the bibliography, and
+            researcher profile. Available tools also depend on the selected workspace tab and whether a document
+            or selection is open.
+          </p>
         </article>
+        <article>
+          <p class="eyebrow">02 / Model routing</p>
+          <h2>One loop, several runtimes.</h2>
+          <p>
+            Local GGUF and Ollama requests use the desktop bridge. Cloud requests use the configured provider.
+            Local GGUF inference runs through node-llama-cpp; cloud mode supports Anthropic and OpenAI-compatible
+            endpoints. With a cloud provider, supplied context is sent to that provider.
+          </p>
+        </article>
+        <article>
+          <p class="eyebrow">03 / Actions and feedback</p>
+          <h2>Tools return evidence to the conversation.</h2>
+          <p>
+            A tool call becomes a real read, edit, check, or compile action. Ask mode pauses proposed text edits
+            for approval. Each tool result goes back to the model, which can continue or answer. Cancellation and
+            the configured step budget bound the loop.
+          </p>
+        </article>
+      </section>
+      <details class="r-source">
+        <summary>Inside the implementation</summary>
+        <p>
+          Based on the desktop source reviewed at revision
+          <code>4059a3d</code>
+          . File paths are relative to the application repository.
+        </p>
+        <ul>
+          <li>
+            <code>src/features/ai/aiAgent.ts</code>
+            <span>Runs the tool loop and stopping rules</span>
+          </li>
+          <li>
+            <code>src/features/ai/aiTools.ts</code>
+            <span>Defines tools, capabilities, and edit proposals</span>
+          </li>
+          <li>
+            <code>src/features/ai/useAiAgent.ts</code>
+            <span>Builds context and handles approval</span>
+          </li>
+          <li>
+            <code>src/features/ai/aiClient.ts</code>
+            <span>Routes local, Ollama, and cloud requests</span>
+          </li>
+        </ul>
+      </details>
+      <details class="r-source">
+        <summary>AI source package and model catalog</summary>
         <article class="research-panel ai-panel ai-source-panel">
           <div class="panel-heading">
             <p class="eyebrow">Public source</p>
             <h2>The retired AI subdomain now lives here.</h2>
-            <p>The retired AI source package is now served inside this route, so desktop builds can read the manifest, catalog, source files, scripts, and package metadata from <code>latexdo.org/research/ai/</code>.</p>
-            <p class="implementation-link">Source root: <code>/research/ai/</code></p>
+            <p>
+              The retired AI source package is now served inside this route, so desktop builds can read the
+              manifest, catalog, source files, scripts, and package metadata from
+              <code>latexdo.org/research/ai/</code>
+              .
+            </p>
+            <p class="implementation-link">
+              Source root:
+              <code>/research/ai/</code>
+            </p>
           </div>
           <div class="panel-grid">
             <section>
@@ -137,10 +302,16 @@
             </section>
           </div>
         </article>
-      </section>
+      </details>
+      <nav class="r-related" aria-label="Continue exploring">
+        <span>Continue exploring</span>
+        <a class="r-text-link" href="/research/compiler/">Compiler →</a>
+        <a class="r-text-link" href="/research/knowledge-graph/">Knowledge graph →</a>
+      </nav>
     </main>
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/research.js"></script>
   </body>
 </html>

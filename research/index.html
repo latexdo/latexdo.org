@@ -44,6 +44,7 @@
     <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
     <link rel="preload" href="style.css" as="style" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/assets/research.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -83,231 +84,556 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content">
-      <section class="research-hero" aria-labelledby="hero-title">
-        <div class="research-hero-inner">
-          <div class="research-copy">
-            <p class="eyebrow">Research</p>
-            <h1 id="hero-title">Compiler, graph, and AI systems for reliable papers.</h1>
-            <p class="hero-lede">
-              LatexDo research turns a LaTeX project into checked evidence:
-              compiler output becomes diagnostics, bibliography structure
-              becomes a graph, and AI tools act only with that context.
-            </p>
-            <div class="hero-actions" aria-label="Research areas">
-              <a href="/research/ai/">AI tools</a>
-              <a href="/research/compiler/">Compiler</a>
-              <a href="/research/knowledge-graph/">Knowledge Graph</a>
-            </div>
+    <main id="content" class="r-page">
+      <section class="r-hero" aria-labelledby="research-title">
+        <p class="eyebrow">LatexDo / Research</p>
+        <h1 id="research-title">Inside the writing loop.</h1>
+        <p class="r-lede">
+          From a line of LaTeX to a finished page. Explore how the compiler, AI harness, and knowledge graph work
+          together.
+        </p>
+        <nav class="r-jump" aria-label="Research topics">
+          <a href="#compiler">
+            01 &nbsp; Compiler
+            <span>↘</span>
+          </a>
+          <a href="#ai">
+            02 &nbsp; AI harness
+            <span>↘</span>
+          </a>
+          <a href="#knowledge-graph">
+            03 &nbsp; Knowledge graph
+            <span>↘</span>
+          </a>
+        </nav>
+        <div
+          class="r-overview"
+          role="img"
+          aria-label="Your project supplies source to the compiler and references to the knowledge graph. The AI harness uses project tools and receives their results."
+        >
+          <div class="r-overview-project">
+            <span class="r-file-icon" aria-hidden="true">TeX</span>
+            <strong>Your project</strong>
+            <small>Source, figures, references</small>
           </div>
-          <div class="research-flow" aria-label="LatexDo research workflow">
-            <div class="flow-card source-card">
-              <span>01</span>
-              <strong>Project source</strong>
-              <p><code>.tex</code>, <code>.bib</code>, comments, and active selection.</p>
-            </div>
-            <div class="flow-card compiler-card">
-              <span>02</span>
-              <strong>Compiler evidence</strong>
-              <p>Local <code>latexmk</code> output, SyncTeX, log parsing, ranked diagnostics.</p>
-            </div>
-            <div class="flow-card graph-card">
-              <span>03</span>
-              <strong>Citation graph</strong>
-              <p>Used, unused, missing, duplicate, stale, and related references.</p>
-            </div>
-            <div class="flow-card ai-card">
-              <span>04</span>
-              <strong>Grounded AI</strong>
-              <p>Assistant tools inspect, edit, cite, compile, and verify inside the project.</p>
-            </div>
+          <span class="r-overview-arrow" aria-hidden="true">→</span>
+          <div class="r-overview-systems">
+            <span>
+              Compiler
+              <small>Build + diagnose</small>
+            </span>
+            <span>
+              Knowledge graph
+              <small>Connect references</small>
+            </span>
+          </div>
+          <span class="r-overview-arrow" aria-hidden="true">↔</span>
+          <div class="r-overview-agent">
+            <span class="r-agent-icon" aria-hidden="true">✳</span>
+            <strong>AI harness</strong>
+            <small>Inspect, act, get feedback</small>
           </div>
         </div>
+        <p class="r-hero-caption">One project. Connected tools. A shorter path back to writing.</p>
       </section>
-
-      <section class="research-stack" aria-labelledby="tracks-title">
-        <div class="stack-heading">
-          <div>
-            <p class="eyebrow">Research tracks</p>
-            <h2 id="tracks-title">The work is organized around the writing loop.</h2>
-          </div>
+      <section class="r-chapter" id="compiler" aria-labelledby="compiler-title">
+        <div class="r-chapter-heading">
+          <p class="eyebrow">01 / Compiler</p>
+          <h2 id="compiler-title">A build is more than a PDF.</h2>
           <p>
-            Each track connects to the same project state, so research features
-            are not isolated demos. They feed the editor, the PDF preview, and
-            the actions available to the assistant.
+            Your local TeX toolchain does the typesetting. LatexDo connects its output to the preview, source
+            navigation, and errors you can act on.
           </p>
         </div>
-        <article id="compiler" class="research-panel compiler-panel">
-          <div class="panel-heading">
-            <span class="track-index">01</span>
-            <p class="eyebrow">Compiler</p>
-            <h2>Local TeX output becomes editor-grade diagnostics.</h2>
-            <p>
-              LatexDo runs the user's own TeX toolchain, isolates every build,
-              and converts noisy logs into actionable errors, warnings, and
-              source highlights.
-            </p>
-            <p class="implementation-link">
-              Connected code: <code>electron/compiler.ts</code>,
-              <code>electron/latexDiagnostics.ts</code>,
-              <code>src/features/compile/useCompile.ts</code>
-            </p>
-            <a class="track-link" href="/research/compiler/">Read compiler brief</a>
+        <figure
+          class="r-lab r-film r-film-compiler"
+          data-film="compiler"
+          data-phase="4"
+          aria-labelledby="compiler-caption"
+        >
+          <div class="r-film-top">
+            <span>
+              <i class="r-dot"></i>
+              From source to page
+            </span>
+            <span>Local compilation</span>
           </div>
-          <div class="panel-grid">
-            <section>
-              <h3>Pipeline</h3>
-              <ul>
-                <li>Find <code>latexmk</code> from standard TeX locations, including <code>/Library/TeX/texbin</code> on macOS.</li>
-                <li>Support <code>pdflatex</code>, <code>xelatex</code>, and <code>lualatex</code> through engine-specific <code>latexmk</code> flags.</li>
-                <li>Run with <code>-synctex=1</code>, <code>-file-line-error</code>, <code>-interaction=nonstopmode</code>, and <code>-halt-on-error</code>.</li>
-                <li>Return one compile result with PDF path, duration, raw output, diagnostics, and failure reason.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Diagnostics</h3>
-              <ul>
-                <li>Parse file-line errors, LaTeX warnings, package warnings, class warnings, and overfull or underfull boxes.</li>
-                <li>Detect low-information failures like emergency stops and surface the real earlier compiler problem.</li>
-                <li>Enrich diagnostics with source context, confidence, highlight text, suggested fixes, and cascade ranking.</li>
-                <li>Sanitize stale <code>latexmk</code> failure output so old failed runs do not confuse the user.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Runtime controls</h3>
-              <p>
-                Compile jobs are cancellable and have a timeout. On cancellation
-                or timeout the app terminates the process group, waits briefly,
-                then force-kills if needed. Shared cloud projects are
-                materialized into a bounded scratch folder before local compile,
-                with file count and size limits.
-              </p>
-            </section>
+          <div class="r-cinema" aria-hidden="true">
+            <div class="r-compile-scene">
+              <div class="r-source-window">
+                <div class="r-window-bar">
+                  <span class="r-window-dots">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </span>
+                  <span>main.tex</span>
+                  <span>LaTeX</span>
+                </div>
+                <div class="r-editor-code"><div><em>1</em><span>\documentclass</span>{article}</div><div><em>2</em><span>\begin</span>{document}</div><div><em>3</em><span>\<b class="r-before">sectoin</b><b class="r-after">section</b></span>{Introduction}</div><div><em>4</em>A small idea, beautifully typeset.</div><div><em>5</em><span>\end</span>{document}</div></div>
+              <div class="r-error-pop">
+                  <span class="r-error-symbol">!</span>
+                  <div>
+                    <strong>Unknown LaTeX command</strong>
+                    <small>main.tex · line 3</small>
+                  </div>
+                  <code>\sectoin</code>
+                </div>
+                <div class="r-fixed-pop">
+                  <span>✓</span>
+                  Source corrected. Ready to rebuild.
+                </div>
+                <div class="r-editor-status">
+                  <i></i>
+                  <span class="r-status-draft">Project source</span>
+                  <span class="r-status-error">1 error located</span>
+                  <span class="r-status-fixed">Source updated</span>
+                </div>
+              </div>
+              <div class="r-build-bridge">
+                <div class="r-wire r-wire-in"><i></i></div>
+                <div class="r-engine">
+                  <span class="r-engine-orbit"></span>
+                  <strong>TeX</strong>
+                  <small>latexmk</small>
+                </div>
+                <div class="r-wire r-wire-out"><i></i></div>
+              </div>
+              <div class="r-preview-window">
+                <div class="r-window-bar">
+                  <span>main.pdf</span>
+                  <span>100%</span>
+                </div>
+                <div class="r-paper">
+                  <span class="r-paper-overline">AN EXAMPLE MANUSCRIPT</span>
+                  <h3>A small idea.</h3>
+                  <span class="r-paper-author">Your next paper starts here.</span>
+                  <div class="r-paper-rule"></div>
+                  <h4>1 &nbsp; Introduction</h4>
+                  <p>A small idea, beautifully typeset.</p>
+                  <div class="r-paper-lines">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+                  <span class="r-paper-page">1</span>
+                </div>
+                <div class="r-preview-empty">
+                  <span>PDF</span>
+                  <small>Waiting for a successful build</small>
+                </div>
+                <span class="r-build-ok">✓ &nbsp; Build complete</span>
+              </div>
+            </div>
+            <div class="r-artifacts">
+              <span>
+                <i></i>
+                PDF preview
+              </span>
+              <span>
+                <i></i>
+                SyncTeX positions
+              </span>
+              <span>
+                <i></i>
+                Structured diagnostics
+              </span>
+            </div>
           </div>
-        </article>
-
-        <article id="knowledge-graph" class="research-panel graph-panel">
-          <div class="panel-heading">
-            <span class="track-index">02</span>
-            <p class="eyebrow">Knowledge Graph</p>
-            <h2>A deterministic map of the bibliography.</h2>
-            <p>
-              The graph connects BibTeX entries to citation usage, then links
-              papers by authors, venues, years, and title similarity so the
-              editor can explain what is central, missing, or isolated.
-            </p>
-            <p class="implementation-link">
-              Connected code: <code>src/latex/citationAnalysis.ts</code>,
-              <code>src/features/graph/knowledgeGraph.ts</code>,
-              <code>src/components/KnowledgeGraphView.tsx</code>
-            </p>
-            <a class="track-link" href="/research/knowledge-graph/">Read graph brief</a>
+          <div class="r-film-bottom">
+            <div class="r-film-story">
+              <span class="r-scene-number" data-scene-number>05 / 05</span>
+              <p data-scene-caption>Build again. See the page.</p>
+            </div>
+            <button
+              class="r-motion-toggle"
+              type="button"
+              data-motion-toggle
+              hidden
+              aria-label="Pause from source to page animation"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path class="r-pause-icon" d="M7 5v10M13 5v10" />
+                <path class="r-play-icon" d="m7 5 7 5-7 5Z" />
+              </svg>
+            </button>
           </div>
-          <div class="panel-grid">
-            <section>
-              <h3>Model</h3>
-              <ul>
-                <li>Each graph node is one bibliography entry with key, title, authors, venue, year, type, cited status, and degree.</li>
-                <li>Edges are typed as shared author, same venue, same year, or similar topic from title-token Jaccard overlap.</li>
-                <li>Weights are configurable, then pruned to the strongest edges per node so large libraries stay readable.</li>
-                <li>Stats include node count, edge count, cited count, and connected component count.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Tools</h3>
-              <ul>
-                <li><code>parseBibFile</code> reads BibTeX through <code>bibtex-parse</code> with size and entry limits.</li>
-                <li><code>extractCitationUsages</code> scans <code>\cite</code>-style commands in project TeX files.</li>
-                <li><code>analyzeCitationLibrary</code> reports used, unused, missing, duplicate, stale, and low-quality references.</li>
-                <li>The graph view adds search, cited-only filtering, relation toggles, weight sliders, pan, zoom, drag, and citation insertion.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Result</h3>
-              <p>
-                The author can see which references are central, which cited
-                papers are isolated, which uncited papers are related, and where
-                the bibliography has quality problems. The same graph data feeds
-                citation recommendations for selected prose.
-              </p>
-            </section>
-          </div>
-        </article>
-
-        <article id="ai" class="research-panel ai-panel">
-          <div class="panel-heading">
-            <span class="track-index">03</span>
-            <p class="eyebrow">AI</p>
-            <h2>AI that uses project tools before it edits.</h2>
-            <p>
-              The assistant can inspect files, read the active document,
-              propose edits, insert citations, run checks, compile, and use the
-              graph before recommending changes.
-            </p>
-            <p class="implementation-link">
-              Connected code: <code>src/features/ai/aiTools.ts</code>,
-              <code>src/features/ai/aiAgent.ts</code>,
-              <code>src/features/ai/useAiAgent.ts</code>,
-              <code>src/features/ai/aiClient.ts</code>
-            </p>
-            <a class="track-link" href="/research/ai/">Read AI brief</a>
-          </div>
-          <div class="panel-grid">
-            <section>
-              <h3>Tool Layer</h3>
-              <ul>
-                <li><code>list_files</code>, <code>read_file</code>, and <code>get_active_document</code> inspect project context.</li>
-                <li><code>edit_selection</code>, <code>insert_at_cursor</code>, and <code>write_file</code> make controlled editor changes.</li>
-                <li><code>compile</code> verifies edits and returns compiler diagnostics plus the log tail.</li>
-                <li><code>run_checks</code>, <code>insert_citation</code>, and <code>recommend_citations</code> connect AI to LatexDo's checkers and citation graph.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Models</h3>
-              <ul>
-                <li>Cloud mode supports Anthropic Messages and OpenAI-compatible chat completions with native tool calls.</li>
-                <li>Ollama runs through Electron main-process IPC and uses Ollama's native tool-calling endpoint.</li>
-                <li>Local GGUF models run through <code>node-llama-cpp</code> with a JSON fallback tool protocol.</li>
-                <li>The setup catalog includes Qwen2.5 Coder, Qwen3, Llama, Phi, SmolLM, and an inline-completion tier.</li>
-              </ul>
-            </section>
-            <section>
-              <h3>Guardrails</h3>
-              <p>
-                AI access is controlled by settings for chat history, current
-                editor, project files, bibliography, and researcher profile.
-                Mutating actions can require approval, the agent has a max-step
-                budget, requests can be aborted, and the prompt tells the model
-                to inspect files before editing and compile after risky changes.
-              </p>
-            </section>
-          </div>
-        </article>
+          <ol class="r-film-progress" aria-label="From source to page stages">
+            <li>
+              <span>Start with your source.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Your local TeX engine builds.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>The log points to the problem.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>You correct the source.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Build again. See the page.</span>
+              <i></i>
+            </li>
+          </ol>
+          <figcaption id="compiler-caption">
+            An illustrative build: latexmk runs the local TeX engine; log analysis locates an error. After a
+            source edit, a successful rebuild returns a PDF and SyncTeX positions. LatexDo explains errors; the
+            compiler does not edit your source.
+          </figcaption>
+        </figure>
+        <div class="r-chapter-footer">
+          <a class="r-text-link" href="/research/compiler/">
+            Explore the compiler
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </section>
-
-      <section id="organization" class="organization">
+      <section class="r-chapter" id="ai" aria-labelledby="ai-title">
+        <div class="r-chapter-heading">
+          <p class="eyebrow">02 / AI harness</p>
+          <h2 id="ai-title">A model, with tools and a feedback loop.</h2>
+          <p>
+            The harness connects a language model to your workspace. Follow a request from allowed context to a
+            tool action—and back to the model.
+          </p>
+        </div>
+        <figure class="r-lab r-film r-film-ai" data-film="ai" data-phase="4" aria-labelledby="ai-caption">
+          <div class="r-film-top">
+            <span>
+              <i class="r-dot"></i>
+              Inside the AI harness
+            </span>
+            <span>One illustrative request</span>
+          </div>
+          <div class="r-cinema" aria-hidden="true">
+            <div class="r-ai-scene">
+              <div class="r-ai-input">
+                <span class="r-scene-label">YOUR WORKSPACE</span>
+                <div class="r-message">
+                  <span class="r-person">Y</span>
+                  <p>Fix the error in this paragraph.</p>
+                </div>
+                <div class="r-context-stack">
+                  <div>
+                    <span class="r-context-icon">.tex</span>
+                    <div>
+                      <strong>Active document</strong>
+                      <small>main.tex · selected paragraph</small>
+                    </div>
+                    <span class="r-context-check">✓</span>
+                  </div>
+                  <div>
+                    <span class="r-context-icon">≡</span>
+                    <div>
+                      <strong>Allowed context</strong>
+                      <small>Editor + project file access</small>
+                    </div>
+                    <span class="r-context-check">✓</span>
+                  </div>
+                </div>
+              </div>
+              <div class="r-ai-center">
+                <div class="r-ai-wire r-ai-wire-left"><i></i></div>
+                <div class="r-model-core">
+                  <div class="r-model-orbit"></div>
+                  <div class="r-model-orbit r-orbit-two"></div>
+                  <span>✳</span>
+                </div>
+                <strong>AI harness</strong>
+                <small>Context · controls · feedback</small>
+                <div class="r-ai-wire r-ai-wire-right"><i></i></div>
+                <div class="r-runtime">
+                  <span>Local</span>
+                  <span>Ollama</span>
+                  <span>Cloud</span>
+                </div>
+              </div>
+              <div class="r-ai-tools">
+                <span class="r-scene-label">PROJECT TOOLS</span>
+                <div class="r-tool" data-tool="0">
+                  <span class="r-tool-mark">01</span>
+                  <div>
+                    <code>get_active_document</code>
+                    <small>Read the source</small>
+                  </div>
+                  <b>✓</b>
+                </div>
+                <div class="r-tool" data-tool="1">
+                  <span class="r-tool-mark">02</span>
+                  <div>
+                    <code>edit_selection</code>
+                    <small>Apply an approved edit</small>
+                  </div>
+                  <b>✓</b>
+                </div>
+                <div class="r-tool" data-tool="2">
+                  <span class="r-tool-mark">03</span>
+                  <div>
+                    <code>compile</code>
+                    <small>Return build diagnostics</small>
+                  </div>
+                  <b>✓</b>
+                </div>
+                <div class="r-approval">
+                  <i></i>
+                  <span>Ask mode · approval before editing</span>
+                </div>
+              </div>
+              <div class="r-ai-return">
+                <svg viewBox="0 0 700 65" preserveAspectRatio="none">
+                  <path d="M650 0v22q0 18-18 18H365q-15 0-15-15V8" />
+                  <path class="r-return-trace" d="M650 0v22q0 18-18 18H365q-15 0-15-15V8" />
+                </svg>
+                <span>Tool results return to the model</span>
+              </div>
+            </div>
+            <div class="r-ai-evidence">
+              <span class="r-evidence-icon">↳</span>
+              <div class="r-evidence-messages">
+                <p class="r-evidence-0">Available tools follow your access settings.</p>
+                <p class="r-evidence-1">Source read. The model can inspect the error.</p>
+                <p class="r-evidence-2">
+                  Proposed change:
+                  <del>\sectoin</del>
+                  <ins>\section</ins>
+                </p>
+                <p class="r-evidence-3">
+                  Example edit accepted. Compile result:
+                  <b>success</b>
+                  .
+                </p>
+                <p class="r-evidence-4">“The command is corrected and the document compiles.”</p>
+              </div>
+            </div>
+          </div>
+          <div class="r-film-bottom">
+            <div class="r-film-story">
+              <span class="r-scene-number" data-scene-number>05 / 05</span>
+              <p data-scene-caption>The model can answer—or continue.</p>
+            </div>
+            <button
+              class="r-motion-toggle"
+              type="button"
+              data-motion-toggle
+              hidden
+              aria-label="Pause inside the ai harness animation"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path class="r-pause-icon" d="M7 5v10M13 5v10" />
+                <path class="r-play-icon" d="m7 5 7 5-7 5Z" />
+              </svg>
+            </button>
+          </div>
+          <ol class="r-film-progress" aria-label="Inside the AI harness stages">
+            <li>
+              <span>Your request brings the context.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>The model asks to read.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>An edit goes through approval.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Tools act and return evidence.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>The model can answer—or continue.</span>
+              <i></i>
+            </li>
+          </ol>
+          <figcaption id="ai-caption">
+            The harness supplies allowed context, checks tool availability, and returns tool results to the model.
+            This example shows an accepted edit in Ask mode. Actual tool sequences vary; a final answer, error,
+            cancellation, or step limit ends the loop.
+          </figcaption>
+        </figure>
+        <div class="r-chapter-footer">
+          <a class="r-text-link" href="/research/ai/">
+            Explore the AI harness
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+      <section class="r-chapter" id="knowledge-graph" aria-labelledby="knowledge-graph-title">
+        <div class="r-chapter-heading">
+          <p class="eyebrow">03 / Knowledge graph</p>
+          <h2 id="knowledge-graph-title">See what connects your references.</h2>
+          <p>
+            BibTeX provides the papers. Your manuscript provides citation usage. A deterministic graph makes the
+            relationships visible.
+          </p>
+        </div>
+        <figure
+          class="r-lab r-film r-film-graph"
+          data-film="graph"
+          data-phase="3"
+          aria-labelledby="graph-caption"
+        >
+          <div class="r-film-top">
+            <span>
+              <i class="r-dot"></i>
+              A living map of references
+            </span>
+            <span>Deterministic relationships</span>
+          </div>
+          <div class="r-cinema" aria-hidden="true">
+            <div class="r-constellation">
+              <div class="r-graph-origin">
+                <span class="r-bib-icon">.bib</span>
+                <div>
+                  <strong>Your bibliography</strong>
+                  <small>Entries → relationships → context</small>
+                </div>
+              </div>
+              <svg class="r-graph-svg" viewBox="0 0 800 370" role="presentation">
+                <defs>
+                  <linearGradient id="graph-stroke" x1="0" y1="0" x2="1" y2="1">
+                    <stop stop-color="#659eff" />
+                    <stop offset="1" stop-color="#235ee1" />
+                  </linearGradient>
+                </defs>
+                <g class="r-graph-edges">
+                  <path pathLength="1" data-edge="0,1" data-relation="author" d="M160 110L420 80" />
+                  <path pathLength="1" data-edge="0,2" data-relation="topic" d="M160 110L200 285" />
+                  <path pathLength="1" data-edge="1,3" data-relation="both" d="M420 80L520 270" />
+                </g>
+                <g class="r-graph-packets">
+                  <circle data-packet="0,1" r="4" />
+                  <circle data-packet="0,2" r="4" />
+                  <circle data-packet="1,3" r="4" />
+                </g>
+                <g class="r-orbit-node r-cited-node" data-graph-node="0" transform="translate(160 110)">
+                  <circle class="r-node-halo" r="40" />
+                  <circle class="r-node-disc" r="25" />
+                  <text y="6">A</text>
+                  <text class="r-orbit-label" y="57">Neural retrieval</text>
+                  <text class="r-node-cited" y="76">CITED IN YOUR PAPER</text>
+                </g>
+                <g class="r-orbit-node r-cited-node" data-graph-node="1" transform="translate(420 80)">
+                  <circle class="r-node-halo" r="40" />
+                  <circle class="r-node-disc" r="25" />
+                  <text y="6">B</text>
+                  <text class="r-orbit-label" y="57">Document ranking</text>
+                  <text class="r-node-cited" y="76">CITED IN YOUR PAPER</text>
+                </g>
+                <g class="r-orbit-node" data-graph-node="2" transform="translate(200 285)">
+                  <circle class="r-node-halo" r="37" />
+                  <circle class="r-node-disc" r="23" />
+                  <text y="6">C</text>
+                  <text class="r-orbit-label" y="53">Neural retrieval methods</text>
+                </g>
+                <g class="r-orbit-node" data-graph-node="3" transform="translate(520 270)">
+                  <circle class="r-node-halo" r="37" />
+                  <circle class="r-node-disc" r="23" />
+                  <text y="6">D</text>
+                  <text class="r-orbit-label" y="53">Document ranking methods</text>
+                </g>
+                <g class="r-orbit-node r-unlinked-node" data-graph-node="4" transform="translate(690 160)">
+                  <circle class="r-node-halo" r="32" />
+                  <circle class="r-node-disc" r="20" />
+                  <text y="6">E</text>
+                  <text class="r-orbit-label" y="50">Unlinked entry</text>
+                </g>
+              </svg>
+              <div class="r-relation-badge">
+                <span class="r-relation-light"></span>
+                <span class="r-relation-0">5 entries. A library taking shape.</span>
+                <span class="r-relation-1">Shared authors connect A–B and B–D.</span>
+                <span class="r-relation-2">Similar titles connect A–C and B–D.</span>
+                <span class="r-relation-3">Citation usage adds the manuscript’s context.</span>
+              </div>
+            </div>
+            <div class="r-graph-summary">
+              <div>
+                <strong>5</strong>
+                <span>Bibliography entries</span>
+              </div>
+              <div>
+                <strong>3</strong>
+                <span>Explainable connections</span>
+              </div>
+              <div>
+                <strong>2</strong>
+                <span>Cited in the manuscript</span>
+              </div>
+            </div>
+          </div>
+          <div class="r-film-bottom">
+            <div class="r-film-story">
+              <span class="r-scene-number" data-scene-number>04 / 04</span>
+              <p data-scene-caption>Your citations add context.</p>
+            </div>
+            <button
+              class="r-motion-toggle"
+              type="button"
+              data-motion-toggle
+              hidden
+              aria-label="Pause a living map of references animation"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path class="r-pause-icon" d="M7 5v10M13 5v10" />
+                <path class="r-play-icon" d="m7 5 7 5-7 5Z" />
+              </svg>
+            </button>
+          </div>
+          <ol class="r-film-progress" aria-label="A living map of references stages">
+            <li>
+              <span>A library becomes a map.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Shared authors draw connections.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Title overlap reveals another link.</span>
+              <i></i>
+            </li>
+            <li>
+              <span>Your citations add context.</span>
+              <i></i>
+            </li>
+          </ol>
+          <figcaption id="graph-caption">
+            Five illustrative BibTeX entries. Lines represent shared authors or title words; filled nodes are
+            cited in the example manuscript. The application also supports venue and year relationships. Motion
+            illustrates the graph; metadata similarity does not establish scientific support.
+          </figcaption>
+        </figure>
+        <div class="r-chapter-footer">
+          <a class="r-text-link" href="/research/knowledge-graph/">
+            Explore the knowledge graph
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+      <aside class="r-closing">
         <div>
-          <p class="eyebrow">Product direction</p>
-          <h2>Research only ships when it makes paper work clearer.</h2>
+          <p class="eyebrow">Built in the open</p>
+          <h2>Inspect the work behind the workspace.</h2>
+          <p>These animated examples trace the current implementation, from inputs to feedback.</p>
         </div>
-        <div class="loop-list">
-          <div class="loop-step">
-            <span>01</span>
-            <p><strong>Evidence first.</strong> LatexDo reads project files, logs, citations, and selections before making claims.</p>
-          </div>
-          <div class="loop-step">
-            <span>02</span>
-            <p><strong>Editor connected.</strong> Research outputs become interface controls, diagnostics, graph views, and assistant tools.</p>
-          </div>
-          <div class="loop-step">
-            <span>03</span>
-            <p><strong>Verification loop.</strong> Risky changes can be checked with compile output and citation analysis before the author trusts them.</p>
-          </div>
-        </div>
-      </section>
+        <a class="r-text-link" href="https://github.com/latexdo/latexdo">
+          Explore the source
+          <span aria-hidden="true">↗</span>
+        </a>
+      </aside>
     </main>
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/research.js"></script>
   </body>
 </html>
