@@ -19,52 +19,44 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LatexDo - Your Local-First LaTeX Workspace</title>
-    <meta
-      name="description"
-      content="LatexDo is a focused local-first LaTeX workspace for writing papers, compiling locally, previewing PDFs, managing citations, and handling review workflows."
-    />
-    <meta
-      name="keywords"
-      content="free LaTeX editor, local-first LaTeX workspace, open-source LaTeX tools, PDF preview, citation workflow, academic writing, LatexDo"
-    />
+    <title>LatexDo: Free LaTeX Editor with Live PDF, Citations and AI</title>
+    <meta name="description" content="LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux. Write, compile, cite, review and answer reviewers in one window, on your own computer." />
     <meta name="author" content="LatexDo" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#f6f7f9" />
+    <meta name="theme-color" content="#fbfbfd" />
     <meta name="application-name" content="LatexDo" />
     <link rel="canonical" href="https://latexdo.org/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="LatexDo: Free LaTeX Editor with Live PDF, Citations and AI" />
+    <meta property="og:description" content="LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux. Write, compile, cite, review and answer reviewers in one window, on your own computer." />
+    <meta property="og:url" content="https://latexdo.org/" />
+    <meta property="og:image" content="https://latexdo.org/assets/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="LatexDo, the free LaTeX editor: source and compiled PDF side by side." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@latexdoproject" />
+    <meta name="twitter:title" content="LatexDo: Free LaTeX Editor with Live PDF, Citations and AI" />
+    <meta name="twitter:description" content="LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux. Write, compile, cite, review and answer reviewers in one window, on your own computer." />
+    <meta name="twitter:image" content="https://latexdo.org/assets/social-preview.png" />
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
     <link rel="manifest" href="site.webmanifest" />
     <link rel="preload" href="assets/icon.svg" as="image" type="image/svg+xml" />
     <link rel="preload" href="style.css" as="style" />
     <link rel="stylesheet" href="style.css" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="LatexDo" />
-    <meta property="og:title" content="LatexDo" />
-    <meta
-      property="og:description"
-      content="A focused local-first LaTeX workspace for source, project files, PDF preview, citations, reviews, and rebuttals."
-    />
-    <meta property="og:url" content="https://latexdo.org/" />
-    <meta property="og:image" content="https://latexdo.org/assets/social-preview.svg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LatexDo" />
-    <meta
-      name="twitter:description"
-      content="Write papers without fighting your editor. LatexDo brings source, PDF, citations, reviews, and local LaTeX workflow into one focused workspace."
-    />
-    <meta
-      name="twitter:image"
-      content="https://latexdo.org/assets/social-preview.svg"
-    />
+    <link rel="stylesheet" href="assets/home.css" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": ["Organization", "NGO"],
+            "@type": [
+              "Organization",
+              "NGO"
+            ],
             "@id": "https://latexdo.org/#organization",
             "name": "LatexDo",
             "legalName": "LatexDo",
@@ -78,15 +70,19 @@
               "https://bsky.app/profile/latexdo.org",
               "https://www.youtube.com/@latexdo-project",
               "https://x.com/latexdoproject"
-            ]
+            ],
+            "slogan": "Where papers get finished."
           },
           {
             "@type": "WebSite",
             "@id": "https://latexdo.org/#website",
             "url": "https://latexdo.org/",
             "name": "LatexDo",
-            "description": "A focused local-first LaTeX workspace for writing papers, compiling locally, previewing PDFs, managing citations, and handling review workflows.",
-            "publisher": { "@id": "https://latexdo.org/#organization" }
+            "description": "LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux.",
+            "publisher": {
+              "@id": "https://latexdo.org/#organization"
+            },
+            "inLanguage": "en"
           },
           {
             "@type": "SoftwareApplication",
@@ -96,20 +92,89 @@
             "operatingSystem": "macOS, Windows, Linux",
             "url": "https://latexdo.org/",
             "downloadUrl": "https://latexdo.org/downloads/",
-            "softwareVersion": "0.1.0",
-            "description": "A free, open-source desktop LaTeX editor with source editing, local compilation, PDF preview, diagnostics, citation checks, review workflows, and rebuttal tools.",
+            "description": "A free, open-source LaTeX editor with live PDF preview, source and PDF sync, plain-language error diagnostics, citation search, a bibliography knowledge graph, local AI assistance, and review and rebuttal tools.",
             "offers": {
               "@type": "Offer",
               "price": "0",
-              "priceCurrency": "USD"
+              "priceCurrency": "EUR"
             },
-            "publisher": { "@id": "https://latexdo.org/#organization" }
+            "publisher": {
+              "@id": "https://latexdo.org/#organization"
+            },
+            "image": "https://latexdo.org/assets/social-preview.png",
+            "license": "https://opensource.org/license/mit",
+            "isAccessibleForFree": true,
+            "featureList": [
+              "Live PDF preview",
+              "Two-way source and PDF sync",
+              "Plain-language LaTeX error diagnostics",
+              "Citation search and knowledge graph",
+              "Local and cloud AI assistance",
+              "Review and rebuttal workflow",
+              "Import from Word, Markdown, PDF and Overleaf",
+              "Built-in Git and local history",
+              "Voice dictation"
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://latexdo.org/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Is LatexDo free?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. LatexDo is free to download and use, and its source code is open under the MIT license. It is built by a French nonprofit association and funded by donations and sponsors."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does LatexDo work offline?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Your projects are ordinary folders on your disk and are compiled on your own machine. A local AI model also works with no internet once it has been downloaded. Cloud AI providers are optional."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which operating systems are supported?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "LatexDo runs on macOS (Apple Silicon and Intel), Windows (64-bit) and Linux (64-bit AppImage)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need LaTeX installed?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "LatexDo compiles with the TeX distribution on your computer: MacTeX on macOS, MiKTeX or TeX Live on Windows, and TeX Live on Linux."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I move my paper from Overleaf or Word?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. You can import an Overleaf project, a Word document, a Markdown file or a searchable PDF and keep working in LaTeX."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my paper uploaded anywhere?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. LatexDo needs no account and your files stay on your computer. If you choose to connect a cloud AI provider, only the text you send to the assistant goes to that provider."
+                }
+              }
+            ]
           }
         ]
       }
     </script>
   </head>
-  <body>
+  <body class="home">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMQCNBBJ"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -119,299 +184,393 @@
     <div data-header-src="/partials/header.html"></div>
 
     <main id="content">
-      <section id="product" class="product-hero" aria-labelledby="hero-title">
-        <div class="product-hero-inner">
-          <div class="product-hero-copy reveal">
-            <p class="eyebrow">LatexDo</p>
-            <h1 id="hero-title">The workspace around the paper.</h1>
-            <p class="hero-lede">
-              Write, compile, review, respond, and prepare your LaTeX work for submission
-              without breaking your workflow.
-            </p>
-            <div class="hero-actions" aria-label="Primary actions">
-              <a class="button primary" href="/downloads/" data-demo-download data-origin="hero">Download LatexDo</a>
-              <a class="button secondary" href="#product-demo">Explore the editor</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="product-demo" class="product-story" aria-labelledby="product-demo-title">
-        <div class="section-inner wide product-story-grid">
-          <div class="story-copy">
-            <div class="section-heading reveal">
-              <p class="eyebrow">30-second product demo</p>
-              <h2 id="product-demo-title">Watch the paper get better.</h2>
-              <p>
-                The website demo is a deterministic simulation of LatexDo concepts:
-                source anchors, PDF links, diagnostics, review proposals, rebuttals,
-                paper review, and submission checks.
-              </p>
-            </div>
-            <article class="story-chapter reveal" data-demo-chapter="compiled">
-              <span>01</span>
-              <h3>Write with the document in view.</h3>
-              <p>Source and PDF stay connected while the manuscript changes.</p>
-            </article>
-            <article class="story-chapter reveal" data-demo-chapter="compiler-error">
-              <span>02</span>
-              <h3>Errors should explain themselves.</h3>
-              <p>Compiler output becomes an actionable finding with a proposed fix.</p>
-            </article>
-            <article class="story-chapter reveal" data-demo-chapter="review-open">
-              <span>03</span>
-              <h3>Review belongs next to the manuscript.</h3>
-              <p>Reviewer comments point back to the exact source text.</p>
-            </article>
-            <article class="story-chapter reveal" data-demo-chapter="rebuttal">
-              <span>04</span>
-              <h3>Respond without rebuilding the story by hand.</h3>
-              <p>The rebuttal response links to the reviewer comment and the manuscript revision.</p>
-            </article>
-            <article class="story-chapter reveal" data-demo-chapter="submission-check">
-              <span>05</span>
-              <h3>Know before you submit.</h3>
-              <p>Readiness checks separate deterministic validation from AI-derived review.</p>
-            </article>
-          </div>
-
-          <div class="story-product reveal">
-            <div class="product-demo-mount" data-product-demo>
-              <div class="demo-loading">Loading LatexDo demo...</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-band ai-tier-section" aria-labelledby="ai-tier-title">
-        <div class="section-inner">
-          <div class="section-heading reveal">
-            <p class="eyebrow">AI inside the workflow</p>
-            <h2 id="ai-tier-title">AI works inside the paper, not beside it.</h2>
-            <p>LatexDo presents assistance as completions, findings, proposals, and review results instead of a detached chat stream.</p>
-          </div>
-          <div class="ai-tier-grid reveal" data-ai-tier-cards></div>
-          <nav class="product-route-links reveal" aria-label="Product routes" data-product-route-links></nav>
-        </div>
-      </section>
-
-      <section class="section-band outcome-section" aria-labelledby="outcome-title">
-        <div class="section-inner">
-          <div class="section-heading reveal">
-            <h2 id="outcome-title">A serious local workspace for serious LaTeX work.</h2>
-          </div>
-          <div class="outcome-grid reveal">
-            <article class="outcome-card">
-              <span>01</span>
-              <h3>See your paper while you write it.</h3>
-              <p>Keep source and PDF beside each other instead of jumping between disconnected windows.</p>
-            </article>
-            <article class="outcome-card">
-              <span>02</span>
-              <h3>Use the LaTeX setup you already trust.</h3>
-              <p>Compile locally with your TeX installation and keep package control on your machine.</p>
-            </article>
-            <article class="outcome-card">
-              <span>03</span>
-              <h3>Catch problems before submission.</h3>
-              <p>Surface citation, compiler, warning, and review context where the work is happening.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-band workflow-story" aria-labelledby="workflow-title">
-        <div class="section-inner wide">
-          <div class="section-heading reveal">
-            <h2 id="workflow-title">Open project. Write. Compile. Review. Submit.</h2>
-          </div>
-          <div class="workflow-timeline reveal">
-            <article>
-              <span>Open</span>
-              <strong>Choose a local folder</strong>
-              <p>Start from your existing paper, thesis, or class project.</p>
-            </article>
-            <article>
-              <span>Write</span>
-              <strong>Edit .tex and .bib files</strong>
-              <p>Keep sections, bibliography, notes, and figures visible.</p>
-            </article>
-            <article>
-              <span>Compile</span>
-              <strong>Render with latexmk</strong>
-              <p>Use your local TeX toolchain and inspect real output.</p>
-            </article>
-            <article>
-              <span>Review</span>
-              <strong>Handle comments and rebuttals</strong>
-              <p>Move from reviewer feedback to response without losing context.</p>
-            </article>
-            <article>
-              <span>Rebuttal</span>
-              <strong>Reply to each reviewer comment</strong>
-              <p>Draft a response beside the source and compiled PDF.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-band local-section" aria-labelledby="local-title">
-        <div class="section-inner local-grid">
-          <div class="section-heading reveal">
-            <h2 id="local-title">Your projects. Your TeX installation. Your files.</h2>
-          </div>
-          <div class="local-facts reveal">
-            <article>
-              <strong>Real project folders</strong>
-              <span>No lock-in format for your source.</span>
-            </article>
-            <article>
-              <strong>Local compilation</strong>
-              <span>Use the LaTeX setup installed on your machine.</span>
-            </article>
-            <article>
-              <strong>Open source trust</strong>
-              <span>MIT-licensed and built in public.</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="comparison" class="section-band compare-section" aria-labelledby="comparison-title">
-        <div class="section-inner">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Feature comparison</p>
-            <h2 id="comparison-title">How LatexDo fits beside other LaTeX tools.</h2>
-          </div>
-          <div class="compare-table-wrap reveal">
-            <table class="compare-table">
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th>LatexDo</th>
-                  <th>Overleaf</th>
-                  <th>TeXstudio</th>
-                  <th>VS Code + LaTeX</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="compare-ours">
-                  <td>Open source</td>
-                  <td>✅</td>
-                  <td>⚠️</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Free to use</td>
-                  <td>✅</td>
-                  <td>⚠️ Freemium</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Desktop app</td>
-                  <td>✅</td>
-                  <td>❌</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Local-first workflow</td>
-                  <td>✅</td>
-                  <td>❌</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Offline editing</td>
-                  <td>✅</td>
-                  <td>❌</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Local LaTeX compilation</td>
-                  <td>✅</td>
-                  <td>❌</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Modern Monaco editor</td>
-                  <td>✅</td>
-                  <td>❌</td>
-                  <td>❌</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Smart LaTeX diagnostics</td>
-                  <td>✅</td>
-                  <td>⚠️</td>
-                  <td>⚠️</td>
-                  <td>⚠️</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Git-friendly</td>
-                  <td>✅</td>
-                  <td>⚠️</td>
-                  <td>⚠️</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Real-time collaboration</td>
-                  <td>🔨 Planned</td>
-                  <td>✅</td>
-                  <td>❌</td>
-                  <td>⚠️</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>AI writing assistance</td>
-                  <td>✅</td>
-                  <td>⚠️</td>
-                  <td>❌</td>
-                  <td>⚠️</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Template gallery</td>
-                  <td>🔨 Planned</td>
-                  <td>✅</td>
-                  <td>⚠️</td>
-                  <td>⚠️</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Privacy-first</td>
-                  <td>✅</td>
-                  <td>⚠️</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Community-driven</td>
-                  <td>✅</td>
-                  <td>⚠️</td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-                <tr class="compare-ours">
-                  <td>Cross-platform</td>
-                  <td>✅</td>
-                  <td><span class="compare-em">Browser</span></td>
-                  <td>✅</td>
-                  <td>✅</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="compare-note reveal">
-            ✅ Available &ensp; 🔨 Planned / in progress &ensp; ⚠️ Limited &ensp; ❌ Not available<br>
-            <a href="https://github.com/latexdo/latexdo">See the full breakdown on GitHub →</a>
+      <!-- Hero -->
+      <section class="h-hero" aria-labelledby="hero-title">
+        <div class="h-hero-copy">
+          <p class="h-kicker h-rise">Free and open source · macOS · Windows · Linux</p>
+          <h1 id="hero-title" class="h-rise">
+            Everything your paper needs.<br />
+            <span class="h-gradient">In one window.</span>
+          </h1>
+          <p class="h-lede h-rise">
+            LatexDo is the LaTeX editor that writes, compiles, cites, reviews and answers
+            reviewers with you, on your own computer.
           </p>
+          <div class="h-actions h-rise">
+            <a class="h-button" href="/downloads/" data-origin="hero" data-smart-download>Download LatexDo</a>
+            <a class="h-link" href="#tour">See what it does <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <div class="h-stage" data-stage aria-hidden="true">
+          <div class="h-window" data-scene="write">
+            <div class="h-window-bar">
+              <span class="h-dots"><i></i><i></i><i></i></span>
+              <span class="h-window-title">main.tex — LatexDo</span>
+              <span class="h-window-modes">
+                <b class="on">Author</b><b>Reviewer</b><b>Rebuttal</b>
+              </span>
+              <span class="h-compile" data-compile><i></i>Compile</span>
+            </div>
+            <div class="h-window-body">
+              <div class="h-rail">
+                <i class="on"></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="h-editor">
+                <div class="h-tabs"><span class="on">main.tex</span><span>references.bib</span></div>
+                <pre class="h-code" data-typed><span class="ln">1</span><span class="k">\documentclass</span>{article}
+<span class="ln">2</span><span class="k">\usepackage</span>{amsmath, graphicx}
+<span class="ln">3</span>
+<span class="ln">4</span><span class="k">\title</span>{Efficient Retrieval for Long Documents}
+<span class="ln">5</span><span class="k">\begin</span>{document}
+<span class="ln">6</span><span class="k">\maketitle</span>
+<span class="ln">7</span>
+<span class="ln">8</span><span class="k">\section</span>{Introduction}
+<span class="ln">9</span>Our method improves recall by
+<span class="ln">10</span><span class="m">$12.4\%$</span> over the baseline <span class="k">\cite</span>{<span class="c">lewis2020</span>}.
+<span class="ln">11</span>
+<span class="ln">12</span><span class="k">\begin</span>{equation}
+<span class="ln">13</span>  <span class="m">s(q, d) = \frac{q \cdot d}{\lVert q \rVert \lVert d \rVert}</span>
+<span class="ln">14</span><span class="k">\end</span>{equation}</pre>
+              </div>
+              <div class="h-pdf">
+                <div class="h-pdf-bar"><span>main.pdf</span><span class="h-pdf-zoom">100%</span></div>
+                <div class="h-paper" data-paper>
+                  <h4 class="p1">Efficient Retrieval for Long Documents</h4>
+                  <p class="h-paper-author p1">A. Author · Example University</p>
+                  <h5 class="p2">1&ensp;Introduction</h5>
+                  <p class="p3">
+                    Our method improves recall by 12.4% over the baseline [1].
+                  </p>
+                  <div class="h-paper-lines p3"><i></i><i></i><i class="short"></i></div>
+                  <div class="h-paper-eq p4">
+                    <span>s(q, d) =</span>
+                    <span class="frac"><b>q · d</b><b>‖q‖ ‖d‖</b></span>
+                    <em>(1)</em>
+                  </div>
+                  <div class="h-paper-lines p4"><i></i><i class="short"></i></div>
+                </div>
+              </div>
+            </div>
+            <div class="h-status">
+              <span class="ok"><i></i>Compiled · 0 errors</span>
+              <span>pdfLaTeX</span>
+              <span>Ln 10, Col 42</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Statement -->
+      <section class="h-statement" aria-label="What LatexDo is">
+        <p class="h-reveal">
+          Writing a paper is not just typing LaTeX. It is compiling, fixing errors, finding
+          citations, reading reviews and writing the response.
+          <strong>LatexDo puts all of it next to your manuscript.</strong>
+        </p>
+      </section>
+
+      <!-- Tour -->
+      <div id="tour">
+        <section class="h-chapter" aria-labelledby="c-sync">
+          <div class="h-chapter-copy h-reveal">
+            <p class="h-eyebrow">Source and PDF</p>
+            <h2 id="c-sync">Click a sentence. Land on its source.</h2>
+            <p>
+              Your source and the compiled PDF sit side by side. Click anywhere in the PDF to
+              jump to the line that produced it, or go the other way from the editor.
+            </p>
+            <ul class="h-points">
+              <li>Live PDF preview beside the editor</li>
+              <li>Two-way jump between PDF and source</li>
+              <li>Code view or visual editing, same file</li>
+            </ul>
+          </div>
+          <div class="h-visual h-reveal" data-cycle="3" aria-hidden="true">
+            <div class="h-sync">
+              <div class="h-sync-src">
+                <div class="h-mini-bar">main.tex</div>
+                <code data-step="0"><span class="ln">8</span><span class="k">\section</span>{Introduction}</code>
+                <code data-step="1"><span class="ln">9</span>Our method improves recall by 12.4%</code>
+                <code><span class="ln">10</span>over the baseline <span class="k">\cite</span>{lewis2020}.</code>
+                <code data-step="2"><span class="ln">11</span><span class="k">\includegraphics</span>{results.pdf}</code>
+                <code><span class="ln">12</span><span class="k">\caption</span>{Recall on long inputs.}</code>
+              </div>
+              <div class="h-sync-beam"><i></i></div>
+              <div class="h-sync-pdf">
+                <div class="h-mini-bar">main.pdf</div>
+                <div class="h-sync-page">
+                  <b data-step="0">1&ensp;Introduction</b>
+                  <span data-step="1">Our method improves recall by 12.4% over the baseline [1].</span>
+                  <div class="h-chart" data-step="2"><i></i><i></i><i></i><i></i><i></i></div>
+                  <small>Figure 1: Recall on long inputs.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="h-chapter flip" aria-labelledby="c-errors">
+          <div class="h-chapter-copy h-reveal">
+            <p class="h-eyebrow">Problems</p>
+            <h2 id="c-errors">LaTeX errors, in plain language.</h2>
+            <p>
+              A failed build no longer means reading a thousand-line log. LatexDo tells you
+              what went wrong, where, and what to do about it, then takes you to the line.
+            </p>
+            <ul class="h-points">
+              <li>One clear message per problem</li>
+              <li>Jump straight to the file and line</li>
+              <li>Structure, citation and PDF checks before you submit</li>
+            </ul>
+          </div>
+          <div class="h-visual h-reveal" aria-hidden="true">
+            <div class="h-errors">
+              <pre class="h-log">! LaTeX Error: File `figures/results.pdf' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H &lt;return&gt;  for immediate help.
+ ...
+l.42 \includegraphics{figures/results.pdf}
+<mark>! Emergency stop.</mark></pre>
+              <div class="h-errors-arrow"><i></i></div>
+              <div class="h-problem">
+                <div class="h-problem-head">
+                  <span class="h-badge err">Error</span>
+                  <span class="h-chip">main.tex:42</span>
+                </div>
+                <strong>Figure file not found</strong>
+                <p>LaTeX could not find <code>figures/results.pdf</code>. Check the file name and folder.</p>
+                <span class="h-problem-action">Go to line 42 →</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- AI (dark) -->
+      <section class="h-dark" aria-labelledby="c-ai">
+        <div class="h-dark-inner">
+          <div class="h-dark-copy h-reveal">
+            <p class="h-eyebrow">AI, on your terms</p>
+            <h2 id="c-ai">An assistant that never leaves your laptop.</h2>
+            <p>
+              Run a model locally and work offline, connect Ollama, or bring your own
+              provider. Select a sentence and ask. Nothing in your paper changes until you
+              approve it.
+            </p>
+          </div>
+          <div class="h-ai h-reveal" aria-hidden="true">
+            <div class="h-ai-editor">
+              <div class="h-mini-bar dark">main.tex <span class="h-pill">Approval required</span></div>
+              <p class="h-ai-text">
+                In this section we show that
+                <span class="h-ai-old">our approach is really much better than the others in a lot of cases.</span>
+                <span class="h-ai-new">our approach outperforms prior methods on four of five benchmarks.</span>
+              </p>
+              <div class="h-ai-bar">
+                <span class="h-ai-prompt"><i></i>Make this precise</span>
+                <span class="h-ai-approve">Approve</span>
+                <span class="h-ai-reject">Reject</span>
+              </div>
+            </div>
+            <div class="h-ai-facts">
+              <div><strong>Local models</strong><span>Download once, then work with no internet.</span></div>
+              <div><strong>Your files as context</strong><span>Type @ to attach a project file to the question.</span></div>
+              <div><strong>Talk instead of typing</strong><span>Dictation with speech-to-text that runs on your machine.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tour, continued -->
+      <section class="h-chapter" aria-labelledby="c-cite">
+        <div class="h-chapter-copy h-reveal">
+          <p class="h-eyebrow">Citations</p>
+          <h2 id="c-cite">See how your references connect.</h2>
+          <p>
+            Search Crossref and OpenAlex without leaving the editor, insert the
+            citation, and open the knowledge graph to see how your references connect to
+            your paper.
+          </p>
+          <ul class="h-points">
+            <li>Find and insert citations from inside the editor</li>
+            <li>A graph of your bibliography, one click away</li>
+            <li>Ask the assistant to show only entries related to your paper</li>
+          </ul>
+        </div>
+        <div class="h-visual h-reveal" aria-hidden="true">
+          <svg class="h-graph" viewBox="0 0 520 380" role="presentation">
+            <g class="h-graph-edges">
+              <line x1="260" y1="190" x2="120" y2="90" />
+              <line x1="260" y1="190" x2="400" y2="80" />
+              <line x1="260" y1="190" x2="430" y2="230" />
+              <line x1="260" y1="190" x2="300" y2="320" />
+              <line x1="260" y1="190" x2="110" y2="260" />
+              <line x1="120" y1="90" x2="60" y2="170" />
+              <line x1="400" y1="80" x2="470" y2="130" />
+              <line x1="430" y1="230" x2="470" y2="130" />
+              <line x1="110" y1="260" x2="180" y2="330" />
+              <line x1="300" y1="320" x2="180" y2="330" />
+            </g>
+            <g class="h-graph-nodes">
+              <circle cx="120" cy="90" r="13" /><circle cx="400" cy="80" r="16" />
+              <circle cx="430" cy="230" r="12" /><circle cx="300" cy="320" r="14" />
+              <circle cx="110" cy="260" r="11" /><circle cx="60" cy="170" r="8" />
+              <circle cx="470" cy="130" r="9" /><circle cx="180" cy="330" r="8" />
+            </g>
+            <g class="h-graph-root">
+              <circle cx="260" cy="190" r="34" />
+              <text x="260" y="195" text-anchor="middle">main.tex</text>
+            </g>
+            <g class="h-graph-labels">
+              <text x="120" y="66" text-anchor="middle">lewis2020</text>
+              <text x="400" y="54" text-anchor="middle">vaswani2017</text>
+              <text x="430" y="258" text-anchor="middle">karpukhin2020</text>
+              <text x="300" y="350" text-anchor="middle">devlin2019</text>
+              <text x="110" y="286" text-anchor="middle">robertson2009</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="h-chapter flip" aria-labelledby="c-review">
+        <div class="h-chapter-copy h-reveal">
+          <p class="h-eyebrow">Review and rebuttal</p>
+          <h2 id="c-review">From reviewer comment to response letter.</h2>
+          <p>
+            Switch to Reviewer mode to read and annotate a paper. Switch to Rebuttal mode to
+            answer each reviewer point by point, with the manuscript right beside you.
+          </p>
+          <ul class="h-points">
+            <li>Annotate and highlight any PDF, and ask AI about it</li>
+            <li>One response per reviewer comment</li>
+            <li>A ready-made review response template</li>
+          </ul>
+        </div>
+        <div class="h-visual h-reveal" aria-hidden="true">
+          <div class="h-review">
+            <div class="h-review-card in">
+              <span class="h-avatar">R2</span>
+              <div>
+                <strong>Reviewer 2</strong>
+                <p>The claim in Section 3 is not supported by the reported numbers.</p>
+              </div>
+            </div>
+            <div class="h-review-link"><i></i></div>
+            <div class="h-review-card out">
+              <span class="h-avatar you">You</span>
+              <div>
+                <strong>Response</strong>
+                <p>We agree and revised Section 3 to report exact results on all five benchmarks.</p>
+                <span class="h-chip ok">Linked to main.tex:42</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bento -->
+      <section class="h-bento-section" aria-labelledby="bento-title">
+        <h2 id="bento-title" class="h-reveal">The rest of the toolbox is built in.</h2>
+        <div class="h-bento">
+          <article class="h-card wide h-reveal">
+            <div class="h-card-art h-import" aria-hidden="true">
+              <span>.docx</span><span>.md</span><span>.pdf</span><span>Overleaf</span>
+              <i></i>
+              <b>main.tex</b>
+            </div>
+            <h3>Bring your paper with you.</h3>
+            <p>Import Word, Markdown, a searchable PDF or an Overleaf project and keep working in LaTeX.</p>
+          </article>
+          <article class="h-card h-reveal">
+            <div class="h-card-art h-git" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <h3>Undo anything.</h3>
+            <p>Built-in Git, diffs, blame and a local history of every file.</p>
+          </article>
+          <article class="h-card h-reveal">
+            <div class="h-card-art h-tikz" aria-hidden="true">
+              <svg viewBox="0 0 120 70"><rect x="6" y="20" width="34" height="30" rx="5" /><rect x="80" y="20" width="34" height="30" rx="5" /><path d="M40 35h40" /><path d="m73 29 7 6-7 6" /></svg>
+            </div>
+            <h3>Figures and tables, handled.</h3>
+            <p>A TikZ canvas, draw.io to TikZ conversion and a table formatter.</p>
+          </article>
+          <article class="h-card h-reveal">
+            <div class="h-card-art h-voice" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <h3>Dictate a paragraph.</h3>
+            <p>Voice dictation, transcribed on your own machine.</p>
+          </article>
+          <article class="h-card h-reveal">
+            <div class="h-card-art h-templates" aria-hidden="true"><i></i><i></i><i></i></div>
+            <h3>Start from a template.</h3>
+            <p>Templates for articles, research papers, lecture notes, Beamer slides and letters.</p>
+          </article>
+          <article class="h-card wide h-reveal">
+            <div class="h-card-art h-local" aria-hidden="true">
+              <span>~/papers/retrieval</span>
+              <b>main.tex</b><b>references.bib</b><b>figures/</b>
+            </div>
+            <h3>Your files stay your files.</h3>
+            <p>Projects are ordinary folders on your disk, compiled on your machine. No account, no upload, no lock-in.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Proof -->
+      <section class="h-proof" aria-label="LatexDo at a glance">
+        <div class="h-proof-grid h-reveal">
+          <div><strong>€0</strong><span>Free for everyone, built by a nonprofit</span></div>
+          <div><strong>MIT</strong><span>Open source, developed in public</span></div>
+          <div><strong data-count="3">3</strong><span>Platforms: macOS, Windows and Linux</span></div>
+          <div><strong data-count="12500" data-suffix="+">12,500+</strong><span>Automated tests run on every build</span></div>
+        </div>
+      </section>
+
+      <!-- Questions -->
+      <section class="h-faq" aria-labelledby="faq-title">
+        <h2 id="faq-title" class="h-reveal">Questions, answered.</h2>
+        <div class="h-faq-list h-reveal">
+          <details>
+            <summary>Is LatexDo free?</summary>
+            <p>Yes. LatexDo is free to download and use, and its source code is open under the MIT license. It is built by a French nonprofit association and funded by donations and sponsors.</p>
+          </details>
+          <details>
+            <summary>Does LatexDo work offline?</summary>
+            <p>Yes. Your projects are ordinary folders on your disk and are compiled on your own machine. A local AI model also works with no internet once it has been downloaded. Cloud AI providers are optional.</p>
+          </details>
+          <details>
+            <summary>Which operating systems are supported?</summary>
+            <p>LatexDo runs on macOS (Apple Silicon and Intel), Windows (64-bit) and Linux (64-bit AppImage).</p>
+          </details>
+          <details>
+            <summary>Do I need LaTeX installed?</summary>
+            <p>LatexDo compiles with the TeX distribution on your computer: MacTeX on macOS, MiKTeX or TeX Live on Windows, and TeX Live on Linux.</p>
+          </details>
+          <details>
+            <summary>Can I move my paper from Overleaf or Word?</summary>
+            <p>Yes. You can import an Overleaf project, a Word document, a Markdown file or a searchable PDF and keep working in LaTeX.</p>
+          </details>
+          <details>
+            <summary>Is my paper uploaded anywhere?</summary>
+            <p>No. LatexDo needs no account and your files stay on your computer. If you choose to connect a cloud AI provider, only the text you send to the assistant goes to that provider.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Final call -->
+      <section class="h-final" aria-labelledby="final-title">
+        <img src="assets/icon.svg" alt="" width="84" height="84" class="h-reveal" />
+        <h2 id="final-title" class="h-reveal">Write your next paper in LatexDo.</h2>
+        <p class="h-reveal">Free to download. Open the folder you are already working in.</p>
+        <div class="h-actions h-reveal">
+          <a class="h-button" href="/downloads/" data-origin="footer-cta" data-smart-download>Download LatexDo</a>
+          <a class="h-link" href="https://github.com/latexdo/latexdo">View the source <span aria-hidden="true">→</span></a>
         </div>
       </section>
     </main>
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="assets/site.js"></script>
+    <script type="module" src="assets/home.js"></script>
   </body>
 </html>

@@ -1,6 +1,3 @@
-/docs https://docs.latexdo.org/ 301
-/docs/ https://docs.latexdo.org/ 301
-/docs/* https://docs.latexdo.org/:splat 301
 /legal-notice /about/ 301
 /legal-notice/ /about/ 301
 /association /about/ 301

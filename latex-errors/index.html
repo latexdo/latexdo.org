@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NMQCNBBJ');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZK1FHVL4C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VZK1FHVL4C');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Common LaTeX Errors and How to Fix Them | LatexDo</title>
+    <meta name="description" content="Plain-language fixes for the most common LaTeX errors: undefined control sequence, missing $ inserted, file not found, runaway argument and more." />
+    <meta name="author" content="LatexDo" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://latexdo.org/latex-errors/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Common LaTeX Errors and How to Fix Them | LatexDo" />
+    <meta property="og:description" content="Plain-language fixes for the most common LaTeX errors: undefined control sequence, missing $ inserted, file not found, runaway argument and more." />
+    <meta property="og:url" content="https://latexdo.org/latex-errors/" />
+    <meta property="og:image" content="https://latexdo.org/assets/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="LatexDo, the free LaTeX editor: source and compiled PDF side by side." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@latexdoproject" />
+    <meta name="twitter:title" content="Common LaTeX Errors and How to Fix Them | LatexDo" />
+    <meta name="twitter:description" content="Plain-language fixes for the most common LaTeX errors: undefined control sequence, missing $ inserted, file not found, runaway argument and more." />
+    <meta name="twitter:image" content="https://latexdo.org/assets/social-preview.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/assets/pages.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://latexdo.org/latex-errors/#webpage",
+            "url": "https://latexdo.org/latex-errors/",
+            "name": "Common LaTeX Errors and How to Fix Them | LatexDo",
+            "description": "Plain-language fixes for the most common LaTeX errors: undefined control sequence, missing $ inserted, file not found, runaway argument and more.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@id": "https://latexdo.org/#website"
+            },
+            "publisher": {
+              "@id": "https://latexdo.org/#organization"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://latexdo.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "LaTeX errors",
+                "item": "https://latexdo.org/latex-errors/"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “Undefined control sequence”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "LaTeX met a command it does not know. Check the spelling on the reported line, then load the package that provides the command with \\usepackage."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “Missing $ inserted”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A math symbol appears outside math mode. Wrap the math in $...$, or escape the character in text, for example file\\_name."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “File not found”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "LaTeX cannot find a file the document asks for. For a .sty file, install the package with your TeX distribution. For an image, check the name and the path relative to the main file."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “Missing \\begin{document}”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Text appears before the document starts. Remove anything that is not a command from the preamble and make sure you compile the main file."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “Extra alignment tab has been changed to \\cr”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A table row has more columns than the table declares. Count the columns in \\begin{tabular}{...} and make every row match, with \\\\ at the end of each."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “Runaway argument”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A brace or environment was opened and never closed. Look just before the reported line for the unclosed brace or environment and close it."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “Citation undefined”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A \\cite key has no matching bibliography entry. Check the key against your .bib file and build again so the bibliography is processed."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I fix the LaTeX error “Overfull \\hbox”?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A line is wider than the text block. This is a warning, not an error. Rephrase the sentence, allow a break, or scale the table or image to \\textwidth."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMQCNBBJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <div data-header-src="/partials/header.html"></div>
+
+            <main id="content" class="lx">
+      <header class="lx-hero">
+        <p class="lx-label">Guide</p>
+        <h1>Common LaTeX errors, and how to fix them.</h1>
+        <p class="lx-lede">
+          What each message really means, why it usually happens, and what to change.
+          LatexDo shows these explanations next to the line that caused them.
+        </p>
+      </header>
+
+      <section class="lx-rows" aria-label="LaTeX errors">
+        <article class="lx-row reveal" id="undefined-control-sequence">
+          <span class="lx-num">01</span>
+          <h2><code>Undefined control sequence</code></h2>
+          <div class="lx-row-body">
+            <p><strong>LaTeX met a command it does not know.</strong></p>
+            <ul class="lx-list"><li>The command is misspelled, for example <code>\beginn</code> instead of <code>\begin</code>.</li><li>The package that defines it is not loaded.</li><li>A command from one document class is used in another.</li></ul>
+            <p>Check the spelling on the reported line, then load the package that provides the command with <code>\usepackage</code>.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal" id="missing-inserted">
+          <span class="lx-num">02</span>
+          <h2><code>Missing $ inserted</code></h2>
+          <div class="lx-row-body">
+            <p><strong>A math symbol appears outside math mode.</strong></p>
+            <ul class="lx-list"><li>An underscore or caret is used in normal text, as in <code>file_name</code>.</li><li>A math command such as <code>\alpha</code> is written without dollar signs.</li><li>A dollar sign that opens math mode is never closed.</li></ul>
+            <p>Wrap the math in <code>$...$</code>, or escape the character in text, for example <code>file\_name</code>.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal" id="file-not-found">
+          <span class="lx-num">03</span>
+          <h2><code>File not found</code></h2>
+          <div class="lx-row-body">
+            <p><strong>LaTeX cannot find a file the document asks for.</strong></p>
+            <ul class="lx-list"><li>A package is not installed in your TeX distribution.</li><li>An image path or file name is wrong, or the capitalisation differs.</li><li>The file is in another folder than the one LaTeX looks in.</li></ul>
+            <p>For a <code>.sty</code> file, install the package with your TeX distribution. For an image, check the name and the path relative to the main file.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal" id="missing-begin-document">
+          <span class="lx-num">04</span>
+          <h2><code>Missing \begin{document}</code></h2>
+          <div class="lx-row-body">
+            <p><strong>Text appears before the document starts.</strong></p>
+            <ul class="lx-list"><li>Words or stray characters are typed in the preamble.</li><li><code>\begin{document}</code> is missing or misspelled.</li><li>The file being compiled is a chapter, not the main file.</li></ul>
+            <p>Remove anything that is not a command from the preamble and make sure you compile the main file.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal" id="extra-alignment-tab-has-been-changed-to-cr">
+          <span class="lx-num">05</span>
+          <h2><code>Extra alignment tab has been changed to \cr</code></h2>
+          <div class="lx-row-body">
+            <p><strong>A table row has more columns than the table declares.</strong></p>
+            <ul class="lx-list"><li>There are more <code>&amp;</code> separators in a row than columns in the <code>tabular</code> specification.</li><li>A row is missing its closing <code>\\</code>, so two rows are read as one.</li></ul>
+            <p>Count the columns in <code>\begin{tabular}{...}</code> and make every row match, with <code>\\</code> at the end of each.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal" id="runaway-argument">
+          <span class="lx-num">06</span>
+          <h2><code>Runaway argument</code></h2>
+          <div class="lx-row-body">
+            <p><strong>A brace or environment was opened and never closed.</strong></p>
+            <ul class="lx-list"><li>A closing <code>}</code> is missing.</li><li>A blank line sits inside an argument that cannot contain one.</li><li>A <code>\begin</code> has no matching <code>\end</code>.</li></ul>
+            <p>Look just before the reported line for the unclosed brace or environment and close it.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal" id="citation-undefined">
+          <span class="lx-num">07</span>
+          <h2><code>Citation undefined</code></h2>
+          <div class="lx-row-body">
+            <p><strong>A <code>\cite</code> key has no matching bibliography entry.</strong></p>
+            <ul class="lx-list"><li>The key is misspelled or is missing from the <code>.bib</code> file.</li><li>The bibliography step has not run yet.</li><li>The <code>.bib</code> file is not referenced by the document.</li></ul>
+            <p>Check the key against your <code>.bib</code> file and build again so the bibliography is processed.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal" id="overfull-hbox">
+          <span class="lx-num">08</span>
+          <h2><code>Overfull \hbox</code></h2>
+          <div class="lx-row-body">
+            <p><strong>A line is wider than the text block.</strong></p>
+            <ul class="lx-list"><li>A long word, URL or formula cannot be broken.</li><li>A wide table or image exceeds the text width.</li></ul>
+            <p>This is a warning, not an error. Rephrase the sentence, allow a break, or scale the table or image to <code>\textwidth</code>.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="lx-close reveal" aria-labelledby="errors-close">
+        <h2 id="errors-close">Let the editor explain the next one.</h2>
+        <p>LatexDo turns the build log into one clear message per problem, with a jump to the line.</p>
+        <div class="lx-close-actions">
+          <a class="lx-pill" href="/downloads/">Download LatexDo</a>
+          <a class="lx-arrow" href="/">See what it does</a>
+        </div>
+      </section>
+    </main>
+    <div data-footer-src="/partials/footer.html"></div>
+
+    <script type="module" src="/assets/site.js"></script>
+  </body>
+</html>

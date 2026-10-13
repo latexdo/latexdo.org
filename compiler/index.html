@@ -3,49 +3,110 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LatexDo Compiler Diagnostics</title>
-    <meta
-      name="description"
-      content="LatexDo turns LaTeX compiler output into source-linked diagnostics, evidence, and suggested fixes."
-    />
+    <title>LaTeX Errors Explained: Compiler Diagnostics | LatexDo</title>
+    <meta name="description" content="LatexDo turns raw LaTeX compiler output into clear, source-linked diagnostics with evidence and suggested fixes, so a failed build tells you what to do." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://latexdo.org/compiler/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LatexDo" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="LaTeX Errors Explained: Compiler Diagnostics | LatexDo" />
+    <meta property="og:description" content="LatexDo turns raw LaTeX compiler output into clear, source-linked diagnostics with evidence and suggested fixes, so a failed build tells you what to do." />
+    <meta property="og:url" content="https://latexdo.org/compiler/" />
+    <meta property="og:image" content="https://latexdo.org/assets/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="LatexDo, the free LaTeX editor: source and compiled PDF side by side." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@latexdoproject" />
+    <meta name="twitter:title" content="LaTeX Errors Explained: Compiler Diagnostics | LatexDo" />
+    <meta name="twitter:description" content="LatexDo turns raw LaTeX compiler output into clear, source-linked diagnostics with evidence and suggested fixes, so a failed build tells you what to do." />
+    <meta name="twitter:image" content="https://latexdo.org/assets/social-preview.png" />
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/assets/pages.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://latexdo.org/compiler/#webpage",
+            "url": "https://latexdo.org/compiler/",
+            "name": "LaTeX Errors Explained: Compiler Diagnostics | LatexDo",
+            "description": "LatexDo turns raw LaTeX compiler output into clear, source-linked diagnostics with evidence and suggested fixes, so a failed build tells you what to do.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@id": "https://latexdo.org/#website"
+            },
+            "publisher": {
+              "@id": "https://latexdo.org/#organization"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://latexdo.org/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Compiler diagnostics",
+                "item": "https://latexdo.org/compiler/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
     <div data-header-src="/partials/header.html"></div>
-    <main id="content">
-      <section class="download-hero section-band" aria-labelledby="compiler-title">
-        <div class="section-inner">
-          <p class="eyebrow">Compiler diagnostics</p>
-          <h1 id="compiler-title">Errors should explain themselves.</h1>
-          <p>Compiler output becomes a structured finding with file, line, evidence, and an optional source-safe fix.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="/#product-demo">See the diagnostic scene</a>
-            <a class="button secondary" href="/downloads/">Download LatexDo</a>
+    <main id="content" class="lx">
+      <header class="lx-hero">
+        <p class="lx-label">Compiler diagnostics</p>
+        <h1>Errors should explain themselves.</h1>
+        <p class="lx-lede">
+          Compiler output becomes a structured finding with file, line, evidence, and an
+          optional source-safe fix.
+        </p>
+      </header>
+
+      <section class="lx-rows" aria-label="How diagnostics work">
+        <article class="lx-row reveal">
+          <span class="lx-num">Parse</span>
+          <h2>Normalize LaTeX output.</h2>
+          <div class="lx-row-body">
+            <p>Errors and warnings become source-linked findings rather than raw terminal text.</p>
           </div>
-        </div>
+        </article>
+        <article class="lx-row reveal">
+          <span class="lx-num">Explain</span>
+          <h2>Show evidence.</h2>
+          <div class="lx-row-body">
+            <p>Diagnostics include file, line, message, related project evidence, and confidence.</p>
+          </div>
+        </article>
+        <article class="lx-row reveal">
+          <span class="lx-num">Fix</span>
+          <h2>Apply only after review.</h2>
+          <div class="lx-row-body">
+            <p>Suggested fixes are visible diffs and stay undoable.</p>
+          </div>
+        </article>
       </section>
-      <section class="section-band">
-        <div class="section-inner">
-          <div class="outcome-grid">
-            <article class="outcome-card">
-              <span>Parse</span>
-              <h2>Normalize LaTeX output.</h2>
-              <p>Errors and warnings become source-linked findings rather than raw terminal text.</p>
-            </article>
-            <article class="outcome-card">
-              <span>Explain</span>
-              <h2>Show evidence.</h2>
-              <p>Diagnostics include file, line, message, related project evidence, and confidence.</p>
-            </article>
-            <article class="outcome-card">
-              <span>Fix</span>
-              <h2>Apply only after review.</h2>
-              <p>Suggested fixes are visible diffs and stay undoable.</p>
-            </article>
-          </div>
+
+      <section class="lx-close reveal" aria-labelledby="compiler-close">
+        <h2 id="compiler-close">See it on your own paper.</h2>
+        <p>Open a project, press Compile, and read the Problems panel.</p>
+        <div class="lx-close-actions">
+          <a class="lx-pill" href="/downloads/">Download LatexDo</a>
+          <a class="lx-arrow" href="/research/compiler/">Read the compiler research</a>
         </div>
       </section>
     </main>

@@ -2941,10 +2941,12 @@ h3 {
 }
 
 .footer-social-link.is-linkedin {
-  --social-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z'/%3E%3C/svg%3E");
+  /* A solid tile with the "in" cut out. Drawn with even-odd fill so the letters
+     keep clear margins and never touch the edge at small sizes. */
+  --social-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M4.5 1h15A3.5 3.5 0 0 1 23 4.500v15a3.500 3.500 0 0 1-3.500 3.500h-15A3.500 3.500 0 0 1 1 19.500v-15A3.500 3.500 0 0 1 4.500 1ZM5.400 9.800h3.100V18.600H5.400ZM6.950 5.200a1.800 1.800 0 1 1 0 3.600a1.800 1.800 0 0 1 0-3.600ZM10.400 9.800h3v1.250c.550-.900 1.600-1.500 2.950-1.500c2.350 0 3.250 1.500 3.250 3.900v5.150h-3.100v-4.650c0-1.100-.400-1.800-1.350-1.800c-1 0-1.650.700-1.650 1.950v4.500h-3.100Z'/%3E%3C/svg%3E");
   --social-color: #0a66c2;
-  --social-icon-width: 18px;
-  --social-icon-height: 18px;
+  --social-icon-width: 20px;
+  --social-icon-height: 20px;
 }
 
 .footer-social-link.is-mastodon {
@@ -5162,4 +5164,245 @@ img.platform-logo {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ---------- Text pages: same typographic language as the homepage ----------
+   Applies to every .legal-page (legal notice, contact, code of conduct, privacy,
+   terms, volunteering) without changing their markup. */
+.legal-page {
+  width: min(820px, calc(100% - 40px));
+  padding: clamp(64px, 9vw, 120px) 0 clamp(70px, 9vw, 120px);
+  letter-spacing: -0.011em;
+}
+
+.legal-page > .eyebrow {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.legal-page h1 {
+  max-width: none;
+  margin: 14px 0 20px;
+  font-size: clamp(38px, 5.6vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.legal-intro {
+  max-width: 660px;
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.45;
+}
+
+.legal-document {
+  gap: 0;
+  margin-top: clamp(36px, 5vw, 60px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.legal-document section {
+  padding: clamp(26px, 3.6vw, 40px) 0;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.legal-document h2 {
+  margin: 0 0 12px;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+}
+
+.legal-document p,
+.legal-document li {
+  font-size: 17.5px;
+  line-height: 1.6;
+}
+
+.legal-document a:not(.button) {
+  font-weight: 600;
+}
+
+.downloads-hero .eyebrow {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+.downloads-hero h1 {
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.042em;
+  line-height: 1;
+}
+
+/* ---------- Site-wide consistency with the homepage ---------- */
+.site-footer .footer-brand p {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.donations-page h1,
+.board-page h1,
+.board-page .section-heading h2,
+.donations-page h2 {
+  font-weight: 700;
+  letter-spacing: -0.036em;
+}
+
+.donations-page .eyebrow,
+.board-page .eyebrow,
+.downloads-page .eyebrow {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.button {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.board-page .section-heading h1 {
+  margin: 0;
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.03;
+}
+
+/* ==========================================================================
+   One visual language for the whole site (matches the homepage).
+   ========================================================================== */
+:root {
+  --page: #fbfbfd;
+  --surface: #ffffff;
+  --surface-soft: #f0f1f4;
+  --ink: #0b0c0f;
+  --ink-soft: #2b2f38;
+  --muted: #5d6470;
+  --border: rgb(11 12 15 / 12%);
+  --hairline: rgb(11 12 15 / 10%);
+  --blue: #1f5fe0;
+  --blue-strong: #1a4fc0;
+  --shadow-soft: 0 14px 40px rgb(20 30 70 / 7%);
+  --shadow-strong: 0 30px 70px -20px rgb(20 30 70 / 20%);
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", system-ui,
+    sans-serif;
+  letter-spacing: -0.011em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.032em;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.site-header {
+  border-bottom-color: var(--hairline);
+  background: rgb(251 251 253 / 80%);
+}
+
+.button {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.button.primary {
+  background: var(--ink);
+}
+
+/* Cards: flat, hairline, generous radius. */
+.impact-card,
+.sponsor-tier,
+.outcome-card,
+.legal-facts div,
+.platform-download-card,
+.compare-table-wrap,
+.expenses-table-wrap,
+.donations-compare,
+.org-card,
+.volunteer-card {
+  border-color: var(--hairline);
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.legal-facts div {
+  border-radius: 14px;
+}
+
+.donations-page,
+.board-page,
+.downloads-page {
+  padding-top: clamp(64px, 9vw, 120px);
+}
+
+.donations-page h1,
+.downloads-hero h1 {
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.042em;
+}
+
+.donation-compare-table-wrap,
+.donation-compare-wrap,
+.donations-table-wrap,
+.board-member-slide,
+[class$="table-wrap"] {
+  border-color: var(--hairline);
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.donate-compare-wrap,
+.donate-compare {
+  border-color: var(--hairline);
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+/* Text-only navigation: no small icons beside header and footer links. */
+.nav-links a .header-link-icon,
+.footer-link-icon,
+.footer-heading-icon {
+  display: none;
+}
+
+.downloads-platform-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  margin-top: 34px;
+  font-size: 15px;
+}
+
+.downloads-platform-links a {
+  color: var(--blue);
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.downloads-platform-links a:hover {
+  text-decoration: underline;
 }

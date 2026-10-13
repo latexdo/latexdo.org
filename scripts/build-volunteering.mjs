@@ -50,47 +50,128 @@ for (const position of positions) {
 
 const published = positions.filter((position) => position.published);
 const outputs = new Map();
-function page(path, title, description, content) {
-  const values = { title: escape(title), description: escape(description), path: escape(path), content };
+const site = "https://latexdo.org";
+// JSON-LD is embedded in a <script>, so "<" must not be able to close it.
+const jsonLd = (graph) => JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 2)
+  .replace(/</g, "\\u003c");
+const breadcrumb = (items) => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map(([name, path], index) => ({
+    "@type": "ListItem", position: index + 1, name, item: `${site}${path}`,
+  })),
+});
+function page(path, title, description, content, graph) {
+  const values = {
+    title: escape(title), description: escape(description), path: escape(path), content,
+    jsonld: jsonLd(graph),
+  };
   return template.replace("<!doctype html>", `<!doctype html>\n${marker}`)
-    .replace(/\{\{(title|description|path|content)\}\}/g, (_, key) => values[key]);
+    .replace(/\{\{(title|description|path|content|jsonld)\}\}/g, (_, key) => values[key]);
 }
-const list = (items) => `<ul>${items.map((item) => `<li>${escape(item)}</li>`).join("\n")}</ul>`;
-const languages = (position) => `<ul class="volunteer-tags" aria-label="Languages">${position.languages.map((language) => `<li>${escape(language)}</li>`).join("")}</ul>`;
-const roleIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" /></svg>`;
+const list = (items) => `<ul class="lx-list">${items.map((item) => `<li>${escape(item)}</li>`).join("\n")}</ul>`;
+const languages = (position) => `<ul class="lx-tags" aria-label="Languages">${position.languages.map((language) => `<li>${escape(language)}</li>`).join("")}</ul>`;
+const indexDescription = "Volunteer with LatexDo and help build the free, open-source LaTeX editor used for writing, education, and research.";
 
-outputs.set(join(directory, "index.html"), page("/volunteering/", "Volunteering",
-  "Volunteer with LatexDo and help build open-source tools for writing, education, and research.", `
-      <h1 class="volunteering-title">Volunteering</h1>
-      <section class="volunteer-openings" aria-label="Volunteer opportunities">
-        ${published.length ? `<ul class="volunteer-list">${published.map((position) => `
-          <li><a class="volunteer-card" href="/volunteering/${escape(position.slug)}/">
-            <span class="volunteer-card-icon">${roleIcon}</span>
-            <h2>${escape(position.title)}</h2>
+outputs.set(join(directory, "index.html"), page("/volunteering/", "Careers and Volunteer Roles",
+  indexDescription, `
+      <header class="lx-hero">
+        <p class="lx-label">Careers</p>
+        <h1>Build LatexDo with us.</h1>
+        <p class="lx-lede">
+          LatexDo is built by volunteers who care about research and good tools. Pick a
+          role, ship real work, and help people everywhere write better papers.
+        </p>
+      </header>
+      <section class="lx-rows" aria-label="Volunteer opportunities">
+        ${published.length ? published.map((position, index) => `
+        <article class="lx-row reveal">
+          <span class="lx-num">${String(index + 1).padStart(2, "0")}</span>
+          <h2><a href="/volunteering/${escape(position.slug)}/">${escape(position.title)}</a></h2>
+          <div class="lx-row-body">
+            <p>${escape(position.summary)}</p>
             ${languages(position)}
-            <span class="volunteer-card-action">View position <span aria-hidden="true">↗</span></span>
-          </a></li>`).join("\n")}</ul>` : `<p>There are no open positions listed right now. Check back for future opportunities.</p>
-        <p>Interested in contributing? <a href="/contact/">Get in touch</a>.</p>`}
-      </section>`));
+            <a class="lx-arrow" href="/volunteering/${escape(position.slug)}/" aria-label="View the ${escape(position.title)} role">View role</a>
+          </div>
+        </article>`).join("\n") : `
+        <article class="lx-row">
+          <span class="lx-num">00</span>
+          <h2>No open positions right now.</h2>
+          <div class="lx-row-body">
+            <p>There are no open positions listed right now. Check back for future opportunities.</p>
+            <a class="lx-arrow" href="/contact/">Get in touch</a>
+          </div>
+        </article>`}
+      </section>
+      <section class="lx-close reveal" aria-labelledby="careers-close">
+        <h2 id="careers-close">Don't see your role?</h2>
+        <p>We also welcome designers, writers, researchers and translators. Tell us what you would like to work on.</p>
+        <div class="lx-close-actions">
+          <a class="lx-pill" href="/contact/">Contact us</a>
+          <a class="lx-arrow" href="https://github.com/latexdo/latexdo">Start on GitHub</a>
+        </div>
+      </section>`, [
+    {
+      "@type": "CollectionPage",
+      "@id": `${site}/volunteering/#webpage`,
+      url: `${site}/volunteering/`,
+      name: "Careers and Volunteer Roles - LatexDo",
+      description: indexDescription,
+      isPartOf: { "@id": `${site}/#website` },
+    },
+    breadcrumb([["Home", "/"], ["Careers", "/volunteering/"]]),
+  ]));
 
 for (const position of published) {
+  const path = `/volunteering/${position.slug}/`;
+  const graph = [
+    {
+      "@type": "WebPage",
+      "@id": `${site}${path}#webpage`,
+      url: `${site}${path}`,
+      name: `${position.title} - LatexDo`,
+      description: position.summary,
+      isPartOf: { "@id": `${site}/#website` },
+    },
+    breadcrumb([["Home", "/"], ["Careers", "/volunteering/"], [position.title, path]]),
+  ];
+  // Search engines require a posting date for job listings.
+  if (/^\d{4}-\d{2}-\d{2}$/.test(position.datePosted ?? "")) {
+    graph.push({
+      "@type": "JobPosting",
+      title: position.title,
+      description: `<p>${escape(position.description)}</p>${list(position.responsibilities)}${list(position.requirements)}`,
+      datePosted: position.datePosted,
+      employmentType: "VOLUNTEER",
+      jobLocationType: "TELECOMMUTE",
+      applicantLocationRequirements: { "@type": "Country", name: "Worldwide" },
+      directApply: false,
+      url: `${site}${path}`,
+      hiringOrganization: {
+        "@type": "Organization", name: "LatexDo", sameAs: `${site}/`, logo: `${site}/assets/icon.svg`,
+      },
+    });
+  }
   outputs.set(join(directory, position.slug, "index.html"), page(
-    `/volunteering/${position.slug}/`, position.title, position.summary, `
-      <a class="volunteer-back" href="/volunteering/">← All positions</a>
-      <h1>${escape(position.title)}</h1>
-      <p class="legal-intro">${escape(position.summary)}</p>
-      <article class="legal-document">
-        <section><h2>About the volunteer role</h2><p>${escape(position.description)}</p></section>
-        <section><h2>Languages</h2>${languages(position)}</section>
-        <section><h2>What you'll do</h2>${list(position.responsibilities)}</section>
-        <section><h2>What you'll bring</h2>${list(position.requirements)}</section>
-        <section aria-labelledby="apply-title">
-          <h2 id="apply-title">Apply for this position</h2>
-          ${position.applicationUrl ? `<p>Tell us about yourself and your interest in this role using our application form.</p>
-          <p><a class="button primary" href="${escape(position.applicationUrl)}">Apply via Google Form <span aria-hidden="true">↗</span></a></p>
-          <p>The application form is hosted on Google Forms.</p>` : `<p>The application form will be available here soon.</p>`}
-        </section>
-      </article>`));
+    path, position.title, position.summary, `
+      <header class="lx-hero">
+        <a class="lx-back" href="/volunteering/">All positions</a>
+        <p class="lx-label">Volunteer role · Remote</p>
+        <h1>${escape(position.title)}</h1>
+        <p class="lx-lede">${escape(position.summary)}</p>
+      </header>
+      <div class="lx-rows">
+        <section class="lx-row two reveal"><h2>About the volunteer role</h2><div class="lx-row-body"><p>${escape(position.description)}</p></div></section>
+        <section class="lx-row two reveal"><h2>Languages</h2><div class="lx-row-body">${languages(position)}</div></section>
+        <section class="lx-row two reveal"><h2>What you'll do</h2><div class="lx-row-body">${list(position.responsibilities)}</div></section>
+        <section class="lx-row two reveal"><h2>What you'll bring</h2><div class="lx-row-body">${list(position.requirements)}</div></section>
+      </div>
+      <section class="lx-close reveal" aria-labelledby="apply-title">
+        <h2 id="apply-title">Apply for this position</h2>
+        ${position.applicationUrl ? `<p>Tell us about yourself and your interest in this role using our application form.</p>
+        <div class="lx-close-actions"><a class="lx-pill" href="${escape(position.applicationUrl)}">Apply via Google Form <span aria-hidden="true">↗</span></a></div>
+        <p class="lx-note">The application form is hosted on Google Forms.</p>` : `<p>The application form will be available here soon.</p>
+        <div class="lx-close-actions"><a class="lx-arrow" href="/contact/">Contact us in the meantime</a></div>`}
+      </section>`, graph));
 }
 
 // Only remove obsolete files that this script generated; preserve handwritten pages.

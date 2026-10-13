@@ -1633,3 +1633,109 @@ span.footer-social-link {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   One visual language for the whole site (matches the homepage).
+   ========================================================================== */
+:root {
+  --page: #fbfbfd;
+  --surface: #ffffff;
+  --surface-soft: #f0f1f4;
+  --ink: #0b0c0f;
+  --ink-soft: #2b2f38;
+  --muted: #5d6470;
+  --border: rgb(11 12 15 / 12%);
+  --hairline: rgb(11 12 15 / 10%);
+  --blue: #1f5fe0;
+  --blue-strong: #1a4fc0;
+  --shadow-soft: 0 14px 40px rgb(20 30 70 / 7%);
+  --shadow-strong: 0 30px 70px -20px rgb(20 30 70 / 20%);
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", system-ui,
+    sans-serif;
+  letter-spacing: -0.011em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.032em;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.site-header {
+  border-bottom-color: var(--hairline);
+  background: rgb(251 251 253 / 80%);
+}
+
+.button {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.button.primary {
+  background: var(--ink);
+}
+
+/* Research pages: same calm surfaces as the rest of the site. */
+.research-hero,
+.hero,
+.detail-hero {
+  background: var(--page);
+}
+
+.hero::before,
+.hero::after,
+.research-hero::before,
+.research-hero::after {
+  background: none;
+}
+
+.research-hero h1,
+.hero h1,
+.detail-hero h1 {
+  font-weight: 700;
+  letter-spacing: -0.042em;
+  line-height: 1;
+}
+
+.research-panel {
+  border-color: var(--hairline);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.research-flow::before {
+  background: var(--hairline);
+}
+
+.flow-card,
+.track-card,
+.panel-card,
+.detail-card {
+  border-color: var(--hairline);
+  box-shadow: none;
+}
+
+.footer-social-link.is-linkedin {
+  --social-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M4.5 1h15A3.5 3.5 0 0 1 23 4.500v15a3.500 3.500 0 0 1-3.500 3.500h-15A3.500 3.500 0 0 1 1 19.500v-15A3.500 3.500 0 0 1 4.500 1ZM5.400 9.800h3.100V18.600H5.400ZM6.950 5.200a1.800 1.800 0 1 1 0 3.600a1.800 1.800 0 0 1 0-3.600ZM10.400 9.800h3v1.250c.550-.900 1.600-1.500 2.950-1.500c2.350 0 3.250 1.500 3.250 3.900v5.150h-3.100v-4.650c0-1.100-.400-1.800-1.350-1.800c-1 0-1.650.700-1.650 1.950v4.500h-3.100Z'/%3E%3C/svg%3E");
+}
+
+/* Text-only navigation: no small icons beside header and footer links. */
+.nav-links a .header-link-icon,
+.footer-link-icon,
+.footer-heading-icon {
+  display: none;
+}
