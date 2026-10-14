@@ -246,8 +246,33 @@ async function initSmartDownload(): Promise<void> {
   }
 }
 
+/** Shows the current version and its release date under the final call. */
+async function initLatestRelease(): Promise<void> {
+  const element = document.querySelector<HTMLElement>("[data-latest-release]");
+  if (!element) return;
+  try {
+    const response = await fetch("/downloads/manifest.json");
+    if (!response.ok) return;
+    const manifest = (await response.json()) as { version?: unknown; publishedAt?: unknown };
+    const published = new Date(String(manifest.publishedAt));
+    if (typeof manifest.version !== "string" || Number.isNaN(published.getTime())) return;
+    const link = document.createElement("a");
+    link.href = "/downloads/";
+    link.textContent = `Version ${manifest.version}, released ${published.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })}`;
+    element.replaceChildren(link);
+    element.hidden = false;
+  } catch {
+    // The line simply stays hidden.
+  }
+}
+
 function initHome(): void {
   void initSmartDownload();
+  void initLatestRelease();
   initReveals();
   initCycles();
   initCounters();

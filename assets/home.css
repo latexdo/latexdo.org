@@ -602,31 +602,14 @@
   line-height: 1.5;
 }
 
-.home .h-points {
-  display: grid;
-  gap: 10px;
-  margin: 6px 0 0;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 550;
-  list-style: none;
+/* One key phrase per paragraph carries the section; the rest stays quiet. */
+.home .h-chapter-copy > p strong {
+  color: var(--h-ink);
+  font-weight: 600;
 }
 
-.home .h-points li {
-  position: relative;
-  padding-left: 28px;
-}
-
-.home .h-points li::before {
-  position: absolute;
-  top: 0.42em;
-  left: 2px;
-  width: 13px;
-  height: 7px;
-  border-bottom: 2.5px solid var(--h-blue);
-  border-left: 2.5px solid var(--h-blue);
-  content: "";
-  transform: rotate(-45deg);
+.home .h-dark-copy > p strong {
+  font-weight: 600;
 }
 
 .home .h-visual {
@@ -1459,7 +1442,7 @@
 .home .h-tikz path {
   fill: none;
   stroke-dasharray: 60;
-  animation: h-draw 3s var(--h-ease) infinite;
+  animation: h-draw 3s var(--h-ease) -1.5s infinite;
 }
 
 @keyframes h-draw {
@@ -1486,27 +1469,27 @@
 }
 
 .home .h-voice i:nth-child(2) {
-  animation-delay: 120ms;
+  animation-delay: -120ms;
 }
 
 .home .h-voice i:nth-child(3) {
-  animation-delay: 240ms;
+  animation-delay: -240ms;
 }
 
 .home .h-voice i:nth-child(4) {
-  animation-delay: 360ms;
+  animation-delay: -360ms;
 }
 
 .home .h-voice i:nth-child(5) {
-  animation-delay: 480ms;
+  animation-delay: -480ms;
 }
 
 .home .h-voice i:nth-child(6) {
-  animation-delay: 600ms;
+  animation-delay: -600ms;
 }
 
 .home .h-voice i:nth-child(7) {
-  animation-delay: 720ms;
+  animation-delay: -720ms;
 }
 
 @keyframes h-wave {
@@ -1823,3 +1806,122 @@
 @keyframes h-research-signal { 0%,100% { opacity: .4; transform: translateY(-3px); } 50% { opacity: 1; transform: translateY(3px); } }
 @keyframes h-research-tool { 0%,45%,100% { transform: translateY(0); box-shadow: none; } 20% { transform: translateY(-4px); box-shadow: 0 7px 20px #1f5fe016; } }
 @media (prefers-reduced-motion: reduce) { .home .h-research-map * { animation: none !important; } }
+
+/* Card art rests until the card is hovered, so the grid is calm while reading. */
+.home .h-card .h-card-art,
+.home .h-card .h-card-art * {
+  animation-play-state: paused;
+}
+
+.home .h-card:hover .h-card-art,
+.home .h-card:hover .h-card-art * {
+  animation-play-state: running;
+}
+
+/* ---------- Mission ---------- */
+.home .h-mission {
+  display: grid;
+  width: min(1180px, calc(100% - 40px));
+  gap: clamp(30px, 4vw, 48px);
+  margin: 0 auto;
+  padding: clamp(60px, 9vw, 130px) 0;
+  justify-items: center;
+}
+
+.home .h-mission-copy {
+  display: grid;
+  max-width: 800px;
+  gap: 18px;
+  text-align: center;
+}
+
+.home .h-mission h2 {
+  font-size: clamp(32px, 4.6vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.038em;
+  line-height: 1.03;
+}
+
+.home .h-mission-copy > p:not(.h-eyebrow) {
+  color: var(--h-soft);
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.5;
+}
+
+.home .h-mission-copy > p strong {
+  color: var(--h-ink);
+  font-weight: 600;
+}
+
+.home .h-mission-grid {
+  display: grid;
+  width: 100%;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home .h-mission-card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 26px;
+  border: 1px solid var(--h-line);
+  border-radius: 26px;
+  background: var(--h-card);
+  color: var(--h-ink);
+  text-decoration: none;
+}
+
+.home .h-mission-card strong {
+  font-size: 21px;
+  letter-spacing: -0.03em;
+}
+
+.home .h-mission-card span {
+  color: var(--h-soft);
+  font-size: 15.5px;
+  line-height: 1.45;
+}
+
+.home .h-mission-card em {
+  margin-top: 6px;
+  color: var(--h-blue);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.home .h-mission-card i {
+  display: inline-block;
+  font-style: normal;
+  transition: transform 220ms var(--h-ease);
+}
+
+.home .h-mission-card:hover i {
+  transform: translateX(3px);
+}
+
+.home .h-mission-card:focus-visible {
+  outline: 3px solid var(--h-blue);
+  outline-offset: 4px;
+}
+
+.home button.h-button {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.home .h-release {
+  font-size: 15px;
+}
+
+.home .h-release a {
+  color: var(--h-soft);
+}
+
+@media (max-width: 900px) {
+  .home .h-mission-grid {
+    grid-template-columns: 1fr;
+  }
+}

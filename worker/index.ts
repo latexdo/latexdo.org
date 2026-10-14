@@ -7,6 +7,11 @@ interface WorkerEnv {
 const feedJsonPattern = /^\/(?:downloads|updates)\/.+\.json$/;
 const htmlHeaderValues = {
   "Cache-Control": "no-store",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Strict-Transport-Security": "max-age=31536000",
+  // Pages may only be framed by this site, which blocks clickjacking.
+  "Content-Security-Policy": "frame-ancestors 'self'",
 } as const;
 const feedHeaderValues = {
   "Access-Control-Allow-Origin": "*",

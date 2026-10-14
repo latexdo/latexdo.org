@@ -1,3 +1,4 @@
+import { initConsent } from "./consent.js";
 import { initProductDemo } from "./product-demo/index.js";
 function query(selector) {
     return document.querySelector(selector);
@@ -89,6 +90,8 @@ const siteIconPaths = {
     Association: `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
     About: `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
     "Legal Notice": `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
+    "About the association": `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
+    "Cookie settings": `<path d="M4 7h10" /><path d="M18 7h2" /><circle cx="16" cy="7" r="2" /><path d="M4 17h2" /><path d="M10 17h10" /><circle cx="8" cy="17" r="2" />`,
     "Association / Legal Notice": `<circle cx="12" cy="12" r="9" /><path d="M12 11v5" /><path d="M12 8h.01" />`,
     "Code of Conduct": `<path d="M12 3 5 6v5c0 4.5 2.9 8.4 7 10 4.1-1.6 7-5.5 7-10V6l-7-3Z" /><path d="m9 12 2 2 4-5" />`,
     Vision: `<circle cx="12" cy="12" r="3" /><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />`,
@@ -956,7 +959,12 @@ async function loadHtmlIncludes(sourceAttribute, defaultSource, requiredHtml) {
         const fallbackSource = source.endsWith(".html")
             ? source.slice(0, -".html".length)
             : `${source}.html`;
-        for (const candidate of [source, fallbackSource]) {
+        // The host serves partials without ".html" and redirects the long form,
+        // so the short form is tried first to save a round trip.
+        const candidates = source.endsWith(".html")
+            ? [fallbackSource, source]
+            : [source, fallbackSource];
+        for (const candidate of candidates) {
             try {
                 const response = await fetch(candidate);
                 if (!response.ok)
@@ -1001,6 +1009,7 @@ async function initFooter() {
     });
 }
 function init() {
+    initConsent();
     void initNavigation();
     initReveal();
     initProductDemo();

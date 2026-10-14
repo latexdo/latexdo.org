@@ -229,8 +229,36 @@ async function initSmartDownload() {
         // The downloads page link still works.
     }
 }
+/** Shows the current version and its release date under the final call. */
+async function initLatestRelease() {
+    const element = document.querySelector("[data-latest-release]");
+    if (!element)
+        return;
+    try {
+        const response = await fetch("/downloads/manifest.json");
+        if (!response.ok)
+            return;
+        const manifest = (await response.json());
+        const published = new Date(String(manifest.publishedAt));
+        if (typeof manifest.version !== "string" || Number.isNaN(published.getTime()))
+            return;
+        const link = document.createElement("a");
+        link.href = "/downloads/";
+        link.textContent = `Version ${manifest.version}, released ${published.toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+        })}`;
+        element.replaceChildren(link);
+        element.hidden = false;
+    }
+    catch {
+        // The line simply stays hidden.
+    }
+}
 function initHome() {
     void initSmartDownload();
+    void initLatestRelease();
     initReveals();
     initCycles();
     initCounters();

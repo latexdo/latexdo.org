@@ -6,7 +6,16 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "run_worker_first": true,
+    // The Worker handles pages and the JSON feeds. Stylesheets, scripts, images
+    // and the shared partials are served straight from the edge without it.
+    "run_worker_first": [
+      "/*",
+      "!/assets/*",
+      "!/style.css",
+      "!/research/assets/*",
+      "!/research/style.css",
+      "!/partials/*"
+    ],
     "not_found_handling": "404-page"
   }
 }

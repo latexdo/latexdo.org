@@ -86,6 +86,10 @@ svg {
   transform: translateY(0);
 }
 
+[data-header-src] {
+  min-height: 67px;
+}
+
 .site-header {
   position: sticky;
   top: 0;

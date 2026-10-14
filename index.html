@@ -1,22 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NMQCNBBJ');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZK1FHVL4C"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-VZK1FHVL4C');
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LatexDo: Free LaTeX Editor with Live PDF, Citations and AI</title>
@@ -63,6 +47,14 @@
             "url": "https://latexdo.org/",
             "logo": "https://latexdo.org/assets/icon.svg",
             "email": "contact@latexdo.org",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Avenue Paul Langevin",
+              "postalCode": "59650",
+              "addressLocality": "Villeneuve-d'Ascq",
+              "addressCountry": "FR"
+            },
+            "identifier": "RNA W595047000",
             "description": "LatexDo is a French nonprofit association building a focused local-first LaTeX workspace for source editing, PDF preview, citations, review workflows, and local compilation.",
             "sameAs": [
               "https://github.com/latexdo/latexdo",
@@ -175,10 +167,6 @@
     </script>
   </head>
   <body class="home">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMQCNBBJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
@@ -187,14 +175,14 @@
       <!-- Hero -->
       <section class="h-hero" aria-labelledby="hero-title">
         <div class="h-hero-copy">
-          <p class="h-kicker h-rise">Free and open source · macOS · Windows · Linux</p>
+          <p class="h-kicker h-rise">Free and open source · Built by a nonprofit · macOS, Windows, Linux</p>
           <h1 id="hero-title" class="h-rise">
             Everything your paper needs.<br />
             <span class="h-gradient">In one window.</span>
           </h1>
           <p class="h-lede h-rise">
-            LatexDo is the LaTeX editor that writes, compiles, cites, reviews and answers
-            reviewers with you, on your own computer.
+            The LaTeX editor that writes, compiles, cites and answers reviewers with you.
+            On your own computer.
           </p>
           <div class="h-actions h-rise">
             <a class="h-button" href="/downloads/" data-origin="hero" data-smart-download>Download LatexDo</a>
@@ -264,8 +252,7 @@
       <!-- Statement -->
       <section class="h-statement" aria-label="What LatexDo is">
         <p class="h-reveal">
-          Writing a paper is not just typing LaTeX. It is compiling, fixing errors, finding
-          citations, reading reviews and writing the response.
+          A paper is more than typing LaTeX. It is builds, errors, citations and reviews.
           <strong>LatexDo puts all of it next to your manuscript.</strong>
         </p>
       </section>
@@ -277,14 +264,10 @@
             <p class="h-eyebrow">Source and PDF</p>
             <h2 id="c-sync">Click a sentence. Land on its source.</h2>
             <p>
-              Your source and the compiled PDF sit side by side. Click anywhere in the PDF to
-              jump to the line that produced it, or go the other way from the editor.
+              Source and PDF sit side by side.
+              <strong>Click anywhere in the PDF to jump to the line that produced it</strong>,
+              or go the other way. Edit as code or visually, in the same file.
             </p>
-            <ul class="h-points">
-              <li>Live PDF preview beside the editor</li>
-              <li>Two-way jump between PDF and source</li>
-              <li>Code view or visual editing, same file</li>
-            </ul>
           </div>
           <div class="h-visual h-reveal" data-cycle="3" aria-hidden="true">
             <div class="h-sync">
@@ -315,14 +298,10 @@
             <p class="h-eyebrow">Problems</p>
             <h2 id="c-errors">LaTeX errors, in plain language.</h2>
             <p>
-              A failed build no longer means reading a thousand-line log. LatexDo tells you
-              what went wrong, where, and what to do about it, then takes you to the line.
+              No more thousand-line logs. LatexDo tells you
+              <strong>what went wrong, where, and how to fix it</strong>, then takes you to
+              the line. It also checks structure, citations and the PDF before you submit.
             </p>
-            <ul class="h-points">
-              <li>One clear message per problem</li>
-              <li>Jump straight to the file and line</li>
-              <li>Structure, citation and PDF checks before you submit</li>
-            </ul>
           </div>
           <div class="h-visual h-reveal" aria-hidden="true">
             <div class="h-errors">
@@ -355,9 +334,8 @@ l.42 \includegraphics{figures/results.pdf}
             <p class="h-eyebrow">AI, on your terms</p>
             <h2 id="c-ai">An assistant that never leaves your laptop.</h2>
             <p>
-              Run a model locally and work offline, connect Ollama, or bring your own
-              provider. Select a sentence and ask. Nothing in your paper changes until you
-              approve it.
+              Run a model locally, connect Ollama, or bring your own provider.
+              <strong>Nothing in your paper changes until you approve it.</strong>
             </p>
           </div>
           <div class="h-ai h-reveal" aria-hidden="true">
@@ -389,15 +367,10 @@ l.42 \includegraphics{figures/results.pdf}
           <p class="h-eyebrow">Citations</p>
           <h2 id="c-cite">See how your references connect.</h2>
           <p>
-            Search Crossref and OpenAlex without leaving the editor, insert the
-            citation, and open the knowledge graph to see how your references connect to
-            your paper.
+            <strong>Search Crossref and OpenAlex without leaving the editor</strong> and
+            insert the citation. Then open the knowledge graph to see how your bibliography
+            relates to your paper.
           </p>
-          <ul class="h-points">
-            <li>Find and insert citations from inside the editor</li>
-            <li>A graph of your bibliography, one click away</li>
-            <li>Ask the assistant to show only entries related to your paper</li>
-          </ul>
         </div>
         <div class="h-visual h-reveal" aria-hidden="true">
           <svg class="h-graph" viewBox="0 0 520 380" role="presentation">
@@ -439,14 +412,10 @@ l.42 \includegraphics{figures/results.pdf}
           <p class="h-eyebrow">Review and rebuttal</p>
           <h2 id="c-review">From reviewer comment to response letter.</h2>
           <p>
-            Switch to Reviewer mode to read and annotate a paper. Switch to Rebuttal mode to
-            answer each reviewer point by point, with the manuscript right beside you.
+            Annotate any PDF in Reviewer mode. In Rebuttal mode,
+            <strong>answer each reviewer point by point</strong>, with the manuscript beside
+            you and a response template ready.
           </p>
-          <ul class="h-points">
-            <li>Annotate and highlight any PDF, and ask AI about it</li>
-            <li>One response per reviewer comment</li>
-            <li>A ready-made review response template</li>
-          </ul>
         </div>
         <div class="h-visual h-reveal" aria-hidden="true">
           <div class="h-review">
@@ -521,7 +490,7 @@ l.42 \includegraphics{figures/results.pdf}
         <div class="h-chapter-copy">
           <p class="h-eyebrow">Research</p>
           <h2 id="research-heading">Look inside the writing loop.</h2>
-          <p>How does a build become a useful error? How does AI act on a project? Explore the compiler, AI harness, and knowledge graph in motion, from source to result.</p>
+          <p>See how a build becomes a useful error and how AI acts on a project. <strong>The compiler, AI harness and knowledge graph, in motion.</strong></p>
           <a class="h-link" href="/research/">Explore the research <span aria-hidden="true">→</span></a>
         </div>
         <a class="h-research-map" href="/research/" aria-label="Explore how the compiler, AI harness, and knowledge graph connect">
@@ -531,6 +500,42 @@ l.42 \includegraphics{figures/results.pdf}
           <span class="h-research-connector" aria-hidden="true">↓</span>
           <span class="h-research-result">A page. A fix. A connection.</span>
         </a>
+      </section>
+
+      <!-- Mission -->
+      <section class="h-mission" aria-labelledby="mission-title">
+        <div class="h-mission-copy h-reveal">
+          <p class="h-eyebrow">A nonprofit association</p>
+          <h2 id="mission-title">Built for researchers, not for profit.</h2>
+          <p>
+            LatexDo is a French nonprofit association (law of 1901).
+            <strong>Our mission is to make scientific and technical writing with LaTeX
+            more accessible, reliable and transparent</strong>, for students, researchers,
+            educators and reviewers.
+          </p>
+        </div>
+        <div class="h-mission-grid">
+          <a class="h-mission-card h-reveal" href="/programs/">
+            <strong>Free writing tools</strong>
+            <span>A desktop app with no subscription and no paid tier, open source under the MIT license.</span>
+            <em>Our programs <i aria-hidden="true">→</i></em>
+          </a>
+          <a class="h-mission-card h-reveal" href="/latex-errors/">
+            <strong>Plain-language guides</strong>
+            <span>Documentation that explains LaTeX errors and setup to people who are just starting.</span>
+            <em>Fix LaTeX errors <i aria-hidden="true">→</i></em>
+          </a>
+          <a class="h-mission-card h-reveal" href="/donations/expenses/">
+            <strong>Public accounts</strong>
+            <span>Funded by donations and volunteers. Every expense of the association is published.</span>
+            <em>See the expenses <i aria-hidden="true">→</i></em>
+          </a>
+        </div>
+        <div class="h-actions h-reveal">
+          <button class="h-button" type="button" data-donate-open aria-haspopup="dialog" aria-controls="donate-modal">Support the association</button>
+          <a class="h-link" href="/about/">About the association <span aria-hidden="true">→</span></a>
+          <a class="h-link" href="/volunteering/">Volunteer <span aria-hidden="true">→</span></a>
+        </div>
       </section>
 
       <!-- Proof -->
@@ -579,6 +584,7 @@ l.42 \includegraphics{figures/results.pdf}
         <img src="assets/icon.svg" alt="" width="84" height="84" class="h-reveal" />
         <h2 id="final-title" class="h-reveal">Write your next paper in LatexDo.</h2>
         <p class="h-reveal">Free to download. Open the folder you are already working in.</p>
+        <p class="h-release" data-latest-release hidden></p>
         <div class="h-actions h-reveal">
           <a class="h-button" href="/downloads/" data-origin="footer-cta" data-smart-download>Download LatexDo</a>
           <a class="h-link" href="https://github.com/latexdo/latexdo">View the source <span aria-hidden="true">→</span></a>

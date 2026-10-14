@@ -32,6 +32,12 @@
   font-size: 14px;
 }
 
+.site-footer .footer-brand .footer-legal {
+  max-width: 300px;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
 .site-footer nav {
   display: flex;
   flex-direction: column;
