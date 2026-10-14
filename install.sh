@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 set -eu
 
-CLI_URL="${LATEXDO_CLI_URL:-https://cli.latexdo.org/bin/latexdo}"
+CLI_URL="${LATEXDO_CLI_URL:-https://latexdo.org/bin/latexdo}"
+CLI_SHA256="${LATEXDO_CLI_SHA256:-f02d361fe34ee9d7954e38dcd3bbb56f933c821ae4bf2dfccc5980caad83937a}"
 INSTALL_DIR="${LATEXDO_BIN_DIR:-$HOME/.local/bin}"
 TARGET="$INSTALL_DIR/latexdo"
 
@@ -34,7 +35,7 @@ LatexDo does not currently collect personal analytics, sell user data, or track 
 LatexDo stores app settings, trusted folder choices, editor preferences, and install state on this device.
 LatexDo reads and writes files in folders you create, open, or trust. Update checks, downloads, extension catalog access, external links, and optional proofreading can contact LatexDo services or the provider you configure.
 
-Privacy information: https://latexdo.org/privacy.html
+Privacy information: https://www.latexdo.org/privacy
 NOTICE
 
   printf '%s' 'Type "yes" to accept and continue installing LatexDo: ' >/dev/tty
@@ -71,6 +72,18 @@ download() {
   die "curl or wget is required to download LatexDo CLI."
 }
 
+sha256_file() {
+  if command_exists shasum; then
+    shasum -a 256 "$1" | awk '{print $1}'
+  elif command_exists sha256sum; then
+    sha256sum "$1" | awk '{print $1}'
+  elif command_exists openssl; then
+    openssl dgst -sha256 "$1" | awk '{print $NF}'
+  else
+    die "shasum, sha256sum, or openssl is required to verify the CLI download."
+  fi
+}
+
 make_temp_file() {
   if command_exists mktemp; then
     mktemp "${TMPDIR:-/tmp}/latexdo.XXXXXX"
@@ -87,6 +100,17 @@ trap 'rm -f "$tmp_file"' EXIT INT TERM
 
 log "Downloading LatexDo CLI"
 download "$CLI_URL" "$tmp_file"
+
+if [ "${#CLI_SHA256}" -ne 64 ]; then
+  die "LATEXDO_CLI_SHA256 must be exactly 64 hexadecimal characters."
+fi
+case "$CLI_SHA256" in
+  *[!a-fA-F0-9]*) die "LATEXDO_CLI_SHA256 must contain only hexadecimal characters." ;;
+esac
+actual_sha256="$(sha256_file "$tmp_file")"
+if [ "$(printf '%s' "$actual_sha256" | tr 'A-F' 'a-f')" != "$(printf '%s' "$CLI_SHA256" | tr 'A-F' 'a-f')" ]; then
+  die "Downloaded CLI failed SHA-256 verification."
+fi
 
 chmod 0755 "$tmp_file"
 mv "$tmp_file" "$TARGET"

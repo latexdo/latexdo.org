@@ -1,13 +1,12 @@
 # latexdo.org
 
-This repository hosts the public LatexDo website at `https://latexdo.org`. It includes the marketing pages, legal pages, and the CLI installer served from `https://cli.latexdo.org`.
+This repository hosts the public LatexDo website at `https://latexdo.org`. It includes the marketing pages, legal pages, and the CLI installer served from `https://latexdo.org/install.sh`.
 
 ## Repository Role
 
 - Serves the public website.
-- Publishes `install.sh` and `bin/latexdo` for CLI installation at `https://cli.latexdo.org`.
+- Publishes `install.sh` and `bin/latexdo` for CLI installation at `https://latexdo.org/install.sh` and `https://latexdo.org/bin/latexdo`. Both come from `cli/` in the main `latexdo` repository; `install.sh` pins the SHA-256 of `bin/latexdo`.
 - Serves desktop downloads under `https://latexdo.org/downloads/` and update metadata under `https://latexdo.org/updates/`.
-- Receives most source updates from `/Users/omar/Desktop/Github/latexdo/website`.
 
 ## Requirements
 
@@ -73,12 +72,11 @@ The Wrangler config publishes static files from the repository root. `_redirects
 
 The deploy workflow expects `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` to be configured as GitHub repository secrets.
 
-## Source Sync
+## Sources
 
-Most website files are generated from the main app repo. To refresh this repo from local source, run this in `/Users/omar/Desktop/Github/latexdo`:
-
-```sh
-npm run sync:downstream
-```
-
-The sync script intentionally preserves this repo's `README.md`, `LICENSE`, `.nojekyll`, and `wrangler.jsonc`.
+- `downloads/` and `updates/` are published by the release workflow of the main
+  `latexdo` repository.
+- `install.sh` and `bin/latexdo` are copies of `cli/install.sh` and
+  `cli/bin/latexdo` from the main repository; copy both together, since
+  `install.sh` pins the SHA-256 of `bin/latexdo`.
+- Everything else is edited here.
