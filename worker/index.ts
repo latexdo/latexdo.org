@@ -4,7 +4,8 @@ interface WorkerEnv {
   };
 }
 
-const feedJsonPattern = /^\/(?:downloads|updates)\/.+\.json$/;
+// Feeds LatexDo fetches from its own origin: updates, downloads and the store catalog.
+const feedJsonPattern = /^\/(?:downloads|updates|store)\/.+\.json$/;
 const htmlHeaderValues = {
   "Cache-Control": "no-store",
   "X-Content-Type-Options": "nosniff",

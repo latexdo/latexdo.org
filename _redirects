@@ -21,6 +21,5 @@
 /catalog/* https://latexdo.org/research/ai/catalog/:splat 301
 /latexdo/* https://latexdo.org/research/ai/latexdo/:splat 301
 /scripts/* https://latexdo.org/research/ai/scripts/:splat 301
-/store https://store.latexdo.org/ 301
-/store/ https://store.latexdo.org/ 301
-/store/* https://store.latexdo.org/:splat 301
+/store/extensions /store/ 301
+/store/extensions/ /store/ 301
