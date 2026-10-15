@@ -26,6 +26,7 @@
     <link rel="icon" type="image/svg+xml" href="/assets/icon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/assets/pages.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -70,25 +71,27 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="legal-page">
-      <p class="eyebrow">Contact</p>
-      <h1>Reach the LatexDo association.</h1>
-      <p class="legal-intro">
-        Use the official addresses below for nonprofit, governance, donation,
-        privacy, security, accessibility, and contribution questions. Please do
-        not send payment card details or private documents by email.
-      </p>
+    <main id="content" class="lx">
+      <header class="lx-hero">
+        <p class="lx-label">Contact</p>
+        <h1>Reach the LatexDo association.</h1>
+        <p class="lx-lede">
+          Use the official addresses below for nonprofit, governance, donation,
+          privacy, security, accessibility, and contribution questions. Please do
+          not send payment card details or private documents by email.
+        </p>
+        <div class="lx-hero-actions">
+          <a class="lx-button" href="mailto:contact@latexdo.org">Email contact@latexdo.org</a>
+        </div>
+      </header>
 
-      <article class="legal-document">
+      <article class="lx-doc">
         <section>
           <h2>General contact</h2>
           <p>
             For general questions, press requests, educational use, nonprofit
-            eligibility questions, and help finding the right contact, use the
-            general contact email button.
-          </p>
-          <p>
-            <a class="button secondary compact" href="mailto:contact@latexdo.org">Email general contact</a>
+            eligibility questions, and help finding the right contact, write to
+            <a href="mailto:contact@latexdo.org">contact@latexdo.org</a>.
           </p>
         </section>
 

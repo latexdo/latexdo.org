@@ -5196,3 +5196,25 @@ h3 {
 .downloads-platform-links a:hover {
   text-decoration: underline;
 }
+
+/* Mobile header: menu button sits at the right edge, menu panel matches the cards. */
+@media (max-width: 820px) {
+  .nav-toggle {
+    margin-left: auto;
+  }
+
+  .nav-links {
+    border-color: var(--hairline);
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+  .nav-links a {
+    border-radius: 12px;
+  }
+
+  .nav-donate-link {
+    margin-top: 6px;
+    border-radius: 999px;
+  }
+}

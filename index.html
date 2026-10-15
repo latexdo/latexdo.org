@@ -31,6 +31,7 @@
     <link rel="preload" href="style.css" as="style" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="assets/home.css" />
+    <link rel="stylesheet" href="assets/app-shots.css" />
 
     <script type="application/ld+json">
       {
@@ -168,6 +169,50 @@
   </head>
   <body class="home">
     <a class="skip-link" href="#content">Skip to content</a>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <symbol id="i-files" viewBox="0 0 24 24"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-branch" viewBox="0 0 24 24"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></symbol>
+      <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>
+      <symbol id="i-graph" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.5"/><path d="m10.2 6.3-3.9 3.9"/><circle cx="4.5" cy="12" r="2.5"/><path d="M7 12h10"/><circle cx="19.5" cy="12" r="2.5"/><path d="m13.8 17.7 3.9-3.9"/><circle cx="12" cy="19.5" r="2.5"/></symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M21.17 6.81a1 1 0 0 0-3.99-3.99L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/><path d="m15 5 4 4"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M16 12h2"/><path d="M16 8h2"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/><path d="M6 12h2"/><path d="M6 8h2"/></symbol>
+      <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.47 2.5 2.5 0 1 1 3.01 3.01 1 1 0 0 0-.47 1.68l1.68 1.68a2.41 2.41 0 0 1 0 3.42l-1.68 1.68a1 1 0 0 1-1.68-.47 2.5 2.5 0 1 0-3.01 3.01 1 1 0 0 1 .47 1.68l-1.68 1.68a2.41 2.41 0 0 1-3.42 0l-1.68-1.68a1 1 0 0 0-1.68.47 2.5 2.5 0 1 1-3.01-3.01 1 1 0 0 0 .47-1.68l-1.68-1.68a2.41 2.41 0 0 1 0-3.42l1.68-1.68a1 1 0 0 1 1.68.47 2.5 2.5 0 1 0 3.01-3.01 1 1 0 0 1-.47-1.68l1.68-1.68a2.41 2.41 0 0 1 3.42 0z"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+      <symbol id="i-warn" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+      <symbol id="i-pleft" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol>
+      <symbol id="i-pbottom" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 15h18"/></symbol>
+      <symbol id="i-pright" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+      <symbol id="i-bold" viewBox="0 0 24 24"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"/></symbol>
+      <symbol id="i-italic" viewBox="0 0 24 24"><path d="M19 4h-9"/><path d="M14 20H5"/><path d="M15 4 9 20"/></symbol>
+      <symbol id="i-under" viewBox="0 0 24 24"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><path d="M4 20h16"/></symbol>
+      <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 7V5a1 1 0 0 0-1-1H6.5a.5.5 0 0 0-.4.8l4.5 6a2 2 0 0 1 0 2.4l-4.5 6a.5.5 0 0 0 .4.8H17a1 1 0 0 0 1-1v-2"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/></symbol>
+      <symbol id="i-quote" viewBox="0 0 24 24"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
+      <symbol id="i-at" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></symbol>
+      <symbol id="i-sync" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-msg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+      <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+      <symbol id="i-term" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    </svg>
 
     <div data-header-src="/partials/header.html"></div>
 
@@ -190,61 +235,137 @@
           </div>
         </div>
 
-        <div class="h-stage" data-stage aria-hidden="true">
-          <div class="h-window" data-scene="write">
-            <div class="h-window-bar">
-              <span class="h-dots"><i></i><i></i><i></i></span>
-              <span class="h-window-title">main.tex — LatexDo</span>
-              <span class="h-window-modes">
-                <b class="on">Author</b><b>Reviewer</b><b>Rebuttal</b>
-              </span>
-              <span class="h-compile" data-compile><i></i>Compile</span>
-            </div>
-            <div class="h-window-body">
-              <div class="h-rail">
-                <i class="on"></i><i></i><i></i><i></i><i></i>
+        <div class="h-stage" data-stage>
+          <div class="h-window lx-fit" data-fit="1180" aria-hidden="true">
+            <div class="lx" data-hero-shot style="height: 660px">
+              <div class="lx-title">
+                <span class="lx-lights"><i></i><i></i><i></i></span>
+                <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
+                <span class="lx-title-actions">
+                  <span class="lx-tbtn">✨ Tidy</span>
+                  <span class="lx-tbtn">📖 Review</span>
+                  <span class="lx-tbtn">🕘 History <em>12</em></span>
+                  <span class="lx-ibtn on"><svg><use href="#i-pleft" /></svg></span>
+                  <span class="lx-ibtn"><svg><use href="#i-alert" /></svg></span>
+                  <span class="lx-ibtn"><svg><use href="#i-pbottom" /></svg></span>
+                  <span class="lx-ibtn on"><svg><use href="#i-pright" /></svg></span>
+                </span>
               </div>
-              <div class="h-editor">
-                <div class="h-tabs"><span class="on">main.tex</span><span>references.bib</span></div>
-                <pre class="h-code" data-typed><span class="ln">1</span><span class="k">\documentclass</span>{article}
-<span class="ln">2</span><span class="k">\usepackage</span>{amsmath, graphicx}
-<span class="ln">3</span>
-<span class="ln">4</span><span class="k">\title</span>{Efficient Retrieval for Long Documents}
-<span class="ln">5</span><span class="k">\begin</span>{document}
-<span class="ln">6</span><span class="k">\maketitle</span>
-<span class="ln">7</span>
-<span class="ln">8</span><span class="k">\section</span>{Introduction}
-<span class="ln">9</span>Our method improves recall by
-<span class="ln">10</span><span class="m">$12.4\%$</span> over the baseline <span class="k">\cite</span>{<span class="c">lewis2020</span>}.
-<span class="ln">11</span>
-<span class="ln">12</span><span class="k">\begin</span>{equation}
-<span class="ln">13</span>  <span class="m">s(q, d) = \frac{q \cdot d}{\lVert q \rVert \lVert d \rVert}</span>
-<span class="ln">14</span><span class="k">\end</span>{equation}</pre>
-              </div>
-              <div class="h-pdf">
-                <div class="h-pdf-bar"><span>main.pdf</span><span class="h-pdf-zoom">100%</span></div>
-                <div class="h-paper" data-paper>
-                  <h4 class="p1">Efficient Retrieval for Long Documents</h4>
-                  <p class="h-paper-author p1">A. Author · Example University</p>
-                  <h5 class="p2">1&ensp;Introduction</h5>
-                  <p class="p3">
-                    Our method improves recall by 12.4% over the baseline [1].
-                  </p>
-                  <div class="h-paper-lines p3"><i></i><i></i><i class="short"></i></div>
-                  <div class="h-paper-eq p4">
-                    <span>s(q, d) =</span>
-                    <span class="frac"><b>q · d</b><b>‖q‖ ‖d‖</b></span>
-                    <em>(1)</em>
+              <div class="lx-body">
+                <div class="lx-act">
+                  <span class="on"><svg><use href="#i-files" /></svg></span>
+                  <span><svg><use href="#i-search" /></svg></span>
+                  <span><svg><use href="#i-branch" /></svg></span>
+                  <span><svg><use href="#i-history" /></svg></span>
+                  <span><svg><use href="#i-graph" /></svg></span>
+                  <span><svg><use href="#i-sparkles" /></svg></span>
+                  <span><svg><use href="#i-pencil" /></svg></span>
+                  <span><svg><use href="#i-book" /></svg></span>
+                  <span><svg><use href="#i-puzzle" /></svg></span>
+                  <span class="lx-act-end"><svg><use href="#i-user" /></svg></span>
+                  <span><svg><use href="#i-gear" /></svg></span>
+                </div>
+                <div class="lx-side">
+                  <div class="lx-side-head">EXPLORER <span><svg><use href="#i-plus" /></svg><svg><use href="#i-sync" /></svg></span></div>
+                  <div class="lx-side-section"><svg><use href="#i-down" /></svg>RETRIEVAL-PAPER</div>
+                  <div class="lx-tree">
+                    <span class="lx-row" style="--d: 0"><svg class="dir"><use href="#i-right" /></svg><svg class="dir"><use href="#i-folder" /></svg>figures</span>
+                    <span class="lx-row" style="--d: 0"><svg class="dir"><use href="#i-down" /></svg><svg class="dir"><use href="#i-folder" /></svg>sections</span>
+                    <span class="lx-row" style="--d: 1"><svg class="tex"><use href="#i-file" /></svg>method.tex</span>
+                    <span class="lx-row" style="--d: 1"><svg class="tex"><use href="#i-file" /></svg>results.tex<em>M</em></span>
+                    <span class="lx-row on" style="--d: 0"><svg class="tex"><use href="#i-file" /></svg>main.tex<em>M</em></span>
+                    <span class="lx-row" style="--d: 0"><svg class="bib"><use href="#i-book" /></svg>references.bib</span>
+                    <span class="lx-row" style="--d: 0"><svg class="pdf"><use href="#i-file" /></svg>main.pdf</span>
+                    <span class="lx-row" style="--d: 0"><svg><use href="#i-file" /></svg>results.csv<em class="a">U</em></span>
                   </div>
-                  <div class="h-paper-lines p4"><i></i><i class="short"></i></div>
+                  <div class="lx-side-section" style="margin-top: 14px"><svg><use href="#i-right" /></svg>OUTLINE</div>
+                  <div class="lx-side-section"><svg><use href="#i-right" /></svg>TIMELINE</div>
+                </div>
+                <div class="lx-editor">
+                  <div class="lx-tabs">
+                    <span class="lx-tab on"><svg class="tex" style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex<span class="dot"></span></span>
+                    <span class="lx-tab"><svg style="color: #c27a1a"><use href="#i-book" /></svg>references.bib<svg class="x"><use href="#i-x" /></svg></span>
+                    <span class="lx-tab"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>results.tex<svg class="x"><use href="#i-x" /></svg></span>
+                  </div>
+                  <div class="lx-toolbar">
+                    <span class="lx-seg"><span class="on">Code</span><span>Visual</span></span>
+                    <span class="lx-fmt"><svg><use href="#i-bold" /></svg></span>
+                    <span class="lx-fmt"><svg><use href="#i-italic" /></svg></span>
+                    <span class="lx-fmt"><svg><use href="#i-under" /></svg></span>
+                    <span class="lx-fmt"><svg><use href="#i-sigma" /></svg></span>
+                    <span class="lx-fmt-div"></span>
+                    <span class="lx-fmt"><svg><use href="#i-quote" /></svg>Cite</span>
+                    <span class="lx-fmt"><svg><use href="#i-link" /></svg>Ref</span>
+                    <span class="lx-compile"><svg><use href="#i-play" /></svg><i class="spin"></i>Compile</span>
+                  </div>
+                  <div class="lx-code" data-typed>
+                    <span class="l"><span class="n">1</span><span class="k">\documentclass</span>{article}</span>
+                    <span class="l"><span class="n">2</span><span class="k">\usepackage</span>{amsmath, graphicx}</span>
+                    <span class="l"><span class="n">3</span><span class="k">\usepackage</span>[numbers]{natbib}</span>
+                    <span class="l"><span class="n">4</span></span>
+                    <span class="l"><span class="n">5</span><span class="k">\title</span>{Efficient Retrieval for Long Documents}</span>
+                    <span class="l"><span class="n">6</span><span class="k">\author</span>{Ada Martin \\ Example University}</span>
+                    <span class="l"><span class="n">7</span></span>
+                    <span class="l"><span class="n">8</span><span class="k">\begin</span>{document}</span>
+                    <span class="l" data-compile-stage="s1"><span class="n">9</span><span class="k">\maketitle</span></span>
+                    <span class="l"><span class="n">10</span></span>
+                    <span class="l" data-compile-stage="s2"><span class="n">11</span><span class="k">\section</span>{Introduction}</span>
+                    <span class="l"><span class="n">12</span>Long documents remain hard for dense retrievers.</span>
+                    <span class="l"><span class="n">13</span>Our method improves recall by <span class="m">$12.4\%$</span> over</span>
+                    <span class="l" data-compile-stage="s3"><span class="n">14</span>the baseline~<span class="k">\cite</span>{<span class="c">lewis2020</span>} at no extra cost.</span>
+                    <span class="l"><span class="n">15</span></span>
+                    <span class="l"><span class="n">16</span><span class="k">\begin</span>{equation}</span>
+                    <span class="l"><span class="n">17</span>  <span class="m">s(q, d) = \frac{q \cdot d}{\|q\| \, \|d\|}</span></span>
+                    <span class="l" data-compile-stage="s4"><span class="n">18</span><span class="k">\end</span>{equation}</span>
+                    <span class="l"><span class="n">19</span></span>
+                    <span class="l"><span class="n">20</span><span class="cm">% Results follow in Section 2.</span></span>
+                  </div>
+                </div>
+                <div class="lx-pdf">
+                  <div class="lx-pdfbar">
+                    <b>main.pdf</b><span class="grow"></span>
+                    <span class="box">1</span>/ 6
+                    <svg><use href="#i-minus" /></svg><span class="box">100%</span><svg><use href="#i-plus" /></svg>
+                  </div>
+                  <div class="lx-pdf-scroll">
+                    <div class="lx-page h-paper" data-paper>
+                      <div class="p1">
+                        <h4>Efficient Retrieval for Long Documents</h4>
+                        <p class="au">Ada Martin<br />Example University</p>
+                        <p class="date">October 15, 2026</p>
+                      </div>
+                      <h5 class="p2">1&ensp;Introduction</h5>
+                      <p class="p3 ni">
+                        Long documents remain hard for dense retrievers. Our method improves recall by
+                        12.4% over the baseline [1] at no extra cost.
+                      </p>
+                      <div class="eq p4">
+                        <span>s(q, d) =</span>
+                        <span class="frac"><span>q · d</span><span>‖q‖ ‖d‖</span></span>
+                        <span class="no">(1)</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div class="lx-status">
+                <span><svg><use href="#i-branch" /></svg>main*</span>
+                <span><svg><use href="#i-sync" /></svg>1↑</span>
+                <span><svg><use href="#i-alert" /></svg>0</span>
+                <span><svg><use href="#i-warn" /></svg>0</span>
+                <span class="msg h-msg-done">Compiled main.tex in 1.4 s</span>
+                <span class="msg h-msg-busy">Compiling main.tex…</span>
+                <span class="end">Ln 14, Col 42</span>
+                <span>Spaces: 2</span>
+                <span>UTF-8</span>
+                <span>LaTeX</span>
+                <span>pdfLaTeX</span>
+              </div>
             </div>
-            <div class="h-status">
-              <span class="ok"><i></i>Compiled · 0 errors</span>
-              <span>pdfLaTeX</span>
-              <span>Ln 10, Col 42</span>
-            </div>
+          </div>
+          <div class="h-appearance" role="group" aria-label="Window appearance">
+            <button type="button" class="on" data-appearance="light" aria-pressed="true">Light</button>
+            <button type="button" data-appearance="dark" aria-pressed="false">Dark</button>
           </div>
         </div>
       </section>
@@ -259,7 +380,7 @@
 
       <!-- Tour -->
       <div id="tour">
-        <section class="h-chapter" aria-labelledby="c-sync">
+        <section class="h-chapter h-shot" aria-labelledby="c-sync">
           <div class="h-chapter-copy h-reveal">
             <p class="h-eyebrow">Source and PDF</p>
             <h2 id="c-sync">Click a sentence. Land on its source.</h2>
@@ -270,30 +391,64 @@
             </p>
           </div>
           <div class="h-visual h-reveal" data-cycle="3" aria-hidden="true">
-            <div class="h-sync">
-              <div class="h-sync-src">
-                <div class="h-mini-bar">main.tex</div>
-                <code data-step="0"><span class="ln">8</span><span class="k">\section</span>{Introduction}</code>
-                <code data-step="1"><span class="ln">9</span>Our method improves recall by 12.4%</code>
-                <code><span class="ln">10</span>over the baseline <span class="k">\cite</span>{lewis2020}.</code>
-                <code data-step="2"><span class="ln">11</span><span class="k">\includegraphics</span>{results.pdf}</code>
-                <code><span class="ln">12</span><span class="k">\caption</span>{Recall on long inputs.}</code>
-              </div>
-              <div class="h-sync-beam"><i></i></div>
-              <div class="h-sync-pdf">
-                <div class="h-mini-bar">main.pdf</div>
-                <div class="h-sync-page">
-                  <b data-step="0">1&ensp;Introduction</b>
-                  <span data-step="1">Our method improves recall by 12.4% over the baseline [1].</span>
-                  <div class="h-chart" data-step="2"><i></i><i></i><i></i><i></i><i></i></div>
-                  <small>Figure 1: Recall on long inputs.</small>
+            <div class="lx-fit" data-fit="1000">
+              <div class="lx" style="height: 460px">
+                <div class="lx-title">
+                  <span class="lx-lights"><i></i><i></i><i></i></span>
+                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
+                </div>
+                <div class="lx-body">
+                  <div class="lx-editor">
+                    <div class="lx-tabs"><span class="lx-tab on"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span></div>
+                    <div class="lx-code">
+                      <span class="l" data-step="0"><span class="n">11</span><span class="k">\section</span>{Introduction}</span>
+                      <span class="l"><span class="n">12</span>Long documents remain hard</span>
+                      <span class="l"><span class="n">13</span>for dense retrievers.</span>
+                      <span class="l" data-step="1"><span class="n">14</span>Our method improves recall</span>
+                      <span class="l" data-step="1"><span class="n">15</span>by <span class="m">$12.4\%$</span> over the baseline.</span>
+                      <span class="l"><span class="n">16</span></span>
+                      <span class="l"><span class="n">17</span><span class="k">\begin</span>{figure}[t]</span>
+                      <span class="l" data-step="2"><span class="n">18</span>  <span class="k">\includegraphics</span>{recall}</span>
+                      <span class="l"><span class="n">19</span>  <span class="k">\caption</span>{Recall by length.}</span>
+                      <span class="l"><span class="n">20</span><span class="k">\end</span>{figure}</span>
+                    </div>
+                  </div>
+                  <div class="lx-pdf">
+                    <div class="lx-pdfbar"><b>main.pdf</b><span class="grow"></span><span class="box">1</span>/ 6</div>
+                    <div class="lx-pdf-scroll" style="padding: 14px 16px">
+                      <div class="lx-page" style="padding: 22px 24px">
+                        <h5 style="margin-top: 0"><span class="hl" data-step="0">1&ensp;Introduction</span></h5>
+                        <p class="ni">Long documents remain hard for dense retrievers. <span class="hl" data-step="1">Our method improves recall by 12.4% over the baseline.</span></p>
+                        <figure class="hl" data-step="2">
+                          <svg viewBox="0 0 200 92" style="width: 100%; height: auto; stroke: none" role="presentation">
+                            <line x1="18" y1="78" x2="196" y2="78" stroke="#111" stroke-width="0.8" />
+                            <line x1="18" y1="6" x2="18" y2="78" stroke="#111" stroke-width="0.8" />
+                            <rect x="30" y="46" width="14" height="32" fill="#9db4e0" /><rect x="46" y="38" width="14" height="40" fill="#2f6fdb" />
+                            <rect x="74" y="40" width="14" height="38" fill="#9db4e0" /><rect x="90" y="28" width="14" height="50" fill="#2f6fdb" />
+                            <rect x="118" y="34" width="14" height="44" fill="#9db4e0" /><rect x="134" y="18" width="14" height="60" fill="#2f6fdb" />
+                            <rect x="162" y="30" width="14" height="48" fill="#9db4e0" /><rect x="178" y="10" width="14" height="68" fill="#2f6fdb" />
+                            <text x="46" y="88" font-size="7" text-anchor="middle" fill="#111">1k</text>
+                            <text x="90" y="88" font-size="7" text-anchor="middle" fill="#111">4k</text>
+                            <text x="134" y="88" font-size="7" text-anchor="middle" fill="#111">16k</text>
+                            <text x="178" y="88" font-size="7" text-anchor="middle" fill="#111">64k</text>
+                          </svg>
+                          <figcaption>Figure 1: Recall by length.</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lx-status">
+                  <span><svg><use href="#i-branch" /></svg>main</span>
+                  <span class="msg">PDF ⇄ source sync</span>
+                  <span class="end">pdfLaTeX · SyncTeX</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="h-chapter flip" aria-labelledby="c-errors">
+        <section class="h-chapter h-shot" aria-labelledby="c-errors">
           <div class="h-chapter-copy h-reveal">
             <p class="h-eyebrow">Problems</p>
             <h2 id="c-errors">LaTeX errors, in plain language.</h2>
@@ -304,23 +459,49 @@
             </p>
           </div>
           <div class="h-visual h-reveal" aria-hidden="true">
-            <div class="h-errors">
-              <pre class="h-log">! LaTeX Error: File `figures/results.pdf' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H &lt;return&gt;  for immediate help.
- ...
-l.42 \includegraphics{figures/results.pdf}
-<mark>! Emergency stop.</mark></pre>
-              <div class="h-errors-arrow"><i></i></div>
-              <div class="h-problem">
-                <div class="h-problem-head">
-                  <span class="h-badge err">Error</span>
-                  <span class="h-chip">main.tex:42</span>
+            <div class="lx-fit" data-fit="1000">
+              <div class="lx" style="height: 500px">
+                <div class="lx-title">
+                  <span class="lx-lights"><i></i><i></i><i></i></span>
+                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
+                  <span class="lx-title-actions"><span class="lx-ibtn on"><svg><use href="#i-alert" /></svg><sup>2</sup></span></span>
                 </div>
-                <strong>Figure file not found</strong>
-                <p>LaTeX could not find <code>figures/results.pdf</code>. Check the file name and folder.</p>
-                <span class="h-problem-action">Go to line 42 →</span>
+                <div class="lx-editor">
+                  <div class="lx-tabs"><span class="lx-tab on"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span></div>
+                  <div class="lx-code" style="flex: none; height: 168px">
+                    <span class="l"><span class="n">39</span><span class="k">\begin</span>{figure}[t]</span>
+                    <span class="l"><span class="n">40</span>  <span class="k">\centering</span></span>
+                    <span class="l cur gut-err"><span class="n">41</span>  <span class="k">\includegraphics</span>{<span class="sq">figures/results.pdf</span>}</span>
+                    <span class="l"><span class="n">42</span>  <span class="k">\caption</span>{Recall on long inputs.}</span>
+                    <span class="l"><span class="n">43</span><span class="k">\end</span>{figure}</span>
+                    <span class="l gut-warn"><span class="n">44</span>As shown by <span class="k">\citet</span>{<span class="sqw">devlin2019</span>}, ...</span>
+                  </div>
+                  <div class="lx-panel lx-grow">
+                    <div class="lx-ptabs">
+                      <span class="on"><svg><use href="#i-alert" /></svg>PROBLEMS <em>2</em></span>
+                      <span><svg><use href="#i-term" /></svg>OUTPUT</span>
+                      <span><svg><use href="#i-term" /></svg>TERMINAL</span>
+                      <span>CHECK ANALYSIS</span>
+                    </div>
+                    <div class="lx-prob">
+                      <div class="lx-prob-file"><svg><use href="#i-down" /></svg><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex <small>retrieval-paper</small></div>
+                      <div class="lx-prob-row on"><svg class="e"><use href="#i-alert" /></svg>Figure file not found: figures/results.pdf <small>Ln 41</small></div>
+                      <div class="lx-explain">
+                        <span><b>What happened.</b> LaTeX could not find <code>figures/results.pdf</code>, so the build stopped.</span>
+                        <span><b>How to fix it.</b> The folder has <code>figures/result.pdf</code>. Check the file name.</span>
+                        <span class="acts"><span class="lx-btn pri">Go to line 41</span><span class="lx-btn">Use result.pdf</span><span class="lx-btn">Show log</span></span>
+                      </div>
+                      <div class="lx-prob-row"><svg class="w"><use href="#i-warn" /></svg>Citation “devlin2019” is not in references.bib <small>Ln 44</small></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lx-status">
+                  <span><svg><use href="#i-branch" /></svg>main*</span>
+                  <span><svg><use href="#i-alert" /></svg>1</span>
+                  <span><svg><use href="#i-warn" /></svg>1</span>
+                  <span class="msg">Build stopped: 1 error</span>
+                  <span class="end">Ln 41, Col 20</span>
+                </div>
               </div>
             </div>
           </div>
@@ -339,17 +520,59 @@ l.42 \includegraphics{figures/results.pdf}
             </p>
           </div>
           <div class="h-ai h-reveal" aria-hidden="true">
-            <div class="h-ai-editor">
-              <div class="h-mini-bar dark">main.tex <span class="h-pill">Approval required</span></div>
-              <p class="h-ai-text">
-                In this section we show that
-                <span class="h-ai-old">our approach is really much better than the others in a lot of cases.</span>
-                <span class="h-ai-new">our approach outperforms prior methods on four of five benchmarks.</span>
-              </p>
-              <div class="h-ai-bar">
-                <span class="h-ai-prompt"><i></i>Make this precise</span>
-                <span class="h-ai-approve">Approve</span>
-                <span class="h-ai-reject">Reject</span>
+            <div class="lx-fit" data-fit="1000">
+              <div class="lx lx-dark" style="height: 440px">
+                <div class="lx-title">
+                  <span class="lx-lights"><i></i><i></i><i></i></span>
+                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
+                </div>
+                <div class="lx-body">
+                  <div class="lx-act">
+                    <span><svg><use href="#i-files" /></svg></span>
+                    <span><svg><use href="#i-search" /></svg></span>
+                    <span><svg><use href="#i-branch" /></svg></span>
+                    <span><svg><use href="#i-graph" /></svg></span>
+                    <span class="on"><svg><use href="#i-sparkles" /></svg></span>
+                  </div>
+                  <div class="lx-editor">
+                    <div class="lx-tabs"><span class="lx-tab on"><svg style="color: #5fb27f"><use href="#i-file" /></svg>results.tex</span></div>
+                    <div class="lx-code">
+                      <span class="l"><span class="n">28</span><span class="k">\section</span>{Results}</span>
+                      <span class="l"><span class="n">29</span><span class="k">\label</span>{sec:results}</span>
+                      <span class="l"><span class="n">30</span></span>
+                      <span class="lx-diff-old"><span class="n">31</span><span class="t">Our approach is really much better than the others in a lot of cases.</span></span>
+                      <span class="lx-diff-new"><span class="n">31</span><span class="t">Our approach outperforms prior methods on four of five benchmarks (Table 2).</span></span>
+                      <span class="lx-inline-acts">
+                        <span class="lbl"><svg><use href="#i-sparkles" /></svg>Proposed by AI</span>
+                        <span class="lx-btn pri"><svg><use href="#i-check" /></svg>Approve</span>
+                        <span class="lx-btn"><svg><use href="#i-x" /></svg>Reject</span>
+                      </span>
+                      <span class="l"><span class="n">32</span></span>
+                      <span class="l"><span class="n">33</span><span class="k">\begin</span>{table}[t]</span>
+                      <span class="l"><span class="n">34</span>  <span class="k">\caption</span>{Recall@10 on five benchmarks.}</span>
+                    </div>
+                  </div>
+                  <div class="lx-ai">
+                    <div class="lx-ai-head"><svg><use href="#i-sparkles" /></svg>AI Assistant<span class="acts"><span class="lx-ibtn"><svg><use href="#i-plus" /></svg></span><span class="lx-ibtn"><svg><use href="#i-trash" /></svg></span><span class="lx-ibtn"><svg><use href="#i-gear" /></svg></span></span></div>
+                    <div class="lx-ai-model">Local · Qwen2.5 7B<span class="lx-pill"><svg><use href="#i-shield" /></svg>Approval required</span></div>
+                    <div class="lx-ai-msgs">
+                      <div class="lx-msg-user">Make line 31 precise. Use the numbers in <i>@results.csv</i></div>
+                      <div class="lx-msg-ai h-ai-reply">Benchmarks 1, 2, 3 and 5 improve; benchmark 4 is flat. I rewrote the sentence to say exactly that.</div>
+                      <div class="lx-tool h-ai-tool">
+                        <span class="lx-tool-head"><svg><use href="#i-pencil" /></svg>Edit results.tex<small><span class="p">+1</span> <span class="m">−1</span></small></span>
+                        <span class="lx-tool-state"><span class="h-ai-wait">Waiting for your approval</span><span class="h-ai-done">Applied · you approved it</span></span>
+                      </div>
+                    </div>
+                    <div class="lx-ai-input">
+                      <div class="lx-composer">Ask the AI anything<svg><use href="#i-at" /></svg><svg><use href="#i-mic" /></svg><span class="send"><svg><use href="#i-up" /></svg></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lx-status">
+                  <span><svg><use href="#i-branch" /></svg>main*</span>
+                  <span class="msg">Model running on this computer · offline</span>
+                  <span class="end">Ln 31, Col 1</span>
+                </div>
               </div>
             </div>
             <div class="h-ai-facts">
@@ -362,7 +585,7 @@ l.42 \includegraphics{figures/results.pdf}
       </section>
 
       <!-- Tour, continued -->
-      <section class="h-chapter" aria-labelledby="c-cite">
+      <section class="h-chapter h-shot" aria-labelledby="c-cite">
         <div class="h-chapter-copy h-reveal">
           <p class="h-eyebrow">Citations</p>
           <h2 id="c-cite">See how your references connect.</h2>
@@ -373,41 +596,82 @@ l.42 \includegraphics{figures/results.pdf}
           </p>
         </div>
         <div class="h-visual h-reveal" aria-hidden="true">
-          <svg class="h-graph" viewBox="0 0 520 380" role="presentation">
-            <g class="h-graph-edges">
-              <line x1="260" y1="190" x2="120" y2="90" />
-              <line x1="260" y1="190" x2="400" y2="80" />
-              <line x1="260" y1="190" x2="430" y2="230" />
-              <line x1="260" y1="190" x2="300" y2="320" />
-              <line x1="260" y1="190" x2="110" y2="260" />
-              <line x1="120" y1="90" x2="60" y2="170" />
-              <line x1="400" y1="80" x2="470" y2="130" />
-              <line x1="430" y1="230" x2="470" y2="130" />
-              <line x1="110" y1="260" x2="180" y2="330" />
-              <line x1="300" y1="320" x2="180" y2="330" />
-            </g>
-            <g class="h-graph-nodes">
-              <circle cx="120" cy="90" r="13" /><circle cx="400" cy="80" r="16" />
-              <circle cx="430" cy="230" r="12" /><circle cx="300" cy="320" r="14" />
-              <circle cx="110" cy="260" r="11" /><circle cx="60" cy="170" r="8" />
-              <circle cx="470" cy="130" r="9" /><circle cx="180" cy="330" r="8" />
-            </g>
-            <g class="h-graph-root">
-              <circle cx="260" cy="190" r="34" />
-              <text x="260" y="195" text-anchor="middle">main.tex</text>
-            </g>
-            <g class="h-graph-labels">
-              <text x="120" y="66" text-anchor="middle">lewis2020</text>
-              <text x="400" y="54" text-anchor="middle">vaswani2017</text>
-              <text x="430" y="258" text-anchor="middle">karpukhin2020</text>
-              <text x="300" y="350" text-anchor="middle">devlin2019</text>
-              <text x="110" y="286" text-anchor="middle">robertson2009</text>
-            </g>
-          </svg>
+          <div class="lx-fit" data-fit="1000">
+            <div class="lx-stack" style="height: 560px">
+              <div class="lx" style="width: 900px; height: 470px">
+                <div class="lx-title">
+                  <span class="lx-lights"><i></i><i></i><i></i></span>
+                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
+                </div>
+                <div class="lx-tabs">
+                  <span class="lx-tab"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span>
+                  <span class="lx-tab on"><svg><use href="#i-graph" /></svg>Knowledge Graph</span>
+                </div>
+                <div class="lx-body">
+                  <div class="lx-graph">
+                    <svg viewBox="0 0 450 360" role="presentation">
+                      <g class="e">
+                        <line x1="225" y1="185" x2="110" y2="95" class="hot" />
+                        <line x1="225" y1="185" x2="345" y2="80" />
+                        <line x1="225" y1="185" x2="370" y2="215" />
+                        <line x1="225" y1="185" x2="260" y2="305" />
+                        <line x1="225" y1="185" x2="90" y2="255" />
+                        <line x1="110" y1="95" x2="45" y2="160" class="hot" />
+                        <line x1="110" y1="95" x2="190" y2="50" class="hot" />
+                        <line x1="345" y1="80" x2="410" y2="140" />
+                        <line x1="370" y1="215" x2="410" y2="140" />
+                        <line x1="90" y1="255" x2="150" y2="320" />
+                        <line x1="260" y1="305" x2="150" y2="320" />
+                      </g>
+                      <g class="nd">
+                        <circle cx="110" cy="95" r="14" class="sel" />
+                        <circle cx="345" cy="80" r="15" class="ref" />
+                        <circle cx="370" cy="215" r="12" class="ref" />
+                        <circle cx="260" cy="305" r="13" class="ref" />
+                        <circle cx="90" cy="255" r="11" class="ref" />
+                        <circle cx="45" cy="160" r="8" class="new" />
+                        <circle cx="190" cy="50" r="8" class="new" />
+                        <circle cx="410" cy="140" r="8" class="new" />
+                        <circle cx="150" cy="320" r="8" class="new" />
+                        <circle cx="225" cy="185" r="30" class="root" />
+                      </g>
+                      <text x="225" y="189" text-anchor="middle" class="root">main.tex</text>
+                      <text x="110" y="70" text-anchor="middle">lewis2020</text>
+                      <text x="345" y="54" text-anchor="middle">vaswani2017</text>
+                      <text x="370" y="243" text-anchor="middle">karpukhin2020</text>
+                      <text x="260" y="334" text-anchor="middle">devlin2019</text>
+                      <text x="90" y="282" text-anchor="middle">robertson2009</text>
+                    </svg>
+                    <div class="lx-graph-tools">
+                      <span class="lx-chip on"><i></i>In references.bib · 5</span>
+                      <span class="lx-chip"><i class="o"></i>Suggested · 4</span>
+                    </div>
+                  </div>
+                  <div class="lx-inspect">
+                    <span class="key">lewis2020</span>
+                    <h6>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</h6>
+                    <dl>
+                      <dt>Authors</dt><dd>Lewis, Perez, Piktus, et al.</dd>
+                      <dt>Venue</dt><dd>NeurIPS 2020</dd>
+                      <dt>In paper</dt><dd>Cited 3 times, main.tex</dd>
+                      <dt>Linked</dt><dd>2 suggested papers</dd>
+                    </dl>
+                    <span class="acts"><span class="lx-btn pri">Insert \cite</span><span class="lx-btn"><svg><use href="#i-ext" /></svg>Open DOI</span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="lx lx-pop" style="left: 380px; top: 350px">
+                <div class="lx-pop-search"><svg><use href="#i-search" /></svg>dense passage retrieval<small>Crossref · OpenAlex</small></div>
+                <div class="lx-pop-item on"><b>Dense Passage Retrieval for Open-Domain Question Answering</b><span>Karpukhin et al. · EMNLP 2020 · 2,431 citations</span></div>
+                <div class="lx-pop-item"><b>Approximate Nearest Neighbor Negative Contrastive Learning</b><span>Xiong et al. · ICLR 2021</span></div>
+                <div class="lx-pop-foot"><span>↵ Insert \cite and add to references.bib</span><span>↑↓</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="h-chapter flip" aria-labelledby="c-review">
+      <section class="h-chapter h-shot" aria-labelledby="c-review">
         <div class="h-chapter-copy h-reveal">
           <p class="h-eyebrow">Review and rebuttal</p>
           <h2 id="c-review">From reviewer comment to response letter.</h2>
@@ -418,21 +682,42 @@ l.42 \includegraphics{figures/results.pdf}
           </p>
         </div>
         <div class="h-visual h-reveal" aria-hidden="true">
-          <div class="h-review">
-            <div class="h-review-card in">
-              <span class="h-avatar">R2</span>
-              <div>
-                <strong>Reviewer 2</strong>
-                <p>The claim in Section 3 is not supported by the reported numbers.</p>
+          <div class="lx-fit" data-fit="1000">
+            <div class="lx" style="height: 470px">
+              <div class="lx-title">
+                <span class="lx-lights"><i></i><i></i><i></i></span>
+                <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
               </div>
-            </div>
-            <div class="h-review-link"><i></i></div>
-            <div class="h-review-card out">
-              <span class="h-avatar you">You</span>
-              <div>
-                <strong>Response</strong>
-                <p>We agree and revised Section 3 to report exact results on all five benchmarks.</p>
-                <span class="h-chip ok">Linked to main.tex:42</span>
+              <div class="lx-tabs">
+                <span class="lx-tab"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span>
+                <span class="lx-tab on"><svg><use href="#i-msg" /></svg>Rebuttal</span>
+              </div>
+              <div class="lx-body">
+                <div class="lx-rlist">
+                  <div class="lx-rgroup">REVIEWER 1</div>
+                  <div class="lx-ritem"><b>Comment 1 <span class="lx-tag">Answered</span></b><span>Clarify the training data.</span></div>
+                  <div class="lx-ritem"><b>Comment 2 <span class="lx-tag">Answered</span></b><span>Add a latency comparison.</span></div>
+                  <div class="lx-rgroup">REVIEWER 2</div>
+                  <div class="lx-ritem on"><b>Comment 1 <span class="lx-tag new">Drafting</span></b><span>The claim in Section 3 is not…</span></div>
+                  <div class="lx-ritem"><b>Comment 2 <span class="lx-tag open">Open</span></b><span>Missing ablation on chunk size.</span></div>
+                  <div class="lx-rgroup">REVIEWER 3</div>
+                  <div class="lx-ritem"><b>Comment 1 <span class="lx-tag open">Open</span></b><span>Typo in Equation 4.</span></div>
+                </div>
+                <div class="lx-rmain">
+                  <h6>Reviewer 2 · Comment 1</h6>
+                  <div class="lx-quote">“The claim in Section 3 is not supported by the reported numbers.”</div>
+                  <h6>Response</h6>
+                  <div class="lx-answer">We agree. Section 3 now reports exact Recall@10 on all five benchmarks, and the claim is limited to the four where our method improves<span class="caret"></span></div>
+                  <span class="lx-links">
+                    <span class="lx-chip on"><svg><use href="#i-link" /></svg>main.tex:42 · Section 3</span>
+                    <span class="lx-chip"><svg><use href="#i-link" /></svg>Table 2</span>
+                  </span>
+                </div>
+              </div>
+              <div class="lx-status">
+                <span><svg><use href="#i-msg" /></svg>Rebuttal</span>
+                <span class="msg">2 of 5 comments answered</span>
+                <span class="end">response-letter.tex</span>
               </div>
             </div>
           </div>

@@ -50,7 +50,8 @@ function prepareTyping(code: HTMLElement): HTMLElement[] {
   const textNodes: Text[] = [];
   while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
   for (const node of textNodes) {
-    if (node.parentElement?.classList.contains("ln")) continue;
+    // Skip line numbers and the layout whitespace between line elements.
+    if (node.parentElement === code || node.parentElement?.classList.contains("n")) continue;
     const fragment = document.createDocumentFragment();
     for (const character of node.data) {
       if (character === "\n") {
@@ -82,37 +83,84 @@ async function runHeroWindow(windowElement: HTMLElement): Promise<void> {
   const characters = prepareTyping(code);
   const caret = document.createElement("span");
   caret.className = "h-caret";
-  // Source positions (as a share of the text) at which the PDF catches up.
-  const stages: [number, string][] = [
-    [0.3, "s1"],
-    [0.5, "s2"],
-    [0.72, "s3"],
-    [1, "s4"],
-  ];
+  const lineOf = (character: HTMLElement) => character.closest<HTMLElement>(".l");
+  let currentLine: HTMLElement | null = null;
 
   for (;;) {
-    let nextStage = 0;
     for (let index = 0; index < characters.length; index += 1) {
       const character = characters[index];
+      const line = lineOf(character);
+      if (line !== currentLine) {
+        currentLine?.classList.remove("cur");
+        line?.classList.add("cur");
+        currentLine = line;
+      }
       character.classList.add("on");
       character.after(caret);
-      const progress = (index + 1) / characters.length;
-      if (nextStage < stages.length && progress >= stages[nextStage][0]) {
+      // A line marked with a stage compiles once its last character is typed.
+      const stage = line?.dataset.compileStage;
+      const lineEnds = index + 1 === characters.length || lineOf(characters[index + 1]) !== line;
+      if (stage && lineEnds) {
         windowElement.classList.add("is-compiling");
-        await wait(420);
-        paper.classList.add(stages[nextStage][1]);
+        await wait(520);
+        paper.classList.add(stage);
         windowElement.classList.remove("is-compiling");
-        nextStage += 1;
+        await wait(160);
       }
       await wait(character.textContent === " " ? 6 : 9 + Math.random() * 14);
     }
     windowElement.classList.add("is-done");
     await wait(5200);
     caret.remove();
+    currentLine?.classList.remove("cur");
+    currentLine = null;
     windowElement.classList.remove("is-done");
     paper.classList.remove("s1", "s2", "s3", "s4");
     for (const character of characters) character.classList.remove("on");
     await wait(700);
+  }
+}
+
+/**
+ * Product shots are laid out at a fixed width, like a screenshot, and scaled
+ * down to whatever room the page gives them.
+ */
+function initShotFit(): void {
+  const fits = all<HTMLElement>(".lx-fit[data-fit]");
+  const fit = (wrapper: HTMLElement) => {
+    const shot = wrapper.firstElementChild as HTMLElement | null;
+    const designWidth = Number(wrapper.dataset.fit);
+    if (!shot || !designWidth || !wrapper.clientWidth) return;
+    wrapper.style.maxWidth = `${designWidth}px`;
+    wrapper.style.setProperty("--lx-w", `${designWidth}px`);
+    wrapper.style.setProperty("--lx-scale", String(Math.min(1, wrapper.clientWidth / designWidth)));
+    wrapper.style.setProperty("--lx-h", `${shot.offsetHeight}px`);
+    wrapper.classList.add("is-fitted");
+  };
+  if (!("ResizeObserver" in window)) {
+    for (const wrapper of fits) fit(wrapper);
+    return;
+  }
+  const observer = new ResizeObserver((entries) => {
+    for (const entry of entries) fit(entry.target as HTMLElement);
+  });
+  for (const wrapper of fits) observer.observe(wrapper);
+}
+
+/** Light and Dark show the hero window in both appearances the app supports. */
+function initAppearanceSwitch(): void {
+  const shot = document.querySelector<HTMLElement>("[data-hero-shot]");
+  const buttons = all<HTMLButtonElement>("[data-appearance]");
+  for (const button of buttons) {
+    button.addEventListener("click", () => {
+      const dark = button.dataset.appearance === "dark";
+      shot?.classList.toggle("lx-dark", dark);
+      for (const other of buttons) {
+        const on = other === button;
+        other.classList.toggle("on", on);
+        other.setAttribute("aria-pressed", String(on));
+      }
+    });
   }
 }
 
@@ -276,6 +324,8 @@ function initHome(): void {
   initReveals();
   initCycles();
   initCounters();
+  initShotFit();
+  initAppearanceSwitch();
   const stage = document.querySelector<HTMLElement>("[data-stage]");
   if (stage) initStageTilt(stage);
   const heroWindow = document.querySelector<HTMLElement>(".h-window");

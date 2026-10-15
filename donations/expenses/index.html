@@ -25,6 +25,7 @@
     <link rel="icon" type="image/svg+xml" href="../../assets/icon.svg" />
     <link rel="manifest" href="../../site.webmanifest" />
     <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="/assets/pages.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -75,33 +76,44 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="donations-page expenses-page">
-      <section class="donations-hero">
-        <p class="eyebrow">Donation transparency</p>
+    <main id="content" class="lx">
+      <header class="lx-hero">
+        <p class="lx-label">Donation transparency</p>
         <h1>Operating expenses.</h1>
-        <p>
+        <p class="lx-lede">
           LatexDo publishes operating cost estimates so donors and contributors
           can understand how support is used. The association focuses spending
           on public infrastructure, downloads, release checks, contact email,
           documentation, and desktop release work tied to the mission.
         </p>
-      </section>
+      </header>
 
-      <section class="expenses-panel" aria-labelledby="expenses-title">
-        <div class="section-heading">
-          <p class="eyebrow">Expense table</p>
-          <h2 id="expenses-title">Monthly cost estimate</h2>
+      <section aria-labelledby="expenses-title">
+        <div class="lx-section-head">
+          <p class="lx-label">Expense table</p>
+          <h2 id="expenses-title">Monthly cost estimate.</h2>
         </div>
         <div
-          class="expenses-table-wrap"
+          class="lx-table-wrap lx-data"
           data-expenses-table
           data-expenses-src="expenses.csv"
           aria-live="polite"
         >
           <p class="expenses-loading">Loading expenses...</p>
         </div>
+        <p class="lx-footnote">
+          The same figures are available as <a href="expenses.csv">expenses.csv</a>.
+        </p>
       </section>
 
+      <section class="lx-close reveal" aria-labelledby="expenses-close-title">
+        <h2 id="expenses-close-title">Help cover the running costs.</h2>
+        <p>Donations go straight to the public services listed above.</p>
+        <div class="lx-close-actions">
+          <button class="lx-pill" type="button" data-donate-open aria-haspopup="dialog">Donate now</button>
+          <a class="lx-arrow" href="/donations/">Ways to support</a>
+        </div>
+      </section>
     </main>
     <div data-footer-src="/partials/footer.html"></div>
 

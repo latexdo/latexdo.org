@@ -23,8 +23,8 @@
   outline-offset: 5px;
 }
 .r-page .eyebrow {
-  color: var(--r-blue);
-  font-size: 13px;
+  color: var(--r-muted);
+  font-size: 14px;
   font-weight: 650;
   margin-bottom: 18px;
 }

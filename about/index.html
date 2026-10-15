@@ -26,6 +26,7 @@
     <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="/assets/pages.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -70,20 +71,22 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="legal-page">
-      <p class="eyebrow">Association / Legal Notice</p>
-      <h1>LATEXDO</h1>
-      <p class="legal-intro">
-        LATEXDO is a declared French nonprofit association governed by the law
-        of July 1, 1901. It builds and maintains free, open-source LaTeX tools,
-        documentation, and research workflows for students, researchers,
-        educators, reviewers, and technical writers.
-      </p>
+    <main id="content" class="lx">
+      <header class="lx-hero">
+        <p class="lx-label">About the association</p>
+        <h1>A nonprofit building <span>free LaTeX tools.</span></h1>
+        <p class="lx-lede">
+          LATEXDO is a declared French nonprofit association governed by the law
+          of July 1, 1901. It builds and maintains free, open-source LaTeX tools,
+          documentation, and research workflows for students, researchers,
+          educators, reviewers, and technical writers.
+        </p>
+      </header>
 
-      <article class="legal-document">
+      <article class="lx-doc">
         <section id="official-information">
-          <h2>Official Information</h2>
-          <dl class="legal-facts">
+          <h2>Official information</h2>
+          <dl class="lx-facts">
             <div>
               <dt>Full legal name</dt>
               <dd>LATEXDO</dd>
@@ -106,7 +109,7 @@
             </div>
             <div>
               <dt>Official address</dt>
-              <dd>AVENUE PAUL LANGEVIN<br />59650 VILLENEUVE-D'ASCQ<br />France</dd>
+              <dd>Avenue Paul Langevin<br />59650 Villeneuve-d'Ascq<br />France</dd>
             </div>
             <div>
               <dt>Email</dt>
@@ -132,13 +135,13 @@
         </section>
 
         <section id="financial-transparency">
-          <h2>Finances / Transparency</h2>
+          <h2>Finances and transparency</h2>
           <p>
             The simple budget below presents the minimum monthly needs for
             running LATEXDO's public services. Detailed expenses are published
-            on the <a href="../donations/expenses/">expenses page</a>.
+            on the <a href="/donations/expenses/">expenses page</a>.
           </p>
-          <ul class="status-list">
+          <ul>
             <li>
               <strong>Resources</strong>
               Donations and sponsorship through HelloAsso, volunteer
@@ -169,13 +172,13 @@
         </section>
 
         <section id="governance">
-          <h2>Legal Framework and Governance</h2>
+          <h2>Legal framework and governance</h2>
           <p>
             Governance questions, association records, donations, and roadmap
-            decisions are handled by the LATEXDO board. Requests can be sent
-            through the <a href="/contact/">contact page</a>.
+            decisions are handled by the LATEXDO <a href="/board/">board</a>.
+            Requests can be sent through the <a href="/contact/">contact page</a>.
           </p>
-          <ul class="status-list">
+          <ul>
             <li>
               <strong>Legal framework</strong>
               French association governed by the law of July 1, 1901.
@@ -183,7 +186,7 @@
             <li>
               <strong>Financial transparency</strong>
               Operating expenses are published on the
-              <a href="../donations/expenses/">expenses page</a>.
+              <a href="/donations/expenses/">expenses page</a>.
             </li>
             <li>
               <strong>Open source</strong>
@@ -193,8 +196,8 @@
           </ul>
         </section>
 
-        <section>
-          <h2>Reference Texts</h2>
+        <section id="reference-texts">
+          <h2>Reference texts</h2>
           <p>
             The main applicable text is the
             <a href="https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006069570/"
@@ -210,22 +213,20 @@
             and administrative formalities.
           </p>
         </section>
-
-        <section id="join-team">
-          <h2>Participate</h2>
-          <p>
-            People can participate by reporting bugs, improving documentation,
-            contributing code, reviewing research workflows, or helping with
-            governance and community support. The public starting point is the
-            LATEXDO <a href="https://github.com/latexdo/latexdo">GitHub</a>
-            repository.
-          </p>
-          <p>
-            To join the association, fill out the
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3iaCsRbl0D2pgMh2ojPU5QN39s7vhKNJF1XLQCMfXQdODcg/viewform">membership form</a>.
-          </p>
-        </section>
       </article>
+
+      <section id="join-team" class="lx-close reveal" aria-labelledby="join-title">
+        <h2 id="join-title">Take part in LatexDo.</h2>
+        <p>
+          Report bugs, improve documentation, contribute code, review research
+          workflows, or help with governance and community support. To join the
+          association, fill out the membership form.
+        </p>
+        <div class="lx-close-actions">
+          <a class="lx-pill" href="https://docs.google.com/forms/d/e/1FAIpQLSe3iaCsRbl0D2pgMh2ojPU5QN39s7vhKNJF1XLQCMfXQdODcg/viewform">Become a member</a>
+          <a class="lx-arrow" href="https://github.com/latexdo/latexdo">Contribute on GitHub</a>
+        </div>
+      </section>
     </main>
     <div data-footer-src="/partials/footer.html"></div>
 

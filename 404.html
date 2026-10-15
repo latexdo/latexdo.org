@@ -16,6 +16,7 @@
     <link rel="preload" href="/assets/icon.svg" as="image" type="image/svg+xml" />
     <link rel="preload" href="/style.css" as="style" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/assets/pages.css" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="LatexDo" />
@@ -39,22 +40,20 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="not-found-main">
-      <section class="not-found-section" aria-labelledby="not-found-title">
-        <div class="not-found-content">
-          <p class="eyebrow">404</p>
-          <h1 id="not-found-title">This page was not found.</h1>
-          <p class="not-found-copy">
-            The address may have moved or been typed incorrectly. Continue from
-            one of the main LatexDo pages.
-          </p>
-          <div class="not-found-actions" aria-label="Helpful links">
-            <a class="button primary" href="/">Go home</a>
-            <a class="button secondary" href="/programs/">Programs</a>
-            <a class="button secondary" href="/contact/">Contact us</a>
-          </div>
+    <main id="content" class="lx">
+      <header class="lx-hero is-center" aria-labelledby="not-found-title">
+        <p class="lx-label">404</p>
+        <h1 id="not-found-title">This page was not found.</h1>
+        <p class="lx-lede">
+          The address may have moved or been typed incorrectly. Continue from
+          one of the main LatexDo pages.
+        </p>
+        <div class="lx-hero-actions" aria-label="Helpful links">
+          <a class="lx-button" href="/">Go home</a>
+          <a class="lx-arrow" href="/downloads/">Download LatexDo</a>
+          <a class="lx-arrow" href="/contact/">Contact us</a>
         </div>
-      </section>
+      </header>
     </main>
     <div data-footer-src="/partials/footer.html"></div>
 

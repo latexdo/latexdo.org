@@ -25,6 +25,7 @@
     <link rel="icon" type="image/svg+xml" href="../assets/icon.svg" />
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="/assets/pages.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -69,103 +70,98 @@
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="donations-page">
-      <section class="donations-hero">
-        <p class="eyebrow">Donations</p>
+    <main id="content" class="lx">
+      <header class="lx-hero">
+        <p class="lx-label">Donations</p>
         <h1>Support free LaTeX tools.</h1>
-        <p>
+        <p class="lx-lede">
           LatexDo is a nonprofit association building free, open-source tools
           and educational resources for technical writing. Donations help cover
           public infrastructure, release maintenance, documentation, and support
           for students, researchers, educators, and contributors.
         </p>
-      </section>
+        <div class="lx-hero-actions">
+          <button class="lx-button" type="button" data-donate-open aria-haspopup="dialog">Donate now</button>
+          <a class="lx-arrow" href="/donations/expenses/">See where the money goes</a>
+        </div>
+      </header>
 
-      <section class="donations-compare">
-        <div class="section-heading">
-          <p class="eyebrow">Ways to support</p>
-          <h2>Donation or sponsoring?</h2>
-          <p>
-            Both keep LatexDo free and open source — they simply work in two
+      <section aria-labelledby="compare-title">
+        <div class="lx-section-head">
+          <p class="lx-label">Ways to support</p>
+          <h2 id="compare-title">Donation or sponsoring?</h2>
+          <p class="lx-lede">
+            Both keep LatexDo free and open source. They simply work in two
             different ways.
           </p>
         </div>
-        <div class="donate-compare-wrap">
-          <table class="donate-compare">
-            <thead>
-              <tr>
-                <th scope="col"><span class="visually-hidden">Criteria</span></th>
-                <th scope="col">Donation</th>
-                <th scope="col">Sponsoring</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Who it suits</th>
-                <td>Individuals who want to support the mission</td>
-                <td>Companies and organizations</td>
-              </tr>
-              <tr>
-                <th scope="row">Amount</th>
-                <td>Free amount, one-time or recurring</td>
-                <td>Agreed together as part of a partnership</td>
-              </tr>
-              <tr>
-                <th scope="row">Recognition</th>
-                <td>Optional — you can stay anonymous</td>
-                <td>Public visibility: logo and mention on our channels</td>
-              </tr>
-              <tr>
-                <th scope="row">Expectations</th>
-                <td>None — fully unrestricted support</td>
-                <td>Defined with the association in advance</td>
-              </tr>
-              <tr>
-                <th scope="row">Get started</th>
-                <td>
-                  <button
-                    class="nav-donate-link"
-                    type="button"
-                    data-donate-open
-                    aria-haspopup="dialog"
-                  >
-                    Donate now
-                  </button>
-                </td>
-                <td>
-                  <button
-                    class="nav-donate-link"
-                    type="button"
-                    data-donate-open
-                    data-ha-src="https://www.helloasso.com/associations/latexdo/formulaires/1/widget?view=form"
-                    aria-haspopup="dialog"
-                  >
-                    Become a sponsor
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="lx-block">
+          <div class="lx-table-wrap">
+            <table class="lx-table is-compare">
+              <thead>
+                <tr>
+                  <th scope="col"><span class="visually-hidden">Criteria</span></th>
+                  <th scope="col">Donation</th>
+                  <th scope="col">Sponsoring</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Who it suits</th>
+                  <td>Individuals who want to support the mission</td>
+                  <td>Companies and organizations</td>
+                </tr>
+                <tr>
+                  <th scope="row">Amount</th>
+                  <td>Free amount, one-time or recurring</td>
+                  <td>Agreed together as part of a partnership</td>
+                </tr>
+                <tr>
+                  <th scope="row">Recognition</th>
+                  <td>Optional, you can stay anonymous</td>
+                  <td>Public visibility: logo and mention on our channels</td>
+                </tr>
+                <tr>
+                  <th scope="row">Expectations</th>
+                  <td>None, fully unrestricted support</td>
+                  <td>Defined with the association in advance</td>
+                </tr>
+                <tr>
+                  <th scope="row">Get started</th>
+                  <td>
+                    <button class="lx-arrow" type="button" data-donate-open aria-haspopup="dialog">Donate now</button>
+                  </td>
+                  <td>
+                    <button
+                      class="lx-arrow"
+                      type="button"
+                      data-donate-open
+                      data-ha-src="https://www.helloasso.com/associations/latexdo/formulaires/1/widget?view=form"
+                      aria-haspopup="dialog"
+                    >Become a sponsor</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
-      <section class="donations-impact">
-        <div class="section-heading">
-          <h2>Every contribution has a direct impact.</h2>
-          <p>
-            <a href="expenses/">Open the expenses page</a>.
-          </p>
+      <section aria-labelledby="impact-title">
+        <div class="lx-section-head">
+          <p class="lx-label">Impact</p>
+          <h2 id="impact-title">Every contribution has a direct impact.</h2>
         </div>
-        <div class="donations-impact-grid">
-          <article class="impact-card">
-            <h3>Infrastructure &amp; hosting</h3>
+        <div class="lx-principles five">
+          <article class="reveal">
+            <h3>Infrastructure and hosting</h3>
             <p>
               Website hosting, download delivery, documentation, and update
               infrastructure all have real operating costs. Your support keeps
               the service running smoothly for everyone.
             </p>
           </article>
-          <article class="impact-card">
+          <article class="reveal">
             <h3>Sustained development</h3>
             <p>
               New features, bug fixes, and community support take time and
@@ -173,7 +169,7 @@
               LatexDo better for every user.
             </p>
           </article>
-          <article class="impact-card">
+          <article class="reveal">
             <h3>Open-source growth</h3>
             <p>
               Every line of LatexDo's source code is public on GitHub. No
@@ -181,8 +177,8 @@
               donations ensure this stays true.
             </p>
           </article>
-          <article class="impact-card">
-            <h3>Community &amp; support</h3>
+          <article class="reveal">
+            <h3>Community and support</h3>
             <p>
               LatexDo serves researchers, students, reviewers, and technical
               writers who need a reliable LaTeX workflow. Donations help us
@@ -192,12 +188,12 @@
         </div>
       </section>
 
-      <section class="donations-faq">
-        <div class="section-heading">
-          <p class="eyebrow">Questions</p>
-          <h2>Frequently asked.</h2>
+      <section aria-labelledby="faq-title">
+        <div class="lx-section-head">
+          <p class="lx-label">Questions</p>
+          <h2 id="faq-title">Frequently asked.</h2>
         </div>
-        <div class="faq-list">
+        <div class="lx-faq">
           <details>
             <summary>Is LatexDo really free?</summary>
             <p>
@@ -212,16 +208,15 @@
               using your local LaTeX installation, keeps projects on your
               machine, and avoids a subscription workflow. The nonprofit mission
               is to keep practical LaTeX tooling available for the public.
+              <a href="/overleaf-alternative/">Read the full comparison</a>.
             </p>
           </details>
           <details>
             <summary>Do you accept one-time donations?</summary>
             <p>
               Yes. Every amount helps, whether a single gift or ongoing
-              support. Give securely through our HelloAsso form:
-              <button class="donate-text-link" type="button" data-donate-open aria-haspopup="dialog">
-                Donate now
-              </button>
+              support. Give securely through our HelloAsso form.
+              <button class="lx-arrow" type="button" data-donate-open aria-haspopup="dialog">Donate now</button>
             </p>
           </details>
           <details>
@@ -235,26 +230,19 @@
         </div>
       </section>
 
-      <section class="donations-final-cta">
-        <div class="section-heading">
-          <p class="eyebrow">Support LatexDo</p>
-          <h2>Keep great LaTeX tools free for everyone.</h2>
-          <p>Choose the way that fits you — every contribution counts.</p>
-        </div>
-        <div class="final-cta-actions">
-          <button class="nav-donate-link" type="button" data-donate-open aria-haspopup="dialog">
-            Donate now
-          </button>
+      <section class="lx-close reveal" aria-labelledby="donate-close-title">
+        <h2 id="donate-close-title">Keep great LaTeX tools free for everyone.</h2>
+        <p>Choose the way that fits you. Every contribution counts.</p>
+        <div class="lx-close-actions">
+          <button class="lx-pill" type="button" data-donate-open aria-haspopup="dialog">Donate now</button>
           <button
-            class="nav-donate-link is-secondary"
+            class="lx-pill is-ghost"
             type="button"
             data-donate-open
             data-ha-src="https://www.helloasso.com/associations/latexdo/formulaires/1/widget?view=form"
             aria-haspopup="dialog"
-          >
-            Become a sponsor
-          </button>
-          <a class="final-cta-link" href="/sponsors/">See our sponsors</a>
+          >Become a sponsor</button>
+          <a class="lx-arrow" href="/sponsors/">See our sponsors</a>
         </div>
       </section>
     </main>
