@@ -1,278 +1,596 @@
 {
   "schemaVersion": 1,
   "product": "LatexDo",
-  "updatedAt": "2026-07-20T00:00:00.000Z",
+  "updatedAt": "2026-10-15T00:00:00.000Z",
   "extensions": [
     {
       "schemaVersion": 1,
-      "id": "latexdo.conference-readiness",
-      "kind": "extension",
-      "name": "Conference Readiness Pack",
+      "id": "latexdo.ieee-conference",
+      "kind": "template",
+      "name": "IEEE Conference Paper",
       "version": "1.0.0",
-      "description": "Enables conference checks, PDF compliance, and compiler diagnostics for submission-ready papers.",
+      "description": "An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.",
       "author": "LatexDo",
-      "category": "checking",
+      "category": "templates",
       "tags": [
+        "ieee",
         "conference",
-        "pdf",
-        "submission"
+        "paper"
       ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.conference-readiness/",
+      "homepage": "https://latexdo.org/store/extensions/latexdo.ieee-conference/",
       "repository": "https://github.com/latexdo/latexdo.org",
       "contributes": {
-        "featureFlags": {
-          "conferenceCheckerEnabled": true,
-          "checkEmbeddedFonts": true,
-          "checkFigureReferences": true,
-          "checkTableReferences": true,
-          "errorDoctorEnabled": true,
-          "explainErrors": true,
-          "pdfComplianceEnabled": true,
-          "checkPageCount": true,
-          "checkType3Fonts": true
-        }
-      }
-    },
-    {
-      "schemaVersion": 1,
-      "id": "latexdo.citation-workbench",
-      "kind": "extension",
-      "name": "Citation Workbench",
-      "version": "1.0.0",
-      "description": "Turns on citation analysis, duplicate detection, stale-reference warnings, and BibTeX helpers.",
-      "author": "LatexDo",
-      "category": "bibliography",
-      "tags": [
-        "bibtex",
-        "citations",
-        "references"
-      ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.citation-workbench/",
-      "repository": "https://github.com/latexdo/latexdo.org",
-      "contributes": {
-        "featureFlags": {
-          "projectBibliographyEnabled": true,
-          "citationAssistantEnabled": true,
-          "detectMissingCitations": true,
-          "detectUnusedEntries": true,
-          "detectDuplicateReferences": true,
-          "detectBrokenLinks": true,
-          "suggestCitationKeys": true,
-          "importMetadataSources": true,
-          "warnOldCitations": true
-        },
-        "snippets": [
+        "templates": [
           {
-            "label": "annotatedbib",
-            "insertText": "% ${1:Paper note}\n@article{${2:key},\n  title = {${3:Title}},\n  author = {${4:Author}},\n  year = {${5:2026}}\n}",
-            "detail": "Annotated BibTeX note",
-            "documentation": "Creates a commented BibTeX placeholder for manual imports."
+            "id": "ieee-conference-paper",
+            "name": "IEEE Conference Paper",
+            "summary": "Two-column IEEEtran paper with author blocks, keywords, a booktabs results table and IEEE-style references.",
+            "files": "main.tex, references.bib",
+            "mainTex": "\\documentclass[conference]{IEEEtran}\n\n\\usepackage{amsmath,amssymb}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{cite}\n\\usepackage[hidelinks]{hyperref}\n\n\\begin{document}\n\n\\title{Paper Title: A Short, Specific Claim}\n\n\\author{\n  \\IEEEauthorblockN{First Author}\n  \\IEEEauthorblockA{Department, University\\\\\n  City, Country\\\\\n  first.author@example.org}\n  \\and\n  \\IEEEauthorblockN{Second Author}\n  \\IEEEauthorblockA{Department, University\\\\\n  City, Country\\\\\n  second.author@example.org}\n}\n\n\\maketitle\n\n\\begin{abstract}\nState the problem, the approach, the main result with a number, and why it matters, in about 150 words.\n\\end{abstract}\n\n\\begin{IEEEkeywords}\nfirst keyword, second keyword, third keyword\n\\end{IEEEkeywords}\n\n\\section{Introduction}\nMotivate the problem and list the contributions.\n\n\\begin{itemize}\n  \\item The first contribution.\n  \\item The second contribution.\n\\end{itemize}\n\n\\section{Related Work}\nPosition the paper against prior work~\\cite{example2024}.\n\n\\section{Method}\n\\label{sec:method}\nDescribe the approach. Equations are numbered:\n\\begin{equation}\n  \\mathcal{L}(\\theta) = \\sum_{i=1}^{n} \\ell\\bigl(f_\\theta(x_i), y_i\\bigr).\n  \\label{eq:loss}\n\\end{equation}\n\n\\section{Experiments}\n\\begin{table}[t]\n  \\centering\n  \\caption{Main results. Best in bold.}\n  \\label{tab:results}\n  \\begin{tabular}{lcc}\n    \\toprule\n    Method & Accuracy (\\%) & Time (s) \\\\\n    \\midrule\n    Baseline & 81.2 & 12.4 \\\\\n    Ours & \\textbf{86.9} & \\textbf{9.1} \\\\\n    \\bottomrule\n  \\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:results} summarises the results.\n\n\\section{Conclusion}\nSummarise the findings and the limits.\n\n\\bibliographystyle{IEEEtran}\n\\bibliography{references}\n\n\\end{document}\n",
+            "bibTex": "@inproceedings{example2024,\n  author = {Doe, Jane and Roe, Richard},\n  title = {An Example Reference},\n  booktitle = {Proceedings of an Example Conference},\n  year = {2024},\n  pages = {1--10}\n}\n"
           }
         ]
       }
     },
     {
       "schemaVersion": 1,
-      "id": "latexdo.drawio-tikz",
-      "kind": "extension",
-      "name": "Draw.io TikZ Converter",
+      "id": "latexdo.acm-article",
+      "kind": "template",
+      "name": "ACM Article",
       "version": "1.0.0",
-      "description": "Enables the TikZ converter for draw.io diagrams and image-based figure drafts.",
+      "description": "An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.",
       "author": "LatexDo",
-      "category": "graphics",
+      "category": "templates",
       "tags": [
-        "draw.io",
-        "tikz",
-        "diagrams"
+        "acm",
+        "sigconf",
+        "paper"
       ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.drawio-tikz/",
+      "homepage": "https://latexdo.org/store/extensions/latexdo.acm-article/",
       "repository": "https://github.com/latexdo/latexdo.org",
       "contributes": {
-        "featureFlags": {
-          "tikzConverterEnabled": true
-        }
+        "templates": [
+          {
+            "id": "acm-sigconf-article",
+            "name": "ACM Conference Article",
+            "summary": "acmart sigconf article in anonymous review mode, with affiliations, keywords, results table and ACM references.",
+            "files": "main.tex, references.bib",
+            "mainTex": "\\documentclass[sigconf,review,anonymous]{acmart}\n\n% Remove \"review,anonymous\" for the camera-ready version.\n\\setcopyright{none}\n\\settopmatter{printacmref=false}\n\n\\begin{document}\n\n\\title{Paper Title: A Short, Specific Claim}\n\n\\author{First Author}\n\\affiliation{%\n  \\institution{University}\n  \\city{City}\n  \\country{Country}}\n\\email{first.author@example.org}\n\n\\author{Second Author}\n\\affiliation{%\n  \\institution{Institute}\n  \\city{City}\n  \\country{Country}}\n\\email{second.author@example.org}\n\n\\begin{abstract}\nState the problem, the approach, the main result with a number, and why it matters.\n\\end{abstract}\n\n\\keywords{first keyword, second keyword, third keyword}\n\n\\maketitle\n\n\\section{Introduction}\nMotivate the problem and list the contributions.\n\n\\section{Related Work}\nPosition the paper against prior work~\\cite{example2024}.\n\n\\section{Approach}\n\\label{sec:approach}\nDescribe the system or method.\n\n\\section{Evaluation}\n\\begin{table}[t]\n  \\caption{Main results. Best in bold.}\n  \\label{tab:results}\n  \\begin{tabular}{lcc}\n    \\toprule\n    Method & Accuracy (\\%) & Latency (ms) \\\\\n    \\midrule\n    Baseline & 81.2 & 34 \\\\\n    Ours & \\textbf{86.9} & \\textbf{21} \\\\\n    \\bottomrule\n  \\end{tabular}\n\\end{table}\n\n\\section{Conclusion}\nSummarise the findings and the limits.\n\n\\begin{acks}\nAcknowledge funding and help here.\n\\end{acks}\n\n\\bibliographystyle{ACM-Reference-Format}\n\\bibliography{references}\n\n\\end{document}\n",
+            "bibTex": "@inproceedings{example2024,\n  author = {Doe, Jane and Roe, Richard},\n  title = {An Example Reference},\n  booktitle = {Proceedings of an Example Conference},\n  year = {2024},\n  pages = {1--10}\n}\n"
+          }
+        ]
       }
     },
     {
       "schemaVersion": 1,
-      "id": "latexdo.figure-lab",
-      "kind": "extension",
-      "name": "Figure Lab",
+      "id": "latexdo.thesis",
+      "kind": "template",
+      "name": "Thesis and Dissertation",
       "version": "1.0.0",
-      "description": "Adds figure, subfigure, and TikZ helpers for papers that depend on diagrams and visual results.",
+      "description": "A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.",
+      "author": "LatexDo",
+      "category": "templates",
+      "tags": [
+        "thesis",
+        "dissertation",
+        "phd"
+      ],
+      "homepage": "https://latexdo.org/store/extensions/latexdo.thesis/",
+      "repository": "https://github.com/latexdo/latexdo.org",
+      "contributes": {
+        "templates": [
+          {
+            "id": "thesis-dissertation",
+            "name": "Thesis or Dissertation",
+            "summary": "Two-sided report with title page, front matter, contents, chapters, theorem environments and an appendix.",
+            "files": "main.tex",
+            "mainTex": "\\documentclass[11pt,a4paper,twoside,openright]{report}\n\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{lmodern}\n\\usepackage[a4paper,inner=3cm,outer=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}\n\\usepackage{amsmath,amssymb,amsthm}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage[hidelinks]{hyperref}\n\\usepackage[nameinlink]{cleveref}\n\\usepackage{setspace}\n\\onehalfspacing\n\n\\newtheorem{theorem}{Theorem}[chapter]\n\\newtheorem{definition}[theorem]{Definition}\n\n\\title{Thesis Title}\n\\author{Your Name}\n\\date{Month Year}\n\n\\begin{document}\n\n\\begin{titlepage}\n  \\centering\n  \\vspace*{3cm}\n  {\\Huge\\bfseries Thesis Title\\par}\n  \\vspace{1.5cm}\n  {\\Large Your Name\\par}\n  \\vfill\n  A thesis submitted for the degree of\\\\\n  \\emph{Doctor of Philosophy}\\\\[1em]\n  Department, University\\\\\n  Month Year\n\\end{titlepage}\n\n\\pagenumbering{roman}\n\n\\chapter*{Abstract}\n\\addcontentsline{toc}{chapter}{Abstract}\nSummarise the question, the approach and the main findings of the thesis.\n\n\\chapter*{Acknowledgements}\n\\addcontentsline{toc}{chapter}{Acknowledgements}\nThank the people and funders who supported this work.\n\n\\tableofcontents\n\\listoffigures\n\\listoftables\n\n\\cleardoublepage\n\\pagenumbering{arabic}\n\n\\chapter{Introduction}\n\\label{ch:introduction}\nState the research questions and the structure of the thesis.\n\n\\section{Contributions}\n\\begin{enumerate}\n  \\item The first contribution, presented in \\cref{ch:background}.\n  \\item The second contribution.\n\\end{enumerate}\n\n\\chapter{Background}\n\\label{ch:background}\n\\begin{definition}\n  A precise definition used throughout the thesis.\n\\end{definition}\n\n\\chapter{Conclusion}\n\\label{ch:conclusion}\nAnswer the research questions and describe future work.\n\n\\appendix\n\\chapter{Additional Material}\nSupplementary proofs, tables and figures.\n\n\\end{document}\n"
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "latexdo.academic-cv",
+      "kind": "template",
+      "name": "Academic CV",
+      "version": "1.0.0",
+      "description": "A clean one-column academic CV with education, appointments, numbered publications, grants, teaching and service sections.",
+      "author": "LatexDo",
+      "category": "templates",
+      "tags": [
+        "cv",
+        "resume",
+        "career"
+      ],
+      "homepage": "https://latexdo.org/store/extensions/latexdo.academic-cv/",
+      "repository": "https://github.com/latexdo/latexdo.org",
+      "contributes": {
+        "templates": [
+          {
+            "id": "academic-cv",
+            "name": "Academic CV",
+            "summary": "One-column academic CV with ORCID link, dated entries and numbered publications.",
+            "files": "main.tex",
+            "mainTex": "\\documentclass[11pt,a4paper]{article}\n\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{lmodern}\n\\usepackage[margin=2cm]{geometry}\n\\usepackage{enumitem}\n\\usepackage{titlesec}\n\\usepackage[hidelinks]{hyperref}\n\n\\pagestyle{empty}\n\\setlength{\\parindent}{0pt}\n\\titleformat{\\section}{\\large\\bfseries}{}{0pt}{}[\\vspace{2pt}\\hrule]\n\\titlespacing*{\\section}{0pt}{14pt}{6pt}\n\\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=2pt}\n\n% \\entry{dates}{title}{place}{details}\n\\newcommand{\\entry}[4]{%\n  \\textbf{#2} \\hfill #1\\\\\n  \\emph{#3}\\\\[-2pt]\n  \\ifx\\relax#4\\relax\\else{\\small #4}\\\\\\fi\n  \\vspace{4pt}}\n\n\\begin{document}\n\n{\\LARGE\\bfseries Your Name}\\\\[4pt]\nPosition, Department, University\\\\\n\\href{mailto:you@example.org}{you@example.org} \\quad\n\\href{https://orcid.org/0000-0000-0000-0000}{ORCID 0000-0000-0000-0000} \\quad\n\\href{https://example.org}{example.org}\n\n\\section{Research Interests}\nThree to five research areas, in one or two lines.\n\n\\section{Education}\n\\entry{2020--2024}{PhD in Computer Science}{University, City}{Thesis: Title of the Thesis. Advisor: Name.}\n\\entry{2018--2020}{MSc in Computer Science}{University, City}{}\n\n\\section{Appointments}\n\\entry{2024--present}{Postdoctoral Researcher}{Institute, City}{}\n\n\\section{Publications}\n\\begin{enumerate}[label={[\\arabic*]},leftmargin=2.2em]\n  \\item \\textbf{Your Name}, Coauthor. Paper title. \\emph{Venue}, 2024.\n  \\item Coauthor, \\textbf{Your Name}. Paper title. \\emph{Journal}, 2023.\n\\end{enumerate}\n\n\\section{Grants and Awards}\n\\begin{itemize}\n  \\item Award or grant name, funder, 2024.\n\\end{itemize}\n\n\\section{Teaching}\n\\begin{itemize}\n  \\item Course name (teaching assistant), University, 2022--2023.\n\\end{itemize}\n\n\\section{Service}\n\\begin{itemize}\n  \\item Reviewer for Venue A, Venue B.\n\\end{itemize}\n\n\\end{document}\n"
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "latexdo.research-poster",
+      "kind": "template",
+      "name": "Research Poster",
+      "version": "1.0.0",
+      "description": "An A0 portrait conference poster built with tikzposter: title banner, two columns of blocks, an equation and a results table.",
+      "author": "LatexDo",
+      "category": "templates",
+      "tags": [
+        "poster",
+        "conference",
+        "a0"
+      ],
+      "homepage": "https://latexdo.org/store/extensions/latexdo.research-poster/",
+      "repository": "https://github.com/latexdo/latexdo.org",
+      "contributes": {
+        "templates": [
+          {
+            "id": "research-poster",
+            "name": "Research Poster (A0)",
+            "summary": "tikzposter A0 portrait poster with title banner, two columns of blocks, an equation and a results table.",
+            "files": "main.tex",
+            "mainTex": "\\documentclass[25pt,a0paper,portrait]{tikzposter}\n\n\\usepackage{amsmath}\n\\usepackage{booktabs}\n\n\\title{Poster Title: The Main Finding in One Line}\n\\author{First Author, Second Author}\n\\institute{Department, University}\n\n\\usetheme{Simple}\n\\usecolorstyle{Default}\n\n\\begin{document}\n\n\\maketitle\n\n\\begin{columns}\n  \\column{0.5}\n  \\block{Motivation}{\n    Why the problem matters, in two or three sentences a visitor can read from two metres away.\n  }\n  \\block{Approach}{\n    The key idea:\n    \\[\n      \\hat{\\theta} = \\arg\\min_{\\theta} \\sum_{i} \\ell\\bigl(f_\\theta(x_i), y_i\\bigr)\n    \\]\n  }\n\n  \\column{0.5}\n  \\block{Results}{\n    \\begin{tabular}{lcc}\n      \\toprule\n      Method & Accuracy & Time \\\\\n      \\midrule\n      Baseline & 81.2 & 12.4 \\\\\n      Ours & \\textbf{86.9} & \\textbf{9.1} \\\\\n      \\bottomrule\n    \\end{tabular}\n  }\n  \\block{Take-home message}{\n    One sentence the visitor should remember.\n  }\n\\end{columns}\n\n\\block{References and contact}{\n  Paper link, code link, and an email address.\n}\n\n\\end{document}\n"
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "latexdo.plots",
+      "kind": "extension",
+      "name": "Plots and Figures",
+      "version": "1.0.0",
+      "description": "pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper's fonts, with no image export step.",
       "author": "LatexDo",
       "category": "graphics",
       "tags": [
-        "figures",
-        "tikz",
-        "graphics"
+        "pgfplots",
+        "charts",
+        "figures"
       ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.figure-lab/",
+      "homepage": "https://latexdo.org/store/extensions/latexdo.plots/",
       "repository": "https://github.com/latexdo/latexdo.org",
       "contributes": {
-        "featureFlags": {
-          "tikzConverterEnabled": true,
-          "tikzConverterAutoOpen": true,
-          "checkUnreferencedFigures": true
-        },
         "snippets": [
           {
-            "label": "subfigures",
-            "insertText": "\\begin{figure}[t]\n  \\centering\n  \\begin{subfigure}{0.48\\textwidth}\n    \\includegraphics[width=\\linewidth]{${1:first}}\n    \\caption{${2:First panel}}\n  \\end{subfigure}\\hfill\n  \\begin{subfigure}{0.48\\textwidth}\n    \\includegraphics[width=\\linewidth]{${3:second}}\n    \\caption{${4:Second panel}}\n  \\end{subfigure}\n  \\caption{${5:Caption}}\n  \\label{fig:${6:label}}\n\\end{figure}",
-            "detail": "Two-panel figure",
-            "documentation": "Requires the subcaption package."
+            "label": "lineplot",
+            "insertText": "\\\\begin{figure\\}[t]\n  \\\\centering\n  \\\\begin{tikzpicture\\}\n    \\\\begin{axis\\}[\n      width=\\\\linewidth, height=5cm,\n      xlabel={${1:Epoch}\\}, ylabel={${2:Accuracy (\\\\%)}\\},\n      legend pos=south east, grid=major,\n    ]\n      \\\\addplot+[mark=*] coordinates {(1,62) (2,71) (3,77) (4,80)\\};\n      \\\\addlegendentry{${3:Ours}\\}\n      \\\\addplot+[mark=square*] coordinates {(1,60) (2,66) (3,70) (4,72)\\};\n      \\\\addlegendentry{${4:Baseline}\\}\n    \\\\end{axis\\}\n  \\\\end{tikzpicture\\}\n  \\\\caption{${5:Caption.}\\}\n  \\\\label{fig:${6:plot}\\}\n\\\\end{figure\\}",
+            "detail": "Line plot (pgfplots)",
+            "documentation": "A line chart from inline coordinates with axis labels and a legend. Needs pgfplots."
           },
           {
-            "label": "tikzplot",
-            "insertText": "\\begin{tikzpicture}\n  \\begin{axis}[\n    xlabel={${1:x}},\n    ylabel={${2:y}},\n    grid=both\n  ]\n    \\addplot coordinates {${3:(0,0) (1,1)}};\n  \\end{axis}\n\\end{tikzpicture}",
-            "detail": "PGFPlots figure",
-            "documentation": "Requires tikz and pgfplots packages."
+            "label": "barchart",
+            "insertText": "\\\\begin{figure\\}[t]\n  \\\\centering\n  \\\\begin{tikzpicture\\}\n    \\\\begin{axis\\}[\n      ybar, bar width=10pt, width=\\\\linewidth, height=5cm,\n      symbolic x coords={${1:A},${2:B},${3:C}\\}, xtick=data,\n      ylabel={${4:Score}\\}, nodes near coords, ymin=0,\n      legend style={at={(0.5,1.02)\\}, anchor=south, legend columns=-1\\},\n    ]\n      \\\\addplot coordinates {(${1:A},72) (${2:B},64) (${3:C},81)\\};\n      \\\\addplot coordinates {(${1:A},68) (${2:B},59) (${3:C},75)\\};\n      \\\\legend{${5:Ours},${6:Baseline}\\}\n    \\\\end{axis\\}\n  \\\\end{tikzpicture\\}\n  \\\\caption{${7:Caption.}\\}\n  \\\\label{fig:${8:bars}\\}\n\\\\end{figure\\}",
+            "detail": "Grouped bar chart (pgfplots)",
+            "documentation": "Grouped bars per category with values on top. Needs pgfplots."
+          },
+          {
+            "label": "scatterplot",
+            "insertText": "\\\\begin{tikzpicture\\}\n  \\\\begin{axis\\}[xlabel={${1:x}\\}, ylabel={${2:y}\\}, width=0.9\\\\linewidth]\n    \\\\addplot+[only marks, error bars/.cd, y dir=both, y explicit]\n      coordinates {(1,2.1) +- (0,0.3) (2,3.9) +- (0,0.4) (3,6.2) +- (0,0.5)\\};\n  \\\\end{axis\\}\n\\\\end{tikzpicture\\}",
+            "detail": "Scatter plot with error bars",
+            "documentation": "Points with symmetric y error bars. Needs pgfplots."
+          },
+          {
+            "label": "groupplot",
+            "insertText": "\\\\begin{tikzpicture\\}\n  \\\\begin{groupplot\\}[group style={group size=2 by 1, horizontal sep=1.5cm\\}, width=0.48\\\\linewidth, height=4.5cm]\n    \\\\nextgroupplot[title={${1:Left}\\}]\n    \\\\addplot coordinates {(0,0) (1,1) (2,4)\\};\n    \\\\nextgroupplot[title={${2:Right}\\}]\n    \\\\addplot coordinates {(0,0) (1,2) (2,3)\\};\n  \\\\end{groupplot\\}\n\\\\end{tikzpicture\\}",
+            "detail": "Two plots side by side",
+            "documentation": "Two axes sharing a style with groupplots. Needs the pgfplots groupplots library."
+          },
+          {
+            "label": "subfigures",
+            "insertText": "\\\\begin{figure\\}[t]\n  \\\\centering\n  \\\\begin{subfigure\\}[b]{0.48\\\\linewidth\\}\n    \\\\centering\n    \\\\includegraphics[width=\\\\linewidth]{${1:example-image-a}\\}\n    \\\\caption{${2:Left panel.}\\}\n    \\\\label{fig:${3:left}\\}\n  \\\\end{subfigure\\}\\\\hfill\n  \\\\begin{subfigure\\}[b]{0.48\\\\linewidth\\}\n    \\\\centering\n    \\\\includegraphics[width=\\\\linewidth]{${4:example-image-b}\\}\n    \\\\caption{${5:Right panel.}\\}\n    \\\\label{fig:${6:right}\\}\n  \\\\end{subfigure\\}\n  \\\\caption{${7:Overall caption.}\\}\n  \\\\label{fig:${8:panels}\\}\n\\\\end{figure\\}",
+            "detail": "Two-panel figure",
+            "documentation": "Two images side by side with sub-captions. Needs subcaption and graphicx."
           }
         ]
       }
     },
     {
       "schemaVersion": 1,
-      "id": "latexdo.table-generator",
+      "id": "latexdo.publication-tables",
       "kind": "extension",
-      "name": "Table Generator",
+      "name": "Publication Tables",
       "version": "1.0.0",
-      "description": "Adds the visual table builder for generating LaTeX tabular code.",
+      "description": "Journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables.",
       "author": "LatexDo",
       "category": "graphics",
       "tags": [
         "tables",
-        "tabular",
-        "latex"
+        "booktabs",
+        "siunitx"
       ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.table-generator/",
+      "homepage": "https://latexdo.org/store/extensions/latexdo.publication-tables/",
       "repository": "https://github.com/latexdo/latexdo.org",
       "contributes": {
-        "featureFlags": {
-          "tableGeneratorEnabled": true
-        }
+        "snippets": [
+          {
+            "label": "resultstable",
+            "insertText": "\\\\begin{table\\}[t]\n  \\\\centering\n  \\\\caption{${1:Results on the test set. Best in bold.}\\}\n  \\\\label{tab:${2:results}\\}\n  \\\\begin{tabular\\}{lccc\\}\n    \\\\toprule\n    Method & ${3:Precision} & ${4:Recall} & ${5:F1} \\\\\\\\\n    \\\\midrule\n    Baseline & 0.71 & 0.65 & 0.68 \\\\\\\\\n    Ours & \\\\textbf{0.79\\} & \\\\textbf{0.74\\} & \\\\textbf{0.76\\} \\\\\\\\\n    \\\\bottomrule\n  \\\\end{tabular\\}\n\\\\end{table\\}",
+            "detail": "Results table, best in bold",
+            "documentation": "A booktabs comparison table. Needs booktabs."
+          },
+          {
+            "label": "notestable",
+            "insertText": "\\\\begin{table\\}[t]\n  \\\\centering\n  \\\\begin{threeparttable\\}\n    \\\\caption{${1:Caption.}\\}\n    \\\\label{tab:${2:notes}\\}\n    \\\\begin{tabular\\}{lcc\\}\n      \\\\toprule\n      ${3:Setting} & ${4:Value}\\\\tnote{a\\} & ${5:Error} \\\\\\\\\n      \\\\midrule\n      A & 1.0 & 0.1 \\\\\\\\\n      B & 2.0 & 0.2 \\\\\\\\\n      \\\\bottomrule\n    \\\\end{tabular\\}\n    \\\\begin{tablenotes\\}\\\\footnotesize\n      \\\\item[a] ${6:Explain the marked value.}\n    \\\\end{tablenotes\\}\n  \\\\end{threeparttable\\}\n\\\\end{table\\}",
+            "detail": "Table with notes",
+            "documentation": "A table with footnote-style notes underneath. Needs threeparttable and booktabs."
+          },
+          {
+            "label": "multirowtable",
+            "insertText": "\\\\begin{tabular\\}{llc\\}\n  \\\\toprule\n  ${1:Dataset} & ${2:Method} & ${3:Score} \\\\\\\\\n  \\\\midrule\n  \\\\multirow{2\\}{*\\}{${4:First}\\} & Baseline & 70.1 \\\\\\\\\n                           & Ours & 74.3 \\\\\\\\\n  \\\\midrule\n  \\\\multirow{2\\}{*\\}{${5:Second}\\} & Baseline & 61.0 \\\\\\\\\n                            & Ours & 66.8 \\\\\\\\\n  \\\\bottomrule\n\\\\end{tabular\\}",
+            "detail": "Table with merged rows",
+            "documentation": "Rows grouped by a merged first column. Needs multirow and booktabs."
+          },
+          {
+            "label": "decimaltable",
+            "insertText": "\\\\begin{tabular\\}{l S[table-format=2.2] S[table-format=3.1]\\}\n  \\\\toprule\n  {${1:Item}\\} & {${2:Mean}\\} & {${3:Total}\\} \\\\\\\\\n  \\\\midrule\n  A & 3.14 & 12.5 \\\\\\\\\n  B & 12.06 & 101.0 \\\\\\\\\n  \\\\bottomrule\n\\\\end{tabular\\}",
+            "detail": "Numbers aligned on the decimal point",
+            "documentation": "siunitx S columns keep numbers aligned. Needs siunitx and booktabs."
+          },
+          {
+            "label": "longtable",
+            "insertText": "\\\\begin{longtable\\}{lp{0.6\\\\linewidth\\}\\}\n  \\\\caption{${1:Caption.}\\}\\\\label{tab:${2:long}\\} \\\\\\\\\n  \\\\toprule\n  ${3:Term} & ${4:Definition} \\\\\\\\\n  \\\\midrule\n  \\\\endfirsthead\n  \\\\toprule\n  ${3:Term} & ${4:Definition} \\\\\\\\\n  \\\\midrule\n  \\\\endhead\n  \\\\bottomrule\n  \\\\endfoot\n  ${5:Entry} & ${6:Description.} \\\\\\\\\n\\\\end{longtable\\}",
+            "detail": "Table across pages",
+            "documentation": "A long table that repeats its header on every page. Needs longtable and booktabs."
+          }
+        ]
       }
     },
     {
       "schemaVersion": 1,
-      "id": "latexdo.math-notation-kit",
+      "id": "latexdo.algorithms",
       "kind": "extension",
-      "name": "Math Notation Kit",
+      "name": "Algorithms",
       "version": "1.0.0",
-      "description": "Enables notation checks and adds theorem, proof, definition, and symbol snippets.",
+      "description": "Pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments.",
+      "author": "LatexDo",
+      "category": "writing",
+      "tags": [
+        "algorithms",
+        "pseudocode",
+        "computer-science"
+      ],
+      "homepage": "https://latexdo.org/store/extensions/latexdo.algorithms/",
+      "repository": "https://github.com/latexdo/latexdo.org",
+      "contributes": {
+        "snippets": [
+          {
+            "label": "algorithm",
+            "insertText": "\\\\begin{algorithm\\}[t]\n  \\\\caption{${1:Algorithm name}\\}\n  \\\\label{alg:${2:main}\\}\n  \\\\begin{algorithmic\\}[1]\n    \\\\Require ${3:input \\$x\\$}\n    \\\\Ensure ${4:output \\$y\\$}\n    \\\\State \\$y \\\\gets 0\\$\n    \\\\For{\\$i \\\\gets 1\\$ \\\\textbf{to\\} \\$n\\$\\}\n      \\\\State \\$y \\\\gets y + x_i\\$ \\\\Comment{${5:accumulate}\\}\n    \\\\EndFor\n    \\\\State \\\\Return \\$y\\$\n  \\\\end{algorithmic\\}\n\\\\end{algorithm\\}",
+            "detail": "Numbered algorithm",
+            "documentation": "An algorithm float with inputs, outputs and a loop. Needs algorithm and algpseudocode."
+          },
+          {
+            "label": "procedure",
+            "insertText": "\\\\begin{algorithmic\\}[1]\n  \\\\Procedure{${1:Search}\\}{\\$${2:A}, ${3:t}\\$\\}\n    \\\\State \\$lo \\\\gets 1\\$, \\$hi \\\\gets n\\$\n    \\\\While{\\$lo \\\\le hi\\$\\}\n      \\\\State \\$m \\\\gets \\\\lfloor (lo + hi)/2 \\\\rfloor\\$\n      \\\\If{\\$A[m] = t\\$\\}\n        \\\\State \\\\Return \\$m\\$\n      \\\\ElsIf{\\$A[m] < t\\$\\}\n        \\\\State \\$lo \\\\gets m + 1\\$\n      \\\\Else\n        \\\\State \\$hi \\\\gets m - 1\\$\n      \\\\EndIf\n    \\\\EndWhile\n    \\\\State \\\\Return \\\\textsc{None\\}\n  \\\\EndProcedure\n\\\\end{algorithmic\\}",
+            "detail": "Procedure with a while loop",
+            "documentation": "A named procedure with a condition and a loop. Needs algpseudocode."
+          },
+          {
+            "label": "algorithmfunction",
+            "insertText": "\\\\State \\$${1:r} \\\\gets \\\\Call{${2:Routine}\\}{${3:arguments}\\}\\$",
+            "detail": "Function call in pseudocode",
+            "documentation": "Calls a named routine inside a state line. Needs algpseudocode."
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "latexdo.math-writing",
+      "kind": "extension",
+      "name": "Math Writing",
+      "version": "1.0.0",
+      "description": "Theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly.",
       "author": "LatexDo",
       "category": "writing",
       "tags": [
         "math",
         "theorems",
-        "notation"
+        "proofs"
       ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.math-notation-kit/",
+      "homepage": "https://latexdo.org/store/extensions/latexdo.math-writing/",
       "repository": "https://github.com/latexdo/latexdo.org",
       "contributes": {
-        "featureFlags": {
-          "notationManagerEnabled": true,
-          "detectNotation": true,
-          "detectNotationConflicts": true,
-          "detectUndefinedNotation": true
-        },
         "snippets": [
           {
-            "label": "theorem",
-            "insertText": "\\begin{theorem}\n\\label{thm:${1:name}}\n${0:Statement.}\n\\end{theorem}",
-            "detail": "Theorem environment",
-            "documentation": "Adds a labeled theorem block."
+            "label": "theoremsetup",
+            "insertText": "\\\\usepackage{amsmath,amssymb,amsthm,mathtools\\}\n\\\\newtheorem{theorem\\}{Theorem\\}\n\\\\newtheorem{lemma\\}[theorem]{Lemma\\}\n\\\\newtheorem{corollary\\}[theorem]{Corollary\\}\n\\\\theoremstyle{definition\\}\n\\\\newtheorem{definition\\}[theorem]{Definition\\}\n\\\\DeclareMathOperator*{\\\\argmin\\}{arg\\\\,min\\}\n\\\\DeclareMathOperator*{\\\\argmax\\}{arg\\\\,max\\}",
+            "detail": "Theorem environments (preamble)",
+            "documentation": "Defines theorem, lemma, corollary and definition, plus argmin and argmax. Put it in the preamble; needs amsthm and amsmath."
           },
           {
-            "label": "proof",
-            "insertText": "\\begin{proof}\n${0:Proof.}\n\\end{proof}",
-            "detail": "Proof environment",
-            "documentation": "Adds a proof block."
+            "label": "theorem",
+            "insertText": "\\\\begin{theorem\\}\\\\label{thm:${1:main}\\}\n  ${0:Statement.}\n\\\\end{theorem\\}",
+            "detail": "Theorem",
+            "documentation": "A labelled theorem."
+          },
+          {
+            "label": "lemma",
+            "insertText": "\\\\begin{lemma\\}\\\\label{lem:${1:key}\\}\n  ${0:Statement.}\n\\\\end{lemma\\}",
+            "detail": "Lemma",
+            "documentation": "A labelled lemma."
           },
           {
             "label": "definition",
-            "insertText": "\\begin{definition}\n\\label{def:${1:name}}\n${0:Definition.}\n\\end{definition}",
-            "detail": "Definition environment",
-            "documentation": "Adds a labeled definition block."
+            "insertText": "\\\\begin{definition\\}[${1:Name}]\\\\label{def:${2:name}\\}\n  ${0:Definition.}\n\\\\end{definition\\}",
+            "detail": "Definition",
+            "documentation": "A labelled definition."
+          },
+          {
+            "label": "proof",
+            "insertText": "\\\\begin{proof\\}\n  ${0:Argument.}\n\\\\end{proof\\}",
+            "detail": "Proof",
+            "documentation": "A proof that ends with the QED box."
+          },
+          {
+            "label": "derivation",
+            "insertText": "\\\\begin{align\\}\n  ${1:f(x)} &= ${2:(x + 1)^2} \\\\\\\\\n           &= ${3:x^2 + 2x + 1}. \\\\label{eq:${4:derivation}\\}\n\\\\end{align\\}",
+            "detail": "Aligned derivation",
+            "documentation": "A multi-line derivation aligned on equals signs."
+          },
+          {
+            "label": "cases",
+            "insertText": "\\\\[\n  ${1:f(x)} =\n  \\\\begin{cases\\}\n    ${2:x} & \\\\text{if \\} ${3:x \\\\ge 0}, \\\\\\\\\n    ${4:-x} & \\\\text{otherwise\\}.\n  \\\\end{cases\\}\n\\\\]",
+            "detail": "Piecewise definition",
+            "documentation": "A function defined by cases."
+          },
+          {
+            "label": "optimisation",
+            "insertText": "\\\\[\n  \\\\hat{\\\\theta\\} = \\\\argmin_{\\\\theta \\\\in \\\\Theta\\} \\\\; ${1:\\\\sum_{i=1\\}^{n\\} \\\\ell(f_\\\\theta(x_i), y_i)} \\\\quad \\\\text{s.t. \\} ${2:\\\\lVert \\\\theta \\\\rVert \\\\le C}\n\\\\]",
+            "detail": "Optimisation problem",
+            "documentation": "An argmin objective with a constraint."
           }
         ]
       }
     },
     {
       "schemaVersion": 1,
-      "id": "latexdo.reproducibility-kit",
+      "id": "latexdo.units-chemistry",
       "kind": "extension",
-      "name": "Reproducibility Kit",
+      "name": "Units and Chemistry",
       "version": "1.0.0",
-      "description": "Checks code, data, hardware, hyperparameter, metric, seed, and license reporting.",
+      "description": "Correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig.",
+      "author": "LatexDo",
+      "category": "writing",
+      "tags": [
+        "siunitx",
+        "chemistry",
+        "units"
+      ],
+      "homepage": "https://latexdo.org/store/extensions/latexdo.units-chemistry/",
+      "repository": "https://github.com/latexdo/latexdo.org",
+      "contributes": {
+        "snippets": [
+          {
+            "label": "quantity",
+            "insertText": "\\\\qty{${1:9.81}\\}{${2:\\\\metre\\\\per\\\\second\\\\squared}\\}",
+            "detail": "Number with unit",
+            "documentation": "Typesets a value and its unit with correct spacing. Needs siunitx."
+          },
+          {
+            "label": "number",
+            "insertText": "\\\\num{${1:1.2e-3}\\}",
+            "detail": "Formatted number",
+            "documentation": "Groups digits and formats exponents. Needs siunitx."
+          },
+          {
+            "label": "quantityrange",
+            "insertText": "\\\\qtyrange{${1:10}\\}{${2:20}\\}{${3:\\\\degreeCelsius}\\}",
+            "detail": "Range with unit",
+            "documentation": "A range such as 10 to 20 °C. Needs siunitx."
+          },
+          {
+            "label": "chemformula",
+            "insertText": "\\\\ce{${1:H2SO4}\\}",
+            "detail": "Chemical formula",
+            "documentation": "Formulas and ions with mhchem."
+          },
+          {
+            "label": "reaction",
+            "insertText": "\\\\ce{${1:2H2 + O2} ->[${2:catalyst}] ${3:2H2O}\\}",
+            "detail": "Chemical reaction",
+            "documentation": "A reaction with an arrow and conditions. Needs mhchem."
+          },
+          {
+            "label": "structure",
+            "insertText": "\\\\chemfig{${1:H_3C-CH_2-OH}\\}",
+            "detail": "Skeletal structure",
+            "documentation": "A chemfig structural formula (ethanol shown)."
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "latexdo.code-listings",
+      "kind": "extension",
+      "name": "Code Listings",
+      "version": "1.0.0",
+      "description": "Readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input.",
+      "author": "LatexDo",
+      "category": "writing",
+      "tags": [
+        "code",
+        "listings",
+        "software"
+      ],
+      "homepage": "https://latexdo.org/store/extensions/latexdo.code-listings/",
+      "repository": "https://github.com/latexdo/latexdo.org",
+      "contributes": {
+        "snippets": [
+          {
+            "label": "listingsetup",
+            "insertText": "\\\\usepackage{xcolor\\}\n\\\\usepackage{listings\\}\n\\\\lstdefinestyle{paper\\}{\n  basicstyle=\\\\ttfamily\\\\small, numbers=left, numberstyle=\\\\tiny\\\\color{gray\\},\n  keywordstyle=\\\\color{blue!70!black\\}\\\\bfseries, commentstyle=\\\\color{green!40!black\\}\\\\itshape,\n  stringstyle=\\\\color{red!60!black\\}, breaklines=true, frame=tb, captionpos=b,\n  showstringspaces=false,\n\\}\n\\\\lstset{style=paper\\}",
+            "detail": "Listings style (preamble)",
+            "documentation": "A clean code style with line numbers and colours. Put it in the preamble; needs listings and xcolor."
+          },
+          {
+            "label": "codelisting",
+            "insertText": "\\\\begin{lstlisting\\}[language=${1:Python}, caption={${2:Caption.}\\}, label={lst:${3:code}\\}]\n${4:def mean(xs):\n    return sum(xs) / len(xs)}\n\\\\end{lstlisting\\}",
+            "detail": "Code listing",
+            "documentation": "A captioned, labelled code block."
+          },
+          {
+            "label": "inlinecode",
+            "insertText": "\\\\lstinline|${1:x = f(y)}|",
+            "detail": "Inline code",
+            "documentation": "Code inside a sentence."
+          },
+          {
+            "label": "codefile",
+            "insertText": "\\\\lstinputlisting[language=${1:Python}, caption={${2:Caption.}\\}]{${3:code/example.py}\\}",
+            "detail": "Code from a file",
+            "documentation": "Includes a source file from the project."
+          }
+        ]
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "latexdo.paper-statements",
+      "kind": "extension",
+      "name": "Paper Statements",
+      "version": "1.0.0",
+      "description": "The statements journals now require: data and code availability, author contributions (CRediT), funding, conflicts and ethics, plus a reproducibility checklist.",
       "author": "LatexDo",
       "category": "checking",
       "tags": [
         "reproducibility",
-        "artifact",
-        "checklist"
+        "open-science",
+        "submission"
       ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.reproducibility-kit/",
+      "homepage": "https://latexdo.org/store/extensions/latexdo.paper-statements/",
       "repository": "https://github.com/latexdo/latexdo.org",
       "contributes": {
-        "featureFlags": {
-          "reproducibilityEnabled": true,
-          "checkCodeLink": true,
-          "checkDatasetLink": true,
-          "checkLicenseMentioned": true,
-          "checkHyperparameters": true,
-          "checkHardwareDetails": true,
-          "checkRandomSeeds": true,
-          "checkEvaluationMetrics": true
-        },
         "snippets": [
           {
+            "label": "dataavailability",
+            "insertText": "\\\\section*{Data Availability\\}\nThe data supporting this study are openly available in ${1:Repository} at \\\\url{${2:https://doi.org/...}\\} under the ${3:CC BY 4.0} licence.",
+            "detail": "Data availability statement",
+            "documentation": "States where the data can be found and under which licence."
+          },
+          {
+            "label": "codeavailability",
+            "insertText": "\\\\section*{Code Availability\\}\nThe code used in this study is available at \\\\url{${1:https://github.com/...}\\} and archived at \\\\url{${2:https://doi.org/...}\\} (version ${3:1.0}).",
+            "detail": "Code availability statement",
+            "documentation": "Points to the archived code release."
+          },
+          {
+            "label": "credit",
+            "insertText": "\\\\section*{Author Contributions\\}\n\\\\textbf{${1:First Author}\\}: Conceptualization, Methodology, Software, Writing -- original draft.\n\\\\textbf{${2:Second Author}\\}: Supervision, Writing -- review \\\\& editing, Funding acquisition.",
+            "detail": "Author contributions (CRediT)",
+            "documentation": "Contributions using the CRediT taxonomy roles."
+          },
+          {
+            "label": "funding",
+            "insertText": "\\\\section*{Funding\\}\nThis work was supported by ${1:Funder} under grant ${2:number}. The funder had no role in study design, data collection, analysis or the decision to publish.",
+            "detail": "Funding statement",
+            "documentation": "Grant numbers and funders."
+          },
+          {
+            "label": "conflicts",
+            "insertText": "\\\\section*{Competing Interests\\}\nThe authors declare ${1:no competing interests}.",
+            "detail": "Competing interests",
+            "documentation": "Declares (no) competing interests."
+          },
+          {
+            "label": "ethics",
+            "insertText": "\\\\section*{Ethics Statement\\}\nThis study was approved by ${1:the ethics committee of University} (approval ${2:number}). ${3:All participants gave informed consent.}",
+            "detail": "Ethics statement",
+            "documentation": "Approval and consent for human or animal studies."
+          },
+          {
             "label": "artifactchecklist",
-            "insertText": "\\paragraph{Reproducibility.}\nCode is available at \\url{${1:https://...}}. Datasets, hyperparameters, hardware details, random seeds, and evaluation metrics are documented in Appendix~\\ref{${2:app:reproducibility}}.",
-            "detail": "Artifact checklist paragraph",
-            "documentation": "Adds a compact reproducibility statement."
+            "insertText": "\\\\paragraph{Reproducibility.\\}\nCode and data are available at ${1:URL}. Experiments use random seeds ${2:0--4} and ran on ${3:hardware}; each run took about ${4:time}. Hyperparameters are listed in ${5:Appendix~\\\\ref{app:hyper\\}}.",
+            "detail": "Reproducibility checklist",
+            "documentation": "A short paragraph covering code, data, seeds and hardware."
           }
         ]
       }
     },
     {
       "schemaVersion": 1,
-      "id": "latexdo.response-letter-kit",
-      "kind": "template",
-      "name": "Response Letter Kit",
+      "id": "latexdo.review-revision",
+      "kind": "extension",
+      "name": "Review and Revision",
       "version": "1.0.0",
-      "description": "Adds reviewer-response snippets for rebuttals, revisions, and camera-ready letters.",
+      "description": "Tools for co-writing and revising: visible added, deleted and replaced text, to-do notes, placeholder figures and reviewer response blocks.",
       "author": "LatexDo",
-      "category": "templates",
+      "category": "workflow",
       "tags": [
+        "revision",
         "review",
-        "rebuttal",
-        "response"
+        "collaboration"
       ],
-      "homepage": "https://latexdo.org/store/extensions/latexdo.response-letter-kit/",
+      "homepage": "https://latexdo.org/store/extensions/latexdo.review-revision/",
       "repository": "https://github.com/latexdo/latexdo.org",
       "contributes": {
         "snippets": [
           {
+            "label": "changessetup",
+            "insertText": "\\\\usepackage[${1:draft}]{changes\\}\n\\\\definechangesauthor[name={${2:Reviewer 1}\\}, color=${3:blue}]{${4:R1}\\}",
+            "detail": "Change tracking (preamble)",
+            "documentation": "Marks edits in colour; use the final option to hide them for submission. Needs changes."
+          },
+          {
+            "label": "added",
+            "insertText": "\\\\added{${1:new text}\\}",
+            "detail": "Mark added text",
+            "documentation": "Shows new text in colour while in draft mode."
+          },
+          {
+            "label": "deleted",
+            "insertText": "\\\\deleted{${1:old text}\\}",
+            "detail": "Mark deleted text",
+            "documentation": "Shows removed text struck through."
+          },
+          {
+            "label": "replaced",
+            "insertText": "\\\\replaced{${1:new text}\\}{${2:old text}\\}",
+            "detail": "Mark replaced text",
+            "documentation": "Shows the new and old wording."
+          },
+          {
+            "label": "todo",
+            "insertText": "\\\\todo{${1:Check this claim.}\\}",
+            "detail": "To-do note",
+            "documentation": "A margin note for co-authors. Needs todonotes."
+          },
+          {
+            "label": "inlinetodo",
+            "insertText": "\\\\todo[inline]{${1:Add the missing experiment.}\\}",
+            "detail": "Inline to-do",
+            "documentation": "A to-do inside the text. Needs todonotes."
+          },
+          {
+            "label": "missingfigure",
+            "insertText": "\\\\missingfigure{${1:Plot of accuracy versus epochs.}\\}",
+            "detail": "Placeholder figure",
+            "documentation": "A box that marks a figure still to be made. Needs todonotes."
+          },
+          {
             "label": "reviewresponse",
-            "insertText": "\\paragraph{Reviewer ${1:1}, Comment ${2:1}.}\n\\emph{${3:Reviewer comment.}}\n\n\\paragraph{Response.}\n${0:Thank you for the helpful comment. We revised the manuscript to clarify this point.}",
+            "insertText": "\\\\paragraph{Reviewer ${1:1}, Comment ${2:1}.\\}\n\\\\emph{${3:Reviewer comment.}\\}\n\n\\\\paragraph{Response.\\}\n${0:Thank you for the helpful comment. We revised the manuscript to clarify this point.}",
             "detail": "Reviewer response block",
-            "documentation": "Adds a concise response item for revision letters."
+            "documentation": "A reviewer comment followed by the response."
           },
           {
             "label": "revisionnote",
-            "insertText": "\\paragraph{Change made.}\nWe updated ${1:Section~\\ref{sec:...}} to ${0:describe the revision}.",
+            "insertText": "\\\\paragraph{Change made.\\}\nWe updated ${1:Section~\\\\ref{sec:method\\}} to ${0:describe the revision}.",
             "detail": "Revision note",
-            "documentation": "Adds a short change summary paragraph."
-          }
-        ],
-        "templates": [
-          {
-            "id": "reviewer-response-letter",
-            "name": "Reviewer Response Letter",
-            "summary": "A structured response letter with reviewer comments and replies.",
-            "files": "main.tex",
-            "mainTex": "\\documentclass[11pt]{article}\n\n\\usepackage[margin=1in]{geometry}\n\\usepackage{hyperref}\n\\usepackage{xcolor}\n\n\\title{Response to Reviewers}\n\\author{Your Name}\n\\date{\\today}\n\n\\begin{document}\n\n\\maketitle\n\n\\section*{Summary of Revisions}\n\nThank you for the thoughtful reviews. We revised the manuscript to address the main concerns and clarify the presentation.\n\n\\section*{Reviewer 1}\n\n\\paragraph{Comment 1.}\n\\emph{Paste the reviewer comment here.}\n\n\\paragraph{Response.}\nThank you for this comment. We updated Section~\\ref{sec:changes} to clarify the point.\n\n\\section*{Changes}\n\\label{sec:changes}\n\n\\begin{itemize}\n  \\item Clarified the main contribution.\n  \\item Expanded the experimental details.\n  \\item Revised the discussion of limitations.\n\\end{itemize}\n\n\\end{document}\n"
+            "documentation": "A short summary of a change."
           }
         ]
       }

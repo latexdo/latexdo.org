@@ -1,7 +1,7 @@
 // Builds the LatexDo extension store at /store/ from store/extensions/catalog.json.
 // The catalog is the same file LatexDo fetches, so the pages and the app always
 // list the same extensions. Pages use the shared site template and styles.
-import { mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, rmdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -123,7 +123,7 @@ const pageDescription = (extension) => {
   const text = extension.description.trim();
   return text.length >= 70 ? text : `${text} A free extension for the LatexDo LaTeX editor.`;
 };
-const kindLabel = (extension) => (extension.kind === "template" ? "Template" : "Extension");
+const kindLabel = (extension) => (extension.kind === "template" ? "Template" : "Snippet pack");
 
 /** What installing the extension adds, in plain words. */
 function additions(extension) {
@@ -143,7 +143,7 @@ function additions(extension) {
 
 const outputs = new Map();
 const indexDescription =
-  "Free extensions for LatexDo: submission checks, citations, figures, tables, notation and reviewer responses.";
+  "Free LatexDo templates and snippet packs: IEEE and ACM papers, thesis, CV, poster, plots, tables, algorithms, math and more.";
 const ordered = Object.keys(categories)
   .map((category) => [category, catalog.extensions.filter((extension) => extension.category === category)])
   .filter(([, extensions]) => extensions.length);
@@ -152,10 +152,12 @@ let number = 0;
 outputs.set(join(directory, "index.html"), page("/store/", "Extension Store", indexDescription, `
       <header class="lx-hero">
         <p class="lx-label">Store</p>
-        <h1>Extensions for every stage of a paper.</h1>
+        <h1>Templates and snippets for every kind of paper.</h1>
         <p class="lx-lede">
-          Add checks, citation tools, figure and table builders, and templates to LatexDo.
-          Every extension is free and installs from the Extensions view in the app.
+          LatexDo already includes the citation manager, table builder, TikZ converter,
+          notation manager and submission checks. The store adds what it does not ship:
+          venue templates, a thesis, a CV, a poster, and snippet packs for plots, tables,
+          algorithms, math, chemistry, code and revisions. Everything is free.
         </p>
       </header>
       <section class="lx-rows" aria-label="Extensions">
@@ -173,7 +175,7 @@ ${ordered.flatMap(([, extensions]) => extensions).map((extension) => `
       </section>
       <section class="lx-close reveal" aria-labelledby="store-close">
         <h2 id="store-close">Install from LatexDo</h2>
-        <p>Open the Extensions view in LatexDo, pick an extension and choose Install. LatexDo reads this store's catalog directly.</p>
+        <p>Open the Extensions view in LatexDo, pick a pack and choose Install. Templates appear when you create a project; snippets appear as you type.</p>
         <div class="lx-close-actions">
           <a class="lx-pill" href="/downloads/">Download LatexDo</a>
           <a class="lx-arrow" href="/store/extensions/catalog.json">Catalog (JSON)</a>
@@ -270,6 +272,9 @@ for (const [path, html] of outputs) {
   mkdirSync(join(path, ".."), { recursive: true });
   writeFileSync(path, html);
 }
-for (const path of obsolete) unlinkSync(path);
+for (const path of obsolete) {
+  unlinkSync(path);
+  try { rmdirSync(join(path, "..")); } catch { /* not empty: keep it */ }
+}
 writeFileSync(sitemapPath, updatedSitemap);
 console.log(`Built store index and ${catalog.extensions.length} extension page(s).`);

@@ -163,42 +163,67 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.conference-readiness/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.ieee-conference/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.citation-workbench/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.acm-article/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.drawio-tikz/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.thesis/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.figure-lab/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.academic-cv/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.table-generator/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.research-poster/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.math-notation-kit/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.plots/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.reproducibility-kit/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.publication-tables/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/store/extensions/latexdo.response-letter-kit/</loc>
+    <loc>https://latexdo.org/store/extensions/latexdo.algorithms/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://latexdo.org/store/extensions/latexdo.math-writing/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://latexdo.org/store/extensions/latexdo.units-chemistry/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://latexdo.org/store/extensions/latexdo.code-listings/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://latexdo.org/store/extensions/latexdo.paper-statements/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://latexdo.org/store/extensions/latexdo.review-revision/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
