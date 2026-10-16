@@ -41,3 +41,4 @@
 
 /partials/*
   Cache-Control: public, max-age=300
+  X-Robots-Tag: noindex

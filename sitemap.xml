@@ -103,13 +103,13 @@
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/privacy.html</loc>
+    <loc>https://latexdo.org/privacy</loc>
     <lastmod>2026-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://latexdo.org/terms.html</loc>
+    <loc>https://latexdo.org/terms</loc>
     <lastmod>2026-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

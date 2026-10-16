@@ -113,7 +113,7 @@ function openBanner() {
       With your agreement, we use Google Analytics to see which pages are useful.
       It sets cookies and sends usage data to Google. If you refuse, nothing is
       loaded and the site works exactly the same.
-      <a href="/privacy.html#cookies">Privacy policy</a>
+      <a href="/privacy#cookies">Privacy policy</a>
     </p>
     <div class="consent-actions">
       <button type="button" data-consent-choice="denied">Refuse</button>

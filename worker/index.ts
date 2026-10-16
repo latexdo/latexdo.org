@@ -12,6 +12,12 @@ const feedJsonPattern = /^\/(?:downloads|updates|store)\/.+\.json$/;
 const installerPattern =
   /^\/downloads\/(v\d+\.\d+\.\d+[A-Za-z0-9.-]*)\/(LatexDo-(?:macos-arm64\.dmg|macos-x64\.dmg|windows-x64\.exe|linux-x64\.AppImage))$/;
 const installerReleaseBase = "https://github.com/latexdo/latexdo-desktop/releases/download";
+// Release pages are replaced by each new build, so links to retired ones go to
+// the current downloads page instead of a 404.
+const releasePagePattern = /^\/downloads\/v\d+\.\d+\.\d+[A-Za-z0-9.-]*\/(?:index\.html)?$/;
+// Feeds, checksums and source files are for the app and readers, not search results.
+const dataFilePattern = /\.(?:json|txt|md|pem|ts|tsx|mjs|csv)$/;
+const canonicalHost = "latexdo.org";
 const htmlHeaderValues = {
   "Cache-Control": "no-store",
   "X-Content-Type-Options": "nosniff",
@@ -25,6 +31,7 @@ const feedHeaderValues = {
   "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
   "Access-Control-Allow-Headers": "Accept, Content-Type, User-Agent",
   "Cache-Control": "public, max-age=60",
+  "X-Robots-Tag": "noindex",
 } as const;
 
 function feedHeaders(): Headers {
@@ -63,6 +70,12 @@ export default {
 
     const isLocalhost =
       url.hostname === "localhost" || url.hostname === "127.0.0.1";
+
+    if (url.hostname === `www.${canonicalHost}`) {
+      url.hostname = canonicalHost;
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
 
     if (
       !isLocalhost &&
@@ -115,9 +128,23 @@ export default {
         return new Response(null, { status, headers });
       }
 
+      if (status === 404 && releasePagePattern.test(url.pathname)) {
+        return Response.redirect(new URL("/downloads/", request.url).toString(), 301);
+      }
+
       return withHtmlHeaders(response);
     }
 
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    if (dataFilePattern.test(url.pathname)) {
+      const headers = new Headers(response.headers);
+      headers.set("X-Robots-Tag", "noindex");
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
+    }
+    return response;
   },
 };
