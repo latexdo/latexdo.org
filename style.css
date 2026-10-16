@@ -260,13 +260,6 @@ svg {
   text-decoration: underline;
 }
 
-.sponsor-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-
 .donate-text-link {
   border: none;
   background: none;
@@ -280,40 +273,6 @@ svg {
 .donate-text-link:hover,
 .donate-text-link:focus-visible {
   text-decoration: underline;
-}
-
-.sponsor-logo-img {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-.sponsor-link {
-  margin-top: auto;
-  color: var(--blue-strong);
-  font-size: 14px;
-  font-weight: 760;
-  text-decoration: none;
-}
-
-.sponsor-link:hover {
-  text-decoration: underline;
-}
-
-.sponsor-tier {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 3px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #fff;
-  background: #dc3545;
-  border-radius: 100px;
-  vertical-align: middle;
-  white-space: nowrap;
 }
 
 .donate-modal {
@@ -5124,7 +5083,6 @@ h3 {
 
 /* Cards: flat, hairline, generous radius. */
 .impact-card,
-.sponsor-tier,
 .outcome-card,
 .legal-facts div,
 .platform-download-card,
