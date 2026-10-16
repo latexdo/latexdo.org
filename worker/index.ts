@@ -6,6 +6,13 @@ interface WorkerEnv {
 
 // Feeds LatexDo fetches from its own origin: updates, downloads and the store catalog.
 const feedJsonPattern = /^\/(?:downloads|updates|store)\/.+\.json$/;
+// Installers are GitHub release assets of latexdo/latexdo-desktop. Downloads and
+// update feeds link them through this site: apps released from the old
+// latexdo/latexdo repository only accept update URLs here or on that repository,
+// and every installer is checked against the SHA-256 in the signed feed.
+const installerPattern =
+  /^\/downloads\/(v\d+\.\d+\.\d+[A-Za-z0-9.-]*)\/(LatexDo-(?:macos-arm64\.dmg|macos-x64\.dmg|windows-x64\.exe|linux-x64\.AppImage))$/;
+const installerReleaseBase = "https://github.com/latexdo/latexdo-desktop/releases/download";
 const htmlHeaderValues = {
   "Cache-Control": "no-store",
   "X-Content-Type-Options": "nosniff",
@@ -75,6 +82,12 @@ export default {
       url.pathname.startsWith("/server/")
     ) {
       return Response.redirect(new URL("/", url.origin).toString(), 301);
+    }
+
+    const installer = url.pathname.match(installerPattern);
+    if (installer && (request.method === "GET" || request.method === "HEAD")) {
+      const [, release, filename] = installer;
+      return Response.redirect(`${installerReleaseBase}/${release}/${filename}`, 302);
     }
 
     if (feedJsonPattern.test(url.pathname)) {

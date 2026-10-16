@@ -554,7 +554,7 @@ function getReleaseChecksumsPath(release) {
     return toSitePath(release.checksumsUrl || `${release.tag}/SHA256SUMS.txt`);
 }
 function getReleaseGithubPath(release) {
-    return release.githubReleaseUrl || `https://github.com/latexdo/latexdo/releases/tag/${release.tag}`;
+    return release.githubReleaseUrl || `https://github.com/latexdo/latexdo-desktop/releases/tag/${release.tag}`;
 }
 function getShortCommit(release) {
     return (release.commit || "").slice(0, 12) || "Unknown";

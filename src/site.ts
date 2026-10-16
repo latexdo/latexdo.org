@@ -677,7 +677,7 @@ function getReleaseChecksumsPath(release: DownloadRelease): string {
 }
 
 function getReleaseGithubPath(release: DownloadRelease): string {
-  return release.githubReleaseUrl || `https://github.com/latexdo/latexdo/releases/tag/${release.tag}`;
+  return release.githubReleaseUrl || `https://github.com/latexdo/latexdo-desktop/releases/tag/${release.tag}`;
 }
 
 function getShortCommit(release: DownloadRelease): string {

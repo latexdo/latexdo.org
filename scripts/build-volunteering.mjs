@@ -107,7 +107,7 @@ outputs.set(join(directory, "index.html"), page("/volunteering/", "Careers and V
         <p>We also welcome designers, writers, researchers and translators. Tell us what you would like to work on.</p>
         <div class="lx-close-actions">
           <a class="lx-pill" href="/contact/">Contact us</a>
-          <a class="lx-arrow" href="https://github.com/latexdo/latexdo">Start on GitHub</a>
+          <a class="lx-arrow" href="https://github.com/latexdo/latexdo-desktop">Start on GitHub</a>
         </div>
       </section>`, [
     {
