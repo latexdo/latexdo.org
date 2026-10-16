@@ -21,13 +21,12 @@ const textFileNames = new Set([
   "_redirects",
 ]);
 
-// Releases moved from latexdo/latexdo to latexdo/latexdo-desktop. Older releases
-// link GitHub directly; newer ones link /downloads/<tag>/<file>, which the Worker
-// redirects to the latexdo-desktop release asset.
-const releaseRepositories = new Set(["latexdo/latexdo", "latexdo/latexdo-desktop"]);
-const releaseAssetPrefixes = [
-  "https://github.com/latexdo/latexdo/releases/download/",
-  "https://github.com/latexdo/latexdo-desktop/releases/download/",
+// Each release names the GitHub repository it was published from. Its installers
+// link that repository's release assets, or /downloads/<tag>/<file> on this site,
+// which the Worker redirects to them.
+const releaseRepositoryPattern = /^latexdo\/[A-Za-z0-9_.-]+$/;
+const releaseAssetPrefixes = (repository) => [
+  `https://github.com/${repository}/releases/download/`,
   `${siteOrigin}/downloads/`,
 ];
 
@@ -63,7 +62,7 @@ function releaseSlugFromDownloadsPage(value, label) {
   return match[1];
 }
 
-function assertReleaseFile(file, label) {
+function assertReleaseFile(file, label, repository) {
   assert(typeof file.id === "string" && file.id, `${label} file id is invalid.`);
   assert(typeof file.label === "string" && file.label, `${label} file label is invalid.`);
   assert(typeof file.platform === "string" && file.platform, `${label} file platform is invalid.`);
@@ -74,7 +73,7 @@ function assertReleaseFile(file, label) {
   );
   assert(
     typeof file.url === "string" &&
-      releaseAssetPrefixes.some((prefix) => file.url.startsWith(prefix)),
+      releaseAssetPrefixes(repository).some((prefix) => file.url.startsWith(prefix)),
     `${label} file URL is invalid.`,
   );
   assert(/^[a-f0-9]{64}$/.test(file.sha256 ?? ""), `${label} file checksum is invalid.`);
@@ -84,7 +83,7 @@ function assertReleaseFile(file, label) {
 function assertManifest(manifest, label, options = {}) {
   assert(manifest?.schemaVersion === 1, `${label} schemaVersion must be 1.`);
   assert(manifest.product === "LatexDo", `${label} product must be LatexDo.`);
-  assert(releaseRepositories.has(manifest.repository), `${label} repository is invalid.`);
+  assert(releaseRepositoryPattern.test(manifest.repository ?? ""), `${label} repository is invalid.`);
   assert(/^\d+\.\d+\.\d+$/.test(manifest.version ?? ""), `${label} version is invalid.`);
   assert(/^[a-f0-9]{40}$/.test(manifest.commit ?? ""), `${label} commit is invalid.`);
   assert(Number.isFinite(Date.parse(manifest.publishedAt)), `${label} publishedAt is invalid.`);
@@ -99,7 +98,7 @@ function assertManifest(manifest, label, options = {}) {
   }
 
   for (const file of manifest.files) {
-    assertReleaseFile(file, label);
+    assertReleaseFile(file, label, manifest.repository);
   }
 }
 
@@ -125,7 +124,7 @@ function assertUpdateFeed(feed, label, options = {}) {
     `${label} has an unsupported schema.`,
   );
   assert(feed.product === "LatexDo", `${label} product must be LatexDo.`);
-  assert(releaseRepositories.has(feed.repository), `${label} repository is invalid.`);
+  assert(releaseRepositoryPattern.test(feed.repository ?? ""), `${label} repository is invalid.`);
   assert(feed.channel === "stable", `${label} channel must be stable.`);
   assert(/^\d+\.\d+\.\d+$/.test(feed.version ?? ""), `${label} version is invalid.`);
   assert(/^[a-f0-9]{40}$/.test(feed.commit ?? ""), `${label} commit is invalid.`);
@@ -143,7 +142,7 @@ function assertUpdateFeed(feed, label, options = {}) {
   }
 
   for (const file of feed.files ?? []) {
-    assertReleaseFile(file, label);
+    assertReleaseFile(file, label, feed.repository);
   }
 }
 
