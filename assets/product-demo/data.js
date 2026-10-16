@@ -505,7 +505,6 @@ export const aiTiers = [
     },
 ];
 export const productRoutes = [
-    { href: "/editor/", label: "Editor overview" },
     { href: "/ai/", label: "AI tiers" },
     { href: "/review/", label: "Review and rebuttal" },
     { href: "/compiler/", label: "Compiler diagnostics" },

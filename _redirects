@@ -5,15 +5,6 @@
 /careers /volunteering/ 301
 /careers/ /volunteering/ 301
 /careers/* /volunteering/:splat 301
-/editor /downloads/ 301
-/editor/ /downloads/ 301
-/editor/* /downloads/ 301
-/cli / 301
-/cli/ / 301
-/cli/* / 301
-/server / 301
-/server/ / 301
-/server/* / 301
 /ai /research/ai/ 301
 /ai/ /research/ai/ 301
 /ai/* /research/ai/:splat 301

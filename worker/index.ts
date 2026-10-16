@@ -74,15 +74,6 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
-    if (
-      url.pathname === "/cli" ||
-      url.pathname.startsWith("/cli/") ||
-      url.pathname === "/server" ||
-      url.pathname.startsWith("/server/")
-    ) {
-      return Response.redirect(new URL("/", url.origin).toString(), 301);
-    }
-
     const installer = url.pathname.match(installerPattern);
     if (installer && (request.method === "GET" || request.method === "HEAD")) {
       const [, release, filename] = installer;

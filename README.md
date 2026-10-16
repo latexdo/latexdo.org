@@ -1,11 +1,10 @@
 # latexdo.org
 
-This repository hosts the public LatexDo website at `https://latexdo.org`. It includes the marketing pages, legal pages, and the CLI installer served from `https://latexdo.org/install.sh`.
+This repository hosts the public LatexDo website at `https://latexdo.org`. It includes the marketing pages, documentation, store, blog, legal pages, and the desktop downloads.
 
 ## Repository Role
 
 - Serves the public website.
-- Publishes `install.sh` and `bin/latexdo` for CLI installation at `https://latexdo.org/install.sh` and `https://latexdo.org/bin/latexdo`. Both come from `cli/` in the main `latexdo` repository; `install.sh` pins the SHA-256 of `bin/latexdo`.
 - Serves desktop downloads under `https://latexdo.org/downloads/` and update metadata under `https://latexdo.org/updates/`.
 
 ## Requirements
@@ -74,9 +73,6 @@ The deploy workflow expects `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` t
 
 ## Sources
 
-- `downloads/` and `updates/` are published by the release workflow of the main
-  `latexdo` repository.
-- `install.sh` and `bin/latexdo` are copies of `cli/install.sh` and
-  `cli/bin/latexdo` from the main repository; copy both together, since
-  `install.sh` pins the SHA-256 of `bin/latexdo`.
+- `downloads/` and `updates/` are published by the release workflow of
+  `latexdo/latexdo-desktop`.
 - Everything else is edited here.
