@@ -3,14 +3,14 @@
   "product": "LatexDo",
   "channel": "stable",
   "version": "0.3.1",
-  "publishedAt": "2026-10-16T11:54:29.439Z",
-  "expiresAt": "2026-11-15T11:54:29.439Z",
-  "commit": "c29af620e08c3e46e6e9a73299ff236b3992cf01",
+  "publishedAt": "2026-10-16T13:50:07.462Z",
+  "expiresAt": "2026-11-15T13:50:07.462Z",
+  "commit": "51b5a135d2684f38e20202dae65550925704485b",
   "repository": "latexdo/latexdo",
-  "release": "v0.3.1-build.339.1.c29af620e08c",
-  "releaseUrl": "https://latexdo.org/downloads/v0.3.1-build.339.1.c29af620e08c/",
-  "downloadsPage": "https://latexdo.org/downloads/v0.3.1-build.339.1.c29af620e08c/",
-  "manifestUrl": "https://latexdo.org/downloads/v0.3.1-build.339.1.c29af620e08c/manifest.json",
+  "release": "v0.3.1-build.341.1.51b5a135d268",
+  "releaseUrl": "https://latexdo.org/downloads/v0.3.1-build.341.1.51b5a135d268/",
+  "downloadsPage": "https://latexdo.org/downloads/v0.3.1-build.341.1.51b5a135d268/",
+  "manifestUrl": "https://latexdo.org/downloads/v0.3.1-build.341.1.51b5a135d268/manifest.json",
   "releaseNotesUrl": "https://latexdo.org/updates/release-notes/0.3.1.json",
   "files": [
     {
@@ -20,10 +20,10 @@
       "arch": "arm64",
       "filename": "LatexDo-macos-arm64.dmg",
       "note": "For Macs with Apple Silicon chips.",
-      "size": 228341607,
-      "sizeLabel": "217.8 MB",
-      "sha256": "8e7560a707f04b33036c9ab915ea3a3a50ed08fea0d89df149f3b63a68193618",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.339.1.c29af620e08c/LatexDo-macos-arm64.dmg"
+      "size": 228317817,
+      "sizeLabel": "217.7 MB",
+      "sha256": "a95872aed70e3a483c1063645e29456bc88da7c912396ff27341f203b9c31643",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.341.1.51b5a135d268/LatexDo-macos-arm64.dmg"
     },
     {
       "id": "macos-x64",
@@ -32,10 +32,10 @@
       "arch": "x64",
       "filename": "LatexDo-macos-x64.dmg",
       "note": "For Intel-based Macs.",
-      "size": 245687128,
+      "size": 245699161,
       "sizeLabel": "234.3 MB",
-      "sha256": "371ad7237c8497c02d1570504e6a996f564ed21fc341290f9b38fff6569b8869",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.339.1.c29af620e08c/LatexDo-macos-x64.dmg"
+      "sha256": "2344825a1c61f25b644ddba29a30a694951065ce47fd6c3211d1724ca1106197",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.341.1.51b5a135d268/LatexDo-macos-x64.dmg"
     },
     {
       "id": "windows-x64",
@@ -44,10 +44,10 @@
       "arch": "x64",
       "filename": "LatexDo-windows-x64.exe",
       "note": "For 64-bit Windows PCs.",
-      "size": 457331359,
+      "size": 457333628,
       "sizeLabel": "436.1 MB",
-      "sha256": "550815fb15ea693380cce9506880305d3bf89db3fd5bc443063181061b55078a",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.339.1.c29af620e08c/LatexDo-windows-x64.exe"
+      "sha256": "2007c6b281805d721a31a4c009247aba6a8f7243f290fb5d2dac7b1b9d6446fb",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.341.1.51b5a135d268/LatexDo-windows-x64.exe"
     },
     {
       "id": "linux-x64",
@@ -56,15 +56,15 @@
       "arch": "x64",
       "filename": "LatexDo-linux-x64.AppImage",
       "note": "For 64-bit Linux distributions that support AppImage.",
-      "size": 572372324,
+      "size": 572376233,
       "sizeLabel": "545.9 MB",
-      "sha256": "48e8127497b87c1b568227ab328c0cfbdb59d27c489c982bfb2388827e976adf",
-      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.339.1.c29af620e08c/LatexDo-linux-x64.AppImage"
+      "sha256": "06ff51c52e31f2d6064740d91a95f51ea9907b997e699c7510b72892421837a1",
+      "url": "https://github.com/latexdo/latexdo/releases/download/v0.3.1-build.341.1.51b5a135d268/LatexDo-linux-x64.AppImage"
     }
   ],
   "signature": {
     "algorithm": "ed25519",
     "keyId": "5f6d08034174008d",
-    "value": "lGo372mAmQNX/yQeACPQ7AEcQS5Qf2NJqusMQNmIrSLU1xxHs7jNPTIR4kZQBOL73X31MtrNC4eTrydqovgECw=="
+    "value": "y1u9ACYd7Inh5BOVI117ILMXOFCNWhYdTEit0FrjZy8s4p7WExPvmLbRla2l/L7XYTtlZnvkrHoKsTKLpgpRCQ=="
   }
 }
