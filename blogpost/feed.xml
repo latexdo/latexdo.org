@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LatexDo Blog</title>
+    <link>https://latexdo.org/blogpost/</link>
+    <atom:link href="https://latexdo.org/blogpost/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Notes from the LatexDo team: releases, how the editor and its AI work, and LaTeX writing workflows, written up as short readable posts.</description>
+    <language>en</language>
+    <item>
+      <title>The AI in LatexDo, shown in the editor</title>
+      <link>https://latexdo.org/blogpost/2026/the-ai-in-latexdo/</link>
+      <guid isPermaLink="true">https://latexdo.org/blogpost/2026/the-ai-in-latexdo/</guid>
+      <pubDate>Fri, 16 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Sentence completion, Reformulate with AI, the \fix command, @ file mentions and TikZ figures: each AI feature in LatexDo, played live with a real cursor.</description>
+      <category>AI</category>
+      <category>Editor</category>
+      <category>Product</category>
+    </item>
+    <item>
+      <title>Welcome to the LatexDo Blog</title>
+      <link>https://latexdo.org/blogpost/2026/welcome-to-the-latexdo-blog/</link>
+      <guid isPermaLink="true">https://latexdo.org/blogpost/2026/welcome-to-the-latexdo-blog/</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+      <description>The first post on the LatexDo blog: where release notes, LaTeX writing workflows and editor decisions get written up as short, readable notes.</description>
+      <category>LatexDo</category>
+      <category>Writing</category>
+      <category>Releases</category>
+    </item>
+  </channel>
+</rss>

@@ -23,3 +23,8 @@
 /scripts/* https://latexdo.org/research/ai/scripts/:splat 301
 /store/extensions /store/ 301
 /store/extensions/ /store/ 301
+/blog /blogpost/ 301
+/blog/ /blogpost/ 301
+/blog/* /blogpost/:splat 301
+/documentation /docs/ 301
+/documentation/ /docs/ 301

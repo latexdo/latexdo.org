@@ -25,6 +25,12 @@
 !/downloads/**
 !/donations/
 !/donations/**
+!/store/
+!/store/**
+!/docs/
+!/docs/**
+!/blogpost/
+!/blogpost/**
 !/sponsors/
 !/sponsors/index.html
 !/overleaf-alternative/
