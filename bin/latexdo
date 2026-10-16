@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-APP_REPO_DEFAULT="https://github.com/latexdo/latexdo.git"
+APP_REPO_DEFAULT="https://github.com/latexdo/latexdo-desktop.git"
 UPDATE_FEED_DEFAULT="https://latexdo.org/updates/latest.json"
 HOST_DEFAULT="127.0.0.1"
 PORT_DEFAULT="5173"
@@ -48,7 +48,7 @@ Usage:
 
 Environment:
   LATEXDO_HOME       Cache directory. Default: ~/.latexdo
-  LATEXDO_APP_REPO   Source repository. Default: https://github.com/latexdo/latexdo.git
+  LATEXDO_APP_REPO   Source repository. Default: https://github.com/latexdo/latexdo-desktop.git
   LATEXDO_APP_REF    Explicit source ref override (development only)
   LATEXDO_UPDATE_FEED Signed release feed. Default: https://latexdo.org/updates/latest.json
   LATEXDO_HOST       Local bind host. Default: 127.0.0.1
@@ -432,6 +432,11 @@ sync_source() {
 
   if [ "$SKIP_UPDATE" = "1" ]; then
     return
+  fi
+
+  # Checkouts made before the source moved still point at the old repository.
+  if [ "$(git -C "$APP_DIR" remote get-url origin 2>/dev/null)" != "$APP_REPO" ]; then
+    git -C "$APP_DIR" remote set-url origin "$APP_REPO"
   fi
 
   log "Checking for LatexDo updates"
