@@ -1009,8 +1009,21 @@ async function initFooter() {
         link.prepend(createSiteIcon("footer-link-icon", icon));
     });
 }
+// Addresses are not in the HTML, so scrapers reading the markup cannot harvest
+// them; pages carry only the mailbox name and this builds the mailto link.
+function initEmailLinks() {
+    queryAll("a[data-email]").forEach((link) => {
+        const mailbox = link.dataset.email ?? "";
+        if (!/^[a-z]+$/.test(mailbox))
+            return;
+        const address = `${mailbox}@${"latexdo"}.${"org"}`;
+        link.href = `mailto:${address}`;
+        link.textContent = address;
+    });
+}
 function init() {
     initConsent();
+    initEmailLinks();
     void initNavigation();
     initReveal();
     initProductDemo();

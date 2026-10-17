@@ -33,19 +33,6 @@ for (const position of positions) {
       throw new Error(`${position.slug}: ${field} must contain nonempty strings.`);
     }
   }
-  if (typeof position.applicationUrl !== "string") {
-    throw new Error(`${position.slug}: applicationUrl must be a string (empty until the form is ready).`);
-  }
-  if (position.applicationUrl === "") continue;
-  let url;
-  try { url = new URL(position.applicationUrl); } catch {
-    throw new Error(`${position.slug}: add a Google Form applicationUrl before publishing.`);
-  }
-  const isGoogleForm = (url.hostname === "forms.gle" && url.pathname.length > 1) ||
-    (url.hostname === "docs.google.com" && /^\/forms\/(?:u\/\d+\/)?d\/(?:e\/)?[^/]+\/viewform$/.test(url.pathname));
-  if (url.protocol !== "https:" || url.username || url.password || url.port || !isGoogleForm) {
-    throw new Error(`${position.slug}: applicationUrl must be an HTTPS Google Form share link.`);
-  }
 }
 
 const published = positions.filter((position) => position.published);
@@ -97,16 +84,14 @@ outputs.set(join(directory, "index.html"), page("/volunteering/", "Careers and V
           <span class="lx-num">00</span>
           <h2>No open positions right now.</h2>
           <div class="lx-row-body">
-            <p>There are no open positions listed right now. Check back for future opportunities.</p>
-            <a class="lx-arrow" href="/contact/">Get in touch</a>
+            <p>There are no open positions listed right now. If you are interested in joining us, please contact <a data-email="hello">hello [at] latexdo [dot] org</a>.</p>
           </div>
         </article>`}
       </section>
       <section class="lx-close reveal" aria-labelledby="careers-close">
         <h2 id="careers-close">Don't see your role?</h2>
-        <p>We also welcome designers, writers, researchers and translators. Tell us what you would like to work on.</p>
+        <p>We also welcome designers, writers, researchers and translators. If you are interested in joining us, please contact <a data-email="hello">hello [at] latexdo [dot] org</a>.</p>
         <div class="lx-close-actions">
-          <a class="lx-pill" href="/contact/">Contact us</a>
           <a class="lx-arrow" href="https://github.com/latexdo/latexdo-desktop">Start on GitHub</a>
         </div>
       </section>`, [
@@ -166,11 +151,8 @@ for (const position of published) {
         <section class="lx-row two reveal"><h2>What you'll bring</h2><div class="lx-row-body">${list(position.requirements)}</div></section>
       </div>
       <section class="lx-close reveal" aria-labelledby="apply-title">
-        <h2 id="apply-title">Apply for this position</h2>
-        ${position.applicationUrl ? `<p>Tell us about yourself and your interest in this role using our application form.</p>
-        <div class="lx-close-actions"><a class="lx-pill" href="${escape(position.applicationUrl)}">Apply via Google Form <span aria-hidden="true">↗</span></a></div>
-        <p class="lx-note">The application form is hosted on Google Forms.</p>` : `<p>The application form will be available here soon.</p>
-        <div class="lx-close-actions"><a class="lx-arrow" href="/contact/">Contact us in the meantime</a></div>`}
+        <h2 id="apply-title">Interested in this role?</h2>
+        <p>If you are interested in joining us, please contact <a data-email="hello">hello [at] latexdo [dot] org</a>.</p>
       </section>`, graph));
 }
 

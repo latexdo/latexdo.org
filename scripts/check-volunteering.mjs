@@ -14,9 +14,7 @@ try {
   }
   const fixture = {
     ...JSON.parse(readFileSync(join(root, "volunteering/position.example.json"), "utf8")),
-    slug: "test-position", title: 'Research & tools <engineer> "role"',
-    applicationUrl: "https://docs.google.com/forms/d/e/test-form/viewform?usp=pp_url&entry.1=Research",
-    published: true,
+    slug: "test-position", title: 'Research & tools <engineer> "role"', published: true,
   };
   const writePositions = (positions) => writeFileSync(join(temporary, "volunteering/positions.json"), JSON.stringify(positions));
   const build = () => execFileSync(process.execPath, [join(temporary, "scripts/build-volunteering.mjs")]);
@@ -26,34 +24,27 @@ try {
     assert.notEqual(spawnSync(process.execPath, [join(temporary, "scripts/build-volunteering.mjs")]).status, 0);
   };
 
-  writePositions([fixture, { ...fixture, slug: "second-position", applicationUrl: "https://forms.gle/second-form" },
+  writePositions([fixture, { ...fixture, slug: "second-position" },
     { slug: "draft-position", published: false }]);
   build();
   assert.match(read("volunteering/index.html"), /href="\/volunteering\/test-position\/"/);
   assert.match(read("volunteering/test-position/index.html"), /Research &amp; tools &lt;engineer&gt; &quot;role&quot;/);
-  assert.match(read("volunteering/test-position/index.html"), /viewform\?usp=pp_url&amp;entry.1=Research/);
-  assert.match(read("volunteering/second-position/index.html"), /href="https:\/\/forms.gle\/second-form"/);
+  assert.match(read("volunteering/test-position/index.html"), /data-email="hello"/);
+  assert.doesNotMatch(read("volunteering/test-position/index.html"), /hello@latexdo\.org|<form/);
+  assert.ok(existsSync(join(temporary, "volunteering/second-position/index.html")));
   assert.match(read("sitemap.xml"), /https:\/\/latexdo.org\/volunteering\/test-position\//);
   assert.ok(!existsSync(join(temporary, "volunteering/draft-position/index.html")));
   const firstSitemap = read("sitemap.xml");
   build();
   assert.equal(read("sitemap.xml"), firstSitemap, "Repeated builds must be stable");
 
-  for (const url of ["javascript:alert(1)", "https://example.com/form", "https://forms.gle.evil.test/form",
-    "https://docs.google.com/forms/d/form/edit"]) {
-    rejects([{ ...fixture, applicationUrl: url }]);
-  }
   rejects([fixture, fixture]);
   rejects([{ ...fixture, slug: "../outside" }]);
   rejects([{ ...fixture, responsibilities: [] }]);
   rejects([{ ...fixture, languages: [] }]);
   assert.ok(existsSync(join(temporary, "volunteering/test-position/index.html")), "Invalid input must preserve pages");
 
-  writePositions([{ ...fixture, applicationUrl: "" }]);
-  build();
   assert.match(read("volunteering/index.html"), /TypeScript/);
-  assert.match(read("volunteering/test-position/index.html"), /application form will be available here soon/);
-  assert.doesNotMatch(read("volunteering/test-position/index.html"), /href=""/);
 
   mkdirSync(join(temporary, "volunteering/handwritten"));
   writeFileSync(join(temporary, "volunteering/handwritten/index.html"), "Handwritten page");
@@ -66,7 +57,7 @@ try {
   assert.equal(read("volunteering/handwritten/index.html"), "Handwritten page");
   rejects([{ ...fixture, slug: "handwritten" }]);
   assert.equal(read("volunteering/handwritten/index.html"), "Handwritten page");
-  console.log("Volunteering checks passed: pages, form links, drafts, validation, sitemap, and withdrawal.");
+  console.log("Volunteering checks passed: pages, contact email, drafts, validation, sitemap, and withdrawal.");
 } finally {
   rmSync(temporary, { recursive: true, force: true });
 }

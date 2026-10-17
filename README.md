@@ -43,14 +43,11 @@ To add a position:
    `volunteering/positions.json`.
 2. Set a unique `slug`, title, languages, summary,
    description, responsibilities, and requirements. Text is escaped automatically.
-3. Paste that position's Google Form share URL into `applicationUrl` (an HTTPS
-   `forms.gle` link or a `docs.google.com/forms/.../viewform` link). Leave it empty
-   to show that the application form is coming soon, without a broken button.
-4. Set `published` to `true` and run `npm run build:volunteering`. Commit the data,
+3. Set `published` to `true` and run `npm run build:volunteering`. Commit the data,
    generated `volunteering/` HTML files, and `sitemap.xml` together.
 
 Each published position appears on the volunteering index and has its own page at
-`/volunteering/<slug>/`, including an application button. Set `published` to `false`
+`/volunteering/<slug>/`, which asks interested people to email hello@latexdo.org. Set `published` to `false`
 or remove an entry to withdraw it; rebuild to remove its generated page and
 sitemap entry. Drafts and the example file are not published. Until real roles
 are added, the volunteering page shows an empty state.
