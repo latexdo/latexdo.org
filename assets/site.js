@@ -1012,7 +1012,7 @@ async function initFooter() {
 }
 // Public Turnstile site key from the Cloudflare dashboard (Turnstile > Add widget).
 // The matching secret key is the worker's TURNSTILE_SECRET_KEY.
-const TURNSTILE_SITE_KEY = "";
+const TURNSTILE_SITE_KEY = "0x4AAAAAAFY-UJNKo7m_2CHn";
 let turnstileScript = null;
 function loadTurnstile() {
     turnstileScript ??= new Promise((resolve, reject) => {
