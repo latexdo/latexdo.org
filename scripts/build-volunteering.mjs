@@ -69,8 +69,9 @@ outputs.set(join(directory, "index.html"), page("/volunteering/", "Careers and V
           role, ship real work, and help people everywhere write better papers.
         </p>
       </header>
+${published.length ? `
       <section class="lx-rows" aria-label="Volunteer opportunities">
-        ${published.length ? published.map((position, index) => `
+        ${published.map((position, index) => `
         <article class="lx-row reveal">
           <span class="lx-num">${String(index + 1).padStart(2, "0")}</span>
           <h2><a href="/volunteering/${escape(position.slug)}/">${escape(position.title)}</a></h2>
@@ -79,14 +80,7 @@ outputs.set(join(directory, "index.html"), page("/volunteering/", "Careers and V
             ${languages(position)}
             <a class="lx-arrow" href="/volunteering/${escape(position.slug)}/" aria-label="View the ${escape(position.title)} role">View role</a>
           </div>
-        </article>`).join("\n") : `
-        <article class="lx-row">
-          <span class="lx-num">00</span>
-          <h2>No open positions right now.</h2>
-          <div class="lx-row-body">
-            <p>There are no open positions listed right now. If you are interested in joining us, please contact <button class="email-reveal" type="button" data-email="hello">hello@… <span class="email-reveal-hint">(click to show)</span></button>.</p>
-          </div>
-        </article>`}
+        </article>`).join("\n")}
       </section>
       <section class="lx-close reveal" aria-labelledby="careers-close">
         <h2 id="careers-close">Don't see your role?</h2>
@@ -94,7 +88,11 @@ outputs.set(join(directory, "index.html"), page("/volunteering/", "Careers and V
         <div class="lx-close-actions">
           <a class="lx-arrow" href="https://github.com/latexdo/latexdo-desktop">Start on GitHub</a>
         </div>
-      </section>`, [
+      </section>` : `
+      <section class="lx-close reveal" aria-labelledby="careers-close">
+        <h2 id="careers-close">Join us.</h2>
+        <p>If you are interested in joining us, please contact <button class="email-reveal" type="button" data-email="hello">hello@… <span class="email-reveal-hint">(click to show)</span></button>.</p>
+      </section>`}`, [
     {
       "@type": "CollectionPage",
       "@id": `${site}/volunteering/#webpage`,

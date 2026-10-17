@@ -50,7 +50,9 @@ try {
   writeFileSync(join(temporary, "volunteering/handwritten/index.html"), "Handwritten page");
   writePositions([{ ...fixture, published: false }]);
   build();
-  assert.match(read("volunteering/index.html"), /no open positions/i);
+  assert.match(read("volunteering/index.html"), /Join us\./);
+  assert.match(read("volunteering/index.html"), /data-email="hello"/);
+  assert.doesNotMatch(read("volunteering/index.html"), /lx-rows|Start on GitHub/);
   assert.ok(!existsSync(join(temporary, "volunteering/test-position/index.html")));
   assert.ok(!existsSync(join(temporary, "volunteering/second-position/index.html")));
   assert.doesNotMatch(read("sitemap.xml"), /volunteering\/test-position/);
