@@ -26,8 +26,21 @@ const titles = new Map();
 const indexable = new Set();
 let checked = 0;
 
+function checkStoreUrl(path, contents) {
+  if (/\bstore\.latexdo\.org\b/i.test(contents)) {
+    errors.push(`${path}: use https://latexdo.org/store/ for the Store`);
+  }
+}
+
+for (const path of ["sitemap.xml", "store/extensions/catalog.json", "src/site.ts", "assets/site.js"]) {
+  checkStoreUrl(path, readFileSync(join(root, path), "utf8"));
+}
+
 for (const file of htmlFiles(root)) {
   const path = relative(root, file).replaceAll("\\", "/");
+  if (!/^(?:node_modules|\.wrangler|\.git)\//.test(path)) {
+    checkStoreUrl(path, readFileSync(file, "utf8"));
+  }
   if (ignored.some((pattern) => pattern.test(path))) continue;
   const html = readFileSync(file, "utf8");
   const fail = (message) => errors.push(`${path}: ${message}`);
