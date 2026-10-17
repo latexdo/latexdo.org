@@ -31,6 +31,8 @@ for (const file of htmlFiles(root)) {
   if (ignored.some((pattern) => pattern.test(path))) continue;
   const html = readFileSync(file, "utf8");
   const fail = (message) => errors.push(`${path}: ${message}`);
+  // Addresses are revealed only after a Turnstile check (see worker/index.ts).
+  if (/[\w.+-]+@latexdo\.org/i.test(html)) fail("contains a plain email address; use a data-email reveal button");
   const robots = attribute(html, /<meta\s+name="robots"\s+content="([^"]*)"/);
   const canonical = attribute(html, /<link\s+rel="canonical"\s+href="([^"]*)"/);
   if (robots?.includes("noindex")) {

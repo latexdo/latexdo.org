@@ -119,6 +119,7 @@ const siteIconPaths = {
     "Try online": `<path d="M5 5h14v14H5z" /><path d="M9 9h6" /><path d="M9 13h4" /><path d="m14 16 3-3-3-3" />`,
     Donate: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
     Donations: `<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />`,
+    Sponsors: `<path d="m12 3 2.7 5.5 6 .9-4.3 4.2 1 6L12 16.8 6.6 19.6l1-6L3.3 9.4l6-.9L12 3Z" />`,
     Expenses: `<path d="M4 19V5" /><path d="M4 19h16" /><path d="M8 16v-4" /><path d="M12 16V8" /><path d="M16 16v-6" />`,
     LinkedIn: `<rect x="4" y="4" width="16" height="16" rx="2" /><path d="M8 11v5" /><path d="M8 8h.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 0 0-4 0" />`,
 };
@@ -1009,21 +1010,109 @@ async function initFooter() {
         link.prepend(createSiteIcon("footer-link-icon", icon));
     });
 }
-// Addresses are not in the HTML, so scrapers reading the markup cannot harvest
-// them; pages carry only the mailbox name and this builds the mailto link.
-function initEmailLinks() {
-    queryAll("a[data-email]").forEach((link) => {
-        const mailbox = link.dataset.email ?? "";
-        if (!/^[a-z]+$/.test(mailbox))
+// Public Turnstile site key from the Cloudflare dashboard (Turnstile > Add widget).
+// The matching secret key is the worker's TURNSTILE_SECRET_KEY.
+const TURNSTILE_SITE_KEY = "";
+let turnstileScript = null;
+function loadTurnstile() {
+    turnstileScript ??= new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        script.async = true;
+        script.onload = () => {
+            const api = window.turnstile;
+            if (api)
+                resolve(api);
+            else
+                reject(new Error("Turnstile unavailable"));
+        };
+        script.onerror = () => {
+            turnstileScript = null;
+            reject(new Error("Turnstile unavailable"));
+        };
+        document.head.append(script);
+    });
+    return turnstileScript;
+}
+function showEmailAddresses(addresses) {
+    queryAll("button[data-email]").forEach((button) => {
+        const address = addresses[button.dataset.email ?? ""];
+        if (!address)
             return;
-        const address = `${mailbox}@${"latexdo"}.${"org"}`;
+        const link = document.createElement("a");
         link.href = `mailto:${address}`;
         link.textContent = address;
+        if (button.classList.contains("lx-button"))
+            link.className = "lx-button";
+        const check = button.nextElementSibling;
+        if (check?.classList.contains("email-check"))
+            check.remove();
+        button.replaceWith(link);
+    });
+}
+// Addresses are not in the pages: they come from the worker only after the
+// visitor passes a Turnstile check, so bots cannot collect them.
+function initEmailReveal() {
+    queryAll("button[data-email]").forEach((button) => {
+        button.addEventListener("click", async () => {
+            if (button.disabled)
+                return;
+            button.disabled = true;
+            const label = button.textContent;
+            button.textContent = "Checking you are human…";
+            const check = document.createElement("span");
+            check.className = "email-check";
+            check.setAttribute("role", "status");
+            button.after(check);
+            const fail = (message) => {
+                button.disabled = false;
+                button.textContent = label;
+                check.textContent = message;
+            };
+            if (!TURNSTILE_SITE_KEY) {
+                fail("Email addresses are temporarily unavailable.");
+                return;
+            }
+            try {
+                const turnstile = await loadTurnstile();
+                const widget = turnstile.render(check, {
+                    sitekey: TURNSTILE_SITE_KEY,
+                    callback: async (token) => {
+                        try {
+                            const response = await fetch("/api/email", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ token }),
+                            });
+                            if (!response.ok)
+                                throw new Error(String(response.status));
+                            const { addresses } = (await response.json());
+                            showEmailAddresses(addresses);
+                        }
+                        catch {
+                            turnstile.remove(widget);
+                            fail("Verification failed. Please try again.");
+                        }
+                    },
+                    "error-callback": () => {
+                        turnstile.remove(widget);
+                        fail("Verification failed. Please try again.");
+                    },
+                    "expired-callback": () => {
+                        turnstile.remove(widget);
+                        fail("Verification expired. Please try again.");
+                    },
+                });
+            }
+            catch {
+                fail("The verification service could not load. Please try again.");
+            }
+        });
     });
 }
 function init() {
     initConsent();
-    initEmailLinks();
+    initEmailReveal();
     void initNavigation();
     initReveal();
     initProductDemo();

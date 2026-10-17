@@ -2,6 +2,8 @@ interface WorkerEnv {
   ASSETS: {
     fetch(request: Request): Promise<Response>;
   };
+  // Set with `wrangler secret put TURNSTILE_SECRET_KEY`.
+  TURNSTILE_SECRET_KEY?: string;
 }
 
 // Feeds LatexDo fetches from its own origin: updates, downloads and the store catalog.
@@ -18,6 +20,11 @@ const releasePagePattern = /^\/downloads\/v\d+\.\d+\.\d+[A-Za-z0-9.-]*\/(?:index
 // Feeds, checksums and source files are for the app and readers, not search results.
 const dataFilePattern = /\.(?:json|txt|md|pem|ts|tsx|mjs|csv)$/;
 const canonicalHost = "latexdo.org";
+// Email addresses are never in the pages. A visitor who passes a Cloudflare
+// Turnstile check gets them from this endpoint, so scrapers cannot collect them.
+const emailPath = "/api/email";
+const mailboxes = ["hello", "sponsors", "security"] as const;
+const turnstileVerifyUrl = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 const htmlHeaderValues = {
   "Cache-Control": "no-store",
   "X-Content-Type-Options": "nosniff",
@@ -48,6 +55,46 @@ function withHtmlHeaders(response: Response): Response {
     statusText: response.statusText,
     headers,
   });
+}
+
+function jsonResponse(body: unknown, status: number): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store",
+      "X-Robots-Tag": "noindex",
+    },
+  });
+}
+
+async function revealEmails(request: Request, env: WorkerEnv): Promise<Response> {
+  if (request.method !== "POST") return jsonResponse({ error: "Method not allowed" }, 405);
+  if (!env.TURNSTILE_SECRET_KEY) return jsonResponse({ error: "Email reveal is not configured" }, 503);
+
+  let token: unknown;
+  try {
+    ({ token } = (await request.json()) as { token?: unknown });
+  } catch {
+    return jsonResponse({ error: "Invalid request" }, 400);
+  }
+  if (typeof token !== "string" || !token || token.length > 2048) {
+    return jsonResponse({ error: "Missing verification" }, 400);
+  }
+
+  const form = new FormData();
+  form.append("secret", env.TURNSTILE_SECRET_KEY);
+  form.append("response", token);
+  const ip = request.headers.get("CF-Connecting-IP");
+  if (ip) form.append("remoteip", ip);
+  const verification = await fetch(turnstileVerifyUrl, { method: "POST", body: form });
+  const outcome = (await verification.json().catch(() => null)) as { success?: boolean } | null;
+  if (!outcome?.success) return jsonResponse({ error: "Verification failed" }, 403);
+
+  return jsonResponse(
+    { addresses: Object.fromEntries(mailboxes.map((mailbox) => [mailbox, `${mailbox}@${canonicalHost}`])) },
+    200,
+  );
 }
 
 function withFeedHeaders(response: Response): Response {
@@ -86,6 +133,8 @@ export default {
       url.protocol = "https:";
       return Response.redirect(url.toString(), 301);
     }
+
+    if (url.pathname === emailPath) return revealEmails(request, env);
 
     const installer = url.pathname.match(installerPattern);
     if (installer && (request.method === "GET" || request.method === "HEAD")) {

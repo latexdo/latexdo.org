@@ -1007,3 +1007,36 @@ main.lx.downloads-page {
   width: min(1080px, calc(100% - 40px));
   padding-top: 0;
 }
+
+/* Email addresses are revealed after a Turnstile check; until then the
+   reveal control reads as an inline link. */
+button.email-reveal {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+button.email-reveal:disabled {
+  cursor: progress;
+  text-decoration: none;
+}
+
+.email-reveal-hint {
+  opacity: 0.65;
+  font-size: 0.9em;
+}
+
+.email-check {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.lx-hero-actions .email-check {
+  margin-top: 0;
+}

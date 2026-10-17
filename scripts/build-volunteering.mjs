@@ -84,13 +84,13 @@ outputs.set(join(directory, "index.html"), page("/volunteering/", "Careers and V
           <span class="lx-num">00</span>
           <h2>No open positions right now.</h2>
           <div class="lx-row-body">
-            <p>There are no open positions listed right now. If you are interested in joining us, please contact <a data-email="hello">hello [at] latexdo [dot] org</a>.</p>
+            <p>There are no open positions listed right now. If you are interested in joining us, please contact <button class="email-reveal" type="button" data-email="hello">hello@… <span class="email-reveal-hint">(click to show)</span></button>.</p>
           </div>
         </article>`}
       </section>
       <section class="lx-close reveal" aria-labelledby="careers-close">
         <h2 id="careers-close">Don't see your role?</h2>
-        <p>We also welcome designers, writers, researchers and translators. If you are interested in joining us, please contact <a data-email="hello">hello [at] latexdo [dot] org</a>.</p>
+        <p>We also welcome designers, writers, researchers and translators. If you are interested in joining us, please contact <button class="email-reveal" type="button" data-email="hello">hello@… <span class="email-reveal-hint">(click to show)</span></button>.</p>
         <div class="lx-close-actions">
           <a class="lx-arrow" href="https://github.com/latexdo/latexdo-desktop">Start on GitHub</a>
         </div>
@@ -152,7 +152,7 @@ for (const position of published) {
       </div>
       <section class="lx-close reveal" aria-labelledby="apply-title">
         <h2 id="apply-title">Interested in this role?</h2>
-        <p>If you are interested in joining us, please contact <a data-email="hello">hello [at] latexdo [dot] org</a>.</p>
+        <p>If you are interested in joining us, please contact <button class="email-reveal" type="button" data-email="hello">hello@… <span class="email-reveal-hint">(click to show)</span></button>.</p>
       </section>`, graph));
 }
 

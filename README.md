@@ -47,13 +47,26 @@ To add a position:
    generated `volunteering/` HTML files, and `sitemap.xml` together.
 
 Each published position appears on the volunteering index and has its own page at
-`/volunteering/<slug>/`, which asks interested people to email hello@latexdo.org. Set `published` to `false`
+`/volunteering/<slug>/`, which asks interested people to write to the hello mailbox. Set `published` to `false`
 or remove an entry to withdraw it; rebuild to remove its generated page and
 sitemap entry. Drafts and the example file are not published. Until real roles
 are added, the volunteering page shows an empty state.
 
 The shared page layout is `scripts/volunteer-page.template.html`. Keep these changes
 in the main app's website source too if using the source sync described below.
+
+## Email addresses
+
+Pages never contain the association's email addresses, so spam bots cannot
+collect them. Each address is a `<button data-email="hello|sponsors|security">`;
+clicking it runs a Cloudflare Turnstile check, and `POST /api/email` in
+`worker/index.ts` returns the addresses only when Cloudflare confirms the check.
+`npm run check:seo` fails if a page contains a plain address.
+
+Setup (once): in the Cloudflare dashboard, open Turnstile, add a widget for
+`latexdo.org`, paste its site key into `TURNSTILE_SITE_KEY` in `src/site.ts`, and
+store the secret key with `npx wrangler secret put TURNSTILE_SECRET_KEY`. Until
+both are set, the buttons say the addresses are unavailable.
 
 ## Deploy
 
