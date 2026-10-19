@@ -1,5 +1,7 @@
-// Homepage motion: scroll reveals, the self-typing hero window, and the small
-// product scenes. Everything degrades to a static page with reduced motion.
+// Homepage behaviour: fills the download section from the release manifest,
+// recommends the installer for this visitor's computer, opens the tour video,
+// and fades sections in. Without JavaScript every link still works and all
+// content is visible.
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -7,269 +9,53 @@ function all<T extends Element>(selector: string, root: ParentNode = document): 
   return Array.from(root.querySelectorAll<T>(selector));
 }
 
-function wait(milliseconds: number): Promise<void> {
-  return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
-}
-
-function whenVisible(
-  element: Element,
-  callback: () => void,
-  threshold = 0.25,
-): void {
-  if (!("IntersectionObserver" in window)) {
-    callback();
-    return;
-  }
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        observer.disconnect();
-        callback();
-      }
-    },
-    { threshold },
-  );
-  observer.observe(element);
-}
-
-function initReveals(): void {
-  for (const element of all<HTMLElement>(".h-reveal")) {
-    const siblings = element.parentElement
-      ? all<HTMLElement>(":scope > .h-reveal", element.parentElement)
-      : [element];
-    const index = siblings.indexOf(element);
-    if (index > 0) element.style.setProperty("--h-delay", `${Math.min(index, 5) * 90}ms`);
-    whenVisible(element, () => element.classList.add("is-in"), 0.18);
-  }
-}
-
-/** Wraps every visible character of the code sample so it can be typed out. */
-function prepareTyping(code: HTMLElement): HTMLElement[] {
-  const characters: HTMLElement[] = [];
-  const walker = document.createTreeWalker(code, NodeFilter.SHOW_TEXT);
-  const textNodes: Text[] = [];
-  while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
-  for (const node of textNodes) {
-    // Skip line numbers and the layout whitespace between line elements.
-    if (node.parentElement === code || node.parentElement?.classList.contains("n")) continue;
-    const fragment = document.createDocumentFragment();
-    for (const character of node.data) {
-      if (character === "\n") {
-        fragment.append(character);
-        continue;
-      }
-      const span = document.createElement("span");
-      span.className = "h-char";
-      span.textContent = character;
-      fragment.append(span);
-      characters.push(span);
-    }
-    node.replaceWith(fragment);
-  }
-  return characters;
-}
-
-async function runHeroWindow(windowElement: HTMLElement): Promise<void> {
-  const code = windowElement.querySelector<HTMLElement>("[data-typed]");
-  const paper = windowElement.querySelector<HTMLElement>("[data-paper]");
-  if (!code || !paper) return;
-
-  if (reducedMotion) {
-    paper.classList.add("s1", "s2", "s3", "s4");
-    windowElement.classList.add("is-done");
-    return;
-  }
-
-  const characters = prepareTyping(code);
-  const caret = document.createElement("span");
-  caret.className = "h-caret";
-  const lineOf = (character: HTMLElement) => character.closest<HTMLElement>(".l");
-  let currentLine: HTMLElement | null = null;
-
-  for (;;) {
-    for (let index = 0; index < characters.length; index += 1) {
-      const character = characters[index];
-      const line = lineOf(character);
-      if (line !== currentLine) {
-        currentLine?.classList.remove("cur");
-        line?.classList.add("cur");
-        currentLine = line;
-      }
-      character.classList.add("on");
-      character.after(caret);
-      // A line marked with a stage compiles once its last character is typed.
-      const stage = line?.dataset.compileStage;
-      const lineEnds = index + 1 === characters.length || lineOf(characters[index + 1]) !== line;
-      if (stage && lineEnds) {
-        windowElement.classList.add("is-compiling");
-        await wait(520);
-        paper.classList.add(stage);
-        windowElement.classList.remove("is-compiling");
-        await wait(160);
-      }
-      await wait(character.textContent === " " ? 6 : 9 + Math.random() * 14);
-    }
-    windowElement.classList.add("is-done");
-    await wait(5200);
-    caret.remove();
-    currentLine?.classList.remove("cur");
-    currentLine = null;
-    windowElement.classList.remove("is-done");
-    paper.classList.remove("s1", "s2", "s3", "s4");
-    for (const character of characters) character.classList.remove("on");
-    await wait(700);
-  }
-}
-
-/**
- * Product shots are laid out at a fixed width, like a screenshot, and scaled
- * down to whatever room the page gives them.
- */
-function initShotFit(): void {
-  const fits = all<HTMLElement>(".lx-fit[data-fit]");
-  const fit = (wrapper: HTMLElement) => {
-    const shot = wrapper.firstElementChild as HTMLElement | null;
-    const designWidth = Number(wrapper.dataset.fit);
-    if (!shot || !designWidth || !wrapper.clientWidth) return;
-    wrapper.style.maxWidth = `${designWidth}px`;
-    wrapper.style.setProperty("--lx-w", `${designWidth}px`);
-    wrapper.style.setProperty("--lx-scale", String(Math.min(1, wrapper.clientWidth / designWidth)));
-    wrapper.style.setProperty("--lx-h", `${shot.offsetHeight}px`);
-    wrapper.classList.add("is-fitted");
-  };
-  if (!("ResizeObserver" in window)) {
-    for (const wrapper of fits) fit(wrapper);
-    return;
-  }
-  const observer = new ResizeObserver((entries) => {
-    for (const entry of entries) fit(entry.target as HTMLElement);
-  });
-  for (const wrapper of fits) observer.observe(wrapper);
-}
-
-/** Light and Dark show the hero window in both appearances the app supports. */
-function initAppearanceSwitch(): void {
-  const shot = document.querySelector<HTMLElement>("[data-hero-shot]");
-  const buttons = all<HTMLButtonElement>("[data-appearance]");
-  for (const button of buttons) {
-    button.addEventListener("click", () => {
-      const dark = button.dataset.appearance === "dark";
-      shot?.classList.toggle("lx-dark", dark);
-      for (const other of buttons) {
-        const on = other === button;
-        other.classList.toggle("on", on);
-        other.setAttribute("aria-pressed", String(on));
-      }
-    });
-  }
-}
-
-/** The window starts tilted back and settles flat as it scrolls into view. */
-function initStageTilt(stage: HTMLElement): void {
-  if (reducedMotion) {
-    stage.style.setProperty("--h-tilt", "0");
-    return;
-  }
-  let frame = 0;
-  const update = () => {
-    frame = 0;
-    const rect = stage.getBoundingClientRect();
-    const start = window.innerHeight * 0.92;
-    const end = window.innerHeight * 0.3;
-    const progress = Math.min(1, Math.max(0, (start - rect.top) / (start - end)));
-    stage.style.setProperty("--h-tilt", (1 - progress).toFixed(3));
-  };
-  const schedule = () => {
-    if (!frame) frame = window.requestAnimationFrame(update);
-  };
-  window.addEventListener("scroll", schedule, { passive: true });
-  window.addEventListener("resize", schedule);
-  update();
-}
-
-/** Cycles which source line and PDF region are linked in the sync scene. */
-function initCycles(): void {
-  for (const scene of all<HTMLElement>("[data-cycle]")) {
-    const count = Number(scene.dataset.cycle) || 1;
-    let step = 0;
-    const show = () => {
-      for (const element of all<HTMLElement>("[data-step]", scene)) {
-        element.classList.toggle("is-active", element.dataset.step === String(step));
-      }
-      step = (step + 1) % count;
-    };
-    show();
-    if (!reducedMotion) whenVisible(scene, () => window.setInterval(show, 2200));
-  }
-}
-
-async function runAiScene(scene: HTMLElement): Promise<void> {
-  if (reducedMotion) {
-    scene.classList.add("is-proposed");
-    return;
-  }
-  for (;;) {
-    await wait(1600);
-    scene.classList.add("is-proposed");
-    await wait(2600);
-    scene.classList.add("is-approved");
-    await wait(3200);
-    scene.classList.remove("is-proposed", "is-approved");
-  }
-}
-
-function initCounters(): void {
-  for (const element of all<HTMLElement>("[data-count]")) {
-    const target = Number(element.dataset.count);
-    const suffix = element.dataset.suffix ?? "";
-    if (!Number.isFinite(target) || reducedMotion) continue;
-    whenVisible(element, () => {
-      const startedAt = performance.now();
-      const duration = 1400;
-      const tick = (now: number) => {
-        const progress = Math.min(1, (now - startedAt) / duration);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        element.textContent = `${Math.round(target * eased).toLocaleString("en-US")}${suffix}`;
-        if (progress < 1) window.requestAnimationFrame(tick);
-      };
-      window.requestAnimationFrame(tick);
-    });
-  }
-}
-
 interface ManifestFile {
+  id?: string;
   platform?: string;
   arch?: string;
+  filename?: string;
   url?: string;
+  sizeLabel?: string;
 }
+
+interface Manifest {
+  version?: string;
+  publishedAt?: string;
+  files?: ManifestFile[];
+}
+
+type Platform = "macos" | "windows" | "linux";
 
 type UserAgentData = {
   platform?: string;
   getHighEntropyValues?: (hints: string[]) => Promise<{ architecture?: string }>;
 };
 
-/**
- * Points the download buttons at the installer for this visitor's computer.
- * Anything uncertain (phones, an unknown Mac chip, a failed request) keeps the
- * plain link to the downloads page.
- */
-async function initSmartDownload(): Promise<void> {
-  const buttons = all<HTMLAnchorElement>("[data-smart-download]");
-  if (!buttons.length) return;
+const platformLabels: Record<Platform, string> = { macos: "Mac", windows: "Windows", linux: "Linux" };
+
+async function loadManifest(): Promise<Manifest | null> {
+  try {
+    const response = await fetch("/downloads/manifest.json");
+    if (!response.ok) return null;
+    return (await response.json()) as Manifest;
+  } catch {
+    return null;
+  }
+}
+
+/** Phones and unknown systems get no recommendation; they see all three platforms. */
+async function detectDevice(): Promise<{ platform: Platform | null; arch: string | null }> {
   const uaData = (navigator as Navigator & { userAgentData?: UserAgentData }).userAgentData;
   const text = `${uaData?.platform ?? ""} ${navigator.platform} ${navigator.userAgent}`;
-  if (/android|iphone|ipad|mobile/i.test(text)) return;
-  const platform = /mac/i.test(text)
+  if (/android|iphone|ipad|mobile/i.test(text)) return { platform: null, arch: null };
+  const platform: Platform | null = /mac/i.test(text)
     ? "macos"
     : /win/i.test(text)
       ? "windows"
       : /linux|x11/i.test(text)
         ? "linux"
         : null;
-  if (!platform) return;
-  const label = { macos: "Mac", windows: "Windows", linux: "Linux" }[platform];
-  for (const button of buttons) button.textContent = `Download for ${label}`;
-
+  // Browsers do not reliably rise whether a Mac is Apple Silicon or Intel.
   let arch: string | null = platform === "macos" ? null : "x64";
   try {
     const values = await uaData?.getHighEntropyValues?.(["architecture"]);
@@ -277,61 +63,134 @@ async function initSmartDownload(): Promise<void> {
   } catch {
     // Keep the conservative default.
   }
-  // Browsers do not reliably reveal whether a Mac is Apple Silicon or Intel.
-  if (!arch) return;
+  return { platform, arch };
+}
 
-  try {
-    const response = await fetch("/downloads/manifest.json");
-    if (!response.ok) return;
-    const manifest = (await response.json()) as { files?: ManifestFile[] };
-    const file = manifest.files?.find(
-      (candidate) => candidate.platform === platform && candidate.arch === arch,
-    );
-    if (!file?.url?.startsWith("https://")) return;
-    for (const button of buttons) button.href = file.url;
-  } catch {
-    // The downloads page link still works.
+function formatDate(value: string | undefined): string | null {
+  const date = new Date(String(value));
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+}
+
+function fileExtension(file: ManifestFile): string {
+  return file.filename?.match(/\.[a-z]+$/i)?.[0] ?? "";
+}
+
+function fillDownloadSection(manifest: Manifest): void {
+  const files = new Map((manifest.files ?? []).map((file) => [file.id, file]));
+
+  for (const link of all<HTMLAnchorElement>("[data-file]")) {
+    const file = files.get(link.dataset.file);
+    if (file?.url?.startsWith("https://")) link.href = file.url;
+  }
+
+  for (const meta of all<HTMLElement>("[data-meta]")) {
+    const parts = (meta.dataset.meta ?? "")
+      .split(" ")
+      .map((id) => files.get(id))
+      .filter((file): file is ManifestFile => Boolean(file?.sizeLabel));
+    if (!parts.length) continue;
+    const sizes = parts.map((file) => file.sizeLabel).join(" / ");
+    meta.textContent = `${fileExtension(parts[0])} · ${sizes}`;
+  }
+
+  const released = formatDate(manifest.publishedAt);
+  const releaseLine = document.querySelector<HTMLElement>("[data-release-line]");
+  if (releaseLine && manifest.version && released) {
+    releaseLine.textContent = `Free for macOS, Windows and Linux. Version ${manifest.version}, built ${released}.`;
   }
 }
 
-/** Shows the current version and its release date under the final call. */
-async function initLatestRelease(): Promise<void> {
-  const element = document.querySelector<HTMLElement>("[data-latest-release]");
-  if (!element) return;
-  try {
-    const response = await fetch("/downloads/manifest.json");
-    if (!response.ok) return;
-    const manifest = (await response.json()) as { version?: unknown; publishedAt?: unknown };
-    const published = new Date(String(manifest.publishedAt));
-    if (typeof manifest.version !== "string" || Number.isNaN(published.getTime())) return;
-    const link = document.createElement("a");
-    link.href = "/downloads/";
-    link.textContent = `Version ${manifest.version}, released ${published.toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    })}`;
-    element.replaceChildren(link);
-    element.hidden = false;
-  } catch {
-    // The line simply stays hidden.
+function recommend(platform: Platform, arch: string | null, manifest: Manifest | null): void {
+  const card = document.querySelector<HTMLElement>(`.dl-card[data-platform="${platform}"]`);
+  if (card) {
+    card.classList.add("is-recommended");
+    const heading = card.querySelector("h3");
+    if (heading && !heading.querySelector(".dl-badge")) {
+      const badge = document.createElement("span");
+      badge.className = "dl-badge";
+      badge.textContent = "Your system";
+      heading.append(badge);
+    }
+    // The recommended platform reads first on narrow screens.
+    card.parentElement?.prepend(card);
   }
+
+  const label = platformLabels[platform];
+  const file = arch
+    ? manifest?.files?.find((candidate) => candidate.platform === platform && candidate.arch === arch)
+    : undefined;
+
+  for (const button of all<HTMLAnchorElement>("[data-smart-download]")) {
+    button.textContent = `Download for ${label}`;
+    if (file?.url?.startsWith("https://")) button.href = file.url;
+  }
+
+  const meta = document.querySelector<HTMLElement>("[data-intro-meta]");
+  if (meta) {
+    const details = file?.sizeLabel
+      ? `${manifest?.version ? `Version ${manifest.version} · ` : ""}${file.sizeLabel} · `
+      : "";
+    meta.textContent = `Free and open source · ${details}Also for ${
+      (Object.keys(platformLabels) as Platform[])
+        .filter((other) => other !== platform)
+        .map((other) => (other === "macos" ? "macOS" : platformLabels[other]))
+        .join(" and ")
+    }`;
+  }
+}
+
+async function initDownloads(): Promise<void> {
+  const [manifest, device] = await Promise.all([loadManifest(), detectDevice()]);
+  if (manifest) fillDownloadSection(manifest);
+  if (device.platform) recommend(device.platform, device.arch, manifest);
+}
+
+function initTour(): void {
+  const dialog = document.querySelector<HTMLDialogElement>("#tour-dialog");
+  const video = dialog?.querySelector("video");
+  if (!dialog || !video || typeof dialog.showModal !== "function") return;
+
+  for (const opener of all<HTMLAnchorElement>("[data-tour-open]")) {
+    opener.addEventListener("click", (event) => {
+      event.preventDefault();
+      dialog.showModal();
+      if (!reducedMotion) void video.play().catch(() => undefined);
+    });
+  }
+  dialog.querySelector("[data-tour-close]")?.addEventListener("click", () => dialog.close());
+  // A click on the backdrop lands on the dialog element itself.
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener("close", () => video.pause());
+}
+
+function initReveals(): void {
+  if (reducedMotion || !("IntersectionObserver" in window)) return;
+  const elements = all<HTMLElement>(".rise");
+  // Content already on screen at load is never hidden.
+  const below = elements.filter((element) => element.getBoundingClientRect().top > window.innerHeight);
+  if (!below.length) return;
+  document.body.classList.add("js-rise");
+  for (const element of elements) if (!below.includes(element)) element.classList.add("is-in");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("is-in");
+        observer.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "0px 0px -8% 0px" },
+  );
+  for (const element of below) observer.observe(element);
 }
 
 function initHome(): void {
-  void initSmartDownload();
-  void initLatestRelease();
+  void initDownloads();
+  initTour();
   initReveals();
-  initCycles();
-  initCounters();
-  initShotFit();
-  initAppearanceSwitch();
-  const stage = document.querySelector<HTMLElement>("[data-stage]");
-  if (stage) initStageTilt(stage);
-  const heroWindow = document.querySelector<HTMLElement>(".h-window");
-  if (heroWindow) void runHeroWindow(heroWindow);
-  const aiScene = document.querySelector<HTMLElement>(".h-ai");
-  if (aiScene) whenVisible(aiScene, () => void runAiScene(aiScene), 0.4);
 }
 
 if (document.readyState === "loading") {

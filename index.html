@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LatexDo: Free LaTeX Editor with Live PDF, Citations and AI</title>
-    <meta name="description" content="LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux. Write, compile, cite, review and answer reviewers in one window, on your own computer." />
+    <title>LatexDo: Free LaTeX Editor for Mac, Windows and Linux</title>
+    <meta name="description" content="LatexDo is a free, open-source LaTeX editor for your desktop. Write, compile, fix errors, cite and answer reviewers in one app. It can even install LaTeX for you." />
     <meta name="author" content="LatexDo" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#fbfbfd" />
+    <meta name="theme-color" content="#fbfaf7" />
     <meta name="application-name" content="LatexDo" />
     <link rel="canonical" href="https://latexdo.org/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="LatexDo" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="LatexDo: Free LaTeX Editor with Live PDF, Citations and AI" />
-    <meta property="og:description" content="LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux. Write, compile, cite, review and answer reviewers in one window, on your own computer." />
+    <meta property="og:title" content="LatexDo: the LaTeX editor for the whole paper" />
+    <meta property="og:description" content="Write, compile, cite, check and answer reviewers in one free app that runs on your computer. Open source, built by a nonprofit." />
     <meta property="og:url" content="https://latexdo.org/" />
     <meta property="og:image" content="https://latexdo.org/assets/social-preview.png" />
     <meta property="og:image:width" content="1200" />
@@ -22,26 +22,22 @@
     <meta property="og:image:alt" content="LatexDo, the free LaTeX editor: source and compiled PDF side by side." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@latexdoproject" />
-    <meta name="twitter:title" content="LatexDo: Free LaTeX Editor with Live PDF, Citations and AI" />
-    <meta name="twitter:description" content="LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux. Write, compile, cite, review and answer reviewers in one window, on your own computer." />
+    <meta name="twitter:title" content="LatexDo: the LaTeX editor for the whole paper" />
+    <meta name="twitter:description" content="Write, compile, cite, check and answer reviewers in one free app that runs on your computer. Open source, built by a nonprofit." />
     <meta name="twitter:image" content="https://latexdo.org/assets/social-preview.png" />
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="preload" href="assets/icon.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="style.css" as="style" />
+    <link rel="preload" href="assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="image" type="image/avif" imagesrcset="assets/shots/hero-800.avif 800w, assets/shots/hero.avif 1600w" imagesizes="(max-width: 1360px) calc(100vw - 32px), 1320px" fetchpriority="high" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="assets/home.css" />
-    <link rel="stylesheet" href="assets/app-shots.css" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": [
-              "Organization",
-              "NGO"
-            ],
+            "@type": ["Organization", "NGO"],
             "@id": "https://latexdo.org/#organization",
             "name": "LatexDo",
             "legalName": "LatexDo",
@@ -55,7 +51,7 @@
               "addressCountry": "FR"
             },
             "identifier": "RNA W595047000",
-            "description": "LatexDo is a French nonprofit association building a focused local-first LaTeX workspace for source editing, PDF preview, citations, review workflows, and local compilation.",
+            "description": "LatexDo is a French nonprofit association building a free, open-source LaTeX editor for the desktop.",
             "sameAs": [
               "https://github.com/latexdo/latexdo-desktop",
               "https://linkedin.com/company/latexdo",
@@ -71,9 +67,7 @@
             "url": "https://latexdo.org/",
             "name": "LatexDo",
             "description": "LatexDo is a free, open-source LaTeX editor for macOS, Windows and Linux.",
-            "publisher": {
-              "@id": "https://latexdo.org/#organization"
-            },
+            "publisher": { "@id": "https://latexdo.org/#organization" },
             "inLanguage": "en"
           },
           {
@@ -84,28 +78,24 @@
             "operatingSystem": "macOS, Windows, Linux",
             "url": "https://latexdo.org/",
             "downloadUrl": "https://latexdo.org/downloads/",
-            "description": "A free, open-source LaTeX editor with live PDF preview, source and PDF sync, plain-language error diagnostics, citation search, a bibliography knowledge graph, local AI assistance, and review and rebuttal tools.",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "EUR"
-            },
-            "publisher": {
-              "@id": "https://latexdo.org/#organization"
-            },
-            "image": "https://latexdo.org/assets/social-preview.png",
+            "description": "A free, open-source LaTeX editor for the desktop with live PDF preview, source and PDF sync, plain-language error diagnostics, pre-submission checks, citation search, local AI assistance, and review and rebuttal tools.",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "publisher": { "@id": "https://latexdo.org/#organization" },
+            "image": "https://latexdo.org/assets/shots/hero.webp",
+            "screenshot": "https://latexdo.org/assets/shots/hero.webp",
             "license": "https://opensource.org/license/mit",
             "isAccessibleForFree": true,
             "featureList": [
-              "Live PDF preview",
-              "Two-way source and PDF sync",
+              "Live PDF preview with two-way source and PDF sync",
               "Plain-language LaTeX error diagnostics",
-              "Citation search and knowledge graph",
-              "Local and cloud AI assistance",
+              "Pre-submission checks for structure, figures, citations and PDF fonts",
+              "Citation search with Crossref and OpenAlex, and a citation knowledge graph",
+              "AI assistance with local, Ollama or your own provider; every edit needs approval",
               "Review and rebuttal workflow",
-              "Import from Word, Markdown, PDF and Overleaf",
+              "Spreadsheet-style table generator",
+              "Import from Overleaf, Word, Markdown and PDF",
               "Built-in Git and local history",
-              "Voice dictation"
+              "Setup assistant that can install a TeX distribution"
             ]
           },
           {
@@ -114,51 +104,48 @@
             "mainEntity": [
               {
                 "@type": "Question",
-                "name": "Is LatexDo free?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. LatexDo is free to download and use, and its source code is open under the MIT license. It is built by a French nonprofit association and funded by donations."
-                }
+                "name": "What is LatexDo?",
+                "acceptedAnswer": { "@type": "Answer", "text": "LatexDo is a free LaTeX editor for macOS, Windows and Linux. It covers the whole paper in one app: writing and compiling, plain-language errors, citations, checks before submission, and answering reviewers." }
               },
               {
                 "@type": "Question",
-                "name": "Does LatexDo work offline?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. Your projects are ordinary folders on your disk and are compiled on your own machine. A local AI model also works with no internet once it has been downloaded. Cloud AI providers are optional."
-                }
+                "name": "Do I need LaTeX installed first?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. If you already have MacTeX, MiKTeX or TeX Live, LatexDo uses it. If you don't, the setup assistant can install TinyTeX, a compact TeX Live distribution, for you." }
+              },
+              {
+                "@type": "Question",
+                "name": "Is LatexDo really free?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. LatexDo is free to download and use, and its source code is open under the MIT license. It is built by a French nonprofit association and funded by donations." }
               },
               {
                 "@type": "Question",
                 "name": "Which operating systems are supported?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "LatexDo runs on macOS (Apple Silicon and Intel), Windows (64-bit) and Linux (64-bit AppImage)."
-                }
+                "acceptedAnswer": { "@type": "Answer", "text": "macOS on Apple Silicon and Intel, 64-bit Windows, and 64-bit Linux as an AppImage." }
               },
               {
                 "@type": "Question",
-                "name": "Do I need LaTeX installed?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "LatexDo compiles with the TeX distribution on your computer: MacTeX on macOS, MiKTeX or TeX Live on Windows, and TeX Live on Linux."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Can I move my paper from Overleaf or Word?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes. You can import an Overleaf project, a Word document, a Markdown file or a searchable PDF and keep working in LaTeX."
-                }
+                "name": "Where are my files stored?",
+                "acceptedAnswer": { "@type": "Answer", "text": "On your computer. A LatexDo project is an ordinary folder on your disk, so you can keep it in Git, a synced folder or a backup like any other files. There is no account." }
               },
               {
                 "@type": "Question",
                 "name": "Is my paper uploaded anywhere?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "No. LatexDo needs no account and your files stay on your computer. If you choose to connect a cloud AI provider, only the text you send to the assistant goes to that provider."
-                }
+                "acceptedAnswer": { "@type": "Answer", "text": "No. LatexDo compiles on your computer and does not collect personal analytics or track your documents. Citation search contacts Crossref and OpenAlex with your search terms. If you choose a cloud AI provider, the text you send to the assistant goes to that provider." }
+              },
+              {
+                "@type": "Question",
+                "name": "Does LatexDo work offline?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. Writing, compiling, checks and history all work offline, and a local AI model works offline once downloaded. Citation search and cloud AI providers need an internet connection." }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I move my paper from Overleaf or Word?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can import an Overleaf project, a Word document, a Markdown file or a searchable PDF and keep working in LaTeX." }
+              },
+              {
+                "@type": "Question",
+                "name": "How mature is LatexDo?",
+                "acceptedAnswer": { "@type": "Answer", "text": "LatexDo 1.0 was released in October 2026 and new builds are published often. The app updates itself and only installs signed releases from latexdo.org. If something doesn't work, please report it on GitHub." }
               }
             ]
           }
@@ -168,717 +155,513 @@
   </head>
   <body class="home">
     <a class="skip-link" href="#content">Skip to content</a>
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-      <symbol id="i-files" viewBox="0 0 24 24"><path d="M20 7h-3a2 2 0 0 1-2-2V2"/><path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z"/><path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"/></symbol>
-      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
-      <symbol id="i-branch" viewBox="0 0 24 24"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></symbol>
-      <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></symbol>
-      <symbol id="i-graph" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.5"/><path d="m10.2 6.3-3.9 3.9"/><circle cx="4.5" cy="12" r="2.5"/><path d="M7 12h10"/><circle cx="19.5" cy="12" r="2.5"/><path d="m13.8 17.7 3.9-3.9"/><circle cx="12" cy="19.5" r="2.5"/></symbol>
-      <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
-      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M21.17 6.81a1 1 0 0 0-3.99-3.99L3.84 16.17a2 2 0 0 0-.5.83l-1.32 4.35a.5.5 0 0 0 .62.62l4.35-1.32a2 2 0 0 0 .83-.5z"/><path d="m15 5 4 4"/></symbol>
-      <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M16 12h2"/><path d="M16 8h2"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/><path d="M6 12h2"/><path d="M6 8h2"/></symbol>
-      <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M15.39 4.39a1 1 0 0 0 1.68-.47 2.5 2.5 0 1 1 3.01 3.01 1 1 0 0 0-.47 1.68l1.68 1.68a2.41 2.41 0 0 1 0 3.42l-1.68 1.68a1 1 0 0 1-1.68-.47 2.5 2.5 0 1 0-3.01 3.01 1 1 0 0 1 .47 1.68l-1.68 1.68a2.41 2.41 0 0 1-3.42 0l-1.68-1.68a1 1 0 0 0-1.68.47 2.5 2.5 0 1 1-3.01-3.01 1 1 0 0 0 .47-1.68l-1.68-1.68a2.41 2.41 0 0 1 0-3.42l1.68-1.68a1 1 0 0 1 1.68.47 2.5 2.5 0 1 0 3.01-3.01 1 1 0 0 1-.47-1.68l1.68-1.68a2.41 2.41 0 0 1 3.42 0z"/></symbol>
-      <symbol id="i-user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
-      <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
-      <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
-      <symbol id="i-warn" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
-      <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
-      <symbol id="i-pleft" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></symbol>
-      <symbol id="i-pbottom" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 15h18"/></symbol>
-      <symbol id="i-pright" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/></symbol>
-      <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
-      <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
-      <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></symbol>
-      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
-      <symbol id="i-bold" viewBox="0 0 24 24"><path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"/></symbol>
-      <symbol id="i-italic" viewBox="0 0 24 24"><path d="M19 4h-9"/><path d="M14 20H5"/><path d="M15 4 9 20"/></symbol>
-      <symbol id="i-under" viewBox="0 0 24 24"><path d="M6 4v6a6 6 0 0 0 12 0V4"/><path d="M4 20h16"/></symbol>
-      <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 7V5a1 1 0 0 0-1-1H6.5a.5.5 0 0 0-.4.8l4.5 6a2 2 0 0 1 0 2.4l-4.5 6a.5.5 0 0 0 .4.8H17a1 1 0 0 0 1-1v-2"/></symbol>
-      <symbol id="i-list" viewBox="0 0 24 24"><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/></symbol>
-      <symbol id="i-quote" viewBox="0 0 24 24"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></symbol>
-      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
-      <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
-      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
-      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
-      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
-      <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
-      <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
-      <symbol id="i-at" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></symbol>
-      <symbol id="i-sync" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
-      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
-      <symbol id="i-msg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
-      <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
-      <symbol id="i-term" viewBox="0 0 24 24"><path d="m4 17 6-6-6-6"/><path d="M12 19h8"/></symbol>
-      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
-    </svg>
 
-    <div data-header-src="/partials/header.html"></div>
+    <!-- partial:header -->
+<header class="site-header" data-header>
+  <nav class="nav-shell" aria-label="Primary">
+    <a class="brand" href="/" aria-label="LatexDo home">
+      <img src="/assets/icon.svg" alt="" width="30" height="30" />
+      <span>LatexDo</span>
+    </a>
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-links"
+      aria-label="Menu"
+      data-nav-toggle
+    >
+      <span></span>
+      <span></span>
+    </button>
+    <div id="nav-links" class="nav-links" data-nav-links>
+      <a href="/#features">Features</a>
+      <a href="/docs/">Docs</a>
+      <a href="/#faq">FAQ</a>
+      <a href="https://github.com/latexdo/latexdo-desktop" rel="noopener">GitHub</a>
+      <a class="nav-cta" href="/#download" data-origin="header">Download <span class="nav-cta-free">free</span></a>
+    </div>
+  </nav>
+</header>
+
+<div class="donate-modal" id="donate-modal" data-donate-modal hidden>
+  <div class="donate-modal-backdrop" data-donate-close></div>
+  <div class="donate-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="donate-modal-title">
+    <button class="donate-modal-close" type="button" data-donate-close aria-label="Close donation form">&times;</button>
+    <h2 id="donate-modal-title">Support LatexDo</h2>
+    <p>Your donation keeps professional LaTeX writing accessible to everyone. Payments are handled securely by HelloAsso.</p>
+    <iframe id="haWidgetLight" title="Donation form by HelloAsso" allowtransparency="true" allow="payment" scrolling="auto" src="" data-ha-src="https://www.helloasso.com/associations/latexdo/formulaires/2/widget?view=form" style="width: clamp(300px, 100%, 26rem); margin: 0 auto; border: none;" onload="window.addEventListener('message', function(e) { const dataHeight = e.data.height; const haWidgetElement = document.getElementById('haWidgetLight'); if (dataHeight > parseFloat(haWidgetElement.height || 0)) { haWidgetElement.height = dataHeight + 'px';}})"></iframe>
+  </div>
+</div>
+    <!-- /partial:header -->
 
     <main id="content">
       <!-- Hero -->
-      <section class="h-hero" aria-labelledby="hero-title">
-        <div class="h-hero-copy">
-          <p class="h-kicker h-rise">Free and open source · Built by a nonprofit · macOS, Windows, Linux</p>
-          <h1 id="hero-title" class="h-rise">
-            Everything your paper needs.<br />
-            <span class="h-gradient">In one window.</span>
-          </h1>
-          <p class="h-lede h-rise">
-            The LaTeX editor that writes, compiles, cites and answers reviewers with you.
-            On your own computer.
-          </p>
-          <div class="h-actions h-rise">
-            <a class="h-button" href="/downloads/" data-origin="hero" data-smart-download>Download LatexDo</a>
-            <a class="h-link" href="#tour">See what it does <span aria-hidden="true">↓</span></a>
-          </div>
-        </div>
-
-        <div class="h-stage" data-stage>
-          <div class="h-window lx-fit" data-fit="1180" aria-hidden="true">
-            <div class="lx" data-hero-shot style="height: 660px">
-              <div class="lx-title">
-                <span class="lx-lights"><i></i><i></i><i></i></span>
-                <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
-                <span class="lx-title-actions">
-                  <span class="lx-tbtn">✨ Tidy</span>
-                  <span class="lx-tbtn">📖 Review</span>
-                  <span class="lx-tbtn">🕘 History <em>12</em></span>
-                  <span class="lx-ibtn on"><svg><use href="#i-pleft" /></svg></span>
-                  <span class="lx-ibtn"><svg><use href="#i-alert" /></svg></span>
-                  <span class="lx-ibtn"><svg><use href="#i-pbottom" /></svg></span>
-                  <span class="lx-ibtn on"><svg><use href="#i-pright" /></svg></span>
-                </span>
-              </div>
-              <div class="lx-body">
-                <div class="lx-act">
-                  <span class="on"><svg><use href="#i-files" /></svg></span>
-                  <span><svg><use href="#i-search" /></svg></span>
-                  <span><svg><use href="#i-branch" /></svg></span>
-                  <span><svg><use href="#i-history" /></svg></span>
-                  <span><svg><use href="#i-graph" /></svg></span>
-                  <span><svg><use href="#i-sparkles" /></svg></span>
-                  <span><svg><use href="#i-pencil" /></svg></span>
-                  <span><svg><use href="#i-book" /></svg></span>
-                  <span><svg><use href="#i-puzzle" /></svg></span>
-                  <span class="lx-act-end"><svg><use href="#i-user" /></svg></span>
-                  <span><svg><use href="#i-gear" /></svg></span>
-                </div>
-                <div class="lx-side">
-                  <div class="lx-side-head">EXPLORER <span><svg><use href="#i-plus" /></svg><svg><use href="#i-sync" /></svg></span></div>
-                  <div class="lx-side-section"><svg><use href="#i-down" /></svg>RETRIEVAL-PAPER</div>
-                  <div class="lx-tree">
-                    <span class="lx-row" style="--d: 0"><svg class="dir"><use href="#i-right" /></svg><svg class="dir"><use href="#i-folder" /></svg>figures</span>
-                    <span class="lx-row" style="--d: 0"><svg class="dir"><use href="#i-down" /></svg><svg class="dir"><use href="#i-folder" /></svg>sections</span>
-                    <span class="lx-row" style="--d: 1"><svg class="tex"><use href="#i-file" /></svg>method.tex</span>
-                    <span class="lx-row" style="--d: 1"><svg class="tex"><use href="#i-file" /></svg>results.tex<em>M</em></span>
-                    <span class="lx-row on" style="--d: 0"><svg class="tex"><use href="#i-file" /></svg>main.tex<em>M</em></span>
-                    <span class="lx-row" style="--d: 0"><svg class="bib"><use href="#i-book" /></svg>references.bib</span>
-                    <span class="lx-row" style="--d: 0"><svg class="pdf"><use href="#i-file" /></svg>main.pdf</span>
-                    <span class="lx-row" style="--d: 0"><svg><use href="#i-file" /></svg>results.csv<em class="a">U</em></span>
-                  </div>
-                  <div class="lx-side-section" style="margin-top: 14px"><svg><use href="#i-right" /></svg>OUTLINE</div>
-                  <div class="lx-side-section"><svg><use href="#i-right" /></svg>TIMELINE</div>
-                </div>
-                <div class="lx-editor">
-                  <div class="lx-tabs">
-                    <span class="lx-tab on"><svg class="tex" style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex<span class="dot"></span></span>
-                    <span class="lx-tab"><svg style="color: #c27a1a"><use href="#i-book" /></svg>references.bib<svg class="x"><use href="#i-x" /></svg></span>
-                    <span class="lx-tab"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>results.tex<svg class="x"><use href="#i-x" /></svg></span>
-                  </div>
-                  <div class="lx-toolbar">
-                    <span class="lx-seg"><span class="on">Code</span><span>Visual</span></span>
-                    <span class="lx-fmt"><svg><use href="#i-bold" /></svg></span>
-                    <span class="lx-fmt"><svg><use href="#i-italic" /></svg></span>
-                    <span class="lx-fmt"><svg><use href="#i-under" /></svg></span>
-                    <span class="lx-fmt"><svg><use href="#i-sigma" /></svg></span>
-                    <span class="lx-fmt-div"></span>
-                    <span class="lx-fmt"><svg><use href="#i-quote" /></svg>Cite</span>
-                    <span class="lx-fmt"><svg><use href="#i-link" /></svg>Ref</span>
-                    <span class="lx-compile"><svg><use href="#i-play" /></svg><i class="spin"></i>Compile</span>
-                  </div>
-                  <div class="lx-code" data-typed>
-                    <span class="l"><span class="n">1</span><span class="k">\documentclass</span>{article}</span>
-                    <span class="l"><span class="n">2</span><span class="k">\usepackage</span>{amsmath, graphicx}</span>
-                    <span class="l"><span class="n">3</span><span class="k">\usepackage</span>[numbers]{natbib}</span>
-                    <span class="l"><span class="n">4</span></span>
-                    <span class="l"><span class="n">5</span><span class="k">\title</span>{Efficient Retrieval for Long Documents}</span>
-                    <span class="l"><span class="n">6</span><span class="k">\author</span>{Ada Martin \\ Example University}</span>
-                    <span class="l"><span class="n">7</span></span>
-                    <span class="l"><span class="n">8</span><span class="k">\begin</span>{document}</span>
-                    <span class="l" data-compile-stage="s1"><span class="n">9</span><span class="k">\maketitle</span></span>
-                    <span class="l"><span class="n">10</span></span>
-                    <span class="l" data-compile-stage="s2"><span class="n">11</span><span class="k">\section</span>{Introduction}</span>
-                    <span class="l"><span class="n">12</span>Long documents remain hard for dense retrievers.</span>
-                    <span class="l"><span class="n">13</span>Our method improves recall by <span class="m">$12.4\%$</span> over</span>
-                    <span class="l" data-compile-stage="s3"><span class="n">14</span>the baseline~<span class="k">\cite</span>{<span class="c">lewis2020</span>} at no extra cost.</span>
-                    <span class="l"><span class="n">15</span></span>
-                    <span class="l"><span class="n">16</span><span class="k">\begin</span>{equation}</span>
-                    <span class="l"><span class="n">17</span>  <span class="m">s(q, d) = \frac{q \cdot d}{\|q\| \, \|d\|}</span></span>
-                    <span class="l" data-compile-stage="s4"><span class="n">18</span><span class="k">\end</span>{equation}</span>
-                    <span class="l"><span class="n">19</span></span>
-                    <span class="l"><span class="n">20</span><span class="cm">% Results follow in Section 2.</span></span>
-                  </div>
-                </div>
-                <div class="lx-pdf">
-                  <div class="lx-pdfbar">
-                    <b>main.pdf</b><span class="grow"></span>
-                    <span class="box">1</span>/ 6
-                    <svg><use href="#i-minus" /></svg><span class="box">100%</span><svg><use href="#i-plus" /></svg>
-                  </div>
-                  <div class="lx-pdf-scroll">
-                    <div class="lx-page h-paper" data-paper>
-                      <div class="p1">
-                        <h4>Efficient Retrieval for Long Documents</h4>
-                        <p class="au">Ada Martin<br />Example University</p>
-                        <p class="date">October 15, 2026</p>
-                      </div>
-                      <h5 class="p2">1&ensp;Introduction</h5>
-                      <p class="p3 ni">
-                        Long documents remain hard for dense retrievers. Our method improves recall by
-                        12.4% over the baseline [1] at no extra cost.
-                      </p>
-                      <div class="eq p4">
-                        <span>s(q, d) =</span>
-                        <span class="frac"><span>q · d</span><span>‖q‖ ‖d‖</span></span>
-                        <span class="no">(1)</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="lx-status">
-                <span><svg><use href="#i-branch" /></svg>main*</span>
-                <span><svg><use href="#i-sync" /></svg>1↑</span>
-                <span><svg><use href="#i-alert" /></svg>0</span>
-                <span><svg><use href="#i-warn" /></svg>0</span>
-                <span class="msg h-msg-done">Compiled main.tex in 1.4 s</span>
-                <span class="msg h-msg-busy">Compiling main.tex…</span>
-                <span class="end">Ln 14, Col 42</span>
-                <span>Spaces: 2</span>
-                <span>UTF-8</span>
-                <span>LaTeX</span>
-                <span>pdfLaTeX</span>
-              </div>
-            </div>
-          </div>
-          <div class="h-appearance" role="group" aria-label="Window appearance">
-            <button type="button" class="on" data-appearance="light" aria-pressed="true">Light</button>
-            <button type="button" data-appearance="dark" aria-pressed="false">Dark</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Statement -->
-      <section class="h-statement" aria-label="What LatexDo is">
-        <p class="h-reveal">
-          A paper is more than typing LaTeX. It is builds, errors, citations and reviews.
-          <strong>LatexDo puts all of it next to your manuscript.</strong>
-        </p>
-      </section>
-
-      <!-- Tour -->
-      <div id="tour">
-        <section class="h-chapter h-shot" aria-labelledby="c-sync">
-          <div class="h-chapter-copy h-reveal">
-            <p class="h-eyebrow">Source and PDF</p>
-            <h2 id="c-sync">Click a sentence. Land on its source.</h2>
-            <p>
-              Source and PDF sit side by side.
-              <strong>Click anywhere in the PDF to jump to the line that produced it</strong>,
-              or go the other way. Edit as code or visually, in the same file.
-            </p>
-          </div>
-          <div class="h-visual h-reveal" data-cycle="3" aria-hidden="true">
-            <div class="lx-fit" data-fit="1000">
-              <div class="lx" style="height: 460px">
-                <div class="lx-title">
-                  <span class="lx-lights"><i></i><i></i><i></i></span>
-                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
-                </div>
-                <div class="lx-body">
-                  <div class="lx-editor">
-                    <div class="lx-tabs"><span class="lx-tab on"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span></div>
-                    <div class="lx-code">
-                      <span class="l" data-step="0"><span class="n">11</span><span class="k">\section</span>{Introduction}</span>
-                      <span class="l"><span class="n">12</span>Long documents remain hard</span>
-                      <span class="l"><span class="n">13</span>for dense retrievers.</span>
-                      <span class="l" data-step="1"><span class="n">14</span>Our method improves recall</span>
-                      <span class="l" data-step="1"><span class="n">15</span>by <span class="m">$12.4\%$</span> over the baseline.</span>
-                      <span class="l"><span class="n">16</span></span>
-                      <span class="l"><span class="n">17</span><span class="k">\begin</span>{figure}[t]</span>
-                      <span class="l" data-step="2"><span class="n">18</span>  <span class="k">\includegraphics</span>{recall}</span>
-                      <span class="l"><span class="n">19</span>  <span class="k">\caption</span>{Recall by length.}</span>
-                      <span class="l"><span class="n">20</span><span class="k">\end</span>{figure}</span>
-                    </div>
-                  </div>
-                  <div class="lx-pdf">
-                    <div class="lx-pdfbar"><b>main.pdf</b><span class="grow"></span><span class="box">1</span>/ 6</div>
-                    <div class="lx-pdf-scroll" style="padding: 14px 16px">
-                      <div class="lx-page" style="padding: 22px 24px">
-                        <h5 style="margin-top: 0"><span class="hl" data-step="0">1&ensp;Introduction</span></h5>
-                        <p class="ni">Long documents remain hard for dense retrievers. <span class="hl" data-step="1">Our method improves recall by 12.4% over the baseline.</span></p>
-                        <figure class="hl" data-step="2">
-                          <svg viewBox="0 0 200 92" style="width: 100%; height: auto; stroke: none" role="presentation">
-                            <line x1="18" y1="78" x2="196" y2="78" stroke="#111" stroke-width="0.8" />
-                            <line x1="18" y1="6" x2="18" y2="78" stroke="#111" stroke-width="0.8" />
-                            <rect x="30" y="46" width="14" height="32" fill="#9db4e0" /><rect x="46" y="38" width="14" height="40" fill="#2f6fdb" />
-                            <rect x="74" y="40" width="14" height="38" fill="#9db4e0" /><rect x="90" y="28" width="14" height="50" fill="#2f6fdb" />
-                            <rect x="118" y="34" width="14" height="44" fill="#9db4e0" /><rect x="134" y="18" width="14" height="60" fill="#2f6fdb" />
-                            <rect x="162" y="30" width="14" height="48" fill="#9db4e0" /><rect x="178" y="10" width="14" height="68" fill="#2f6fdb" />
-                            <text x="46" y="88" font-size="7" text-anchor="middle" fill="#111">1k</text>
-                            <text x="90" y="88" font-size="7" text-anchor="middle" fill="#111">4k</text>
-                            <text x="134" y="88" font-size="7" text-anchor="middle" fill="#111">16k</text>
-                            <text x="178" y="88" font-size="7" text-anchor="middle" fill="#111">64k</text>
-                          </svg>
-                          <figcaption>Figure 1: Recall by length.</figcaption>
-                        </figure>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="lx-status">
-                  <span><svg><use href="#i-branch" /></svg>main</span>
-                  <span class="msg">PDF ⇄ source sync</span>
-                  <span class="end">pdfLaTeX · SyncTeX</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="h-chapter h-shot" aria-labelledby="c-errors">
-          <div class="h-chapter-copy h-reveal">
-            <p class="h-eyebrow">Problems</p>
-            <h2 id="c-errors">LaTeX errors, in plain language.</h2>
-            <p>
-              No more thousand-line logs. LatexDo tells you
-              <strong>what went wrong, where, and how to fix it</strong>, then takes you to
-              the line. It also checks structure, citations and the PDF before you submit.
-            </p>
-          </div>
-          <div class="h-visual h-reveal" aria-hidden="true">
-            <div class="lx-fit" data-fit="1000">
-              <div class="lx" style="height: 500px">
-                <div class="lx-title">
-                  <span class="lx-lights"><i></i><i></i><i></i></span>
-                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
-                  <span class="lx-title-actions"><span class="lx-ibtn on"><svg><use href="#i-alert" /></svg><sup>2</sup></span></span>
-                </div>
-                <div class="lx-editor">
-                  <div class="lx-tabs"><span class="lx-tab on"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span></div>
-                  <div class="lx-code" style="flex: none; height: 168px">
-                    <span class="l"><span class="n">39</span><span class="k">\begin</span>{figure}[t]</span>
-                    <span class="l"><span class="n">40</span>  <span class="k">\centering</span></span>
-                    <span class="l cur gut-err"><span class="n">41</span>  <span class="k">\includegraphics</span>{<span class="sq">figures/results.pdf</span>}</span>
-                    <span class="l"><span class="n">42</span>  <span class="k">\caption</span>{Recall on long inputs.}</span>
-                    <span class="l"><span class="n">43</span><span class="k">\end</span>{figure}</span>
-                    <span class="l gut-warn"><span class="n">44</span>As shown by <span class="k">\citet</span>{<span class="sqw">devlin2019</span>}, ...</span>
-                  </div>
-                  <div class="lx-panel lx-grow">
-                    <div class="lx-ptabs">
-                      <span class="on"><svg><use href="#i-alert" /></svg>PROBLEMS <em>2</em></span>
-                      <span><svg><use href="#i-term" /></svg>OUTPUT</span>
-                      <span><svg><use href="#i-term" /></svg>TERMINAL</span>
-                      <span>CHECK ANALYSIS</span>
-                    </div>
-                    <div class="lx-prob">
-                      <div class="lx-prob-file"><svg><use href="#i-down" /></svg><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex <small>retrieval-paper</small></div>
-                      <div class="lx-prob-row on"><svg class="e"><use href="#i-alert" /></svg>Figure file not found: figures/results.pdf <small>Ln 41</small></div>
-                      <div class="lx-explain">
-                        <span><b>What happened.</b> LaTeX could not find <code>figures/results.pdf</code>, so the build stopped.</span>
-                        <span><b>How to fix it.</b> The folder has <code>figures/result.pdf</code>. Check the file name.</span>
-                        <span class="acts"><span class="lx-btn pri">Go to line 41</span><span class="lx-btn">Use result.pdf</span><span class="lx-btn">Show log</span></span>
-                      </div>
-                      <div class="lx-prob-row"><svg class="w"><use href="#i-warn" /></svg>Citation “devlin2019” is not in references.bib <small>Ln 44</small></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="lx-status">
-                  <span><svg><use href="#i-branch" /></svg>main*</span>
-                  <span><svg><use href="#i-alert" /></svg>1</span>
-                  <span><svg><use href="#i-warn" /></svg>1</span>
-                  <span class="msg">Build stopped: 1 error</span>
-                  <span class="end">Ln 41, Col 20</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- AI (dark) -->
-      <section class="h-dark" aria-labelledby="c-ai">
-        <div class="h-dark-inner">
-          <div class="h-dark-copy h-reveal">
-            <p class="h-eyebrow">AI, on your terms</p>
-            <h2 id="c-ai">An assistant that never leaves your laptop.</h2>
-            <p>
-              Run a model locally, connect Ollama, or bring your own provider.
-              <strong>Nothing in your paper changes until you approve it.</strong>
-            </p>
-          </div>
-          <div class="h-ai h-reveal" aria-hidden="true">
-            <div class="lx-fit" data-fit="1000">
-              <div class="lx lx-dark" style="height: 440px">
-                <div class="lx-title">
-                  <span class="lx-lights"><i></i><i></i><i></i></span>
-                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
-                </div>
-                <div class="lx-body">
-                  <div class="lx-act">
-                    <span><svg><use href="#i-files" /></svg></span>
-                    <span><svg><use href="#i-search" /></svg></span>
-                    <span><svg><use href="#i-branch" /></svg></span>
-                    <span><svg><use href="#i-graph" /></svg></span>
-                    <span class="on"><svg><use href="#i-sparkles" /></svg></span>
-                  </div>
-                  <div class="lx-editor">
-                    <div class="lx-tabs"><span class="lx-tab on"><svg style="color: #5fb27f"><use href="#i-file" /></svg>results.tex</span></div>
-                    <div class="lx-code">
-                      <span class="l"><span class="n">28</span><span class="k">\section</span>{Results}</span>
-                      <span class="l"><span class="n">29</span><span class="k">\label</span>{sec:results}</span>
-                      <span class="l"><span class="n">30</span></span>
-                      <span class="lx-diff-old"><span class="n">31</span><span class="t">Our approach is really much better than the others in a lot of cases.</span></span>
-                      <span class="lx-diff-new"><span class="n">31</span><span class="t">Our approach outperforms prior methods on four of five benchmarks (Table 2).</span></span>
-                      <span class="lx-inline-acts">
-                        <span class="lbl"><svg><use href="#i-sparkles" /></svg>Proposed by AI</span>
-                        <span class="lx-btn pri"><svg><use href="#i-check" /></svg>Approve</span>
-                        <span class="lx-btn"><svg><use href="#i-x" /></svg>Reject</span>
-                      </span>
-                      <span class="l"><span class="n">32</span></span>
-                      <span class="l"><span class="n">33</span><span class="k">\begin</span>{table}[t]</span>
-                      <span class="l"><span class="n">34</span>  <span class="k">\caption</span>{Recall@10 on five benchmarks.}</span>
-                    </div>
-                  </div>
-                  <div class="lx-ai">
-                    <div class="lx-ai-head"><svg><use href="#i-sparkles" /></svg>AI Assistant<span class="acts"><span class="lx-ibtn"><svg><use href="#i-plus" /></svg></span><span class="lx-ibtn"><svg><use href="#i-trash" /></svg></span><span class="lx-ibtn"><svg><use href="#i-gear" /></svg></span></span></div>
-                    <div class="lx-ai-model">Local · Qwen2.5 7B<span class="lx-pill"><svg><use href="#i-shield" /></svg>Approval required</span></div>
-                    <div class="lx-ai-msgs">
-                      <div class="lx-msg-user">Make line 31 precise. Use the numbers in <i>@results.csv</i></div>
-                      <div class="lx-msg-ai h-ai-reply">Benchmarks 1, 2, 3 and 5 improve; benchmark 4 is flat. I rewrote the sentence to say exactly that.</div>
-                      <div class="lx-tool h-ai-tool">
-                        <span class="lx-tool-head"><svg><use href="#i-pencil" /></svg>Edit results.tex<small><span class="p">+1</span> <span class="m">−1</span></small></span>
-                        <span class="lx-tool-state"><span class="h-ai-wait">Waiting for your approval</span><span class="h-ai-done">Applied · you approved it</span></span>
-                      </div>
-                    </div>
-                    <div class="lx-ai-input">
-                      <div class="lx-composer">Ask the AI anything<svg><use href="#i-at" /></svg><svg><use href="#i-mic" /></svg><span class="send"><svg><use href="#i-up" /></svg></span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="lx-status">
-                  <span><svg><use href="#i-branch" /></svg>main*</span>
-                  <span class="msg">Model running on this computer · offline</span>
-                  <span class="end">Ln 31, Col 1</span>
-                </div>
-              </div>
-            </div>
-            <div class="h-ai-facts">
-              <div><strong>Local models</strong><span>Download once, then work with no internet.</span></div>
-              <div><strong>Your files as context</strong><span>Type @ to attach a project file to the question.</span></div>
-              <div><strong>Talk instead of typing</strong><span>Dictation with speech-to-text that runs on your machine.</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tour, continued -->
-      <section class="h-chapter h-shot" aria-labelledby="c-cite">
-        <div class="h-chapter-copy h-reveal">
-          <p class="h-eyebrow">Citations</p>
-          <h2 id="c-cite">See how your references connect.</h2>
-          <p>
-            <strong>Search Crossref and OpenAlex without leaving the editor</strong> and
-            insert the citation. Then open the knowledge graph to see how your bibliography
-            relates to your paper.
-          </p>
-        </div>
-        <div class="h-visual h-reveal" aria-hidden="true">
-          <div class="lx-fit" data-fit="1000">
-            <div class="lx-stack" style="height: 560px">
-              <div class="lx" style="width: 900px; height: 470px">
-                <div class="lx-title">
-                  <span class="lx-lights"><i></i><i></i><i></i></span>
-                  <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
-                </div>
-                <div class="lx-tabs">
-                  <span class="lx-tab"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span>
-                  <span class="lx-tab on"><svg><use href="#i-graph" /></svg>Knowledge Graph</span>
-                </div>
-                <div class="lx-body">
-                  <div class="lx-graph">
-                    <svg viewBox="0 0 450 360" role="presentation">
-                      <g class="e">
-                        <line x1="225" y1="185" x2="110" y2="95" class="hot" />
-                        <line x1="225" y1="185" x2="345" y2="80" />
-                        <line x1="225" y1="185" x2="370" y2="215" />
-                        <line x1="225" y1="185" x2="260" y2="305" />
-                        <line x1="225" y1="185" x2="90" y2="255" />
-                        <line x1="110" y1="95" x2="45" y2="160" class="hot" />
-                        <line x1="110" y1="95" x2="190" y2="50" class="hot" />
-                        <line x1="345" y1="80" x2="410" y2="140" />
-                        <line x1="370" y1="215" x2="410" y2="140" />
-                        <line x1="90" y1="255" x2="150" y2="320" />
-                        <line x1="260" y1="305" x2="150" y2="320" />
-                      </g>
-                      <g class="nd">
-                        <circle cx="110" cy="95" r="14" class="sel" />
-                        <circle cx="345" cy="80" r="15" class="ref" />
-                        <circle cx="370" cy="215" r="12" class="ref" />
-                        <circle cx="260" cy="305" r="13" class="ref" />
-                        <circle cx="90" cy="255" r="11" class="ref" />
-                        <circle cx="45" cy="160" r="8" class="new" />
-                        <circle cx="190" cy="50" r="8" class="new" />
-                        <circle cx="410" cy="140" r="8" class="new" />
-                        <circle cx="150" cy="320" r="8" class="new" />
-                        <circle cx="225" cy="185" r="30" class="root" />
-                      </g>
-                      <text x="225" y="189" text-anchor="middle" class="root">main.tex</text>
-                      <text x="110" y="70" text-anchor="middle">lewis2020</text>
-                      <text x="345" y="54" text-anchor="middle">vaswani2017</text>
-                      <text x="370" y="243" text-anchor="middle">karpukhin2020</text>
-                      <text x="260" y="334" text-anchor="middle">devlin2019</text>
-                      <text x="90" y="282" text-anchor="middle">robertson2009</text>
-                    </svg>
-                    <div class="lx-graph-tools">
-                      <span class="lx-chip on"><i></i>In references.bib · 5</span>
-                      <span class="lx-chip"><i class="o"></i>Suggested · 4</span>
-                    </div>
-                  </div>
-                  <div class="lx-inspect">
-                    <span class="key">lewis2020</span>
-                    <h6>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</h6>
-                    <dl>
-                      <dt>Authors</dt><dd>Lewis, Perez, Piktus, et al.</dd>
-                      <dt>Venue</dt><dd>NeurIPS 2020</dd>
-                      <dt>In paper</dt><dd>Cited 3 times, main.tex</dd>
-                      <dt>Linked</dt><dd>2 suggested papers</dd>
-                    </dl>
-                    <span class="acts"><span class="lx-btn pri">Insert \cite</span><span class="lx-btn"><svg><use href="#i-ext" /></svg>Open DOI</span></span>
-                  </div>
-                </div>
-              </div>
-              <div class="lx lx-pop" style="left: 380px; top: 350px">
-                <div class="lx-pop-search"><svg><use href="#i-search" /></svg>dense passage retrieval<small>Crossref · OpenAlex</small></div>
-                <div class="lx-pop-item on"><b>Dense Passage Retrieval for Open-Domain Question Answering</b><span>Karpukhin et al. · EMNLP 2020 · 2,431 citations</span></div>
-                <div class="lx-pop-item"><b>Approximate Nearest Neighbor Negative Contrastive Learning</b><span>Xiong et al. · ICLR 2021</span></div>
-                <div class="lx-pop-foot"><span>↵ Insert \cite and add to references.bib</span><span>↑↓</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="h-chapter h-shot" aria-labelledby="c-review">
-        <div class="h-chapter-copy h-reveal">
-          <p class="h-eyebrow">Review and rebuttal</p>
-          <h2 id="c-review">From reviewer comment to response letter.</h2>
-          <p>
-            Annotate any PDF in Reviewer mode. In Rebuttal mode,
-            <strong>answer each reviewer point by point</strong>, with the manuscript beside
-            you and a response template ready.
-          </p>
-        </div>
-        <div class="h-visual h-reveal" aria-hidden="true">
-          <div class="lx-fit" data-fit="1000">
-            <div class="lx" style="height: 470px">
-              <div class="lx-title">
-                <span class="lx-lights"><i></i><i></i><i></i></span>
-                <span class="lx-title-name"><img src="assets/icon.svg" alt="" width="15" height="15" /><b>retrieval-paper</b> — LatexDo</span>
-              </div>
-              <div class="lx-tabs">
-                <span class="lx-tab"><svg style="color: #3a8b5c"><use href="#i-file" /></svg>main.tex</span>
-                <span class="lx-tab on"><svg><use href="#i-msg" /></svg>Rebuttal</span>
-              </div>
-              <div class="lx-body">
-                <div class="lx-rlist">
-                  <div class="lx-rgroup">REVIEWER 1</div>
-                  <div class="lx-ritem"><b>Comment 1 <span class="lx-tag">Answered</span></b><span>Clarify the training data.</span></div>
-                  <div class="lx-ritem"><b>Comment 2 <span class="lx-tag">Answered</span></b><span>Add a latency comparison.</span></div>
-                  <div class="lx-rgroup">REVIEWER 2</div>
-                  <div class="lx-ritem on"><b>Comment 1 <span class="lx-tag new">Drafting</span></b><span>The claim in Section 3 is not…</span></div>
-                  <div class="lx-ritem"><b>Comment 2 <span class="lx-tag open">Open</span></b><span>Missing ablation on chunk size.</span></div>
-                  <div class="lx-rgroup">REVIEWER 3</div>
-                  <div class="lx-ritem"><b>Comment 1 <span class="lx-tag open">Open</span></b><span>Typo in Equation 4.</span></div>
-                </div>
-                <div class="lx-rmain">
-                  <h6>Reviewer 2 · Comment 1</h6>
-                  <div class="lx-quote">“The claim in Section 3 is not supported by the reported numbers.”</div>
-                  <h6>Response</h6>
-                  <div class="lx-answer">We agree. Section 3 now reports exact Recall@10 on all five benchmarks, and the claim is limited to the four where our method improves<span class="caret"></span></div>
-                  <span class="lx-links">
-                    <span class="lx-chip on"><svg><use href="#i-link" /></svg>main.tex:42 · Section 3</span>
-                    <span class="lx-chip"><svg><use href="#i-link" /></svg>Table 2</span>
-                  </span>
-                </div>
-              </div>
-              <div class="lx-status">
-                <span><svg><use href="#i-msg" /></svg>Rebuttal</span>
-                <span class="msg">2 of 5 comments answered</span>
-                <span class="end">response-letter.tex</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Bento -->
-      <section class="h-bento-section" aria-labelledby="bento-title">
-        <h2 id="bento-title" class="h-reveal">The rest of the toolbox is built in.</h2>
-        <div class="h-bento">
-          <article class="h-card wide h-reveal">
-            <div class="h-card-art h-import" aria-hidden="true">
-              <span>.docx</span><span>.md</span><span>.pdf</span><span>Overleaf</span>
-              <i></i>
-              <b>main.tex</b>
-            </div>
-            <h3>Bring your paper with you.</h3>
-            <p>Import Word, Markdown, a searchable PDF or an Overleaf project and keep working in LaTeX.</p>
-          </article>
-          <article class="h-card h-reveal">
-            <div class="h-card-art h-git" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-            <h3>Undo anything.</h3>
-            <p>Built-in Git, diffs, blame and a local history of every file.</p>
-          </article>
-          <article class="h-card h-reveal">
-            <div class="h-card-art h-tikz" aria-hidden="true">
-              <svg viewBox="0 0 120 70"><rect x="6" y="20" width="34" height="30" rx="5" /><rect x="80" y="20" width="34" height="30" rx="5" /><path d="M40 35h40" /><path d="m73 29 7 6-7 6" /></svg>
-            </div>
-            <h3>Figures and tables, handled.</h3>
-            <p>A TikZ canvas, draw.io to TikZ conversion and a table formatter.</p>
-          </article>
-          <article class="h-card h-reveal">
-            <div class="h-card-art h-voice" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <h3>Dictate a paragraph.</h3>
-            <p>Voice dictation, transcribed on your own machine.</p>
-          </article>
-          <article class="h-card h-reveal">
-            <div class="h-card-art h-templates" aria-hidden="true"><i></i><i></i><i></i></div>
-            <h3>Start from a template.</h3>
-            <p>Templates for articles, research papers, lecture notes, Beamer slides and letters.</p>
-          </article>
-          <article class="h-card wide h-reveal">
-            <div class="h-card-art h-local" aria-hidden="true">
-              <span>~/papers/retrieval</span>
-              <b>main.tex</b><b>references.bib</b><b>figures/</b>
-            </div>
-            <h3>Your files stay your files.</h3>
-            <p>Projects are ordinary folders on your disk, compiled on your machine. No account, no upload, no lock-in.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- Research -->
-      <section class="h-chapter h-research" aria-labelledby="research-heading">
-        <div class="h-chapter-copy">
-          <p class="h-eyebrow">Research</p>
-          <h2 id="research-heading">Look inside the writing loop.</h2>
-          <p>See how a build becomes a useful error and how AI acts on a project. <strong>The compiler, AI harness and knowledge graph, in motion.</strong></p>
-          <a class="h-link" href="/research/">Explore the research <span aria-hidden="true">→</span></a>
-        </div>
-        <a class="h-research-map" href="/research/" aria-label="Explore how the compiler, AI harness, and knowledge graph connect">
-          <span class="h-research-file">main.tex <small>+ references.bib</small></span>
-          <span class="h-research-connector" aria-hidden="true">↓</span>
-          <span class="h-research-tools"><span>Compiler</span><span>AI harness</span><span>Knowledge graph</span></span>
-          <span class="h-research-connector" aria-hidden="true">↓</span>
-          <span class="h-research-result">A page. A fix. A connection.</span>
-        </a>
-      </section>
-
-      <!-- Mission -->
-      <section class="h-mission" aria-labelledby="mission-title">
-        <div class="h-mission-copy h-reveal">
-          <p class="h-eyebrow">A nonprofit association</p>
-          <h2 id="mission-title">Built for researchers, not for profit.</h2>
-          <p>
-            LatexDo is a French nonprofit association (law of 1901).
-            <strong>Our mission is to make scientific and technical writing with LaTeX
-            more accessible, reliable and transparent</strong>, for students, researchers,
-            educators and reviewers.
-          </p>
-        </div>
-        <div class="h-mission-grid">
-          <a class="h-mission-card h-reveal" href="/programs/">
-            <strong>Free writing tools</strong>
-            <span>A desktop app with no subscription and no paid tier, open source under the MIT license.</span>
-            <em>Our programs <i aria-hidden="true">→</i></em>
+      <section class="intro" aria-labelledby="hero-title">
+        <div class="wrap intro-copy">
+          <a class="announce" href="#download">
+            <span class="announce-tag">New</span>
+            LatexDo 1.0 is out
+            <span aria-hidden="true">→</span>
           </a>
-          <a class="h-mission-card h-reveal" href="/latex-errors/">
-            <strong>Plain-language guides</strong>
-            <span>Documentation that explains LaTeX errors and setup to people who are just starting.</span>
-            <em>Fix LaTeX errors <i aria-hidden="true">→</i></em>
-          </a>
-          <a class="h-mission-card h-reveal" href="/donations/expenses/">
-            <strong>Public accounts</strong>
-            <span>Funded by donations and volunteers. Every expense of the association is published.</span>
-            <em>See the expenses <i aria-hidden="true">→</i></em>
-          </a>
+          <h1 id="hero-title">The LaTeX editor for the whole&nbsp;paper.</h1>
+          <p class="lede">
+            Write, compile, cite, check and answer reviewers in one free app that runs on
+            your computer. If you don’t have LaTeX yet, LatexDo installs it for you.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#download" data-smart-download data-origin="hero">Download for free</a>
+            <a class="btn btn-ghost" href="assets/shots/hero.mp4" data-tour-open>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z" /></svg>
+              Watch the tour <span class="btn-note">0:12</span>
+            </a>
+          </div>
+          <p class="intro-meta" data-intro-meta>Free and open source · macOS, Windows and Linux</p>
         </div>
-        <div class="h-actions h-reveal">
-          <button class="h-button" type="button" data-donate-open aria-haspopup="dialog" aria-controls="donate-modal">Support the association</button>
-          <a class="h-link" href="/about/">About the association <span aria-hidden="true">→</span></a>
-          <a class="h-link" href="/volunteering/">Volunteer <span aria-hidden="true">→</span></a>
+        <figure class="wrap-wide intro-shot">
+          <picture>
+            <source srcset="assets/shots/hero-800.avif 800w, assets/shots/hero.avif 1600w" sizes="(max-width: 1360px) calc(100vw - 32px), 1320px" type="image/avif" />
+            <img
+              src="assets/shots/hero.webp"
+              srcset="assets/shots/hero-800.webp 800w, assets/shots/hero.webp 1600w"
+              sizes="(max-width: 1360px) calc(100vw - 32px), 1320px"
+              width="1600"
+              height="797"
+              fetchpriority="high"
+              alt="The LatexDo window: a file explorer and outline on the left, LaTeX source for a paper in the middle, and the compiled PDF on the right with a sentence highlighted where the source cursor is."
+            />
+          </picture>
+          <figcaption>Source and PDF side by side. Click a sentence in the PDF to jump to the line that wrote it, and back.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Facts -->
+      <section class="facts" aria-label="LatexDo at a glance">
+        <ul class="wrap facts-list">
+          <li><strong>Free and open source</strong><span>MIT license, no paid tier</span></li>
+          <li><strong>No account</strong><span>Open a folder and start writing</span></li>
+          <li><strong>Works offline</strong><span>Compiles on your own computer</span></li>
+          <li><strong>LaTeX included</strong><span>Installed for you if it’s missing</span></li>
+        </ul>
+      </section>
+
+      <!-- Problem and solution -->
+      <section class="section problem" aria-labelledby="problem-title">
+        <div class="wrap">
+          <header class="section-head">
+            <h2 id="problem-title">A paper is more than LaTeX.</h2>
+            <p>Typing the text is the easy part. The hours go to everything around it.</p>
+          </header>
+          <ol class="pairs">
+            <li class="pair rise">
+              <p class="pair-before"><span class="note">Before</span>Installing a TeX distribution before you can write a single word.</p>
+              <p class="pair-after"><span class="note">With LatexDo</span>The setup assistant finds the LaTeX you already have, or installs it for you.</p>
+            </li>
+            <li class="pair rise">
+              <p class="pair-before"><span class="note">Before</span>A thousand-line log to find one misspelled file name.</p>
+              <p class="pair-after"><span class="note">With LatexDo</span>The error in plain language, the line it’s on, and a fix when there is one.</p>
+            </li>
+            <li class="pair rise">
+              <p class="pair-before"><span class="note">Before</span>An editor, a PDF viewer, a reference manager, and a Word file for the reviewers.</p>
+              <p class="pair-after"><span class="note">With LatexDo</span>Source, PDF, citations and the response letter in the same window.</p>
+            </li>
+          </ol>
         </div>
       </section>
 
-      <!-- Proof -->
-      <section class="h-proof" aria-label="LatexDo at a glance">
-        <div class="h-proof-grid h-reveal">
-          <div><strong>€0</strong><span>Free for everyone, built by a nonprofit</span></div>
-          <div><strong>MIT</strong><span>Open source, developed in public</span></div>
-          <div><strong data-count="3">3</strong><span>Platforms: macOS, Windows and Linux</span></div>
-          <div><strong data-count="12500" data-suffix="+">12,500+</strong><span>Automated tests run on every build</span></div>
+      <!-- Features -->
+      <section class="section features" id="features" aria-labelledby="features-title">
+        <div class="wrap">
+          <header class="section-head">
+            <h2 id="features-title">What LatexDo does for you.</h2>
+            <p>Every screen below is the real app.</p>
+          </header>
+        </div>
+
+        <article class="feature rise" aria-labelledby="f-errors">
+          <div class="wrap feature-row">
+            <div class="feature-copy">
+              <span class="eqno" aria-hidden="true">(1)</span>
+              <h3 id="f-errors">Errors you can actually read.</h3>
+              <p>
+                When a build fails, LatexDo tells you what went wrong, where, and how to fix it,
+                then takes you to the line. Before you submit, it checks that every figure is found,
+                every citation exists, every label is referenced and every font is embedded.
+              </p>
+              <a class="more" href="/latex-errors/">Common LaTeX errors, explained <span aria-hidden="true">→</span></a>
+            </div>
+            <figure class="shot">
+              <picture>
+                <source srcset="assets/shots/checks-800.avif 800w, assets/shots/checks.avif 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" type="image/avif" />
+                <img src="assets/shots/checks.webp" srcset="assets/shots/checks-800.webp 800w, assets/shots/checks.webp 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" width="1200" height="597" loading="lazy" decoding="async" alt="The Check analysis panel under the editor: structure, figures and PDF fonts pass, and one citation key, devlin2019, is flagged as missing from references.bib." />
+              </picture>
+            </figure>
+          </div>
+        </article>
+
+        <article class="feature rise" aria-labelledby="f-cite">
+          <div class="wrap feature-row">
+            <div class="feature-copy">
+              <span class="eqno" aria-hidden="true">(2)</span>
+              <h3 id="f-cite">Citations without the detour.</h3>
+              <p>
+                Search Crossref and OpenAlex from the editor and insert the <code>\cite</code>.
+                The entry goes into your <code>.bib</code> file for you. Then open the knowledge graph to
+                see how your references connect, and find the papers they point to.
+              </p>
+            </div>
+            <figure class="shot">
+              <picture>
+                <source srcset="assets/shots/citations-800.avif 800w, assets/shots/citations.avif 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" type="image/avif" />
+                <img src="assets/shots/citations.webp" srcset="assets/shots/citations-800.webp 800w, assets/shots/citations.webp 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" width="1200" height="597" loading="lazy" decoding="async" alt="A citation search for dense passage retrieval in the sidebar, the cited sentence in the editor, and a knowledge graph of the paper's references on the right." />
+              </picture>
+            </figure>
+          </div>
+        </article>
+
+        <article class="feature rise" aria-labelledby="f-ai">
+          <div class="wrap feature-row">
+            <div class="feature-copy">
+              <span class="eqno" aria-hidden="true">(3)</span>
+              <h3 id="f-ai">An AI assistant that asks first.</h3>
+              <p>
+                Run a model on your own computer, connect Ollama, or bring your own provider.
+                Every change it proposes is a diff you approve or reject, so nothing in your paper
+                changes behind your back. Pause while writing and it can offer the rest of the sentence.
+              </p>
+              <a class="more" href="/blogpost/2026/the-ai-in-latexdo/">How the AI in LatexDo works <span aria-hidden="true">→</span></a>
+            </div>
+            <figure class="shot">
+              <picture>
+                <source srcset="assets/shots/ai-approve-800.avif 800w, assets/shots/ai-approve.avif 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" type="image/avif" />
+                <img src="assets/shots/ai-approve.webp" srcset="assets/shots/ai-approve-800.webp 800w, assets/shots/ai-approve.webp 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" width="1200" height="597" loading="lazy" decoding="async" alt="The AI assistant panel running a local model, showing an edit to results.tex as a red and green diff with Approve and Reject buttons." />
+              </picture>
+            </figure>
+          </div>
+        </article>
+
+        <article class="feature rise" aria-labelledby="f-tables">
+          <div class="wrap feature-row">
+            <div class="feature-copy">
+              <span class="eqno" aria-hidden="true">(4)</span>
+              <h3 id="f-tables">Tables like a spreadsheet.</h3>
+              <p>
+                Type cells or paste them from Excel or Google Sheets, set each column’s alignment,
+                choose grid, booktabs or minimal rules, and get clean LaTeX with a caption and label.
+              </p>
+            </div>
+            <figure class="shot">
+              <picture>
+                <source srcset="assets/shots/table-generator-800.avif 800w, assets/shots/table-generator.avif 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" type="image/avif" />
+                <img src="assets/shots/table-generator.webp" srcset="assets/shots/table-generator-800.webp 800w, assets/shots/table-generator.webp 1200w" sizes="(max-width: 960px) calc(100vw - 32px), 760px" width="1200" height="597" loading="lazy" decoding="async" alt="The table generator: an editable grid of cells with alignment and rule-style options, and the generated LaTeX table code." />
+              </picture>
+            </figure>
+          </div>
+        </article>
+      </section>
+
+      <!-- Also built in -->
+      <section class="section toolbox" aria-labelledby="toolbox-title">
+        <div class="wrap">
+          <header class="section-head">
+            <h2 id="toolbox-title">Also built in.</h2>
+            <p>The rest of the paper, from first draft to response letter.</p>
+          </header>
+          <ul class="toolbox-grid">
+            <li class="tool tool-wide rise">
+              <h3>Review and rebuttal</h3>
+              <p>Annotate any PDF in Reviewer mode. In Rebuttal mode, answer each reviewer point by point with the manuscript beside you, and get a response letter.</p>
+            </li>
+            <li class="tool rise">
+              <h3>Bring your paper with you</h3>
+              <p>Import an Overleaf project, a Word document, Markdown or a searchable PDF.</p>
+            </li>
+            <li class="tool rise">
+              <h3>Undo anything</h3>
+              <p>Built-in Git, diffs, blame and a local history of every file.</p>
+            </li>
+            <li class="tool rise">
+              <h3>Figures</h3>
+              <p>A TikZ canvas and draw.io-to-TikZ conversion.</p>
+            </li>
+            <li class="tool rise">
+              <h3>Notation manager</h3>
+              <p>Find undefined or conflicting symbols across the paper.</p>
+            </li>
+            <li class="tool rise">
+              <h3>Templates</h3>
+              <p>Articles, research papers, lecture notes, Beamer slides and letters.</p>
+            </li>
+            <li class="tool rise">
+              <h3>Dictation</h3>
+              <p>Speak a paragraph; speech-to-text runs on your machine.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <!-- Questions -->
-      <section class="h-faq" aria-labelledby="faq-title">
-        <h2 id="faq-title" class="h-reveal">Questions, answered.</h2>
-        <div class="h-faq-list h-reveal">
-          <details>
-            <summary>Is LatexDo free?</summary>
-            <p>Yes. LatexDo is free to download and use, and its source code is open under the MIT license. It is built by a French nonprofit association and funded by donations.</p>
-          </details>
-          <details>
-            <summary>Does LatexDo work offline?</summary>
-            <p>Yes. Your projects are ordinary folders on your disk and are compiled on your own machine. A local AI model also works with no internet once it has been downloaded. Cloud AI providers are optional.</p>
-          </details>
-          <details>
-            <summary>Which operating systems are supported?</summary>
-            <p>LatexDo runs on macOS (Apple Silicon and Intel), Windows (64-bit) and Linux (64-bit AppImage).</p>
-          </details>
-          <details>
-            <summary>Do I need LaTeX installed?</summary>
-            <p>LatexDo compiles with the TeX distribution on your computer: MacTeX on macOS, MiKTeX or TeX Live on Windows, and TeX Live on Linux.</p>
-          </details>
-          <details>
-            <summary>Can I move my paper from Overleaf or Word?</summary>
-            <p>Yes. You can import an Overleaf project, a Word document, a Markdown file or a searchable PDF and keep working in LaTeX.</p>
-          </details>
-          <details>
-            <summary>Is my paper uploaded anywhere?</summary>
-            <p>No. LatexDo needs no account and your files stay on your computer. If you choose to connect a cloud AI provider, only the text you send to the assistant goes to that provider.</p>
-          </details>
+      <!-- Fit -->
+      <section class="section fit" aria-labelledby="fit-title">
+        <div class="wrap">
+          <header class="section-head">
+            <h2 id="fit-title">Is LatexDo right for you?</h2>
+            <p>An honest answer, so you don’t have to find out after installing.</p>
+          </header>
+          <div class="fit-grid">
+            <div class="fit-col fit-yes">
+              <h3>A good fit if you…</h3>
+              <ul>
+                <li>write papers, a thesis or lecture notes in LaTeX;</li>
+                <li>want your files on your own disk and to work offline;</li>
+                <li>are going through peer review and answering reviewers;</li>
+                <li>are new to LaTeX and want help with setup and errors.</li>
+              </ul>
+            </div>
+            <div class="fit-col fit-no">
+              <h3>Maybe not yet if you…</h3>
+              <ul>
+                <li>need to work in a browser or on a tablet: LatexDo is a desktop app;</li>
+                <li>don’t want to write LaTeX at all: LatexDo imports Word and Markdown, but you’ll be writing LaTeX afterwards;</li>
+                <li>need software with a long track record: 1.0 was released in October 2026.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust -->
+      <section class="section trust" id="trust" aria-labelledby="trust-title">
+        <div class="wrap">
+          <header class="section-head">
+            <h2 id="trust-title">Safe for your unpublished work.</h2>
+            <p>What LatexDo does with your files, and how you can check for yourself.</p>
+          </header>
+          <ul class="trust-grid">
+            <li class="trust-card rise">
+              <h3>Private by default</h3>
+              <p>No account. Projects are ordinary folders on your disk, compiled on your computer. LatexDo doesn’t collect personal analytics or track your documents.</p>
+              <a class="more" href="/privacy">Privacy policy <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="trust-card rise">
+              <h3>Open source</h3>
+              <p>Every line of the app is public under the MIT license. Read the code, follow its development, or build it yourself.</p>
+              <a class="more" href="https://github.com/latexdo/latexdo-desktop">latexdo/latexdo-desktop <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="trust-card rise">
+              <h3>Verified downloads</h3>
+              <p>macOS builds are notarized by Apple. Every installer has a published SHA-256 checksum, and updates are checked against a signed feed.</p>
+              <a class="more" href="/downloads/SHA256SUMS.txt">Checksums <span aria-hidden="true">→</span></a>
+            </li>
+            <li class="trust-card rise">
+              <h3>Built by a nonprofit</h3>
+              <p>LatexDo is made by LATEXDO, a French nonprofit association funded by donations. Every expense is published.</p>
+              <a class="more" href="/donations/expenses/">Public accounts <span aria-hidden="true">→</span></a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Download -->
+      <section class="section download" id="download" aria-labelledby="download-title">
+        <div class="wrap">
+          <header class="section-head">
+            <h2 id="download-title">Download LatexDo.</h2>
+            <p data-release-line>Free for macOS, Windows and Linux.</p>
+          </header>
+
+          <div class="dl-grid">
+            <article class="dl-card" data-platform="macos" aria-labelledby="dl-mac">
+              <h3 id="dl-mac">macOS</h3>
+              <div class="dl-buttons">
+                <a class="btn btn-primary" href="/downloads/" data-file="macos-arm64" data-origin="download-section">Apple Silicon</a>
+                <a class="btn btn-secondary" href="/downloads/" data-file="macos-x64" data-origin="download-section">Intel</a>
+              </div>
+              <p class="dl-meta" data-meta="macos-arm64 macos-x64">.dmg disk image</p>
+              <p class="dl-help">Not sure which? Apple menu → About This Mac. “Chip” means Apple Silicon; “Processor” means Intel.</p>
+            </article>
+            <article class="dl-card" data-platform="windows" aria-labelledby="dl-win">
+              <h3 id="dl-win">Windows</h3>
+              <div class="dl-buttons">
+                <a class="btn btn-primary" href="/downloads/" data-file="windows-x64" data-origin="download-section">Windows 64-bit</a>
+              </div>
+              <p class="dl-meta" data-meta="windows-x64">.exe installer</p>
+              <p class="dl-help">Run the installer and follow the steps.</p>
+            </article>
+            <article class="dl-card" data-platform="linux" aria-labelledby="dl-linux">
+              <h3 id="dl-linux">Linux</h3>
+              <div class="dl-buttons">
+                <a class="btn btn-primary" href="/downloads/" data-file="linux-x64" data-origin="download-section">Linux 64-bit</a>
+              </div>
+              <p class="dl-meta" data-meta="linux-x64">.AppImage</p>
+              <p class="dl-help">Make it executable (<code>chmod +x</code>), then run it.</p>
+            </article>
+          </div>
+
+          <div class="next">
+            <h3 class="next-title">What happens after you install</h3>
+            <ol class="next-steps">
+              <li><strong>Open LatexDo.</strong> A short setup assistant starts on first launch.</li>
+              <li><strong>Get LaTeX ready.</strong> It uses the TeX distribution you have, or installs TinyTeX for you. A local AI model is optional.</li>
+              <li><strong>Start writing.</strong> Open the folder you’re already working in, or start from a template.</li>
+            </ol>
+          </div>
+
+          <p class="dl-foot">
+            <a href="/downloads/">All downloads and release history</a>
+            <span aria-hidden="true">·</span>
+            <a href="/downloads/SHA256SUMS.txt">SHA-256 checksums</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/latexdo/latexdo-desktop#build-from-source">Build from source</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section faq" id="faq" aria-labelledby="faq-title">
+        <div class="wrap faq-grid">
+          <header class="section-head">
+            <h2 id="faq-title">Questions, answered.</h2>
+            <p>Something missing? Read the <a href="/docs/">documentation</a> or ask on <a href="https://github.com/latexdo/latexdo-desktop/issues">GitHub</a>.</p>
+          </header>
+          <div class="qa-list">
+            <details>
+              <summary>What is LatexDo?</summary>
+              <p>LatexDo is a free LaTeX editor for macOS, Windows and Linux. It covers the whole paper in one app: writing and compiling, plain-language errors, citations, checks before submission, and answering reviewers.</p>
+            </details>
+            <details>
+              <summary>Do I need LaTeX installed first?</summary>
+              <p>No. If you already have MacTeX, MiKTeX or TeX Live, LatexDo uses it. If you don’t, the setup assistant can install TinyTeX, a compact TeX Live distribution, for you.</p>
+            </details>
+            <details>
+              <summary>Is LatexDo really free?</summary>
+              <p>Yes. LatexDo is free to download and use, and its source code is open under the MIT license. It is built by a French nonprofit association and funded by donations.</p>
+            </details>
+            <details>
+              <summary>Which operating systems are supported?</summary>
+              <p>macOS on Apple Silicon and Intel, 64-bit Windows, and 64-bit Linux as an AppImage.</p>
+            </details>
+            <details>
+              <summary>Where are my files stored?</summary>
+              <p>On your computer. A LatexDo project is an ordinary folder on your disk, so you can keep it in Git, a synced folder or a backup like any other files. There is no account.</p>
+            </details>
+            <details>
+              <summary>Is my paper uploaded anywhere?</summary>
+              <p>No. LatexDo compiles on your computer and does not collect personal analytics or track your documents. Citation search contacts Crossref and OpenAlex with your search terms. If you choose a cloud AI provider, the text you send to the assistant goes to that provider.</p>
+            </details>
+            <details>
+              <summary>Does LatexDo work offline?</summary>
+              <p>Yes. Writing, compiling, checks and history all work offline, and a local AI model works offline once downloaded. Citation search and cloud AI providers need an internet connection.</p>
+            </details>
+            <details>
+              <summary>Can I move my paper from Overleaf or Word?</summary>
+              <p>Yes. You can import an Overleaf project, a Word document, a Markdown file or a searchable PDF and keep working in LaTeX. See the <a href="/overleaf-alternative/">Overleaf comparison</a>.</p>
+            </details>
+            <details>
+              <summary>How mature is LatexDo?</summary>
+              <p>LatexDo 1.0 was released in October 2026 and new builds are published often. The app updates itself and only installs signed releases from latexdo.org. If something doesn’t work, please <a href="https://github.com/latexdo/latexdo-desktop/issues">report it on GitHub</a>.</p>
+            </details>
+          </div>
         </div>
       </section>
 
       <!-- Final call -->
-      <section class="h-final" aria-labelledby="final-title">
-        <img src="assets/icon.svg" alt="" width="84" height="84" class="h-reveal" />
-        <h2 id="final-title" class="h-reveal">Write your next paper in LatexDo.</h2>
-        <p class="h-reveal">Free to download. Open the folder you are already working in.</p>
-        <p class="h-release" data-latest-release hidden></p>
-        <div class="h-actions h-reveal">
-          <a class="h-button" href="/downloads/" data-origin="footer-cta" data-smart-download>Download LatexDo</a>
-          <a class="h-link" href="https://github.com/latexdo/latexdo-desktop">View the source <span aria-hidden="true">→</span></a>
+      <section class="final" aria-labelledby="final-title">
+        <div class="wrap">
+          <img src="assets/icon.svg" alt="" width="64" height="64" />
+          <h2 id="final-title">Where papers get finished.</h2>
+          <p>Download LatexDo for free and open the folder you’re already working in.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#download" data-smart-download data-origin="footer-cta">Download for free</a>
+            <a class="btn btn-ghost" href="https://github.com/latexdo/latexdo-desktop">View on GitHub</a>
+          </div>
+          <p class="final-support">LatexDo is funded by people who use it. <button type="button" class="link-button" data-donate-open aria-haspopup="dialog" aria-controls="donate-modal">Support the association</button></p>
         </div>
       </section>
     </main>
-    <div data-footer-src="/partials/footer.html"></div>
+
+    <dialog class="tour" id="tour-dialog" aria-labelledby="tour-title">
+      <div class="tour-head">
+        <h2 id="tour-title">LatexDo in 12 seconds</h2>
+        <button type="button" class="tour-close" data-tour-close aria-label="Close the tour">&times;</button>
+      </div>
+      <video controls playsinline muted preload="none" width="1280" height="720" poster="assets/shots/hero-poster.webp" aria-describedby="tour-desc">
+        <source src="assets/shots/hero.mp4" type="video/mp4" />
+      </video>
+      <p id="tour-desc" class="tour-desc">A silent, captioned walkthrough: compiling on your own machine, finishing a sentence with Tab, and fixing a missing-figure error in one click.</p>
+    </dialog>
+
+    <!-- partial:footer -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="/" aria-label="LatexDo home">
+        <img src="/assets/icon.svg" alt="" width="28" height="28" />
+        <span>LatexDo</span>
+      </a>
+      <p class="footer-tagline">Where papers get finished.</p>
+      <p class="footer-legal">
+        LATEXDO is a French nonprofit association (law of July 1, 1901).<br />
+        RNA W595047000 · SIREN 108 130 311<br />
+        Avenue Paul Langevin, 59650 Villeneuve-d'Ascq, France
+      </p>
+    </div>
+    <div>
+      <h2 class="footer-heading">Product</h2>
+      <nav aria-label="Product">
+        <a href="/#features">Features</a>
+        <a href="/downloads/">Download</a>
+        <a href="/docs/">Documentation</a>
+        <a href="/store/">Store</a>
+        <a href="/latex-errors/">Fix LaTeX errors</a>
+        <a href="/overleaf-alternative/">Overleaf alternative</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="footer-heading">Learn</h2>
+      <nav aria-label="Learn">
+        <a href="/blogpost/">Blog</a>
+        <a href="/research/">Research</a>
+        <a href="/vision/">Vision</a>
+        <a href="/programs/">Programs</a>
+      </nav>
+    </div>
+    <div>
+      <h2 class="footer-heading">Association</h2>
+      <nav aria-label="Association">
+        <a href="/about/">About</a>
+        <a href="/board/">Board</a>
+        <a href="/volunteering/">Volunteer</a>
+        <a href="/contact/">Contact</a>
+        <a href="/code-of-conduct/">Code of Conduct</a>
+        <button class="footer-donate" type="button" data-donate-open aria-haspopup="dialog" aria-controls="donate-modal">Donate</button>
+      </nav>
+    </div>
+    <div>
+      <h2 class="footer-heading">Transparency</h2>
+      <nav aria-label="Transparency">
+        <a href="https://github.com/latexdo/latexdo-desktop">Source code</a>
+        <a href="/donations/">Donations</a>
+        <a href="/donations/expenses/">Expenses</a>
+        <a href="/sponsors/">Sponsors</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/privacy#cookies" data-consent-open>Cookie settings</a>
+        <a href="/terms">Terms of Use</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="copyright-year"></span> LatexDo. <a href="https://opensource.org/license/mit">MIT License</a>.</span>
+      <nav class="footer-social-links" aria-label="Social links">
+        <a class="footer-social-link is-linkedin" href="https://linkedin.com/company/latexdo" aria-label="LatexDo on LinkedIn"></a>
+        <a class="footer-social-link is-bluesky" href="https://bsky.app/profile/latexdo.org" aria-label="LatexDo on Bluesky"></a>
+        <a class="footer-social-link is-youtube" href="https://www.youtube.com/@latexdo-project" aria-label="LatexDo on YouTube"></a>
+        <a class="footer-social-link is-x" href="https://x.com/latexdoproject" aria-label="LatexDo on X"></a>
+      </nav>
+    </div>
+  </div>
+</footer>
+    <!-- /partial:footer -->
 
     <script type="module" src="assets/site.js"></script>
     <script type="module" src="assets/home.js"></script>
-    <script type="module" src="assets/research.js"></script>
   </body>
 </html>

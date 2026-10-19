@@ -164,7 +164,6 @@ function initDonationModal() {
     if (!modal)
         return;
     const iframe = modal.querySelector("#haWidgetLight");
-    const openers = queryAll("[data-donate-open]");
     let lastFocused = null;
     const isOpen = () => !modal.hasAttribute("hidden");
     const setWidgetSource = (opener) => {
@@ -188,7 +187,12 @@ function initDonationModal() {
         document.body.classList.remove("donate-modal-open");
         lastFocused?.focus();
     };
-    openers.forEach((button) => button.addEventListener("click", () => openModal(button)));
+    // Delegated, because the footer (which holds a Donate button) can load after this runs.
+    document.addEventListener("click", (event) => {
+        const opener = event.target?.closest("[data-donate-open]");
+        if (opener)
+            openModal(opener);
+    });
     Array.from(modal.querySelectorAll("[data-donate-close]")).forEach((closer) => closer.addEventListener("click", closeModal));
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && isOpen())

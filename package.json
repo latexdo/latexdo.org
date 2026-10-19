@@ -5,7 +5,7 @@
   "description": "Static TypeScript website for LatexDo.",
   "type": "module",
   "scripts": {
-    "build": "npm run build:volunteering && npm run build:store && npm run build:blog && tsc -p tsconfig.json",
+    "build": "npm run build:volunteering && npm run build:store && npm run build:blog && npm run build:partials && tsc -p tsconfig.json",
     "build:volunteering": "node scripts/build-volunteering.mjs",
     "build:store": "node scripts/build-store.mjs",
     "build:blog": "node scripts/build-blog.mjs",
@@ -18,7 +18,8 @@
     "preview": "serve -l 8787 .",
     "test": "npm run typecheck && npm run build && npm run check:product-demo && npm run check:volunteering && npm run check:footers && npm run check:downloads && npm run check:seo",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "npm run build && wrangler deploy",
+    "build:partials": "node scripts/build-partials.mjs"
   },
   "dependencies": {
     "typescript": "^5.7.2"

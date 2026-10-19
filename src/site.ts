@@ -241,7 +241,6 @@ function initDonationModal(): void {
   if (!modal) return;
 
   const iframe = modal.querySelector<HTMLIFrameElement>("#haWidgetLight");
-  const openers = queryAll<HTMLButtonElement>("[data-donate-open]");
   let lastFocused: HTMLElement | null = null;
 
   const isOpen = (): boolean => !modal.hasAttribute("hidden");
@@ -269,9 +268,11 @@ function initDonationModal(): void {
     lastFocused?.focus();
   };
 
-  openers.forEach((button) =>
-    button.addEventListener("click", () => openModal(button)),
-  );
+  // Delegated, because the footer (which holds a Donate button) can load after this runs.
+  document.addEventListener("click", (event) => {
+    const opener = (event.target as Element | null)?.closest<HTMLButtonElement>("[data-donate-open]");
+    if (opener) openModal(opener);
+  });
   Array.from(modal.querySelectorAll<HTMLButtonElement>("[data-donate-close]")).forEach((closer) =>
     closer.addEventListener("click", closeModal),
   );

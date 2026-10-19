@@ -56,9 +56,25 @@ if (footerPartialMatches.length !== 1) {
   );
 }
 
+// Pages may instead carry the partials inlined at build time between marker
+// comments (scripts/build-partials.mjs); the copy must match the partial exactly.
+const inlinedPattern = (name) =>
+  new RegExp(`<!-- partial:${name} -->\\n([\\s\\S]*?)\\s*<!-- /partial:${name} -->`, "g");
+const partialHtml = { header: headerPartialHtml.trim(), footer: footerPartialHtml.trim() };
+
 for (const file of htmlFiles) {
   const relativePath = relative(root, file);
-  const html = readFileSync(file, "utf8");
+  let html = readFileSync(file, "utf8");
+  const inlined = { header: 0, footer: 0 };
+  for (const name of ["header", "footer"]) {
+    html = html.replace(inlinedPattern(name), (_match, content) => {
+      inlined[name] += 1;
+      if (content.trim() !== partialHtml[name]) {
+        errors.push(`${relativePath}: inlined ${name} is out of date; run npm run build:partials`);
+      }
+      return "";
+    });
+  }
   const headers = [...html.matchAll(headerPattern)];
   const headerIncludes = [...html.matchAll(headerIncludePattern)];
   const footers = [...html.matchAll(footerPattern)];
@@ -68,7 +84,7 @@ for (const file of htmlFiles) {
     errors.push(`${relativePath}: expected 0 copied site headers, found ${headers.length}`);
   }
 
-  if (headerIncludes.length !== 1) {
+  if (headerIncludes.length + inlined.header !== 1) {
     errors.push(
       `${relativePath}: expected 1 header include pointing to /partials/header.html, found ${headerIncludes.length}`,
     );
@@ -78,7 +94,7 @@ for (const file of htmlFiles) {
     errors.push(`${relativePath}: expected 0 copied site footers, found ${footers.length}`);
   }
 
-  if (footerIncludes.length !== 1) {
+  if (footerIncludes.length + inlined.footer !== 1) {
     errors.push(
       `${relativePath}: expected 1 footer include pointing to /partials/footer.html, found ${footerIncludes.length}`,
     );
@@ -91,5 +107,5 @@ if (errors.length > 0) {
 }
 
 console.log(
-  `Checked ${htmlFiles.length} HTML pages: each points to header and footer partials.`,
+  `Checked ${htmlFiles.length} HTML pages: each uses the shared header and footer partials.`,
 );
