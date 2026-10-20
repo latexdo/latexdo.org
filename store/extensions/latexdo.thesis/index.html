@@ -82,27 +82,170 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Template · Templates</p>
-        <h1>Thesis and Dissertation</h1>
-        <p class="lx-lede">A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-blue is-word" aria-hidden="true">PhD</span>
+        <div class="store-product-text">
+          <h1>Thesis and Dissertation</h1>
+          <p class="store-product-sub">Template · Templates</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Template: Thesis or Dissertation</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>thesis</li><li>dissertation</li><li>phd</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.thesis</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Templates</dd><dd class="store-fact-note">Template</dd></div>
+        <div><dt>Includes</dt><dd>1 template</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Preview</h2>
+        <p class="store-section-lede">Two-sided report with title page, front matter, contents, chapters, theorem environments and an appendix.</p>
+        
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>main.tex</figcaption>
+            <pre><code>\documentclass[11pt,a4paper,twoside,openright]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,inner=3cm,outer=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{setspace}
+\onehalfspacing
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{definition}[theorem]{Definition}
+
+\title{Thesis Title}
+\author{Your Name}
+\date{Month Year}
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{3cm}
+  {\Huge\bfseries Thesis Title\par}
+  \vspace{1.5cm}
+  {\Large Your Name\par}
+  \vfill
+  A thesis submitted for the degree of\\
+  \emph{Doctor of Philosophy}\\[1em]
+  Department, University\\
+  Month Year
+\end{titlepage}
+
+\pagenumbering{roman}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Summarise the question, the approach and the main findings of the thesis.
+
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+Thank the people and funders who supported this work.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+\label{ch:introduction}
+State the research questions and the structure of the thesis.
+
+\section{Contributions}
+\begin{enumerate}
+  \item The first contribution, presented in \cref{ch:background}.
+  \item The second contribution.
+\end{enumerate}
+
+\chapter{Background}
+\label{ch:background}
+\begin{definition}
+  A precise definition used throughout the thesis.
+\end{definition}
+
+\chapter{Conclusion}
+\label{ch:conclusion}
+Answer the research questions and describe future work.
+
+\appendix
+\chapter{Additional Material}
+Supplementary proofs, tables and figures.
+
+\end{document}</code></pre>
+          </figure>
+      </section>
+      <section class="store-section reveal"><h2>What it adds</h2><ul class="lx-list"><li>Template: Thesis or Dissertation</li></ul></section>
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>thesis</li><li>dissertation</li><li>phd</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Templates</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.thesis</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">More in Templates</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="ieee conference paper an ieee two-column conference paper with authors, keywords, a results table and ieee references, ready to submit. templates template ieee conference paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">IEEE</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.ieee-conference/">IEEE Conference Paper</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="acm article an acm sigconf article in anonymous review mode with affiliations, keywords and acm references, one switch from camera-ready. templates template acm sigconf paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">ACM</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.acm-article/">ACM Article</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="academic cv a clean one-column academic cv with education, appointments, numbered publications, grants, teaching and service sections. templates template cv resume career">
+            <span class="store-icon  tint-blue" aria-hidden="true">CV</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.academic-cv/">Academic CV</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A clean one-column academic CV with education, appointments, numbered publications, grants, teaching and service sections.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install Thesis and Dissertation</h2>
         <p>In LatexDo, open the Extensions view, find Thesis and Dissertation and choose Install. It is free.</p>
@@ -115,5 +258,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

@@ -62,15 +62,17 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
+      <header class="lx-hero store-hero">
         <p class="lx-label">Store</p>
         <h1>Templates and snippets for every kind of paper.</h1>
         <p class="lx-lede">
@@ -80,151 +82,183 @@
           algorithms, math, chemistry, code and revisions. Everything is free.
         </p>
       </header>
-      <section class="lx-rows" aria-label="Extensions">
+      <div class="store-toolbar" data-store-toolbar>
+        <label class="store-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+          <span class="visually-hidden">Search the store</span>
+          <input type="search" placeholder="Search" autocomplete="off" data-store-search />
+        </label>
+        <div class="store-segments" role="radiogroup" aria-label="Category" data-segments>
+          <span class="store-segments-thumb" aria-hidden="true" data-segments-thumb></span>
+          <button type="button" role="radio" aria-checked="true" data-segment="all">All</button>
+          <button type="button" role="radio" aria-checked="false" data-segment="templates">Templates</button>
+          <button type="button" role="radio" aria-checked="false" data-segment="writing">Writing</button>
+          <button type="button" role="radio" aria-checked="false" data-segment="graphics">Figures and tables</button>
+          <button type="button" role="radio" aria-checked="false" data-segment="checking">Checking</button>
+          <button type="button" role="radio" aria-checked="false" data-segment="workflow">Workflow</button>
+        </div>
+      </div>
 
-        <article class="lx-row reveal">
-          <span class="lx-num">01</span>
-          <h2><a href="/store/extensions/latexdo.algorithms/">Algorithms</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Writing</p>
-            <p>Pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>algorithms</li><li>pseudocode</li><li>computer-science</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.algorithms/" aria-label="View Algorithms">View snippet pack</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">02</span>
-          <h2><a href="/store/extensions/latexdo.math-writing/">Math Writing</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Writing</p>
-            <p>Theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>math</li><li>theorems</li><li>proofs</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.math-writing/" aria-label="View Math Writing">View snippet pack</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">03</span>
-          <h2><a href="/store/extensions/latexdo.units-chemistry/">Units and Chemistry</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Writing</p>
-            <p>Correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>siunitx</li><li>chemistry</li><li>units</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.units-chemistry/" aria-label="View Units and Chemistry">View snippet pack</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">04</span>
-          <h2><a href="/store/extensions/latexdo.code-listings/">Code Listings</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Writing</p>
-            <p>Readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>code</li><li>listings</li><li>software</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.code-listings/" aria-label="View Code Listings">View snippet pack</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">05</span>
-          <h2><a href="/store/extensions/latexdo.paper-statements/">Paper Statements</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Checking</p>
-            <p>The statements journals now require: data and code availability, author contributions (CRediT), funding, conflicts and ethics, plus a reproducibility checklist.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>reproducibility</li><li>open-science</li><li>submission</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.paper-statements/" aria-label="View Paper Statements">View snippet pack</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">06</span>
-          <h2><a href="/store/extensions/latexdo.plots/">Plots and Figures</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Figures and tables</p>
-            <p>pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper&#39;s fonts, with no image export step.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>pgfplots</li><li>charts</li><li>figures</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.plots/" aria-label="View Plots and Figures">View snippet pack</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">07</span>
-          <h2><a href="/store/extensions/latexdo.publication-tables/">Publication Tables</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Figures and tables</p>
-            <p>Journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>tables</li><li>booktabs</li><li>siunitx</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.publication-tables/" aria-label="View Publication Tables">View snippet pack</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">08</span>
-          <h2><a href="/store/extensions/latexdo.ieee-conference/">IEEE Conference Paper</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Templates</p>
-            <p>An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>ieee</li><li>conference</li><li>paper</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.ieee-conference/" aria-label="View IEEE Conference Paper">View template</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">09</span>
-          <h2><a href="/store/extensions/latexdo.acm-article/">ACM Article</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Templates</p>
-            <p>An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>acm</li><li>sigconf</li><li>paper</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.acm-article/" aria-label="View ACM Article">View template</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">10</span>
-          <h2><a href="/store/extensions/latexdo.thesis/">Thesis and Dissertation</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Templates</p>
-            <p>A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>thesis</li><li>dissertation</li><li>phd</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.thesis/" aria-label="View Thesis and Dissertation">View template</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">11</span>
-          <h2><a href="/store/extensions/latexdo.academic-cv/">Academic CV</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Templates</p>
-            <p>A clean one-column academic CV with education, appointments, numbered publications, grants, teaching and service sections.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>cv</li><li>resume</li><li>career</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.academic-cv/" aria-label="View Academic CV">View template</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">12</span>
-          <h2><a href="/store/extensions/latexdo.research-poster/">Research Poster</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Templates</p>
-            <p>An A0 portrait conference poster built with tikzposter: title banner, two columns of blocks, an equation and a results table.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>poster</li><li>conference</li><li>a0</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.research-poster/" aria-label="View Research Poster">View template</a>
-          </div>
-        </article>
-
-        <article class="lx-row reveal">
-          <span class="lx-num">13</span>
-          <h2><a href="/store/extensions/latexdo.review-revision/">Review and Revision</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">Workflow</p>
-            <p>Tools for co-writing and revising: visible added, deleted and replaced text, to-do notes, placeholder figures and reviewer response blocks.</p>
-            <ul class="lx-tags" aria-label="Tags"><li>revision</li><li>review</li><li>collaboration</li></ul>
-            <a class="lx-arrow" href="/store/extensions/latexdo.review-revision/" aria-label="View Review and Revision">View snippet pack</a>
-          </div>
-        </article>
+      <section class="store-shelf" data-store-shelf="templates" aria-labelledby="shelf-templates">
+        <h2 id="shelf-templates">Templates</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="ieee conference paper an ieee two-column conference paper with authors, keywords, a results table and ieee references, ready to submit. templates template ieee conference paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">IEEE</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.ieee-conference/">IEEE Conference Paper</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="acm article an acm sigconf article in anonymous review mode with affiliations, keywords and acm references, one switch from camera-ready. templates template acm sigconf paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">ACM</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.acm-article/">ACM Article</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="thesis and dissertation a thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix. templates template thesis dissertation phd">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">PhD</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.thesis/">Thesis and Dissertation</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="academic cv a clean one-column academic cv with education, appointments, numbered publications, grants, teaching and service sections. templates template cv resume career">
+            <span class="store-icon  tint-blue" aria-hidden="true">CV</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.academic-cv/">Academic CV</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A clean one-column academic CV with education, appointments, numbered publications, grants, teaching and service sections.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="research poster an a0 portrait conference poster built with tikzposter: title banner, two columns of blocks, an equation and a results table. templates template poster conference a0">
+            <span class="store-icon  tint-blue" aria-hidden="true">A0</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.research-poster/">Research Poster</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An A0 portrait conference poster built with tikzposter: title banner, two columns of blocks, an equation and a results table.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
       </section>
+
+      <section class="store-shelf" data-store-shelf="writing" aria-labelledby="shelf-writing">
+        <h2 id="shelf-writing">Writing</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="algorithms pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments. writing snippet pack algorithms pseudocode computer-science">
+            <span class="store-icon  tint-orange is-word" aria-hidden="true">for</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.algorithms/">Algorithms</a></h3>
+              <p class="store-card-sub">Snippet pack · 3 snippets</p>
+              <p class="store-card-desc">Pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="math writing theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly. writing snippet pack math theorems proofs">
+            <span class="store-icon  tint-orange" aria-hidden="true">∑</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.math-writing/">Math Writing</a></h3>
+              <p class="store-card-sub">Snippet pack · 8 snippets</p>
+              <p class="store-card-desc">Theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="units and chemistry correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig. writing snippet pack siunitx chemistry units">
+            <span class="store-icon  tint-orange is-word" aria-hidden="true">H₂O</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.units-chemistry/">Units and Chemistry</a></h3>
+              <p class="store-card-sub">Snippet pack · 6 snippets</p>
+              <p class="store-card-desc">Correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="code listings readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input. writing snippet pack code listings software">
+            <span class="store-icon  tint-orange is-word" aria-hidden="true">{ }</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.code-listings/">Code Listings</a></h3>
+              <p class="store-card-sub">Snippet pack · 4 snippets</p>
+              <p class="store-card-desc">Readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="store-shelf" data-store-shelf="graphics" aria-labelledby="shelf-graphics">
+        <h2 id="shelf-graphics">Figures and tables</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="graphics"
+            data-search="plots and figures pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper&#39;s fonts, with no image export step. figures and tables snippet pack pgfplots charts figures">
+            <span class="store-icon  tint-green" aria-hidden="true">∿</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.plots/">Plots and Figures</a></h3>
+              <p class="store-card-sub">Snippet pack · 5 snippets</p>
+              <p class="store-card-desc">pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper&#39;s fonts, with no image export step.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="graphics"
+            data-search="publication tables journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables. figures and tables snippet pack tables booktabs siunitx">
+            <span class="store-icon  tint-green" aria-hidden="true">▦</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.publication-tables/">Publication Tables</a></h3>
+              <p class="store-card-sub">Snippet pack · 5 snippets</p>
+              <p class="store-card-desc">Journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="store-shelf" data-store-shelf="checking" aria-labelledby="shelf-checking">
+        <h2 id="shelf-checking">Checking</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="checking"
+            data-search="paper statements the statements journals now require: data and code availability, author contributions (credit), funding, conflicts and ethics, plus a reproducibility checklist. checking snippet pack reproducibility open-science submission">
+            <span class="store-icon  tint-purple" aria-hidden="true">✓</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.paper-statements/">Paper Statements</a></h3>
+              <p class="store-card-sub">Snippet pack · 7 snippets</p>
+              <p class="store-card-desc">The statements journals now require: data and code availability, author contributions (CRediT), funding, conflicts and ethics, plus a reproducibility checklist.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="store-shelf" data-store-shelf="workflow" aria-labelledby="shelf-workflow">
+        <h2 id="shelf-workflow">Workflow</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="workflow"
+            data-search="review and revision tools for co-writing and revising: visible added, deleted and replaced text, to-do notes, placeholder figures and reviewer response blocks. workflow snippet pack revision review collaboration">
+            <span class="store-icon  tint-pink" aria-hidden="true">±</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.review-revision/">Review and Revision</a></h3>
+              <p class="store-card-sub">Snippet pack · 9 snippets</p>
+              <p class="store-card-desc">Tools for co-writing and revising: visible added, deleted and replaced text, to-do notes, placeholder figures and reviewer response blocks.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
+      <p class="store-empty" data-store-empty hidden>No extensions match your search.</p>
       <section class="lx-close reveal" aria-labelledby="store-close">
         <h2 id="store-close">Install from LatexDo</h2>
         <p>Open the Extensions view in LatexDo, pick a pack and choose Install. Templates appear when you create a project; snippets appear as you type.</p>
@@ -237,5 +271,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

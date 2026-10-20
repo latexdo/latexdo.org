@@ -82,27 +82,169 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Template · Templates</p>
-        <h1>IEEE Conference Paper</h1>
-        <p class="lx-lede">An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-blue is-word" aria-hidden="true">IEEE</span>
+        <div class="store-product-text">
+          <h1>IEEE Conference Paper</h1>
+          <p class="store-product-sub">Template · Templates</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Template: IEEE Conference Paper</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>ieee</li><li>conference</li><li>paper</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.ieee-conference</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Templates</dd><dd class="store-fact-note">Template</dd></div>
+        <div><dt>Includes</dt><dd>1 template</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Preview</h2>
+        <p class="store-section-lede">Two-column IEEEtran paper with author blocks, keywords, a booktabs results table and IEEE-style references.</p>
+        
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>main.tex</figcaption>
+            <pre><code>\documentclass[conference]{IEEEtran}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\title{Paper Title: A Short, Specific Claim}
+
+\author{
+  \IEEEauthorblockN{First Author}
+  \IEEEauthorblockA{Department, University\\
+  City, Country\\
+  first.author@example.org}
+  \and
+  \IEEEauthorblockN{Second Author}
+  \IEEEauthorblockA{Department, University\\
+  City, Country\\
+  second.author@example.org}
+}
+
+\maketitle
+
+\begin{abstract}
+State the problem, the approach, the main result with a number, and why it matters, in about 150 words.
+\end{abstract}
+
+\begin{IEEEkeywords}
+first keyword, second keyword, third keyword
+\end{IEEEkeywords}
+
+\section{Introduction}
+Motivate the problem and list the contributions.
+
+\begin{itemize}
+  \item The first contribution.
+  \item The second contribution.
+\end{itemize}
+
+\section{Related Work}
+Position the paper against prior work~\cite{example2024}.
+
+\section{Method}
+\label{sec:method}
+Describe the approach. Equations are numbered:
+\begin{equation}
+  \mathcal{L}(\theta) = \sum_{i=1}^{n} \ell\bigl(f_\theta(x_i), y_i\bigr).
+  \label{eq:loss}
+\end{equation}
+
+\section{Experiments}
+\begin{table}[t]
+  \centering
+  \caption{Main results. Best in bold.}
+  \label{tab:results}
+  \begin{tabular}{lcc}
+    \toprule
+    Method &amp; Accuracy (\%) &amp; Time (s) \\
+    \midrule
+    Baseline &amp; 81.2 &amp; 12.4 \\
+    Ours &amp; \textbf{86.9} &amp; \textbf{9.1} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Table~\ref{tab:results} summarises the results.
+
+\section{Conclusion}
+Summarise the findings and the limits.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}</code></pre>
+          </figure>
+      </section>
+      <section class="store-section reveal"><h2>What it adds</h2><ul class="lx-list"><li>Template: IEEE Conference Paper</li></ul></section>
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>ieee</li><li>conference</li><li>paper</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Templates</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.ieee-conference</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">More in Templates</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="acm article an acm sigconf article in anonymous review mode with affiliations, keywords and acm references, one switch from camera-ready. templates template acm sigconf paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">ACM</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.acm-article/">ACM Article</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="thesis and dissertation a thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix. templates template thesis dissertation phd">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">PhD</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.thesis/">Thesis and Dissertation</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="academic cv a clean one-column academic cv with education, appointments, numbered publications, grants, teaching and service sections. templates template cv resume career">
+            <span class="store-icon  tint-blue" aria-hidden="true">CV</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.academic-cv/">Academic CV</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A clean one-column academic CV with education, appointments, numbered publications, grants, teaching and service sections.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install IEEE Conference Paper</h2>
         <p>In LatexDo, open the Extensions view, find IEEE Conference Paper and choose Install. It is free.</p>
@@ -115,5 +257,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

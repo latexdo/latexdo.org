@@ -82,31 +82,194 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Snippet pack · Figures and tables</p>
-        <h1>Plots and Figures</h1>
-        <p class="lx-lede">pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper&#39;s fonts, with no image export step.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-green" aria-hidden="true">∿</span>
+        <div class="store-product-text">
+          <h1>Plots and Figures</h1>
+          <p class="store-product-sub">Snippet pack · Figures and tables</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Snippet: Line plot (pgfplots)</li>
-<li>Snippet: Grouped bar chart (pgfplots)</li>
-<li>Snippet: Scatter plot with error bars</li>
-<li>Snippet: Two plots side by side</li>
-<li>Snippet: Two-panel figure</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>pgfplots</li><li>charts</li><li>figures</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.plots</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Figures and tables</dd><dd class="store-fact-note">Snippet pack</dd></div>
+        <div><dt>Includes</dt><dd>5 snippets</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper&#39;s fonts, with no image export step.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Snippets</h2>
+        <p class="store-section-lede">Type a snippet's name in a .tex file and press Tab.</p>
+        <div class="store-snippets" data-snippets>
+          <div class="store-snippet-list" role="tablist" aria-label="Snippets">
+            <button type="button" role="tab" id="snippet-tab-0" aria-controls="snippet-0" aria-selected="true" tabindex="0">
+              <span>Line plot (pgfplots)</span>
+              <code>lineplot</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-1" aria-controls="snippet-1" aria-selected="false" tabindex="-1">
+              <span>Grouped bar chart (pgfplots)</span>
+              <code>barchart</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-2" aria-controls="snippet-2" aria-selected="false" tabindex="-1">
+              <span>Scatter plot with error bars</span>
+              <code>scatterplot</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-3" aria-controls="snippet-3" aria-selected="false" tabindex="-1">
+              <span>Two plots side by side</span>
+              <code>groupplot</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-4" aria-controls="snippet-4" aria-selected="false" tabindex="-1">
+              <span>Two-panel figure</span>
+              <code>subfigures</code>
+            </button>
+          </div>
+          <div class="store-snippet-panels">
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-0" aria-labelledby="snippet-tab-0">
+              <p>A line chart from inline coordinates with axis labels and a legend. Needs pgfplots.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>lineplot</figcaption>
+            <pre><code>\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=\linewidth, height=5cm,
+      xlabel={Epoch}, ylabel={Accuracy (\%)},
+      legend pos=south east, grid=major,
+    ]
+      \addplot+[mark=*] coordinates {(1,62) (2,71) (3,77) (4,80)};
+      \addlegendentry{Ours}
+      \addplot+[mark=square*] coordinates {(1,60) (2,66) (3,70) (4,72)};
+      \addlegendentry{Baseline}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Caption.}
+  \label{fig:plot}
+\end{figure}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-1" aria-labelledby="snippet-tab-1" data-inactive>
+              <p>Grouped bars per category with values on top. Needs pgfplots.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>barchart</figcaption>
+            <pre><code>\begin{figure}[t]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      ybar, bar width=10pt, width=\linewidth, height=5cm,
+      symbolic x coords={A,B,C}, xtick=data,
+      ylabel={Score}, nodes near coords, ymin=0,
+      legend style={at={(0.5,1.02)}, anchor=south, legend columns=-1},
+    ]
+      \addplot coordinates {(A,72) (B,64) (C,81)};
+      \addplot coordinates {(A,68) (B,59) (C,75)};
+      \legend{Ours,Baseline}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Caption.}
+  \label{fig:bars}
+\end{figure}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-2" aria-labelledby="snippet-tab-2" data-inactive>
+              <p>Points with symmetric y error bars. Needs pgfplots.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>scatterplot</figcaption>
+            <pre><code>\begin{tikzpicture}
+  \begin{axis}[xlabel={x}, ylabel={y}, width=0.9\linewidth]
+    \addplot+[only marks, error bars/.cd, y dir=both, y explicit]
+      coordinates {(1,2.1) +- (0,0.3) (2,3.9) +- (0,0.4) (3,6.2) +- (0,0.5)};
+  \end{axis}
+\end{tikzpicture}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-3" aria-labelledby="snippet-tab-3" data-inactive>
+              <p>Two axes sharing a style with groupplots. Needs the pgfplots groupplots library.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>groupplot</figcaption>
+            <pre><code>\begin{tikzpicture}
+  \begin{groupplot}[group style={group size=2 by 1, horizontal sep=1.5cm}, width=0.48\linewidth, height=4.5cm]
+    \nextgroupplot[title={Left}]
+    \addplot coordinates {(0,0) (1,1) (2,4)};
+    \nextgroupplot[title={Right}]
+    \addplot coordinates {(0,0) (1,2) (2,3)};
+  \end{groupplot}
+\end{tikzpicture}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-4" aria-labelledby="snippet-tab-4" data-inactive>
+              <p>Two images side by side with sub-captions. Needs subcaption and graphicx.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>subfigures</figcaption>
+            <pre><code>\begin{figure}[t]
+  \centering
+  \begin{subfigure}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{example-image-a}
+    \caption{Left panel.}
+    \label{fig:left}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{example-image-b}
+    \caption{Right panel.}
+    \label{fig:right}
+  \end{subfigure}
+  \caption{Overall caption.}
+  \label{fig:panels}
+\end{figure}</code></pre>
+          </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>pgfplots</li><li>charts</li><li>figures</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Figures and tables</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.plots</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">More in Figures and tables</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="graphics"
+            data-search="publication tables journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables. figures and tables snippet pack tables booktabs siunitx">
+            <span class="store-icon  tint-green" aria-hidden="true">▦</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.publication-tables/">Publication Tables</a></h3>
+              <p class="store-card-sub">Snippet pack · 5 snippets</p>
+              <p class="store-card-desc">Journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install Plots and Figures</h2>
         <p>In LatexDo, open the Extensions view, find Plots and Figures and choose Install. It is free.</p>
@@ -119,5 +282,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

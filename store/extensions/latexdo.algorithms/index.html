@@ -82,29 +82,157 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Snippet pack · Writing</p>
-        <h1>Algorithms</h1>
-        <p class="lx-lede">Pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-orange is-word" aria-hidden="true">for</span>
+        <div class="store-product-text">
+          <h1>Algorithms</h1>
+          <p class="store-product-sub">Snippet pack · Writing</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Snippet: Numbered algorithm</li>
-<li>Snippet: Procedure with a while loop</li>
-<li>Snippet: Function call in pseudocode</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>algorithms</li><li>pseudocode</li><li>computer-science</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.algorithms</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Writing</dd><dd class="store-fact-note">Snippet pack</dd></div>
+        <div><dt>Includes</dt><dd>3 snippets</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">Pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Snippets</h2>
+        <p class="store-section-lede">Type a snippet's name in a .tex file and press Tab.</p>
+        <div class="store-snippets" data-snippets>
+          <div class="store-snippet-list" role="tablist" aria-label="Snippets">
+            <button type="button" role="tab" id="snippet-tab-0" aria-controls="snippet-0" aria-selected="true" tabindex="0">
+              <span>Numbered algorithm</span>
+              <code>algorithm</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-1" aria-controls="snippet-1" aria-selected="false" tabindex="-1">
+              <span>Procedure with a while loop</span>
+              <code>procedure</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-2" aria-controls="snippet-2" aria-selected="false" tabindex="-1">
+              <span>Function call in pseudocode</span>
+              <code>algorithmfunction</code>
+            </button>
+          </div>
+          <div class="store-snippet-panels">
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-0" aria-labelledby="snippet-tab-0">
+              <p>An algorithm float with inputs, outputs and a loop. Needs algorithm and algpseudocode.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>algorithm</figcaption>
+            <pre><code>\begin{algorithm}[t]
+  \caption{Algorithm name}
+  \label{alg:main}
+  \begin{algorithmic}[1]
+    \Require input $x$
+    \Ensure output $y$
+    \State $y \gets 0$
+    \For{$i \gets 1$ \textbf{to} $n$}
+      \State $y \gets y + x_i$ \Comment{accumulate}
+    \EndFor
+    \State \Return $y$
+  \end{algorithmic}
+\end{algorithm}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-1" aria-labelledby="snippet-tab-1" data-inactive>
+              <p>A named procedure with a condition and a loop. Needs algpseudocode.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>procedure</figcaption>
+            <pre><code>\begin{algorithmic}[1]
+  \Procedure{Search}{$A, t$}
+    \State $lo \gets 1$, $hi \gets n$
+    \While{$lo \le hi$}
+      \State $m \gets \lfloor (lo + hi)/2 \rfloor$
+      \If{$A[m] = t$}
+        \State \Return $m$
+      \ElsIf{$A[m] &lt; t$}
+        \State $lo \gets m + 1$
+      \Else
+        \State $hi \gets m - 1$
+      \EndIf
+    \EndWhile
+    \State \Return \textsc{None}
+  \EndProcedure
+\end{algorithmic}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-2" aria-labelledby="snippet-tab-2" data-inactive>
+              <p>Calls a named routine inside a state line. Needs algpseudocode.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>algorithmfunction</figcaption>
+            <pre><code>\State $r \gets \Call{Routine}{arguments}$</code></pre>
+          </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>algorithms</li><li>pseudocode</li><li>computer-science</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Writing</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.algorithms</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">More in Writing</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="math writing theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly. writing snippet pack math theorems proofs">
+            <span class="store-icon  tint-orange" aria-hidden="true">∑</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.math-writing/">Math Writing</a></h3>
+              <p class="store-card-sub">Snippet pack · 8 snippets</p>
+              <p class="store-card-desc">Theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="units and chemistry correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig. writing snippet pack siunitx chemistry units">
+            <span class="store-icon  tint-orange is-word" aria-hidden="true">H₂O</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.units-chemistry/">Units and Chemistry</a></h3>
+              <p class="store-card-sub">Snippet pack · 6 snippets</p>
+              <p class="store-card-desc">Correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="code listings readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input. writing snippet pack code listings software">
+            <span class="store-icon  tint-orange is-word" aria-hidden="true">{ }</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.code-listings/">Code Listings</a></h3>
+              <p class="store-card-sub">Snippet pack · 4 snippets</p>
+              <p class="store-card-desc">Readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install Algorithms</h2>
         <p>In LatexDo, open the Extensions view, find Algorithms and choose Install. It is free.</p>
@@ -117,5 +245,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

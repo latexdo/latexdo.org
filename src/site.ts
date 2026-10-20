@@ -1,5 +1,6 @@
 import { initConsent } from "./consent.js";
 import { initProductDemo } from "./product-demo/index.js";
+import { Spring, VelocityTracker, project, reducedMotion, rubberband } from "./motion.js";
 
 interface DownloadFile {
   id: string;
@@ -208,6 +209,7 @@ function createSiteIcon(className: string, icon: string): HTMLSpanElement {
 
 async function initNavigation(): Promise<void> {
   await loadHeaderIncludes();
+  initHeaderEdge();
   initDonationModal();
 
   const toggle = query<HTMLButtonElement>("[data-nav-toggle]");
@@ -222,18 +224,59 @@ async function initNavigation(): Promise<void> {
     link.prepend(createSiteIcon("header-link-icon", icon));
   });
 
-  toggle.addEventListener("click", () => {
-    const open = !links.classList.contains("open");
-    links.classList.toggle("open", open);
-    toggle.setAttribute("aria-expanded", String(open));
+  // Wayfinding: the link for the section you are in stays highlighted.
+  const here = window.location.pathname;
+  queryAll<HTMLAnchorElement>(".nav-links a").forEach((link) => {
+    const path = link.getAttribute("href") ?? "";
+    if (path !== "/" && here.startsWith(path)) link.setAttribute("aria-current", "page");
   });
 
+  const setMenu = (open: boolean): void => {
+    links.classList.toggle("open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  };
+
+  toggle.addEventListener("click", () => setMenu(!links.classList.contains("open")));
+
   links.addEventListener("click", (event) => {
-    if ((event.target as HTMLElement).closest("a")) {
-      links.classList.remove("open");
-      toggle.setAttribute("aria-expanded", "false");
+    if ((event.target as HTMLElement).closest("a")) setMenu(false);
+  });
+
+  // Never trap the user: Escape or a tap outside closes the menu.
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && links.classList.contains("open")) {
+      setMenu(false);
+      toggle.focus();
     }
   });
+  document.addEventListener("pointerdown", (event) => {
+    const target = event.target as Node;
+    if (links.classList.contains("open") && !links.contains(target) && !toggle.contains(target)) {
+      setMenu(false);
+    }
+  });
+}
+
+/** The header is a floating material: its edge appears only once content scrolls under it. */
+function initHeaderEdge(): void {
+  const header = query<HTMLElement>("[data-header]");
+  if (!header) return;
+  let queued = false;
+  const update = (): void => {
+    queued = false;
+    header.classList.toggle("is-scrolled", window.scrollY > 4);
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true },
+  );
+  update();
 }
 
 function initDonationModal(): void {
@@ -255,30 +298,114 @@ function initDonationModal(): void {
     }
   };
 
-  const openModal = (opener: HTMLButtonElement): void => {
-    lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    modal.removeAttribute("hidden");
-    document.body.classList.add("donate-modal-open");
-    setWidgetSource(opener);
-    modal.querySelector<HTMLElement>(".donate-modal-close")?.focus();
-  };
+  const dialog = modal.querySelector<HTMLElement>(".donate-modal-dialog");
+  const grabber = modal.querySelector<HTMLElement>("[data-donate-grabber]");
+  // On phones the dialog is a bottom sheet that can be dragged away.
+  const sheetQuery = window.matchMedia("(max-width: 640px)");
+  const sheetOffset = new Spring(0, (y) => {
+    if (dialog) dialog.style.transform = y ? `translate3d(0, ${y}px, 0)` : "";
+    // The scrim fades with the sheet, so the page comes back as it goes away.
+    const height = dialog?.offsetHeight || 1;
+    modal.style.setProperty("--sheet-progress", String(Math.max(0, 1 - y / height)));
+  });
 
-  const closeModal = (): void => {
+  const finishClose = (): void => {
     modal.setAttribute("hidden", "");
+    modal.removeAttribute("data-state");
+    modal.style.removeProperty("--sheet-progress");
     document.body.classList.remove("donate-modal-open");
     lastFocused?.focus();
+  };
+
+  const openModal = (opener: HTMLButtonElement): void => {
+    lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    sheetOffset.set(0);
+    modal.removeAttribute("hidden");
+    // The dialog grows out of the button that opened it (a sheet keeps its bottom origin).
+    if (dialog && !sheetQuery.matches) {
+      const from = opener.getBoundingClientRect();
+      const box = dialog.getBoundingClientRect();
+      dialog.style.transformOrigin = `${from.left + from.width / 2 - box.left}px ${from.top + from.height / 2 - box.top}px`;
+    } else {
+      dialog?.style.removeProperty("transform-origin");
+    }
+    modal.dataset.state = "open";
+    document.body.classList.add("donate-modal-open");
+    setWidgetSource(opener);
+    modal.querySelector<HTMLElement>(".donate-modal-close")?.focus({ preventScroll: true });
+  };
+
+  const closeModal = (velocity = 0): void => {
+    if (!isOpen() || modal.dataset.state === "closing") return;
+    modal.dataset.state = "closing";
+    if (sheetQuery.matches && dialog && !reducedMotion()) {
+      // Leave the way it came in: down, continuing the finger's speed.
+      sheetOffset.to(dialog.offsetHeight + 24, { damping: 1, response: 0.3, velocity, onRest: finishClose });
+      return;
+    }
+    if (reducedMotion()) {
+      finishClose();
+      return;
+    }
+    window.setTimeout(() => {
+      if (modal.dataset.state === "closing") finishClose();
+    }, 200);
   };
 
   openers.forEach((button) =>
     button.addEventListener("click", () => openModal(button)),
   );
   Array.from(modal.querySelectorAll<HTMLButtonElement>("[data-donate-close]")).forEach((closer) =>
-    closer.addEventListener("click", closeModal),
+    closer.addEventListener("click", () => closeModal()),
   );
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && isOpen()) closeModal();
   });
+
+  if (!dialog || !grabber) return;
+  // Drag the sheet's top edge: it tracks the finger 1:1, resists upward, and on
+  // release a flick is projected forward to decide between closing and staying.
+  const tracker = new VelocityTracker();
+  let startY = 0;
+  let startOffset = 0;
+  let dragging = false;
+
+  grabber.addEventListener("pointerdown", (event) => {
+    if (!sheetQuery.matches || !isOpen()) return;
+    dragging = true;
+    grabber.setPointerCapture(event.pointerId);
+    // Grab the sheet where it is now, even mid-animation.
+    if (modal.dataset.state === "closing") modal.dataset.state = "open";
+    startOffset = sheetOffset.value;
+    startY = event.clientY;
+    sheetOffset.set(startOffset);
+    tracker.reset();
+    tracker.add(startOffset);
+  });
+
+  grabber.addEventListener("pointermove", (event) => {
+    if (!dragging) return;
+    const raw = startOffset + event.clientY - startY;
+    const offset = raw < 0 ? rubberband(raw, dialog.offsetHeight) : raw;
+    sheetOffset.set(offset);
+    tracker.add(offset);
+  });
+
+  const release = (): void => {
+    if (!dragging) return;
+    dragging = false;
+    const velocity = tracker.velocity();
+    const projected = sheetOffset.value + project(velocity, 0.99);
+    if (projected > dialog.offsetHeight / 2) {
+      closeModal(velocity);
+    } else {
+      // Settle back with a little bounce, because a flick preceded it.
+      sheetOffset.to(0, { damping: 0.8, response: 0.3, velocity });
+    }
+  };
+  grabber.addEventListener("pointerup", release);
+  grabber.addEventListener("pointercancel", release);
 }
 
 function initReveal(): void {
@@ -1129,50 +1256,93 @@ function initTheme(): void {
   });
 }
 
+// Partials are cached for the session, so the next page can show its header
+// and footer in the same frame as its content. Without this, a page would
+// first paint without them and they would pop in once fetched, which breaks
+// the seamless transition between pages.
+const partialCachePrefix = "latexdo:partial:";
+
+function readCachedPartial(source: string): string | null {
+  try {
+    return sessionStorage.getItem(partialCachePrefix + source);
+  } catch {
+    return null;
+  }
+}
+
+function writeCachedPartial(source: string, html: string): void {
+  try {
+    sessionStorage.setItem(partialCachePrefix + source, html);
+  } catch {
+    // Storage can be full or blocked; the partial is simply fetched next time.
+  }
+}
+
+const partialSources: Array<[string, string, string]> = [
+  ["data-header-src", "/partials/header.html", 'class="site-header"'],
+  ["data-footer-src", "/partials/footer.html", 'class="site-footer"'],
+];
+
+/** Swap placeholders for cached partials synchronously, before the first paint. */
+function injectCachedPartials(): void {
+  for (const [attribute, defaultSource, requiredHtml] of partialSources) {
+    for (const placeholder of queryAll<HTMLElement>(`[${attribute}]`)) {
+      const html = readCachedPartial(placeholder.getAttribute(attribute) || defaultSource);
+      if (html?.includes(requiredHtml)) placeholder.outerHTML = html;
+    }
+  }
+}
+
+async function fetchPartial(source: string, requiredHtml: string): Promise<string | null> {
+  const fallbackSource = source.endsWith(".html") ? source.slice(0, -".html".length) : `${source}.html`;
+
+  // The host serves partials without ".html" and redirects the long form,
+  // so the short form is tried first to save a round trip.
+  const candidates = source.endsWith(".html") ? [fallbackSource, source] : [source, fallbackSource];
+
+  for (const candidate of candidates) {
+    try {
+      const response = await fetch(candidate);
+      if (!response.ok) continue;
+      const includeHtml = (await response.text()).trim();
+      if (includeHtml.includes(requiredHtml)) {
+        writeCachedPartial(source, includeHtml);
+        return includeHtml;
+      }
+    } catch {
+      // A later candidate may still work.
+    }
+  }
+  return null;
+}
+
 async function loadHtmlIncludes(
   sourceAttribute: string,
   defaultSource: string,
   requiredHtml: string,
 ): Promise<void> {
   const placeholders = queryAll<HTMLElement>(`[${sourceAttribute}]`);
-  if (!placeholders.length) return;
+  if (!placeholders.length) {
+    // Already shown from the cache: refresh the cache for the next page.
+    void fetchPartial(defaultSource, requiredHtml);
+    return;
+  }
 
   await Promise.all(
     placeholders.map(async (placeholder) => {
-      const source = placeholder.getAttribute(sourceAttribute) || defaultSource;
-      const fallbackSource = source.endsWith(".html")
-        ? source.slice(0, -".html".length)
-        : `${source}.html`;
-
-      // The host serves partials without ".html" and redirects the long form,
-      // so the short form is tried first to save a round trip.
-      const candidates = source.endsWith(".html")
-        ? [fallbackSource, source]
-        : [source, fallbackSource];
-
-      for (const candidate of candidates) {
-        try {
-          const response = await fetch(candidate);
-          if (!response.ok) continue;
-          const includeHtml = (await response.text()).trim();
-          if (includeHtml.includes(requiredHtml)) {
-            placeholder.outerHTML = includeHtml;
-            return;
-          }
-        } catch {
-          // Keep the placeholder in the page; a later candidate may still work.
-        }
-      }
+      const html = await fetchPartial(placeholder.getAttribute(sourceAttribute) || defaultSource, requiredHtml);
+      // Keep the placeholder in the page if every candidate failed.
+      if (html) placeholder.outerHTML = html;
     }),
   );
 }
 
 function loadHeaderIncludes(): Promise<void> {
-  return loadHtmlIncludes("data-header-src", "/partials/header.html", 'class="site-header"');
+  return loadHtmlIncludes(...partialSources[0]);
 }
 
 function loadFooterIncludes(): Promise<void> {
-  return loadHtmlIncludes("data-footer-src", "/partials/footer.html", 'class="site-footer"');
+  return loadHtmlIncludes(...partialSources[1]);
 }
 
 async function initFooter(): Promise<void> {
@@ -1197,6 +1367,52 @@ async function initFooter(): Promise<void> {
 
     link.prepend(createSiteIcon("footer-link-icon", icon));
   });
+  initFooterSections();
+}
+
+/**
+ * On phones the footer's link groups collapse into sections that open on tap,
+ * as on apple.com, so the page doesn't end with a long wall of links. On
+ * wider screens every group stays open and the headings are plain text.
+ */
+function initFooterSections(): void {
+  const phone = window.matchMedia("(max-width: 640px)");
+  const groups = queryAll<HTMLElement>(".footer-grid > div").filter(
+    (group) => group.querySelector(":scope > h5") && group.querySelector(":scope > nav"),
+  );
+
+  groups.forEach((group, index) => {
+    const nav = group.querySelector<HTMLElement>(":scope > nav");
+    if (nav) nav.id ||= `footer-section-${index}`;
+  });
+
+  // Headings become buttons only on phones; elsewhere they stay plain text.
+  const sync = (): void => {
+    for (const group of groups) {
+      const heading = group.querySelector<HTMLElement>(":scope > h5");
+      const nav = group.querySelector<HTMLElement>(":scope > nav");
+      if (!heading || !nav) continue;
+      const button = heading.querySelector<HTMLButtonElement>(".footer-section-toggle");
+      if (phone.matches && !button) {
+        const toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "footer-section-toggle";
+        toggle.setAttribute("aria-controls", nav.id);
+        toggle.setAttribute("aria-expanded", String(group.classList.contains("is-open")));
+        toggle.append(...Array.from(heading.childNodes));
+        heading.append(toggle);
+        toggle.addEventListener("click", () => {
+          const open = toggle.getAttribute("aria-expanded") !== "true";
+          toggle.setAttribute("aria-expanded", String(open));
+          group.classList.toggle("is-open", open);
+        });
+      } else if (!phone.matches && button) {
+        heading.replaceChildren(...Array.from(button.childNodes));
+      }
+    }
+  };
+  phone.addEventListener("change", sync);
+  sync();
 }
 
 // Public Turnstile site key from the Cloudflare dashboard (Turnstile > Add widget).
@@ -1309,7 +1525,51 @@ function initEmailReveal(): void {
   });
 }
 
+/**
+ * Moving between pages should feel like one app, not a reload. Supporting
+ * browsers prerender a same-site page as soon as the pointer rests on its link
+ * (or a finger touches it), so it is ready the moment the click lands; the
+ * cross-document view transition in style.css then blends the two pages.
+ */
+function initInstantNavigation(): void {
+  if (!HTMLScriptElement.supports?.("speculationrules")) return;
+  const rules = document.createElement("script");
+  rules.type = "speculationrules";
+  rules.textContent = JSON.stringify({
+    prerender: [
+      {
+        where: {
+          and: [
+            { href_matches: "/*" },
+            // Never prerender files, feeds or the API: only pages.
+            {
+              not: {
+                href_matches: [
+                  "/api/*",
+                  "/*.dmg",
+                  "/*.exe",
+                  "/*.AppImage",
+                  "/*.zip",
+                  "/*.json",
+                  "/*.xml",
+                  "/*.csv",
+                  "/*.txt",
+                  "/*.pem",
+                ],
+              },
+            },
+            { not: { selector_matches: "[download], [target=_blank], [rel~=nofollow]" } },
+          ],
+        },
+        eagerness: "moderate",
+      },
+    ],
+  });
+  document.head.append(rules);
+}
+
 function init(): void {
+  initInstantNavigation();
   initConsent();
   initEmailReveal();
   void initNavigation();
@@ -1325,6 +1585,8 @@ function init(): void {
   initTheme();
   void initFooter();
 }
+
+injectCachedPartials();
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init, { once: true });

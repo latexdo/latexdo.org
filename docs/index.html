@@ -67,6 +67,7 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -83,13 +84,16 @@
         </p>
       </header>
 
+      <div class="docs-layout">
       <nav class="docs-bar" aria-label="Documentation topics">
         <label class="docs-filter" data-nav-search>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
           <span class="visually-hidden">Filter topics</span>
           <input id="docs-search" type="search" placeholder="Filter topics" autocomplete="off" />
         </label>
+        <p class="docs-topics-title">Topics</p>
         <div class="docs-topics">
+          <span class="docs-topics-thumb" aria-hidden="true" data-topics-thumb></span>
           <a class="toc-link" href="#install">Install</a>
           <a class="toc-link" href="#first-project">First project</a>
           <a class="toc-link" href="#writing">Writing</a>
@@ -398,6 +402,7 @@ npm run dev</code></pre>
       </article>
 
       <p class="docs-empty" hidden data-docs-empty>No topic matches your filter.</p>
+      </div>
 
       <section class="lx-close" aria-labelledby="docs-close-title">
         <h2 id="docs-close-title">Ready to write?</h2>

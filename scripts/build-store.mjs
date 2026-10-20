@@ -16,12 +16,13 @@ const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
 })[char]);
 
+// Also the order of the store's shelves: templates first, as most people start there.
 const categories = {
+  templates: "Templates",
   writing: "Writing",
+  graphics: "Figures and tables",
   checking: "Checking",
   bibliography: "Bibliography",
-  graphics: "Figures and tables",
-  templates: "Templates",
   workflow: "Workflow",
 };
 
@@ -111,6 +112,9 @@ function page(path, title, description, content, graph) {
     jsonld: jsonLd(graph),
   };
   return template.replace("<!doctype html>", `<!doctype html>\n${marker}`)
+    .replace("</head>", `  <link rel="stylesheet" href="/assets/store.css" />\n  </head>`)
+    .replace('<main id="content" class="lx">', '<main id="content" class="lx store">')
+    .replace("</body>", `  <script type="module" src="/assets/store.js"></script>\n  </body>`)
     .replace(/\{\{(title|description|path|content|jsonld)\}\}/g, (_, key) => values[key]);
 }
 const list = (items) => `<ul class="lx-list">${items.map((item) => `<li>${escape(item)}</li>`).join("\n")}</ul>`;
@@ -141,16 +145,80 @@ function additions(extension) {
   return items;
 }
 
+// App icons: a glyph on a squircle tinted by category, like the App Store.
+const categoryTints = {
+  writing: "orange",
+  checking: "purple",
+  bibliography: "yellow",
+  graphics: "green",
+  templates: "blue",
+  workflow: "pink",
+};
+const glyphs = {
+  "latexdo.ieee-conference": "IEEE",
+  "latexdo.acm-article": "ACM",
+  "latexdo.thesis": "PhD",
+  "latexdo.academic-cv": "CV",
+  "latexdo.research-poster": "A0",
+  "latexdo.plots": "∿",
+  "latexdo.publication-tables": "▦",
+  "latexdo.algorithms": "for",
+  "latexdo.math-writing": "∑",
+  "latexdo.units-chemistry": "H₂O",
+  "latexdo.code-listings": "{ }",
+  "latexdo.paper-statements": "✓",
+  "latexdo.review-revision": "±",
+};
+const glyph = (extension) =>
+  glyphs[extension.id] ?? extension.name.split(/\s+/).map((word) => word[0]).join("").slice(0, 2);
+const icon = (extension, size = "") => {
+  const text = glyph(extension);
+  return `<span class="store-icon ${size} tint-${categoryTints[extension.category]}${text.length > 2 ? " is-word" : ""}" aria-hidden="true">${escape(text)}</span>`;
+};
+const includesLabel = (extension) => {
+  const contributes = extension.contributes ?? {};
+  const templates = contributes.templates?.length ?? 0;
+  const snippets = contributes.snippets?.length ?? 0;
+  const parts = [];
+  if (templates) parts.push(`${templates} template${templates === 1 ? "" : "s"}`);
+  if (snippets) parts.push(`${snippets} snippet${snippets === 1 ? "" : "s"}`);
+  return parts.join(", ") || "Settings";
+};
+
+/** Snippet bodies are stored in editor snippet syntax; show them as the LaTeX they insert. */
+const snippetText = (body) =>
+  String(body)
+    .replace(/\$\{\d+:((?:[^{}\\]|\\.)*)\}/g, "$1")
+    .replace(/\$\{\d+\}|\$\d+/g, "")
+    .replace(/\\([\\${}])/g, "$1");
+const codeWindow = (title, code, id) => `
+          <figure class="store-code" ${id ? `id="${id}"` : ""}>
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>${escape(title)}</figcaption>
+            <pre><code>${escape(code.trimEnd())}</code></pre>
+          </figure>`;
+
+/** A card that opens the extension page; the whole card is the link target. */
+const card = (extension) => `
+          <article class="store-card" data-store-card data-category="${escape(extension.category)}"
+            data-search="${escape([extension.name, extension.description, categories[extension.category], kindLabel(extension), ...(extension.tags ?? [])].join(" ").toLowerCase())}">
+            ${icon(extension)}
+            <div class="store-card-text">
+              <h3><a href="${extensionPath(extension)}">${escape(extension.name)}</a></h3>
+              <p class="store-card-sub">${kindLabel(extension)} · ${escape(includesLabel(extension))}</p>
+              <p class="store-card-desc">${escape(extension.description)}</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>`;
+
 const outputs = new Map();
 const indexDescription =
   "Free LatexDo templates and snippet packs: IEEE and ACM papers, thesis, CV, poster, plots, tables, algorithms, math and more.";
 const ordered = Object.keys(categories)
   .map((category) => [category, catalog.extensions.filter((extension) => extension.category === category)])
   .filter(([, extensions]) => extensions.length);
-let number = 0;
 
 outputs.set(join(directory, "index.html"), page("/store/", "Extension Store", indexDescription, `
-      <header class="lx-hero">
+      <header class="lx-hero store-hero">
         <p class="lx-label">Store</p>
         <h1>Templates and snippets for every kind of paper.</h1>
         <p class="lx-lede">
@@ -160,19 +228,25 @@ outputs.set(join(directory, "index.html"), page("/store/", "Extension Store", in
           algorithms, math, chemistry, code and revisions. Everything is free.
         </p>
       </header>
-      <section class="lx-rows" aria-label="Extensions">
-${ordered.flatMap(([, extensions]) => extensions).map((extension) => `
-        <article class="lx-row reveal">
-          <span class="lx-num">${String(++number).padStart(2, "0")}</span>
-          <h2><a href="${extensionPath(extension)}">${escape(extension.name)}</a></h2>
-          <div class="lx-row-body">
-            <p class="lx-label">${escape(categories[extension.category])}</p>
-            <p>${escape(extension.description)}</p>
-            ${tags(extension)}
-            <a class="lx-arrow" href="${extensionPath(extension)}" aria-label="View ${escape(extension.name)}">View ${kindLabel(extension).toLowerCase()}</a>
-          </div>
-        </article>`).join("\n")}
-      </section>
+      <div class="store-toolbar" data-store-toolbar>
+        <label class="store-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+          <span class="visually-hidden">Search the store</span>
+          <input type="search" placeholder="Search" autocomplete="off" data-store-search />
+        </label>
+        <div class="store-segments" role="radiogroup" aria-label="Category" data-segments>
+          <span class="store-segments-thumb" aria-hidden="true" data-segments-thumb></span>
+          <button type="button" role="radio" aria-checked="true" data-segment="all">All</button>
+${ordered.map(([category]) => `          <button type="button" role="radio" aria-checked="false" data-segment="${category}">${escape(categories[category])}</button>`).join("\n")}
+        </div>
+      </div>
+${ordered.map(([category, extensions]) => `
+      <section class="store-shelf" data-store-shelf="${category}" aria-labelledby="shelf-${category}">
+        <h2 id="shelf-${category}">${escape(categories[category])}</h2>
+        <div class="store-grid">${extensions.map(card).join("")}
+        </div>
+      </section>`).join("\n")}
+      <p class="store-empty" data-store-empty hidden>No extensions match your search.</p>
       <section class="lx-close reveal" aria-labelledby="store-close">
         <h2 id="store-close">Install from LatexDo</h2>
         <p>Open the Extensions view in LatexDo, pick a pack and choose Install. Templates appear when you create a project; snippets appear as you type.</p>
@@ -192,26 +266,91 @@ ${ordered.flatMap(([, extensions]) => extensions).map((extension) => `
   breadcrumb([["Home", "/"], ["Store", "/store/"]]),
 ]));
 
+/** Templates show their main file; snippet packs show each snippet in a tabbed preview. */
+function preview(extension) {
+  const contributes = extension.contributes ?? {};
+  const templates = contributes.templates ?? [];
+  const snippets = contributes.snippets ?? [];
+  if (templates.length) {
+    return `<section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Preview</h2>
+        ${templates.map((template) => `${template.summary ? `<p class="store-section-lede">${escape(template.summary)}</p>` : ""}
+        ${codeWindow("main.tex", template.mainTex ?? "")}`).join("")}
+      </section>`;
+  }
+  if (!snippets.length) return "";
+  return `<section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Snippets</h2>
+        <p class="store-section-lede">Type a snippet's name in a .tex file and press Tab.</p>
+        <div class="store-snippets" data-snippets>
+          <div class="store-snippet-list" role="tablist" aria-label="Snippets">
+${snippets.map((snippet, index) => `            <button type="button" role="tab" id="snippet-tab-${index}" aria-controls="snippet-${index}" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}">
+              <span>${escape(snippet.detail || snippet.label)}</span>
+              <code>${escape(snippet.label)}</code>
+            </button>`).join("\n")}
+          </div>
+          <div class="store-snippet-panels">
+${snippets.map((snippet, index) => `            <div class="store-snippet-panel" role="tabpanel" id="snippet-${index}" aria-labelledby="snippet-tab-${index}"${index ? " data-inactive" : ""}>
+              ${snippet.documentation ? `<p>${escape(snippet.documentation)}</p>` : ""}
+              ${codeWindow(snippet.label, snippetText(snippet.insertText ?? ""))}
+            </div>`).join("\n")}
+          </div>
+        </div>
+      </section>`;
+}
+
+/** "More in this category", like the App Store's related shelf. */
+function related(extension) {
+  const others = catalog.extensions.filter((other) => other.category === extension.category && other.id !== extension.id);
+  const shelf = (others.length ? others : catalog.extensions.filter((other) => other.id !== extension.id)).slice(0, 3);
+  if (!shelf.length) return "";
+  return `<section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">${others.length ? `More in ${escape(categories[extension.category])}` : "You might also like"}</h2>
+        <div class="store-grid">${shelf.map(card).join("")}
+        </div>
+      </section>`;
+}
+
 for (const extension of catalog.extensions) {
   const path = extensionPath(extension);
   const added = additions(extension);
   outputs.set(join(directory, "extensions", extension.id, "index.html"), page(
     path, extension.name, pageDescription(extension), `
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">${kindLabel(extension)} · ${escape(categories[extension.category])}</p>
-        <h1>${escape(extension.name)}</h1>
-        <p class="lx-lede">${escape(extension.description)}</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        ${icon(extension, "is-large")}
+        <div class="store-product-text">
+          <h1>${escape(extension.name)}</h1>
+          <p class="store-product-sub">${kindLabel(extension)} · ${escape(categories[extension.category])}</p>
+          <p class="store-product-by">${escape(extension.author)}</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        ${added.length ? `<section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body">${list(added)}</div></section>` : ""}
-        ${extension.tags?.length ? `<section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body">${tags(extension)}</div></section>` : ""}
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body">${list([
-          `Version ${extension.version}`,
-          `By ${extension.author}`,
-          `Identifier ${extension.id}`,
-        ])}</div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>${escape(categories[extension.category])}</dd><dd class="store-fact-note">${kindLabel(extension)}</dd></div>
+        <div><dt>Includes</dt><dd>${escape(includesLabel(extension))}</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>${escape(extension.version)}</dd><dd class="store-fact-note">${escape(extension.author)}</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">${escape(extension.description)}</p>
+      ${preview(extension)}
+      ${added.length && !extension.contributes?.snippets?.length ? `<section class="store-section reveal"><h2>What it adds</h2>${list(added)}</section>` : ""}
+      ${extension.tags?.length ? `<section class="store-section reveal"><h2>Tags</h2>${tags(extension)}</section>` : ""}
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>${escape(extension.author)}</dd></div>
+          <div><dt>Category</dt><dd>${escape(categories[extension.category])}</dd></div>
+          <div><dt>Version</dt><dd>${escape(extension.version)}</dd></div>
+          <div><dt>Identifier</dt><dd><code>${escape(extension.id)}</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      ${related(extension)}
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install ${escape(extension.name)}</h2>
         <p>In LatexDo, open the Extensions view, find ${escape(extension.name)} and choose Install. It is free.</p>

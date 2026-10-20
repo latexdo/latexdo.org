@@ -252,3 +252,219 @@
     white-space: normal;
   }
 }
+
+/* ---------- Apple-style refinements ----------
+   A floating material bar whose edge appears only once stuck, a selection
+   highlight that glides between topics (springs in docs.ts), and a sidebar
+   on wide screens, like Apple's developer documentation. */
+.docs-bar {
+  border-bottom-color: transparent;
+  background: rgb(251 251 253 / 80%);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: border-color 240ms ease;
+}
+
+.docs-bar.is-stuck {
+  border-bottom-color: var(--lx-line);
+}
+
+.docs-filter {
+  border: 0;
+  border-radius: 10px;
+  background: rgb(118 118 128 / 12%);
+  color: #8a8f98;
+}
+
+.docs-filter input {
+  font-size: 16px;
+}
+
+.docs-topics-title {
+  display: none;
+}
+
+.docs-topics {
+  position: relative;
+}
+
+.docs-topics a {
+  position: relative;
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.docs-topics-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  border-radius: 999px;
+  background: var(--lx-ink);
+  will-change: transform;
+}
+
+.docs-topics-thumb[data-axis="x"] {
+  height: 100%;
+  width: var(--size, 0);
+  transform: translateX(var(--start, 0));
+}
+
+.docs-topics-thumb[data-axis="y"] {
+  width: 100%;
+  height: var(--size, 0);
+  transform: translateY(var(--start, 0));
+}
+
+.docs-bar.is-ready .docs-topics-thumb:not([hidden]) {
+  display: block;
+}
+
+/* The glider replaces the per-link background once the script is running. */
+.docs-bar.is-ready .docs-topics a.active {
+  background: none;
+}
+
+.docs .lx-doc > section > h2 {
+  letter-spacing: -0.028em;
+}
+
+.docs kbd {
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow:
+    0 0 0 0.5px rgb(11 12 15 / 18%),
+    0 1px 0 rgb(11 12 15 / 18%);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  font-size: 0.82em;
+  font-weight: 500;
+}
+
+.docs-table {
+  border-radius: 14px;
+}
+
+.docs-code {
+  border-radius: 14px;
+  background: #1c1c1e;
+  box-shadow: 0 24px 60px -24px rgb(20 30 70 / 45%);
+}
+
+.docs-code-head button.is-done {
+  background: #30d158;
+  color: #0b0c0f;
+}
+
+@media (min-width: 1100px) {
+  .docs-layout {
+    display: grid;
+    align-items: start;
+    gap: 0 56px;
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .docs-bar {
+    top: 90px;
+    display: flex;
+    max-height: calc(100vh - 110px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    grid-row: 1 / span 2;
+  }
+
+  .docs-filter {
+    flex: 0 0 auto;
+    height: 34px;
+  }
+
+  .docs-topics-title {
+    display: block;
+    padding: 0 12px;
+    color: var(--lx-faint);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .docs-topics {
+    flex-direction: column;
+    gap: 1px;
+    margin-top: -8px;
+    overflow: hidden auto;
+    mask-image: none;
+    overscroll-behavior: contain;
+  }
+
+  .docs-topics a {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    white-space: normal;
+  }
+
+  .docs-topics a:hover {
+    background: none;
+    color: var(--lx-ink);
+  }
+
+  .docs-topics a.active {
+    color: var(--lx-blue);
+  }
+
+  .docs-bar:not(.is-ready) .docs-topics a.active {
+    background: rgb(31 95 224 / 10%);
+  }
+
+  .docs-topics-thumb {
+    border-radius: 8px;
+    background: rgb(31 95 224 / 10%);
+  }
+
+  .docs .lx-doc {
+    grid-column: 2;
+    border-bottom: 0;
+  }
+
+  .docs-empty {
+    grid-column: 2;
+  }
+
+  /* One reading column beside the sidebar: heading above its text. */
+  .docs .lx-doc > section {
+    display: block;
+    padding: 0 0 clamp(40px, 4vw, 56px);
+    margin-bottom: clamp(40px, 4vw, 56px);
+    border-top: 0;
+    border-bottom: 1px solid var(--lx-line);
+    scroll-margin-top: 96px;
+  }
+
+  .docs .lx-doc > section > h2 {
+    margin-bottom: 18px;
+    font-size: 32px;
+    letter-spacing: -0.03em;
+  }
+
+  .docs .lx-doc > section > :not(h2) {
+    max-width: 720px;
+  }
+
+  .docs .lx-doc > section > :not(h2) + :not(h2) {
+    margin-top: 16px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .docs-bar {
+    background: var(--page);
+  }
+}

@@ -32,6 +32,8 @@ const headerPattern = /<header class="site-header" data-header>[\s\S]*?<\/header
 const headerIncludePattern = /<div data-header-src="\/partials\/header\.html"><\/div>/g;
 const footerPattern = /<footer class="site-footer">[\s\S]*?<\/footer>/g;
 const footerIncludePattern = /<div data-footer-src="\/partials\/footer\.html"><\/div>/g;
+// Shows cached partials before the first paint, so page changes don't flash.
+const partialsScriptPattern = /<head>[\s\S]*<script src="\/assets\/partials\.js"><\/script>[\s\S]*<\/head>/;
 const headerPartial = join(root, "partials", "header.html");
 const footerPartial = join(root, "partials", "footer.html");
 const partials = new Set([headerPartial, footerPartial]);
@@ -82,6 +84,11 @@ for (const file of htmlFiles) {
     errors.push(
       `${relativePath}: expected 1 footer include pointing to /partials/footer.html, found ${footerIncludes.length}`,
     );
+  }
+
+  // Release pages are written by the desktop release workflow, not here.
+  if (!relativePath.startsWith("downloads/") && !partialsScriptPattern.test(html)) {
+    errors.push(`${relativePath}: expected <script src="/assets/partials.js"></script> in <head>`);
   }
 }
 

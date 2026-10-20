@@ -82,32 +82,166 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Snippet pack · Writing</p>
-        <h1>Units and Chemistry</h1>
-        <p class="lx-lede">Correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-orange is-word" aria-hidden="true">H₂O</span>
+        <div class="store-product-text">
+          <h1>Units and Chemistry</h1>
+          <p class="store-product-sub">Snippet pack · Writing</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Snippet: Number with unit</li>
-<li>Snippet: Formatted number</li>
-<li>Snippet: Range with unit</li>
-<li>Snippet: Chemical formula</li>
-<li>Snippet: Chemical reaction</li>
-<li>Snippet: Skeletal structure</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>siunitx</li><li>chemistry</li><li>units</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.units-chemistry</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Writing</dd><dd class="store-fact-note">Snippet pack</dd></div>
+        <div><dt>Includes</dt><dd>6 snippets</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">Correct numbers, units and ranges with siunitx, chemical formulas and reactions with mhchem, and skeletal structures with chemfig.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Snippets</h2>
+        <p class="store-section-lede">Type a snippet's name in a .tex file and press Tab.</p>
+        <div class="store-snippets" data-snippets>
+          <div class="store-snippet-list" role="tablist" aria-label="Snippets">
+            <button type="button" role="tab" id="snippet-tab-0" aria-controls="snippet-0" aria-selected="true" tabindex="0">
+              <span>Number with unit</span>
+              <code>quantity</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-1" aria-controls="snippet-1" aria-selected="false" tabindex="-1">
+              <span>Formatted number</span>
+              <code>number</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-2" aria-controls="snippet-2" aria-selected="false" tabindex="-1">
+              <span>Range with unit</span>
+              <code>quantityrange</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-3" aria-controls="snippet-3" aria-selected="false" tabindex="-1">
+              <span>Chemical formula</span>
+              <code>chemformula</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-4" aria-controls="snippet-4" aria-selected="false" tabindex="-1">
+              <span>Chemical reaction</span>
+              <code>reaction</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-5" aria-controls="snippet-5" aria-selected="false" tabindex="-1">
+              <span>Skeletal structure</span>
+              <code>structure</code>
+            </button>
+          </div>
+          <div class="store-snippet-panels">
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-0" aria-labelledby="snippet-tab-0">
+              <p>Typesets a value and its unit with correct spacing. Needs siunitx.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>quantity</figcaption>
+            <pre><code>\qty{9.81}{\metre\per\second\squared}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-1" aria-labelledby="snippet-tab-1" data-inactive>
+              <p>Groups digits and formats exponents. Needs siunitx.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>number</figcaption>
+            <pre><code>\num{1.2e-3}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-2" aria-labelledby="snippet-tab-2" data-inactive>
+              <p>A range such as 10 to 20 °C. Needs siunitx.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>quantityrange</figcaption>
+            <pre><code>\qtyrange{10}{20}{\degreeCelsius}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-3" aria-labelledby="snippet-tab-3" data-inactive>
+              <p>Formulas and ions with mhchem.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>chemformula</figcaption>
+            <pre><code>\ce{H2SO4}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-4" aria-labelledby="snippet-tab-4" data-inactive>
+              <p>A reaction with an arrow and conditions. Needs mhchem.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>reaction</figcaption>
+            <pre><code>\ce{2H2 + O2 -&gt;[catalyst] 2H2O}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-5" aria-labelledby="snippet-tab-5" data-inactive>
+              <p>A chemfig structural formula (ethanol shown).</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>structure</figcaption>
+            <pre><code>\chemfig{H_3C-CH_2-OH}</code></pre>
+          </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>siunitx</li><li>chemistry</li><li>units</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Writing</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.units-chemistry</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">More in Writing</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="algorithms pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments. writing snippet pack algorithms pseudocode computer-science">
+            <span class="store-icon  tint-orange is-word" aria-hidden="true">for</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.algorithms/">Algorithms</a></h3>
+              <p class="store-card-sub">Snippet pack · 3 snippets</p>
+              <p class="store-card-desc">Pseudocode for computer science papers: numbered algorithms with inputs and outputs, procedures, loops and complexity comments.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="math writing theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly. writing snippet pack math theorems proofs">
+            <span class="store-icon  tint-orange" aria-hidden="true">∑</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.math-writing/">Math Writing</a></h3>
+              <p class="store-card-sub">Snippet pack · 8 snippets</p>
+              <p class="store-card-desc">Theorem, lemma, proof and definition environments, aligned derivations, cases and operators such as argmin, set up correctly.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="writing"
+            data-search="code listings readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input. writing snippet pack code listings software">
+            <span class="store-icon  tint-orange is-word" aria-hidden="true">{ }</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.code-listings/">Code Listings</a></h3>
+              <p class="store-card-sub">Snippet pack · 4 snippets</p>
+              <p class="store-card-desc">Readable source code in papers: a listings style with line numbers and highlighting, listing floats, inline code and file input.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install Units and Chemistry</h2>
         <p>In LatexDo, open the Extensions view, find Units and Chemistry and choose Install. It is free.</p>
@@ -120,5 +254,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

@@ -82,35 +82,208 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Snippet pack · Workflow</p>
-        <h1>Review and Revision</h1>
-        <p class="lx-lede">Tools for co-writing and revising: visible added, deleted and replaced text, to-do notes, placeholder figures and reviewer response blocks.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-pink" aria-hidden="true">±</span>
+        <div class="store-product-text">
+          <h1>Review and Revision</h1>
+          <p class="store-product-sub">Snippet pack · Workflow</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Snippet: Change tracking (preamble)</li>
-<li>Snippet: Mark added text</li>
-<li>Snippet: Mark deleted text</li>
-<li>Snippet: Mark replaced text</li>
-<li>Snippet: To-do note</li>
-<li>Snippet: Inline to-do</li>
-<li>Snippet: Placeholder figure</li>
-<li>Snippet: Reviewer response block</li>
-<li>Snippet: Revision note</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>revision</li><li>review</li><li>collaboration</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.review-revision</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Workflow</dd><dd class="store-fact-note">Snippet pack</dd></div>
+        <div><dt>Includes</dt><dd>9 snippets</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">Tools for co-writing and revising: visible added, deleted and replaced text, to-do notes, placeholder figures and reviewer response blocks.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Snippets</h2>
+        <p class="store-section-lede">Type a snippet's name in a .tex file and press Tab.</p>
+        <div class="store-snippets" data-snippets>
+          <div class="store-snippet-list" role="tablist" aria-label="Snippets">
+            <button type="button" role="tab" id="snippet-tab-0" aria-controls="snippet-0" aria-selected="true" tabindex="0">
+              <span>Change tracking (preamble)</span>
+              <code>changessetup</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-1" aria-controls="snippet-1" aria-selected="false" tabindex="-1">
+              <span>Mark added text</span>
+              <code>added</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-2" aria-controls="snippet-2" aria-selected="false" tabindex="-1">
+              <span>Mark deleted text</span>
+              <code>deleted</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-3" aria-controls="snippet-3" aria-selected="false" tabindex="-1">
+              <span>Mark replaced text</span>
+              <code>replaced</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-4" aria-controls="snippet-4" aria-selected="false" tabindex="-1">
+              <span>To-do note</span>
+              <code>todo</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-5" aria-controls="snippet-5" aria-selected="false" tabindex="-1">
+              <span>Inline to-do</span>
+              <code>inlinetodo</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-6" aria-controls="snippet-6" aria-selected="false" tabindex="-1">
+              <span>Placeholder figure</span>
+              <code>missingfigure</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-7" aria-controls="snippet-7" aria-selected="false" tabindex="-1">
+              <span>Reviewer response block</span>
+              <code>reviewresponse</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-8" aria-controls="snippet-8" aria-selected="false" tabindex="-1">
+              <span>Revision note</span>
+              <code>revisionnote</code>
+            </button>
+          </div>
+          <div class="store-snippet-panels">
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-0" aria-labelledby="snippet-tab-0">
+              <p>Marks edits in colour; use the final option to hide them for submission. Needs changes.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>changessetup</figcaption>
+            <pre><code>\usepackage[draft]{changes}
+\definechangesauthor[name={Reviewer 1}, color=blue]{R1}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-1" aria-labelledby="snippet-tab-1" data-inactive>
+              <p>Shows new text in colour while in draft mode.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>added</figcaption>
+            <pre><code>\added{new text}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-2" aria-labelledby="snippet-tab-2" data-inactive>
+              <p>Shows removed text struck through.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>deleted</figcaption>
+            <pre><code>\deleted{old text}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-3" aria-labelledby="snippet-tab-3" data-inactive>
+              <p>Shows the new and old wording.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>replaced</figcaption>
+            <pre><code>\replaced{new text}{old text}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-4" aria-labelledby="snippet-tab-4" data-inactive>
+              <p>A margin note for co-authors. Needs todonotes.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>todo</figcaption>
+            <pre><code>\todo{Check this claim.}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-5" aria-labelledby="snippet-tab-5" data-inactive>
+              <p>A to-do inside the text. Needs todonotes.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>inlinetodo</figcaption>
+            <pre><code>\todo[inline]{Add the missing experiment.}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-6" aria-labelledby="snippet-tab-6" data-inactive>
+              <p>A box that marks a figure still to be made. Needs todonotes.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>missingfigure</figcaption>
+            <pre><code>\missingfigure{Plot of accuracy versus epochs.}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-7" aria-labelledby="snippet-tab-7" data-inactive>
+              <p>A reviewer comment followed by the response.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>reviewresponse</figcaption>
+            <pre><code>\paragraph{Reviewer 1, Comment 1.}
+\emph{Reviewer comment.}
+
+\paragraph{Response.}
+Thank you for the helpful comment. We revised the manuscript to clarify this point.</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-8" aria-labelledby="snippet-tab-8" data-inactive>
+              <p>A short summary of a change.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>revisionnote</figcaption>
+            <pre><code>\paragraph{Change made.}
+We updated ${1:Section~\ref{sec:method}} to describe the revision.</code></pre>
+          </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>revision</li><li>review</li><li>collaboration</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Workflow</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.review-revision</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">You might also like</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="ieee conference paper an ieee two-column conference paper with authors, keywords, a results table and ieee references, ready to submit. templates template ieee conference paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">IEEE</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.ieee-conference/">IEEE Conference Paper</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="acm article an acm sigconf article in anonymous review mode with affiliations, keywords and acm references, one switch from camera-ready. templates template acm sigconf paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">ACM</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.acm-article/">ACM Article</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="thesis and dissertation a thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix. templates template thesis dissertation phd">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">PhD</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.thesis/">Thesis and Dissertation</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install Review and Revision</h2>
         <p>In LatexDo, open the Extensions view, find Review and Revision and choose Install. It is free.</p>
@@ -123,5 +296,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

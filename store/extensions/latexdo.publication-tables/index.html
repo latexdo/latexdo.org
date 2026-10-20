@@ -82,31 +82,193 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Snippet pack · Figures and tables</p>
-        <h1>Publication Tables</h1>
-        <p class="lx-lede">Journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-green" aria-hidden="true">▦</span>
+        <div class="store-product-text">
+          <h1>Publication Tables</h1>
+          <p class="store-product-sub">Snippet pack · Figures and tables</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Snippet: Results table, best in bold</li>
-<li>Snippet: Table with notes</li>
-<li>Snippet: Table with merged rows</li>
-<li>Snippet: Numbers aligned on the decimal point</li>
-<li>Snippet: Table across pages</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>tables</li><li>booktabs</li><li>siunitx</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.publication-tables</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Figures and tables</dd><dd class="store-fact-note">Snippet pack</dd></div>
+        <div><dt>Includes</dt><dd>5 snippets</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">Journal-quality tables: booktabs results with the best value in bold, table notes, merged rows, aligned decimals and long tables.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Snippets</h2>
+        <p class="store-section-lede">Type a snippet's name in a .tex file and press Tab.</p>
+        <div class="store-snippets" data-snippets>
+          <div class="store-snippet-list" role="tablist" aria-label="Snippets">
+            <button type="button" role="tab" id="snippet-tab-0" aria-controls="snippet-0" aria-selected="true" tabindex="0">
+              <span>Results table, best in bold</span>
+              <code>resultstable</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-1" aria-controls="snippet-1" aria-selected="false" tabindex="-1">
+              <span>Table with notes</span>
+              <code>notestable</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-2" aria-controls="snippet-2" aria-selected="false" tabindex="-1">
+              <span>Table with merged rows</span>
+              <code>multirowtable</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-3" aria-controls="snippet-3" aria-selected="false" tabindex="-1">
+              <span>Numbers aligned on the decimal point</span>
+              <code>decimaltable</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-4" aria-controls="snippet-4" aria-selected="false" tabindex="-1">
+              <span>Table across pages</span>
+              <code>longtable</code>
+            </button>
+          </div>
+          <div class="store-snippet-panels">
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-0" aria-labelledby="snippet-tab-0">
+              <p>A booktabs comparison table. Needs booktabs.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>resultstable</figcaption>
+            <pre><code>\begin{table}[t]
+  \centering
+  \caption{Results on the test set. Best in bold.}
+  \label{tab:results}
+  \begin{tabular}{lccc}
+    \toprule
+    Method &amp; Precision &amp; Recall &amp; F1 \\
+    \midrule
+    Baseline &amp; 0.71 &amp; 0.65 &amp; 0.68 \\
+    Ours &amp; \textbf{0.79} &amp; \textbf{0.74} &amp; \textbf{0.76} \\
+    \bottomrule
+  \end{tabular}
+\end{table}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-1" aria-labelledby="snippet-tab-1" data-inactive>
+              <p>A table with footnote-style notes underneath. Needs threeparttable and booktabs.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>notestable</figcaption>
+            <pre><code>\begin{table}[t]
+  \centering
+  \begin{threeparttable}
+    \caption{Caption.}
+    \label{tab:notes}
+    \begin{tabular}{lcc}
+      \toprule
+      Setting &amp; Value\tnote{a} &amp; Error \\
+      \midrule
+      A &amp; 1.0 &amp; 0.1 \\
+      B &amp; 2.0 &amp; 0.2 \\
+      \bottomrule
+    \end{tabular}
+    \begin{tablenotes}\footnotesize
+      \item[a] Explain the marked value.
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-2" aria-labelledby="snippet-tab-2" data-inactive>
+              <p>Rows grouped by a merged first column. Needs multirow and booktabs.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>multirowtable</figcaption>
+            <pre><code>\begin{tabular}{llc}
+  \toprule
+  Dataset &amp; Method &amp; Score \\
+  \midrule
+  \multirow{2}{*}{First} &amp; Baseline &amp; 70.1 \\
+                           &amp; Ours &amp; 74.3 \\
+  \midrule
+  \multirow{2}{*}{Second} &amp; Baseline &amp; 61.0 \\
+                            &amp; Ours &amp; 66.8 \\
+  \bottomrule
+\end{tabular}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-3" aria-labelledby="snippet-tab-3" data-inactive>
+              <p>siunitx S columns keep numbers aligned. Needs siunitx and booktabs.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>decimaltable</figcaption>
+            <pre><code>\begin{tabular}{l S[table-format=2.2] S[table-format=3.1]}
+  \toprule
+  {Item} &amp; {Mean} &amp; {Total} \\
+  \midrule
+  A &amp; 3.14 &amp; 12.5 \\
+  B &amp; 12.06 &amp; 101.0 \\
+  \bottomrule
+\end{tabular}</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-4" aria-labelledby="snippet-tab-4" data-inactive>
+              <p>A long table that repeats its header on every page. Needs longtable and booktabs.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>longtable</figcaption>
+            <pre><code>\begin{longtable}{lp{0.6\linewidth}}
+  \caption{Caption.}\label{tab:long} \\
+  \toprule
+  Term &amp; Definition \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Term &amp; Definition \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+  Entry &amp; Description. \\
+\end{longtable}</code></pre>
+          </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>tables</li><li>booktabs</li><li>siunitx</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Figures and tables</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.publication-tables</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">More in Figures and tables</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="graphics"
+            data-search="plots and figures pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper&#39;s fonts, with no image export step. figures and tables snippet pack pgfplots charts figures">
+            <span class="store-icon  tint-green" aria-hidden="true">∿</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.plots/">Plots and Figures</a></h3>
+              <p class="store-card-sub">Snippet pack · 5 snippets</p>
+              <p class="store-card-desc">pgfplots line, bar and scatter charts, grouped plots and subfigures that match the paper&#39;s fonts, with no image export step.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install Publication Tables</h2>
         <p>In LatexDo, open the Extensions view, find Publication Tables and choose Install. It is free.</p>
@@ -119,5 +281,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

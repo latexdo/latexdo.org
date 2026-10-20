@@ -82,33 +82,186 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Snippet pack · Checking</p>
-        <h1>Paper Statements</h1>
-        <p class="lx-lede">The statements journals now require: data and code availability, author contributions (CRediT), funding, conflicts and ethics, plus a reproducibility checklist.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-purple" aria-hidden="true">✓</span>
+        <div class="store-product-text">
+          <h1>Paper Statements</h1>
+          <p class="store-product-sub">Snippet pack · Checking</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Snippet: Data availability statement</li>
-<li>Snippet: Code availability statement</li>
-<li>Snippet: Author contributions (CRediT)</li>
-<li>Snippet: Funding statement</li>
-<li>Snippet: Competing interests</li>
-<li>Snippet: Ethics statement</li>
-<li>Snippet: Reproducibility checklist</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>reproducibility</li><li>open-science</li><li>submission</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.paper-statements</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Checking</dd><dd class="store-fact-note">Snippet pack</dd></div>
+        <div><dt>Includes</dt><dd>7 snippets</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">The statements journals now require: data and code availability, author contributions (CRediT), funding, conflicts and ethics, plus a reproducibility checklist.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Snippets</h2>
+        <p class="store-section-lede">Type a snippet's name in a .tex file and press Tab.</p>
+        <div class="store-snippets" data-snippets>
+          <div class="store-snippet-list" role="tablist" aria-label="Snippets">
+            <button type="button" role="tab" id="snippet-tab-0" aria-controls="snippet-0" aria-selected="true" tabindex="0">
+              <span>Data availability statement</span>
+              <code>dataavailability</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-1" aria-controls="snippet-1" aria-selected="false" tabindex="-1">
+              <span>Code availability statement</span>
+              <code>codeavailability</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-2" aria-controls="snippet-2" aria-selected="false" tabindex="-1">
+              <span>Author contributions (CRediT)</span>
+              <code>credit</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-3" aria-controls="snippet-3" aria-selected="false" tabindex="-1">
+              <span>Funding statement</span>
+              <code>funding</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-4" aria-controls="snippet-4" aria-selected="false" tabindex="-1">
+              <span>Competing interests</span>
+              <code>conflicts</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-5" aria-controls="snippet-5" aria-selected="false" tabindex="-1">
+              <span>Ethics statement</span>
+              <code>ethics</code>
+            </button>
+            <button type="button" role="tab" id="snippet-tab-6" aria-controls="snippet-6" aria-selected="false" tabindex="-1">
+              <span>Reproducibility checklist</span>
+              <code>artifactchecklist</code>
+            </button>
+          </div>
+          <div class="store-snippet-panels">
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-0" aria-labelledby="snippet-tab-0">
+              <p>States where the data can be found and under which licence.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>dataavailability</figcaption>
+            <pre><code>\section*{Data Availability}
+The data supporting this study are openly available in Repository at \url{https://doi.org/...} under the CC BY 4.0 licence.</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-1" aria-labelledby="snippet-tab-1" data-inactive>
+              <p>Points to the archived code release.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>codeavailability</figcaption>
+            <pre><code>\section*{Code Availability}
+The code used in this study is available at \url{https://github.com/...} and archived at \url{https://doi.org/...} (version 1.0).</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-2" aria-labelledby="snippet-tab-2" data-inactive>
+              <p>Contributions using the CRediT taxonomy roles.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>credit</figcaption>
+            <pre><code>\section*{Author Contributions}
+\textbf{First Author}: Conceptualization, Methodology, Software, Writing -- original draft.
+\textbf{Second Author}: Supervision, Writing -- review \&amp; editing, Funding acquisition.</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-3" aria-labelledby="snippet-tab-3" data-inactive>
+              <p>Grant numbers and funders.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>funding</figcaption>
+            <pre><code>\section*{Funding}
+This work was supported by Funder under grant number. The funder had no role in study design, data collection, analysis or the decision to publish.</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-4" aria-labelledby="snippet-tab-4" data-inactive>
+              <p>Declares (no) competing interests.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>conflicts</figcaption>
+            <pre><code>\section*{Competing Interests}
+The authors declare no competing interests.</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-5" aria-labelledby="snippet-tab-5" data-inactive>
+              <p>Approval and consent for human or animal studies.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>ethics</figcaption>
+            <pre><code>\section*{Ethics Statement}
+This study was approved by the ethics committee of University (approval number). All participants gave informed consent.</code></pre>
+          </figure>
+            </div>
+            <div class="store-snippet-panel" role="tabpanel" id="snippet-6" aria-labelledby="snippet-tab-6" data-inactive>
+              <p>A short paragraph covering code, data, seeds and hardware.</p>
+              
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>artifactchecklist</figcaption>
+            <pre><code>\paragraph{Reproducibility.}
+Code and data are available at URL. Experiments use random seeds 0--4 and ran on hardware; each run took about time. Hyperparameters are listed in ${5:Appendix~\ref{app:hyper}}.</code></pre>
+          </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>reproducibility</li><li>open-science</li><li>submission</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Checking</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.paper-statements</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">You might also like</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="ieee conference paper an ieee two-column conference paper with authors, keywords, a results table and ieee references, ready to submit. templates template ieee conference paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">IEEE</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.ieee-conference/">IEEE Conference Paper</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="acm article an acm sigconf article in anonymous review mode with affiliations, keywords and acm references, one switch from camera-ready. templates template acm sigconf paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">ACM</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.acm-article/">ACM Article</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="thesis and dissertation a thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix. templates template thesis dissertation phd">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">PhD</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.thesis/">Thesis and Dissertation</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install Paper Statements</h2>
         <p>In LatexDo, open the Extensions view, find Paper Statements and choose Install. It is free.</p>
@@ -121,5 +274,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>

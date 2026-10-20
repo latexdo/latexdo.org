@@ -27,6 +27,7 @@
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="/assets/pages.css" />
+    <link rel="stylesheet" href="/assets/figures.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -65,6 +66,7 @@
         ]
       }
     </script>
+    <script src="/assets/partials.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -81,8 +83,108 @@
         </p>
       </header>
 
+      <figure class="fig fig-devices reveal">
+        <div class="fig-stage" role="img" aria-label="LatexDo today on the desktop, with LaTeX source and the compiled PDF side by side. On the roadmap: a tablet showing an annotated PDF with a reviewer note, and a phone listing review tasks.">
+          <div class="dv-mac fig-window fig-in" style="--i: 0">
+            <div class="fig-bar"><i></i><i></i><i></i><span>retrieval-paper — LatexDo</span></div>
+            <div class="dv-body">
+              <div class="dv-files">
+                <b>PAPER</b>
+                <span class="on">main.tex</span>
+                <span>method.tex</span>
+                <span>results.tex</span>
+                <span>references.bib</span>
+                <span>figures</span>
+              </div>
+              <div class="dv-code fig-mono">
+                <div><u>1</u><span><span class="k">\documentclass</span>{article}</span></div>
+                <div><u>2</u><span><span class="k">\usepackage</span>{amsmath, graphicx}</span></div>
+                <div><u>3</u><span></span></div>
+                <div><u>4</u><span><span class="k">\title</span>{Efficient Retrieval}</span></div>
+                <div><u>5</u><span><span class="k">\begin</span>{document}</span></div>
+                <div><u>6</u><span><span class="k">\maketitle</span></span></div>
+                <div><u>7</u><span></span></div>
+                <div><u>8</u><span><span class="k">\section</span>{Method}</span></div>
+                <div><u>9</u><span>We score each passage</span></div>
+                <div><u>10</u><span>against the query <span class="k">\cite</span>{<span class="s">lewis2020</span>}.</span></div>
+                <div><u>11</u><span><span class="k">\begin</span>{equation}</span></div>
+                <div><u>12</u><span>  s(q,d) = <span class="k">\sum</span>_i w_i<span class="cursor"></span></span></div>
+                <div><u>13</u><span><span class="k">\end</span>{equation}</span></div>
+                <div><u>14</u><span></span></div>
+                <div><u>15</u><span><span class="c">% Results in results.tex</span></span></div>
+                <div><u>16</u><span><span class="k">\input</span>{results}</span></div>
+              </div>
+              <div class="dv-pdf">
+                <div class="fig-page">
+                  <h4>Efficient Retrieval for Long Documents</h4>
+                  <div class="by">A. Author · B. Author</div>
+                  <h5>1&nbsp;&nbsp;Method</h5>
+                  <div class="fig-line"></div>
+                  <div class="fig-line w9"></div>
+                  <div class="fig-line w6"></div>
+                  <div class="fig-eq">s(q, d) = Σ<sub>i</sub> w<sub>i</sub> · sim(q, d<sub>i</sub>)</div>
+                  <div class="fig-line w8"></div>
+                  <div class="fig-line"></div>
+                  <div class="fig-chart"><i style="height: 45%"></i><i style="height: 38%"></i><i style="height: 70%"></i><i style="height: 52%"></i><i style="height: 92%"></i><i style="height: 61%"></i></div>
+                  <div class="fig-caption">Figure 1: Recall at 10.</div>
+                </div>
+              </div>
+            </div>
+            <div class="dv-status"><span>main*</span><span>Compiled main.tex in 1.4 s</span><span style="margin-left: auto">0 errors</span></div>
+          </div>
+          <div class="dv-tablet fig-in" style="--i: 2">
+            <div class="screen">
+              <div class="fig-page">
+                <h4>Efficient Retrieval for Long Documents</h4>
+                <div class="by">A. Author · B. Author</div>
+                <h5>4&nbsp;&nbsp;Results</h5>
+                <div class="fig-line"></div>
+                <div class="fig-line w9"></div>
+                <div class="fig-line w8 fig-mark"></div>
+                <div class="fig-line"></div>
+                <div class="fig-line w6"></div>
+                <div class="fig-chart"><i style="height: 55%"></i><i style="height: 40%"></i><i style="height: 85%"></i><i style="height: 60%"></i></div>
+                <div class="fig-caption">Figure 2: Ablation.</div>
+                <div class="fig-line" style="margin-top: 1em"></div>
+                <div class="fig-line w9"></div>
+                <div class="fig-line w6"></div>
+                <div class="fig-note"><b>Reviewer 2</b>Report the variance across the three seeds.</div>
+              </div>
+            </div>
+          </div>
+          <div class="dv-phone fig-in" style="--i: 3">
+            <div class="screen">
+              <div class="ph-title">Review</div>
+              <div class="ph-group">
+                <div class="ph-row"><span class="ph-check done"></span><s>Clarify the baseline</s></div>
+                <div class="ph-row"><span class="ph-check done"></span><s>Cite prior work</s></div>
+                <div class="ph-row"><span class="ph-check"></span>Report the variance</div>
+                <div class="ph-row"><span class="ph-check"></span>Shorten the abstract</div>
+              </div>
+              <div class="ph-pill">Compiled · 0 errors</div>
+            </div>
+          </div>
+        </div>
+        <figcaption class="fig-legend"><span>Desktop app: macOS, Windows, Linux</span><span class="later">On the roadmap: tablets and phones</span></figcaption>
+      </figure>
+
       <section class="lx-principles" aria-label="Principles">
         <article class="reveal">
+          <div class="fig fig-tile tile-blue">
+            <div class="fig-stage" role="img" aria-label="A paper project as an ordinary folder on your computer: main.tex, references.bib, figures and the compiled PDF.">
+              <div class="fd-window fig-window">
+                <div class="fig-bar"><i></i><i></i><i></i><span>retrieval-paper</span></div>
+                <ul class="fd-list">
+                  <li><span class="fd-ic folder"></span>figures<em>6 items</em></li>
+                  <li class="on"><span class="fd-ic tex"></span>main.tex<em>14 KB</em></li>
+                  <li><span class="fd-ic tex"></span>results.tex<em>6 KB</em></li>
+                  <li><span class="fd-ic bib"></span>references.bib<em>22 KB</em></li>
+                  <li><span class="fd-ic pdf"></span>main.pdf<em>1.2 MB</em></li>
+                </ul>
+              </div>
+              <span class="fig-chip blue fig-in" style="right: 1.6em; bottom: 1.6em; --i: 2"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>On this computer</span>
+            </div>
+          </div>
           <h2>Local-first writing</h2>
           <p>
             Authors should be able to keep their projects, sources, PDFs, references and
@@ -90,6 +192,16 @@
           </p>
         </article>
         <article class="reveal">
+          <div class="fig fig-tile tile-orange">
+            <div class="fig-stage" role="img" aria-label="One workflow from writing to submission: compiled, citations checked, review comments answered, then ready to submit.">
+              <ol class="wf-list">
+                <li class="fig-in" style="--i: 0"><span class="wf-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg></span><b>Compile</b><small>1.4 s · 0 errors</small></li>
+                <li class="fig-in" style="--i: 1"><span class="wf-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg></span><b>Citations</b><small>42 found</small></li>
+                <li class="fig-in" style="--i: 2"><span class="wf-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg></span><b>Diagnostics</b><small>All clear</small></li>
+                <li class="next fig-in" style="--i: 3"><span class="wf-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg></span><b>Rebuttal</b><small>12 of 14</small></li>
+              </ol>
+            </div>
+          </div>
           <h2>Practical research tools</h2>
           <p>
             Editing, compilation, diagnostics, citations, review comments and rebuttals
@@ -97,6 +209,22 @@
           </p>
         </article>
         <article class="reveal">
+          <div class="fig fig-tile tile-purple">
+            <div class="fig-stage" role="img" aria-label="LatexDo at the centre of a community of researchers, students, reviewers and writers.">
+              <div class="orbit">
+                <span class="orbit-ring r1"></span>
+                <span class="orbit-ring r2"></span>
+                <span class="orbit-core fig-in"><img src="/assets/icon.svg" alt="" width="40" height="40" /></span>
+                <span class="av a1" style="--a: -30deg; --r: 6.5em">R</span>
+                <span class="av a2" style="--a: 90deg; --r: 6.5em">S</span>
+                <span class="av a3" style="--a: 210deg; --r: 6.5em">W</span>
+                <span class="av a4" style="--a: 20deg; --r: 9.5em">E</span>
+                <span class="av a5" style="--a: 150deg; --r: 9.5em">T</span>
+                <span class="av a6" style="--a: 260deg; --r: 9.5em">D</span>
+              </div>
+              <span class="fig-chip purple fig-in" style="top: 1.4em; left: 1.4em; --i: 2"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="12" r="2.5" /><path d="M6 8.5v7M8.3 7.2 15.6 11" /></svg>Open source</span>
+            </div>
+          </div>
           <h2>Open collaboration</h2>
           <p>
             The project grows through open-source development, transparent governance

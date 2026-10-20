@@ -36,9 +36,6 @@
 /research/assets/*
   Cache-Control: public, max-age=3600
 
-/research/style.css
-  Cache-Control: public, max-age=3600
-
 /partials/*
   Cache-Control: public, max-age=300
   X-Robots-Tag: noindex

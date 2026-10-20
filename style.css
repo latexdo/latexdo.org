@@ -5176,3 +5176,613 @@ h3 {
     border-radius: 999px;
   }
 }
+
+/* ==========================================================================
+   Apple-style foundations: materials, press feedback, motion, accessibility.
+   Motion is critically damped by default (no overshoot); only things the user
+   flicks get a little bounce, and that is done by springs in src/motion.ts.
+   ========================================================================== */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Mirror of --ease-out, so a reversed transition retraces the same path. */
+  --ease-in: cubic-bezier(0.64, 0, 0.78, 0);
+  --material: rgb(251 251 253 / 72%);
+  --focus: rgb(31 95 224 / 55%);
+}
+
+::selection {
+  background: rgb(31 95 224 / 18%);
+}
+
+:where(a, button, input, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Header: a floating translucent layer. Its edge appears only once content
+   actually scrolls underneath (site.ts adds .is-scrolled). */
+.site-header {
+  border-bottom-color: transparent;
+  background: var(--material);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  transition:
+    border-color 240ms ease,
+    background 240ms ease;
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: var(--hairline);
+}
+
+/* Navigation: quiet text that brightens; the current section stays dark. */
+.nav-links {
+  gap: 2px;
+  font-weight: 500;
+}
+
+.nav-links a {
+  border: 0;
+  color: var(--muted);
+  transition: color 160ms ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a[aria-current="page"] {
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+  color: var(--ink);
+  transform: none;
+}
+
+/* Feedback lives on the press and is instant. */
+.button,
+.lx-pill,
+.nav-donate-link,
+.nav-toggle,
+.donate-modal-close,
+.docs-code-head button,
+.store-get {
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 240ms var(--ease-out),
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.button:active,
+.lx-pill:active,
+.nav-donate-link:active,
+.nav-toggle:active,
+.donate-modal-close:active,
+.docs-code-head button:active,
+.store-get:active {
+  transform: scale(0.96);
+  transition-duration: 80ms;
+}
+
+.button.primary:hover,
+.lx-pill:hover {
+  transform: none;
+}
+
+/* Donation dialog: materializes out of the button that opened it, over a dim
+   scrim that pushes the page back. */
+.donate-modal-backdrop {
+  background: rgb(0 0 0 / 34%);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  opacity: var(--sheet-progress, 1);
+}
+
+.donate-modal-dialog {
+  border-color: var(--hairline);
+  border-radius: 22px;
+  padding: 26px 24px 20px;
+  box-shadow:
+    0 2px 6px rgb(0 0 0 / 6%),
+    0 40px 100px -20px rgb(0 0 0 / 35%);
+}
+
+.donate-modal-dialog h2 {
+  font-size: 24px;
+  letter-spacing: -0.025em;
+}
+
+.donate-modal-close {
+  border: 0;
+  background: rgb(11 12 15 / 6%);
+  color: var(--muted);
+  font-size: 22px;
+}
+
+.donate-modal-grabber {
+  display: none;
+}
+
+.donate-modal[data-state="open"] .donate-modal-backdrop {
+  animation: scrim-in 280ms ease both;
+}
+
+.donate-modal[data-state="open"] .donate-modal-dialog {
+  animation: materialize 420ms var(--ease-out) both;
+}
+
+.donate-modal[data-state="closing"] .donate-modal-backdrop {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.donate-modal[data-state="closing"] .donate-modal-dialog {
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(0.94);
+  transition:
+    opacity 200ms ease,
+    filter 200ms ease,
+    transform 200ms var(--ease-in);
+}
+
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes materialize {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.9);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .donate-modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .donate-modal-dialog {
+    width: 100%;
+    max-height: 92vh;
+    border-width: 1px 0 0;
+    border-radius: 22px 22px 0 0;
+    padding: 30px 18px calc(16px + env(safe-area-inset-bottom));
+    transform-origin: 50% 100%;
+    will-change: transform;
+  }
+
+  /* A sheet enters from the bottom edge, and is dragged back out the same way. */
+  .donate-modal[data-state="open"] .donate-modal-dialog {
+    animation: sheet-in 460ms var(--ease-out) both;
+  }
+
+  .donate-modal[data-state="closing"] .donate-modal-dialog {
+    opacity: 1;
+    filter: none;
+    transition: none;
+  }
+
+  .donate-modal[data-state="closing"] .donate-modal-backdrop {
+    transition: none;
+  }
+
+  .donate-modal-grabber {
+    position: absolute;
+    top: 0;
+    right: 56px;
+    left: 56px;
+    display: grid;
+    height: 30px;
+    place-items: center;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .donate-modal-grabber span {
+    width: 38px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgb(11 12 15 / 18%);
+  }
+}
+
+/* Mobile menu: a material panel that grows out of the menu button and can be
+   reversed mid-way (transitions retarget from the value on screen). */
+@media (max-width: 820px) {
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+  }
+
+  .nav-toggle span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 17px;
+    height: 1.5px;
+    margin: -0.75px 0 0 -8.5px;
+    transition: transform 320ms var(--ease-out);
+  }
+
+  .nav-toggle span:first-child {
+    transform: translateY(-3.5px);
+  }
+
+  .nav-toggle span:last-child {
+    transform: translateY(3.5px);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:first-child {
+    transform: rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .nav-toggle {
+    position: relative;
+  }
+
+  .nav-links,
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links {
+    top: 62px;
+    visibility: hidden;
+    border: 1px solid var(--hairline);
+    /* Nested inside the header's material, a backdrop blur here would only see
+       the header, so the panel is solid to keep its text legible. */
+    background: var(--surface);
+    box-shadow: 0 30px 70px -18px rgb(20 30 70 / 28%);
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+    transform-origin: top right;
+    transition:
+      opacity 180ms ease,
+      transform 300ms var(--ease-out),
+      visibility 0s linear 300ms;
+  }
+
+  .nav-links.open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  .nav-links a {
+    min-height: 0;
+    padding: 11px 14px;
+    font-size: 17px;
+  }
+
+  .nav-links a:hover,
+  .nav-links a[aria-current="page"] {
+    background: rgb(11 12 15 / 5%);
+  }
+}
+
+/* Accessibility: gentler, solid and higher-contrast equivalents. */
+@media (prefers-reduced-motion: reduce) {
+  .donate-modal[data-state] .donate-modal-dialog,
+  .donate-modal[data-state] .donate-modal-backdrop {
+    animation: none;
+    filter: none;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-header,
+  .nav-links,
+  .docs-bar,
+  .store-toolbar {
+    background: var(--page);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .site-header,
+  .site-header.is-scrolled,
+  .nav-links {
+    border-color: rgb(11 12 15 / 45%);
+    background: var(--page);
+  }
+
+  .nav-links a {
+    color: var(--ink);
+  }
+}
+
+/* ==========================================================================
+   Moving between pages: a cross-document view transition. The header holds
+   still while the content blends from one page into the next, and site.ts
+   prerenders likely next pages so the new one is ready when the click lands.
+   ========================================================================== */
+@view-transition {
+  navigation: auto;
+}
+
+.site-header {
+  view-transition-name: site-header;
+}
+
+/* The header doesn't move; only its current-section highlight blends. */
+::view-transition-group(site-header) {
+  animation-duration: 0s;
+}
+
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation-duration: 180ms;
+}
+
+/* The outgoing page steps back quickly; the new one rises into place. */
+::view-transition-old(root) {
+  animation: page-out 180ms var(--ease-in) both;
+}
+
+::view-transition-new(root) {
+  animation: page-in 420ms var(--ease-out) 60ms both;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* Reduced motion: a plain cross-fade, no movement. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: page-fade 200ms ease both;
+    transform: none;
+  }
+
+  ::view-transition-old(root) {
+    animation-direction: reverse;
+  }
+
+  @keyframes page-fade {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+/* ==========================================================================
+   Phones: touch-first details for every page.
+   ========================================================================== */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* No double-tap-to-zoom delay on anything tappable. */
+a,
+button,
+label,
+summary,
+[role="button"],
+[role="tab"],
+[role="radio"] {
+  touch-action: manipulation;
+}
+
+/* Touch screens have no hover: never leave an element stuck in a hover state. */
+@media (hover: none) {
+  .lx-arrow:hover::after,
+  .lx-back:hover::before,
+  .lx-pill:hover,
+  .nav-links a:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Fields at 16px or more so iOS doesn't zoom the page on focus. */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+
+  main.lx {
+    width: calc(100% - 40px);
+  }
+
+  .lx-hero {
+    padding: 48px 0 40px;
+  }
+
+  .lx-hero h1 {
+    font-size: clamp(34px, 10vw, 44px);
+    line-height: 1.04;
+  }
+
+  .lx-lede {
+    font-size: 18px;
+  }
+
+  .lx-close {
+    margin-left: -8px;
+    margin-right: -8px;
+    border-radius: 24px;
+  }
+
+  /* Apple-style footer: link groups collapse into sections that open on tap. */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .site-footer .footer-brand {
+    padding-bottom: 20px;
+  }
+
+  .footer-grid > div:has(> h5) {
+    border-top: 1px solid rgb(255 255 255 / 10%);
+  }
+
+  .site-footer h5 {
+    display: block;
+    margin: 0;
+  }
+
+  .footer-section-toggle {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: left;
+    text-transform: inherit;
+  }
+
+  .footer-section-toggle::after {
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border: solid #98a2b3;
+    border-width: 0 1.5px 1.5px 0;
+    content: "";
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 300ms var(--ease-out);
+  }
+
+  .footer-section-toggle[aria-expanded="true"]::after {
+    transform: translateY(2px) rotate(-135deg);
+  }
+
+  .site-footer h5:has(.footer-section-toggle) + nav {
+    display: none;
+  }
+
+  .site-footer .footer-grid > .is-open > h5 + nav {
+    display: flex;
+    gap: 0;
+    padding: 0 0 12px;
+    animation: footer-open 320ms var(--ease-out);
+  }
+
+  .site-footer .footer-grid > .is-open > nav a {
+    min-height: 40px;
+    font-size: 15px;
+  }
+
+  .footer-bottom {
+    margin-top: 8px;
+    border-top: 1px solid rgb(255 255 255 / 10%);
+  }
+
+  .footer-social-link {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+@keyframes footer-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+/* ---------- Release pages (generated by the desktop release workflow) ---------- */
+.downloads-first-launch {
+  margin-top: 28px;
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.downloads-first-launch h2 {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: -0.03em;
+}
+
+.downloads-first-launch > p {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.downloads-first-launch dl {
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.downloads-first-launch dl div {
+  padding: 16px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--surface-soft);
+}
+
+.downloads-first-launch dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.downloads-first-launch dd {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.downloads-first-launch dd strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.downloads-first-launch code {
+  font-size: 0.88em;
+}
+
+@media (max-width: 820px) {
+  .downloads-first-launch dl {
+    grid-template-columns: 1fr;
+  }
+}

@@ -27,6 +27,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/assets/pages.css" />
+    <link rel="stylesheet" href="/assets/figures.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -65,6 +66,7 @@
         ]
       }
     </script>
+    <script src="/assets/partials.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -82,9 +84,41 @@
       </header>
 
       <section class="lx-rows" aria-label="Our programs">
-        <article class="lx-row reveal">
+        <article class="lx-row has-fig reveal">
           <span class="lx-num">01</span>
           <h2>Free writing tools</h2>
+          <div class="fig fig-tile tile-blue">
+            <div class="fig-stage" role="img" aria-label="The LatexDo editor with LaTeX source beside the compiled PDF, and a notice that the document compiled with no errors.">
+              <div class="mini-app fig-window">
+                <div class="fig-bar"><i></i><i></i><i></i><span>main.tex</span></div>
+                <div class="mini-body">
+                  <div class="dv-code fig-mono">
+                    <div><span><span class="k">\section</span>{Results}</span></div>
+                    <div><span>Our method improves</span></div>
+                    <div><span>recall by 12 points</span></div>
+                    <div><span>(<span class="k">\cref</span>{<span class="s">tab:main</span>}).</span></div>
+                    <div><span></span></div>
+                    <div><span><span class="k">\begin</span>{table}[t]</span></div>
+                    <div><span>  <span class="k">\centering</span></span></div>
+                    <div><span>  <span class="k">\input</span>{tables/main}</span></div>
+                    <div><span><span class="k">\end</span>{table}</span></div>
+                  </div>
+                  <div class="dv-pdf">
+                    <div class="fig-page">
+                      <h5 style="margin-top: 0">4&nbsp;&nbsp;Results</h5>
+                      <div class="fig-line"></div>
+                      <div class="fig-line w9"></div>
+                      <div class="fig-line w6"></div>
+                      <div class="fig-chart" style="height: 5em"><i style="height: 40%"></i><i style="height: 55%"></i><i style="height: 90%"></i></div>
+                      <div class="fig-line" style="margin-top: 0.8em"></div>
+                      <div class="fig-line w8"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="fig-chip green fig-toast fig-in" style="--i: 1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg> Compiled in 1.4 s</span>
+            </div>
+          </div>
           <div class="lx-row-body">
             <p>
               A free desktop app and open-source tooling for writing, previewing and
@@ -99,9 +133,22 @@
           </div>
         </article>
 
-        <article class="lx-row reveal">
+        <article class="lx-row has-fig reveal">
           <span class="lx-num">02</span>
           <h2>Documentation and onboarding</h2>
+          <div class="fig fig-tile tile-red">
+            <div class="fig-stage" role="img" aria-label="A LaTeX error, Undefined control sequence, explained in plain language with a one-click fix that loads the missing package.">
+              <div class="err-card fig-in" style="--i: 0">
+                <div class="err-head">Undefined control sequence</div>
+                <code class="fig-mono">l.42 <span class="k">\citep</span>{smith2020}</code>
+              </div>
+              <div class="err-card fix fig-in" style="--i: 2">
+                <div class="err-head">What it means</div>
+                <p><code class="fig-mono" style="display: inline; margin: 0; padding: 0.1em 0.3em">\citep</code> comes from the natbib package, which this document does not load.</p>
+                <span class="err-btn">Add \usepackage{natbib}</span>
+              </div>
+            </div>
+          </div>
           <div class="lx-row-body">
             <p>
               Many people are blocked by installation, compilation, bibliography,
@@ -116,9 +163,16 @@
           </div>
         </article>
 
-        <article class="lx-row reveal">
+        <article class="lx-row has-fig reveal">
           <span class="lx-num">03</span>
           <h2>Research workflow support</h2>
+          <div class="fig fig-tile tile-orange">
+            <div class="fig-stage" role="img" aria-label="A reviewer comment answered in the rebuttal, with twelve of fourteen comments addressed.">
+              <div class="rv-msg them fig-in" style="--i: 0"><b>Reviewer 2 · Comment 3</b>The comparison with the baseline is unclear.</div>
+              <div class="rv-msg us fig-in" style="--i: 1"><b>Response</b>We added Table 3 and clarified Section 4.2.</div>
+              <div class="rv-progress fig-in" style="--i: 2"><div>Rebuttal<span>12 of 14 answered</span></div><i></i></div>
+            </div>
+          </div>
           <div class="lx-row-body">
             <p>
               Tools for review comments, rebuttal drafting, bibliography consistency,
@@ -134,9 +188,21 @@
           </div>
         </article>
 
-        <article class="lx-row reveal">
+        <article class="lx-row has-fig reveal">
           <span class="lx-num">04</span>
           <h2>Open-source community</h2>
+          <div class="fig fig-tile tile-green">
+            <div class="fig-stage" role="img" aria-label="A commit history with changes from several contributors merged into the main branch.">
+              <ol class="git-log">
+                <li class="fig-in" style="--i: 3"><span class="av a5">M</span>Merge #214<s>main</s></li>
+                <li class="branch fig-in" style="--i: 2"><span class="av a4">L</span>Clearer errors<s>#214</s></li>
+                <li class="branch fig-in" style="--i: 1"><span class="av a1">A</span>Explain natbib<s>#214</s></li>
+                <li class="fig-in" style="--i: 0"><span class="av a2">S</span>French docs<s>main</s></li>
+                <li class="fig-in" style="--i: 0"><span class="av a3">J</span>Thesis template<s>main</s></li>
+              </ol>
+              <span class="fig-chip purple fig-in" style="top: 1.4em; right: 1.4em; --i: 4"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="M6 8.5v7M18 15.5V12a4 4 0 0 0-4-4H8.5" /></svg>Merged</span>
+            </div>
+          </div>
           <div class="lx-row-body">
             <p>
               The source code is on GitHub under an open-source license. Contributors

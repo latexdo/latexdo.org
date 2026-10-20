@@ -1,0 +1,666 @@
+/* Extension store (/store/ and /store/extensions/<id>/), in the language of the
+   App Store: squircle icons, hairline shelves, a segmented category switcher
+   and product pages with a facts strip. Built on pages.css (main.lx). */
+
+/* App icons */
+.store-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-shadow: 0 1px 1px rgb(0 0 0 / 12%);
+  box-shadow:
+    inset 0 0 0 0.5px rgb(0 0 0 / 10%),
+    inset 0 1px 0 rgb(255 255 255 / 28%),
+    0 1px 2px rgb(0 0 0 / 8%);
+  user-select: none;
+}
+
+.store-icon.is-word {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.store-icon.is-large {
+  width: 128px;
+  height: 128px;
+  border-radius: 29px;
+  font-size: 60px;
+  box-shadow:
+    inset 0 0 0 0.5px rgb(0 0 0 / 10%),
+    inset 0 1px 0 rgb(255 255 255 / 28%),
+    0 12px 30px -8px rgb(20 30 70 / 30%);
+}
+
+.store-icon.is-large.is-word {
+  font-size: 36px;
+}
+
+.tint-blue { background: linear-gradient(160deg, #62a6ff, #1f5fe0); }
+.tint-orange { background: linear-gradient(160deg, #ffb547, #ff7419); }
+.tint-purple { background: linear-gradient(160deg, #c681ff, #7536ef); }
+.tint-yellow { background: linear-gradient(160deg, #ffd84d, #f29f00); }
+.tint-green { background: linear-gradient(160deg, #4fdb90, #0d9b68); }
+.tint-pink { background: linear-gradient(160deg, #ff7ea6, #ec2d5c); }
+
+/* Toolbar: search plus a segmented control, floating once it sticks. */
+.store-toolbar {
+  position: sticky;
+  top: 66px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: clamp(8px, 2vw, 18px) 0 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid transparent;
+  background: rgb(251 251 253 / 82%);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  transition: border-color 240ms ease;
+}
+
+.store-toolbar.is-stuck {
+  border-bottom-color: var(--lx-line);
+}
+
+.store-search {
+  display: flex;
+  flex: 0 0 220px;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 10px;
+  background: rgb(118 118 128 / 12%);
+  color: #8a8f98;
+}
+
+.store-search:focus-within {
+  box-shadow: 0 0 0 3px rgb(31 95 224 / 22%);
+}
+
+.store-search svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2.2;
+}
+
+.store-search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--lx-ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.store-segments {
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  padding: 2px;
+  border-radius: 10px;
+  background: rgb(118 118 128 / 12%);
+  scrollbar-width: none;
+}
+
+.store-segments::-webkit-scrollbar {
+  display: none;
+}
+
+.store-segments button {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--lx-soft);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 550;
+  white-space: nowrap;
+  transition: color 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.store-segments button[aria-checked="true"] {
+  color: var(--lx-ink);
+}
+
+/* Without the script the selected segment carries its own background. */
+.store-segments:not(.is-ready) button[aria-checked="true"] {
+  background: #fff;
+}
+
+.store-segments-thumb {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  display: none;
+  width: var(--w, 0);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow:
+    0 3px 8px rgb(0 0 0 / 12%),
+    0 3px 1px rgb(0 0 0 / 4%),
+    0 0 0 0.5px rgb(0 0 0 / 4%);
+  transform: translateX(var(--x, 0));
+  will-change: transform, width;
+}
+
+.store-segments.is-ready .store-segments-thumb {
+  display: block;
+}
+
+/* Shelves of extensions, separated by hairlines like the App Store. */
+.store-shelf {
+  padding-top: clamp(30px, 4vw, 48px);
+}
+
+.store-shelf[hidden],
+.store-card[hidden] {
+  display: none;
+}
+
+.store-shelf > h2,
+.store-section > h2 {
+  margin-bottom: 6px;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.026em;
+  line-height: 1.15;
+}
+
+.store-grid {
+  display: grid;
+  gap: 0 clamp(20px, 3vw, 36px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.store-card {
+  position: relative;
+  display: grid;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--lx-line);
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 240ms var(--ease-out);
+}
+
+/* Instant press feedback on the whole card. */
+.store-card:active {
+  transform: scale(0.98);
+  transition-duration: 80ms;
+}
+
+.store-card h3 {
+  overflow: hidden;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.016em;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+main.lx .store-card h3 a {
+  color: var(--lx-ink);
+  text-decoration: none;
+}
+
+/* The whole card is the link's hit area. */
+.store-card h3 a::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.store-card h3 a:focus-visible {
+  outline: none;
+}
+
+.store-card:has(h3 a:focus-visible) {
+  border-radius: 12px;
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.store-card-sub {
+  margin-top: 2px;
+  color: var(--lx-soft);
+  font-size: 13.5px;
+}
+
+.store-card-desc {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 4px;
+  color: var(--lx-faint);
+  font-size: 13.5px;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.store-get {
+  display: inline-flex;
+  min-width: 68px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgb(118 118 128 / 12%);
+  color: var(--lx-blue);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.store-card:hover .store-get {
+  background: rgb(118 118 128 / 20%);
+}
+
+.store-get.is-primary {
+  min-width: 84px;
+  height: 34px;
+  background: var(--lx-blue);
+  color: #fff;
+  font-size: 15px;
+}
+
+.store-get.is-primary:hover {
+  background: #1a4fc0;
+}
+
+.store-empty {
+  padding: 60px 0;
+  color: var(--lx-soft);
+  font-size: 17px;
+  text-align: center;
+}
+
+/* Product page */
+.store-back {
+  margin-top: clamp(40px, 7vw, 80px);
+}
+
+.store-product {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 32px);
+  margin-top: clamp(20px, 3vw, 32px);
+}
+
+.store-product h1 {
+  font-size: clamp(30px, 4.4vw, 46px);
+  font-weight: 700;
+  letter-spacing: -0.034em;
+  line-height: 1.05;
+}
+
+.store-product-sub {
+  margin-top: 6px;
+  color: var(--lx-soft);
+  font-size: 17px;
+}
+
+.store-product-by {
+  margin-top: 2px;
+  color: var(--lx-blue);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.store-product-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.store-price {
+  color: var(--lx-faint);
+  font-size: 13.5px;
+}
+
+.store-facts {
+  display: grid;
+  margin: clamp(28px, 4vw, 40px) 0 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--lx-line);
+  border-bottom: 1px solid var(--lx-line);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  text-align: center;
+}
+
+.store-facts > div {
+  padding: 2px 12px;
+}
+
+.store-facts > div + div {
+  border-left: 1px solid var(--lx-line);
+}
+
+.store-facts dt {
+  color: var(--lx-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.store-facts dd {
+  margin: 4px 0 0;
+  color: var(--lx-soft);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.store-facts dd.store-fact-note {
+  margin-top: 3px;
+  color: var(--lx-faint);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.store-description {
+  max-width: 720px;
+  margin-top: clamp(26px, 3.4vw, 36px) !important;
+  color: var(--lx-ink);
+  font-size: clamp(18px, 2vw, 21px);
+  line-height: 1.45;
+  letter-spacing: -0.016em;
+}
+
+.store-section {
+  margin-top: clamp(36px, 5vw, 56px);
+  padding-top: clamp(28px, 3.6vw, 40px);
+  border-top: 1px solid var(--lx-line);
+}
+
+.store-section-lede {
+  max-width: 680px;
+  margin-bottom: 16px !important;
+  color: var(--lx-soft);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.store-section .lx-tags,
+.store-section .lx-list {
+  margin-top: 14px;
+}
+
+/* Code preview window */
+.store-code {
+  overflow: hidden;
+  margin: 0;
+  border-radius: 14px;
+  background: #1c1c1e;
+  box-shadow: 0 24px 60px -24px rgb(20 30 70 / 45%);
+}
+
+.store-code figcaption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+  color: #98989f;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+}
+
+.store-code-dots {
+  display: inline-flex;
+  gap: 7px;
+}
+
+.store-code-dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.store-code-dots i:nth-child(2) {
+  background: #febc2e;
+}
+
+.store-code-dots i:nth-child(3) {
+  background: #28c840;
+}
+
+.store-code pre {
+  max-height: 460px;
+  margin: 0;
+  padding: 16px 18px 20px;
+  overflow: auto;
+}
+
+main.lx .store-code code {
+  padding: 0;
+  background: none;
+  color: #f5f5f7;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+/* Snippet browser: a list on the left, the selected snippet on the right. */
+.store-snippets {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 260px minmax(0, 1fr);
+}
+
+.store-snippet-list {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+}
+
+.store-snippet-list button {
+  display: grid;
+  gap: 1px;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--lx-soft);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: background 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.store-snippet-list button span {
+  font-size: 15px;
+  font-weight: 550;
+}
+
+main.lx .store-snippet-list button code {
+  padding: 0;
+  background: none;
+  color: var(--lx-faint);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+}
+
+.store-snippet-list button:hover {
+  background: rgb(11 12 15 / 4%);
+}
+
+.store-snippet-list button[aria-selected="true"] {
+  background: rgb(31 95 224 / 10%);
+  color: var(--lx-ink);
+}
+
+main.lx .store-snippet-list button[aria-selected="true"] code {
+  color: var(--lx-blue);
+}
+
+.store-snippet-panel > p {
+  margin-bottom: 12px !important;
+  color: var(--lx-soft);
+  font-size: 15.5px;
+}
+
+.store-snippet-panel + .store-snippet-panel {
+  margin-top: 28px;
+}
+
+.store-snippets.is-ready .store-snippet-panel + .store-snippet-panel {
+  margin-top: 0;
+}
+
+.store-snippets.is-ready .store-snippet-panel[data-inactive] {
+  display: none;
+}
+
+.store-snippets.is-ready .store-snippet-panel:not([data-inactive]) {
+  animation: store-fade 260ms var(--ease-out);
+}
+
+@keyframes store-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* Information list */
+.store-info {
+  display: grid;
+  margin: 10px 0 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(20px, 4vw, 48px);
+}
+
+.store-info > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--lx-line);
+  font-size: 15px;
+}
+
+.store-info dt {
+  color: var(--lx-faint);
+}
+
+.store-info dd {
+  margin: 0;
+  color: var(--lx-ink);
+  text-align: right;
+}
+
+main.lx .store-info code {
+  padding: 0;
+  background: none;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13.5px;
+}
+
+@media (max-width: 1000px) {
+  .store-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .store-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .store-search {
+    flex-basis: auto;
+  }
+
+  .store-facts {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .store-facts > div {
+    min-width: 128px;
+    scroll-snap-align: start;
+  }
+
+  .store-snippets {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .store-snippet-list {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .store-snippet-list button {
+    flex-shrink: 0;
+  }
+
+  .store-info {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .store-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .store-product {
+    align-items: flex-start;
+  }
+
+  .store-icon.is-large {
+    width: 96px;
+    height: 96px;
+    border-radius: 22px;
+    font-size: 44px;
+  }
+
+  .store-icon.is-large.is-word {
+    font-size: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .store-snippets.is-ready .store-snippet-panel:not([data-inactive]) {
+    animation: none;
+  }
+}

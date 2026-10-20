@@ -82,27 +82,159 @@
   ]
 }
     </script>
+    <script src="/assets/partials.js"></script>
+    <link rel="stylesheet" href="/assets/store.css" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
 
     <div data-header-src="/partials/header.html"></div>
 
-    <main id="content" class="lx">
+    <main id="content" class="lx store">
 
-      <header class="lx-hero">
-        <a class="lx-back" href="/store/">All extensions</a>
-        <p class="lx-label">Template · Templates</p>
-        <h1>ACM Article</h1>
-        <p class="lx-lede">An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
+      <a class="lx-back store-back" href="/store/">Store</a>
+      <header class="store-product">
+        <span class="store-icon is-large tint-blue is-word" aria-hidden="true">ACM</span>
+        <div class="store-product-text">
+          <h1>ACM Article</h1>
+          <p class="store-product-sub">Template · Templates</p>
+          <p class="store-product-by">LatexDo</p>
+          <div class="store-product-actions">
+            <a class="store-get is-primary" href="#install-title">Get</a>
+            <span class="store-price">Free · No account needed</span>
+          </div>
+        </div>
       </header>
-      <div class="lx-rows">
-        <section class="lx-row two reveal"><h2>What it adds</h2><div class="lx-row-body"><ul class="lx-list"><li>Template: ACM Conference Article</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Tags</h2><div class="lx-row-body"><ul class="lx-tags" aria-label="Tags"><li>acm</li><li>sigconf</li><li>paper</li></ul></div></section>
-        <section class="lx-row two reveal"><h2>Details</h2><div class="lx-row-body"><ul class="lx-list"><li>Version 1.0.0</li>
-<li>By LatexDo</li>
-<li>Identifier latexdo.acm-article</li></ul></div></section>
-      </div>
+      <dl class="store-facts">
+        <div><dt>Price</dt><dd>Free</dd><dd class="store-fact-note">Open source</dd></div>
+        <div><dt>Category</dt><dd>Templates</dd><dd class="store-fact-note">Template</dd></div>
+        <div><dt>Includes</dt><dd>1 template</dd><dd class="store-fact-note">Added on install</dd></div>
+        <div><dt>Version</dt><dd>1.0.0</dd><dd class="store-fact-note">LatexDo</dd></div>
+        <div><dt>Works on</dt><dd>Mac, Windows, Linux</dd><dd class="store-fact-note">LatexDo desktop</dd></div>
+      </dl>
+      <p class="store-description">An ACM sigconf article in anonymous review mode with affiliations, keywords and ACM references, one switch from camera-ready.</p>
+      <section class="store-section reveal" aria-labelledby="preview-title">
+        <h2 id="preview-title">Preview</h2>
+        <p class="store-section-lede">acmart sigconf article in anonymous review mode, with affiliations, keywords, results table and ACM references.</p>
+        
+          <figure class="store-code" >
+            <figcaption><span class="store-code-dots" aria-hidden="true"><i></i><i></i><i></i></span>main.tex</figcaption>
+            <pre><code>\documentclass[sigconf,review,anonymous]{acmart}
+
+% Remove &quot;review,anonymous&quot; for the camera-ready version.
+\setcopyright{none}
+\settopmatter{printacmref=false}
+
+\begin{document}
+
+\title{Paper Title: A Short, Specific Claim}
+
+\author{First Author}
+\affiliation{%
+  \institution{University}
+  \city{City}
+  \country{Country}}
+\email{first.author@example.org}
+
+\author{Second Author}
+\affiliation{%
+  \institution{Institute}
+  \city{City}
+  \country{Country}}
+\email{second.author@example.org}
+
+\begin{abstract}
+State the problem, the approach, the main result with a number, and why it matters.
+\end{abstract}
+
+\keywords{first keyword, second keyword, third keyword}
+
+\maketitle
+
+\section{Introduction}
+Motivate the problem and list the contributions.
+
+\section{Related Work}
+Position the paper against prior work~\cite{example2024}.
+
+\section{Approach}
+\label{sec:approach}
+Describe the system or method.
+
+\section{Evaluation}
+\begin{table}[t]
+  \caption{Main results. Best in bold.}
+  \label{tab:results}
+  \begin{tabular}{lcc}
+    \toprule
+    Method &amp; Accuracy (\%) &amp; Latency (ms) \\
+    \midrule
+    Baseline &amp; 81.2 &amp; 34 \\
+    Ours &amp; \textbf{86.9} &amp; \textbf{21} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Conclusion}
+Summarise the findings and the limits.
+
+\begin{acks}
+Acknowledge funding and help here.
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}</code></pre>
+          </figure>
+      </section>
+      <section class="store-section reveal"><h2>What it adds</h2><ul class="lx-list"><li>Template: ACM Conference Article</li></ul></section>
+      <section class="store-section reveal"><h2>Tags</h2><ul class="lx-tags" aria-label="Tags"><li>acm</li><li>sigconf</li><li>paper</li></ul></section>
+      <section class="store-section reveal">
+        <h2>Information</h2>
+        <dl class="store-info">
+          <div><dt>Provider</dt><dd>LatexDo</dd></div>
+          <div><dt>Category</dt><dd>Templates</dd></div>
+          <div><dt>Version</dt><dd>1.0.0</dd></div>
+          <div><dt>Identifier</dt><dd><code>latexdo.acm-article</code></dd></div>
+          <div><dt>Price</dt><dd>Free</dd></div>
+        </dl>
+      </section>
+      <section class="store-section reveal" aria-labelledby="related-title">
+        <h2 id="related-title">More in Templates</h2>
+        <div class="store-grid">
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="ieee conference paper an ieee two-column conference paper with authors, keywords, a results table and ieee references, ready to submit. templates template ieee conference paper">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">IEEE</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.ieee-conference/">IEEE Conference Paper</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">An IEEE two-column conference paper with authors, keywords, a results table and IEEE references, ready to submit.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="thesis and dissertation a thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix. templates template thesis dissertation phd">
+            <span class="store-icon  tint-blue is-word" aria-hidden="true">PhD</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.thesis/">Thesis and Dissertation</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A thesis or dissertation with title page, abstract, acknowledgements, contents, lists of figures and tables, chapters and appendix.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+          <article class="store-card" data-store-card data-category="templates"
+            data-search="academic cv a clean one-column academic cv with education, appointments, numbered publications, grants, teaching and service sections. templates template cv resume career">
+            <span class="store-icon  tint-blue" aria-hidden="true">CV</span>
+            <div class="store-card-text">
+              <h3><a href="/store/extensions/latexdo.academic-cv/">Academic CV</a></h3>
+              <p class="store-card-sub">Template · 1 template</p>
+              <p class="store-card-desc">A clean one-column academic CV with education, appointments, numbered publications, grants, teaching and service sections.</p>
+            </div>
+            <span class="store-get" aria-hidden="true">View</span>
+          </article>
+        </div>
+      </section>
       <section class="lx-close reveal" aria-labelledby="install-title">
         <h2 id="install-title">Install ACM Article</h2>
         <p>In LatexDo, open the Extensions view, find ACM Article and choose Install. It is free.</p>
@@ -115,5 +247,6 @@
     <div data-footer-src="/partials/footer.html"></div>
 
     <script type="module" src="/assets/site.js"></script>
+    <script type="module" src="/assets/store.js"></script>
   </body>
 </html>
