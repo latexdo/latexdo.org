@@ -3,14 +3,14 @@
   "product": "LatexDo",
   "channel": "stable",
   "version": "1.0.0",
-  "publishedAt": "2026-10-28T19:09:49.076Z",
-  "expiresAt": "2026-11-27T19:09:49.076Z",
-  "commit": "f05bf568df9ef84c34e1b09f6525aa28fd625fd1",
+  "publishedAt": "2026-10-28T21:52:41.157Z",
+  "expiresAt": "2026-11-27T21:52:41.157Z",
+  "commit": "a1f9e6e3d560f863bf88a86a0af6a2eb57c740ae",
   "repository": "latexdo/latexdo-desktop",
-  "release": "v1.0.0-build.91.1.f05bf568df9e",
-  "releaseUrl": "https://latexdo.org/downloads/v1.0.0-build.91.1.f05bf568df9e/",
-  "downloadsPage": "https://latexdo.org/downloads/v1.0.0-build.91.1.f05bf568df9e/",
-  "manifestUrl": "https://latexdo.org/downloads/v1.0.0-build.91.1.f05bf568df9e/manifest.json",
+  "release": "v1.0.0-build.99.1.a1f9e6e3d560",
+  "releaseUrl": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/",
+  "downloadsPage": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/",
+  "manifestUrl": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/manifest.json",
   "releaseNotesUrl": "https://latexdo.org/updates/release-notes/1.0.0.json",
   "files": [
     {
@@ -20,10 +20,10 @@
       "arch": "arm64",
       "filename": "LatexDo-macos-arm64.dmg",
       "note": "For Macs with Apple Silicon chips.",
-      "size": 229128566,
-      "sizeLabel": "218.5 MB",
-      "sha256": "86bfd0ad9f44b6585a987e42f71570a46f7c5f24b50a2e038977cf12130ac2a4",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.91.1.f05bf568df9e/LatexDo-macos-arm64.dmg"
+      "size": 229723251,
+      "sizeLabel": "219.1 MB",
+      "sha256": "122374df91a4667d82f4e3103577de694146af254df79d0cbb0b4acc4dfb05d6",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-macos-arm64.dmg"
     },
     {
       "id": "macos-x64",
@@ -32,10 +32,10 @@
       "arch": "x64",
       "filename": "LatexDo-macos-x64.dmg",
       "note": "For Intel-based Macs.",
-      "size": 246437826,
-      "sizeLabel": "235.0 MB",
-      "sha256": "66fcae7da8727fc92ab5a429d6a720838f48b21ea88da90dc33e3a6b2e2570e5",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.91.1.f05bf568df9e/LatexDo-macos-x64.dmg"
+      "size": 247019947,
+      "sizeLabel": "235.6 MB",
+      "sha256": "1f847c5f191ebbe75f784c8495a53e82d55c68e6b9368f996c7b16a530edd24f",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-macos-x64.dmg"
     },
     {
       "id": "windows-x64",
@@ -44,10 +44,10 @@
       "arch": "x64",
       "filename": "LatexDo-windows-x64.exe",
       "note": "For 64-bit Windows PCs.",
-      "size": 457863632,
-      "sizeLabel": "436.7 MB",
-      "sha256": "c4d7e9250548e30f108fc45bf6d9814e1cd558192b9832d0f59f8d110ec24d89",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.91.1.f05bf568df9e/LatexDo-windows-x64.exe"
+      "size": 458301129,
+      "sizeLabel": "437.1 MB",
+      "sha256": "a5a29e8546b1e132e7cde8502305e466b10b12cef59bb3c04a7c83c1a15aec31",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-windows-x64.exe"
     },
     {
       "id": "linux-x64",
@@ -56,15 +56,15 @@
       "arch": "x64",
       "filename": "LatexDo-linux-x64.AppImage",
       "note": "For 64-bit Linux distributions that support AppImage.",
-      "size": 573093958,
-      "sizeLabel": "546.5 MB",
-      "sha256": "14cc07ff7a5787add7ea69fc2ab8a3f8b9a23377eef615160b1b52e8cf880651",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.91.1.f05bf568df9e/LatexDo-linux-x64.AppImage"
+      "size": 573650776,
+      "sizeLabel": "547.1 MB",
+      "sha256": "f9e763df6be08c61427e4e29e190c50f4fffa3c7a4874bc1bee6498d71b26a8c",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-linux-x64.AppImage"
     }
   ],
   "signature": {
     "algorithm": "ed25519",
     "keyId": "5f6d08034174008d",
-    "value": "qB+heZtfCnoTVpzHwPemqvwRBxIUySL3S4mX5S1m5S9rcDMKnqFfZtyjex/6mvGLqgJ85Q92JUTylkHc2cdIBQ=="
+    "value": "hV/BtyukCyuIYcCbjRH+zK/qwONnPixEEIcb0il0PFU52cMOzluMb7L8wfHxPkC0TLqivSPeeW/3bgjlEBy/BA=="
   }
 }
