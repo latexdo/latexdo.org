@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "product": "LatexDo",
   "version": "1.0.0",
-  "publishedAt": "2026-10-28T21:52:41.157Z",
-  "commit": "a1f9e6e3d560f863bf88a86a0af6a2eb57c740ae",
+  "publishedAt": "2026-10-30T01:23:28.284Z",
+  "commit": "c0bbef8fac3e247975a9a2f6383de6a4210ddab4",
   "repository": "latexdo/latexdo-desktop",
-  "downloadsPage": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/",
+  "downloadsPage": "https://latexdo.org/downloads/v1.0.0-build.110.1.c0bbef8fac3e/",
   "files": [
     {
       "id": "macos-arm64",
@@ -14,10 +14,10 @@
       "arch": "arm64",
       "filename": "LatexDo-macos-arm64.dmg",
       "note": "For Macs with Apple Silicon chips.",
-      "size": 229723251,
+      "size": 229742018,
       "sizeLabel": "219.1 MB",
-      "sha256": "122374df91a4667d82f4e3103577de694146af254df79d0cbb0b4acc4dfb05d6",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-macos-arm64.dmg"
+      "sha256": "cf6166efddd9ca2144a0d1a4c8fb9346a94b18c3c2b9474347975f72672ac494",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.110.1.c0bbef8fac3e/LatexDo-macos-arm64.dmg"
     },
     {
       "id": "macos-x64",
@@ -26,10 +26,10 @@
       "arch": "x64",
       "filename": "LatexDo-macos-x64.dmg",
       "note": "For Intel-based Macs.",
-      "size": 247019947,
+      "size": 247044302,
       "sizeLabel": "235.6 MB",
-      "sha256": "1f847c5f191ebbe75f784c8495a53e82d55c68e6b9368f996c7b16a530edd24f",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-macos-x64.dmg"
+      "sha256": "e3ec6ae35dd5a4f240381e8ff5ccbbe90abdd149e466552d015463c8743018c9",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.110.1.c0bbef8fac3e/LatexDo-macos-x64.dmg"
     },
     {
       "id": "windows-x64",
@@ -38,10 +38,10 @@
       "arch": "x64",
       "filename": "LatexDo-windows-x64.exe",
       "note": "For 64-bit Windows PCs.",
-      "size": 458301129,
+      "size": 458313250,
       "sizeLabel": "437.1 MB",
-      "sha256": "a5a29e8546b1e132e7cde8502305e466b10b12cef59bb3c04a7c83c1a15aec31",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-windows-x64.exe"
+      "sha256": "d0c6a324be90b8031fb131cfe5b1f47d818267b4b80644900acc6f37661c3619",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.110.1.c0bbef8fac3e/LatexDo-windows-x64.exe"
     },
     {
       "id": "linux-x64",
@@ -50,10 +50,10 @@
       "arch": "x64",
       "filename": "LatexDo-linux-x64.AppImage",
       "note": "For 64-bit Linux distributions that support AppImage.",
-      "size": 573650776,
+      "size": 573671202,
       "sizeLabel": "547.1 MB",
-      "sha256": "f9e763df6be08c61427e4e29e190c50f4fffa3c7a4874bc1bee6498d71b26a8c",
-      "url": "https://latexdo.org/downloads/v1.0.0-build.99.1.a1f9e6e3d560/LatexDo-linux-x64.AppImage"
+      "sha256": "f54806f9c21f88c9306fdd13558debffa18dc98f3799a5e6b21db8bb8f111054",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.110.1.c0bbef8fac3e/LatexDo-linux-x64.AppImage"
     }
   ]
 }

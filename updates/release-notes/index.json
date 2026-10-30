@@ -4,9 +4,9 @@
   "releases": [
     {
       "version": "1.0.0",
-      "publishedAt": "2026-10-16T12:00:00.000Z",
+      "publishedAt": "2026-10-29T12:00:00.000Z",
       "releaseNotesUrl": "https://latexdo.org/updates/release-notes/1.0.0.json",
-      "sha256": "19b17c7ade4006b1bdde1455b7c6a0db3e0a4693523f6aa1b6d3d0b4eb1b1fbb"
+      "sha256": "d9d136e261235888ca97597275396c2f796b828ca5e7f74637159257eb989065"
     },
     {
       "version": "0.3.1",
@@ -24,6 +24,6 @@
   "signature": {
     "algorithm": "ed25519",
     "keyId": "5f6d08034174008d",
-    "value": "yWinRSC89nkRnx7sM/ATgQjdeF6ltEr+GhPTMyYk/wuFW+Sc4xo1o5wy824aZqki3EaHDRU2CI2Pic2ev37ZBQ=="
+    "value": "Luajg6ewbf7hE5jLgSUY1xvE31fmq+0cJcuJ1+npWF1ZOlQDA2WOifJ6SN4ep3U/WADyzCCIo3eQ9N9vIsCnCg=="
   }
 }
