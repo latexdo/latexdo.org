@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "product": "LatexDo",
+  "version": "1.0.0",
+  "publishedAt": "2026-11-14T17:00:24.347Z",
+  "commit": "c8cb4c589024d4fe8c16c8c0645ba73200d3d3ac",
+  "repository": "latexdo/latexdo-desktop",
+  "downloadsPage": "https://latexdo.org/downloads/v1.0.0-build.175.1.c8cb4c589024/",
+  "files": [
+    {
+      "id": "macos-arm64",
+      "label": "macOS Apple Silicon",
+      "platform": "macos",
+      "arch": "arm64",
+      "filename": "LatexDo-macos-arm64.dmg",
+      "note": "For Macs with Apple Silicon chips.",
+      "size": 229898250,
+      "sizeLabel": "219.2 MB",
+      "sha256": "c9993e63b4741bc3aa907d389537f0dc1838a1caae230304bd428e2eb84a8ea0",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.175.1.c8cb4c589024/LatexDo-macos-arm64.dmg"
+    },
+    {
+      "id": "macos-x64",
+      "label": "macOS Intel",
+      "platform": "macos",
+      "arch": "x64",
+      "filename": "LatexDo-macos-x64.dmg",
+      "note": "For Intel-based Macs.",
+      "size": 247182341,
+      "sizeLabel": "235.7 MB",
+      "sha256": "ff9ccad20296c2177cdb4aebf92d8dd34c37c518b34f6a2aa2fe3c54e51ecc3b",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.175.1.c8cb4c589024/LatexDo-macos-x64.dmg"
+    },
+    {
+      "id": "windows-x64",
+      "label": "Windows",
+      "platform": "windows",
+      "arch": "x64",
+      "filename": "LatexDo-windows-x64.exe",
+      "note": "For 64-bit Windows PCs.",
+      "size": 458417794,
+      "sizeLabel": "437.2 MB",
+      "sha256": "e3a3c4b5ea4612f9861feffe094e53c738085bd350d0104cc5beeb5ebe750af5",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.175.1.c8cb4c589024/LatexDo-windows-x64.exe"
+    },
+    {
+      "id": "linux-x64",
+      "label": "Linux",
+      "platform": "linux",
+      "arch": "x64",
+      "filename": "LatexDo-linux-x64.AppImage",
+      "note": "For 64-bit Linux distributions that support AppImage.",
+      "size": 573847483,
+      "sizeLabel": "547.3 MB",
+      "sha256": "31ea720ad7292476cf884c820578a5ff4eedbdc43222afa64cabb4f9cd57f79b",
+      "url": "https://latexdo.org/downloads/v1.0.0-build.175.1.c8cb4c589024/LatexDo-linux-x64.AppImage"
+    }
+  ]
+}
